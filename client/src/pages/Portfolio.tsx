@@ -23,10 +23,20 @@ const projects = [
     description:
       "A comprehensive UX/UI redesign of Hindusthan Shipyard Limited's website. The project involved in-depth user research, competitive analysis, empathy mapping, wireframing, prototyping and high-fidelity visual design to create a modern, mobile-responsive platform.",
     tags: ["UX Research", "UI Design", "Prototyping", "Figma"],
-    color: "#008080",
+    accentColor: "#008080",
     slug: "/case-study",
     year: "2024",
     image: "/figmaAssets/image-16.png",
+  },
+  {
+    title: "Kudra V2 — Fleet & Trip Management Platform",
+    description:
+      "End-to-end product design of an enterprise logistics SaaS platform. Transformed manual, call-heavy fleet operations into a trip-centric, data-driven system — covering UX research, product strategy, workflow design, and a full design system.",
+    tags: ["Product Strategy", "Enterprise UX", "SaaS Design", "Fleet Management"],
+    accentColor: "#F5B731",
+    slug: "/case-study/kudra",
+    year: "2024",
+    image: "/figmaAssets/kudra-dashboard.png",
   },
 ];
 
@@ -378,7 +388,12 @@ export const Portfolio = (): JSX.Element => {
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
                 <Link href={project.slug}>
-                  <div className="group cursor-pointer rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-[#008080]/40 transition-all duration-300">
+                  <div
+                    className="group cursor-pointer rounded-3xl border border-white/10 bg-white/5 overflow-hidden transition-all duration-300"
+                    style={{ ["--accent" as string]: project.accentColor }}
+                    onMouseEnter={(e) => (e.currentTarget.style.borderColor = project.accentColor + "66")}
+                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = "")}
+                  >
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                       <div className="overflow-hidden bg-[#0e0e0e]">
                         <img
@@ -393,11 +408,11 @@ export const Portfolio = (): JSX.Element => {
                             {project.year}
                           </span>
                           <span className="w-1 h-1 rounded-full bg-white/20" />
-                          <span className="text-xs font-semibold tracking-widest text-[#008080] uppercase">
+                          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: project.accentColor }}>
                             Case Study
                           </span>
                         </div>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white group-hover:text-[#008080] transition-colors duration-200">
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white transition-colors duration-200" style={{ ["--hover-color" as string]: project.accentColor }}>
                           {project.title}
                         </h3>
                         <p className="text-white/60 leading-relaxed">
@@ -413,7 +428,7 @@ export const Portfolio = (): JSX.Element => {
                             </span>
                           ))}
                         </div>
-                        <div className="flex items-center gap-2 text-[#008080] font-semibold text-sm group-hover:gap-4 transition-all duration-200">
+                        <div className="flex items-center gap-2 font-semibold text-sm group-hover:gap-4 transition-all duration-200" style={{ color: project.accentColor }}>
                           View Case Study
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
