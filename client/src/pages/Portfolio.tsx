@@ -38,6 +38,16 @@ const projects = [
     year: "2024",
     image: "/figmaAssets/kudra-dashboard.png",
   },
+  {
+    title: "ClappIt — Cloud Infrastructure & DevOps Platform",
+    description:
+      "Full UX redesign of an AI-powered cloud infrastructure automation platform. Transformed cognitively overloaded DevOps dashboards into a clarity-first enterprise product — covering UX research, information architecture, design system, and high-fidelity UI.",
+    tags: ["Enterprise UX", "Dashboard Design", "Design System", "DevOps SaaS"],
+    accentColor: "#E8273A",
+    slug: "/case-study/clappit",
+    year: "2024",
+    image: "/figmaAssets/clappit-dashboard.png",
+  },
 ];
 
 const socials = [

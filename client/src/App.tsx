@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import { Portfolio } from "@/pages/Portfolio";
 import { CaseStudy } from "@/pages/CaseStudy";
 import { KudraCaseStudy } from "@/pages/KudraCaseStudy";
+import { ClappitCaseStudy } from "@/pages/ClappitCaseStudy";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
       <Route path="/" component={Portfolio} />
       <Route path="/case-study" component={CaseStudy} />
       <Route path="/case-study/kudra" component={KudraCaseStudy} />
+      <Route path="/case-study/clappit" component={ClappitCaseStudy} />
       <Route component={NotFound} />
     </Switch>
   );
