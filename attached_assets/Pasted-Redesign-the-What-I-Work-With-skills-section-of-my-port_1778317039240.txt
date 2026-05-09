@@ -1,0 +1,86 @@
+Redesign the “What I Work With” skills section of my portfolio to position me as a modern SaaS Product Designer instead of a generic UI/UX designer.
+
+Current design:
+- Dark premium theme
+- 3 cards layout
+- Cyan/teal accent color
+- Rounded cards
+- Modern minimal aesthetic
+
+Goal:
+Make the section feel like a high-end SaaS product designer portfolio optimized for recruiters and product leaders at enterprise/SaaS companies.
+
+The section should communicate:
+- Product thinking
+- Systems thinking
+- SaaS workflow expertise
+- Design systems knowledge
+- Cross-functional collaboration
+- AI-assisted design workflows
+- Developer handoff capability
+- Enterprise dashboard experience
+
+Replace the current generic categories with more strategic categories.
+
+Use these improved categories and skill content:
+
+CARD 1 — Product Design
+- Product Design
+- UX Strategy
+- SaaS Workflows
+- Information Architecture
+- User Flows
+- Wireframing
+- High-Fidelity UI
+- Interaction Design
+- Dashboard Design
+- Usability Testing
+
+CARD 2 — Systems & Collaboration
+- Design Systems
+- Atomic Design
+- Design Tokens
+- Component Libraries
+- Scalable UI Architecture
+- Developer Handoff
+- Cross-functional Collaboration
+- Product Discovery
+- SDLC Awareness
+- API-driven UI Thinking
+
+CARD 3 — Tools & AI Workflow
+- Figma
+- Miro
+- Notion
+- Jira
+- Claude AI
+- ChatGPT
+- AI-assisted Prototyping
+- Rapid UI Iteration
+- React / Next.js
+- Tailwind CSS
+
+Design Improvements:
+- Add subtle hover interactions
+- Add soft glow effects using teal accents
+- Improve typography hierarchy
+- Make headings feel more premium
+- Add small icons beside each category title
+- Improve spacing and alignment
+- Add smooth animations using Framer Motion
+- Make the cards feel more “product design systems” oriented instead of simple bullet lists
+- Add subtle dividers and better visual grouping
+- Use responsive layout for mobile/tablet/desktop
+
+Extra Important:
+Avoid making this section look like a beginner frontend developer portfolio.
+It should feel like:
+- Senior Product Designer
+- SaaS systems designer
+- Enterprise UX designer
+- Product-focused design strategist
+
+The final design should resemble portfolios from designers working at:
+Stripe, Linear, Notion, Framer, Vercel, or enterprise SaaS startups.
+
+Use clean React + Tailwind implementation with reusable card components.

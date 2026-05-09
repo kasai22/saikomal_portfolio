@@ -2,19 +2,37 @@ import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Navbar } from "@/components/Navbar";
 
-const skills = [
-  { category: "Design", items: ["UI/UX Design", "Figma", "Wireframing", "Prototyping", "User Research", "Usability Testing"] },
-  { category: "Development", items: ["HTML / CSS", "JavaScript", "React", "Tailwind CSS", "Framer", "Responsive Design"] },
-  { category: "Process", items: ["Design Thinking", "Empathy Mapping", "Information Architecture", "Competitive Analysis", "User Personas", "User Flows"] },
-];
-
-const tools = [
-  { name: "Figma", icon: "🎨" },
-  { name: "Framer", icon: "⚡" },
-  { name: "React", icon: "⚛️" },
-  { name: "Tailwind", icon: "💨" },
-  { name: "VS Code", icon: "💻" },
-  { name: "Notion", icon: "📝" },
+const skillGroups = [
+  {
+    icon: "◈",
+    category: "Product Design",
+    description: "End-to-end design thinking from research to pixel-perfect delivery",
+    items: [
+      "Product Design", "UX Strategy", "SaaS Workflows",
+      "Information Architecture", "User Flows", "Wireframing",
+      "High-Fidelity UI", "Interaction Design", "Dashboard Design", "Usability Testing",
+    ],
+  },
+  {
+    icon: "⬡",
+    category: "Systems & Collaboration",
+    description: "Scalable design infrastructure built for cross-functional teams",
+    items: [
+      "Design Systems", "Atomic Design", "Design Tokens",
+      "Component Libraries", "Scalable UI Architecture", "Developer Handoff",
+      "Cross-functional Collaboration", "Product Discovery", "SDLC Awareness", "API-driven UI Thinking",
+    ],
+  },
+  {
+    icon: "◎",
+    category: "Tools & AI Workflow",
+    description: "Modern toolchain with AI-assisted workflows for rapid iteration",
+    items: [
+      "Figma", "Miro", "Notion",
+      "Jira", "Claude AI", "ChatGPT",
+      "AI-assisted Prototyping", "Rapid UI Iteration", "React / Next.js", "Tailwind CSS",
+    ],
+  },
 ];
 
 const projects = [
@@ -307,7 +325,7 @@ export const Portfolio = (): JSX.Element => {
         <div className="mx-auto max-w-7xl">
           <div
             data-animate
-            className="opacity-0 translate-y-8 transition-all duration-700 ease-out mb-12"
+            className="opacity-0 translate-y-8 transition-all duration-700 ease-out mb-4"
           >
             <span className="text-[#008080] text-sm font-semibold tracking-widest uppercase">
               Skills & Tools
@@ -315,46 +333,85 @@ export const Portfolio = (): JSX.Element => {
             <h2 className="mt-2 text-4xl sm:text-5xl font-bold">
               What I <span className="text-[#008080]">Work With</span>
             </h2>
+            <p className="mt-4 text-white/50 max-w-xl text-sm leading-relaxed">
+              A senior product design toolkit built for SaaS — spanning strategy, systems thinking, AI-assisted workflows, and developer collaboration.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {skills.map((group, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
+            {skillGroups.map((group, i) => (
               <div
                 key={group.category}
                 data-animate
-                className="opacity-0 translate-y-8 transition-all duration-700 ease-out rounded-3xl border border-white/10 bg-white/5 p-8"
-                style={{ transitionDelay: `${i * 100}ms` }}
+                className="opacity-0 translate-y-8 transition-all duration-700 ease-out group relative rounded-2xl border border-white/10 bg-white/[0.03] p-7 overflow-hidden cursor-default"
+                style={{ transitionDelay: `${i * 120}ms` }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,128,128,0.4)";
+                  (e.currentTarget as HTMLDivElement).style.backgroundColor = "rgba(0,128,128,0.04)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor = "";
+                  (e.currentTarget as HTMLDivElement).style.backgroundColor = "";
+                }}
               >
-                <h3 className="text-lg font-semibold text-[#008080] mb-6 pb-3 border-b border-white/10">
-                  {group.category}
-                </h3>
-                <ul className="space-y-3">
-                  {group.items.map((skill) => (
-                    <li key={skill} className="flex items-center gap-3 text-white/80">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#008080] shrink-0" />
+                {/* Glow */}
+                <div className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(circle, rgba(0,128,128,0.15) 0%, transparent 70%)" }} />
+
+                {/* Header */}
+                <div className="flex items-start gap-3 mb-5 pb-5 border-b border-white/8">
+                  <span className="text-2xl leading-none mt-0.5 shrink-0" style={{ color: "#008080" }}>{group.icon}</span>
+                  <div>
+                    <h3 className="font-bold text-white text-base leading-tight">{group.category}</h3>
+                    <p className="text-white/40 text-xs mt-1 leading-relaxed">{group.description}</p>
+                  </div>
+                </div>
+
+                {/* Skill pills */}
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((skill, j) => (
+                    <span
+                      key={skill}
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/65 transition-all duration-200 hover:border-[#008080]/40 hover:text-white hover:bg-[#008080]/10"
+                      style={{ animationDelay: `${j * 30}ms` }}
+                    >
                       {skill}
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </div>
+
+                {/* Count badge */}
+                <div className="mt-5 pt-4 border-t border-white/8 flex items-center justify-between">
+                  <span className="text-xs text-white/25 uppercase tracking-widest">Capabilities</span>
+                  <span className="text-xs font-bold tabular-nums" style={{ color: "#008080" }}>{group.items.length}</span>
+                </div>
               </div>
             ))}
           </div>
 
+          {/* Bottom bar — proficiency signals */}
           <div
             data-animate
-            className="opacity-0 translate-y-8 transition-all duration-700 ease-out"
+            className="opacity-0 translate-y-8 transition-all duration-700 ease-out mt-8"
+            style={{ transitionDelay: "360ms" }}
           >
-            <h3 className="text-lg font-semibold text-white/60 mb-6 uppercase tracking-widest text-sm">
-              Tools & Software
-            </h3>
-            <div className="flex flex-wrap gap-4">
-              {tools.map((tool) => (
-                <div
-                  key={tool.name}
-                  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 hover:border-[#008080]/50 hover:bg-[#008080]/5 transition-colors duration-200"
-                >
-                  <span className="text-xl">{tool.icon}</span>
-                  <span className="text-white/80 font-medium">{tool.name}</span>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] px-6 py-5 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <span className="text-xs text-white/30 uppercase tracking-widest shrink-0">Workflow</span>
+              {[
+                { label: "Research → Strategy", pct: 90 },
+                { label: "Wireframes → Hi-Fi", pct: 95 },
+                { label: "Design Systems", pct: 88 },
+                { label: "Developer Handoff", pct: 92 },
+                { label: "AI-Assisted Design", pct: 85 },
+              ].map((bar) => (
+                <div key={bar.label} className="flex items-center gap-3 flex-1 min-w-[160px]">
+                  <span className="text-xs text-white/50 whitespace-nowrap shrink-0">{bar.label}</span>
+                  <div className="flex-1 h-1 rounded-full bg-white/10 overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: `${bar.pct}%`, background: "linear-gradient(90deg, #008080, #00b3b3)" }}
+                    />
+                  </div>
+                  <span className="text-xs tabular-nums" style={{ color: "#008080" }}>{bar.pct}%</span>
                 </div>
               ))}
             </div>
