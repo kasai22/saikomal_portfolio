@@ -1,5 +1,9 @@
 import { Link } from "wouter";
 import { Navbar } from "@/components/Navbar";
+import liveTrackingImg from "@assets/image_1778319857506.png";
+import fleetMgmtImg from "@assets/image_1778319944400.png";
+import reportsImg from "@assets/image_1778319981182.png";
+import addDeviceImg from "@assets/image_1778320023889.png";
 
 const A = "#F5B731";
 const AL = "rgba(245,183,49,0.12)";
@@ -608,16 +612,71 @@ export const KudraCaseStudy = (): JSX.Element => {
 
         {/* ── HIGH FIDELITY DESIGN ── */}
         <section>
-          <SectionHeading label="High Fidelity Design" title="The Final" accent="Dashboard" />
-          <p className="text-white/60 mb-6 max-w-2xl">
+          <SectionHeading label="High Fidelity Design" title="The Final" accent="Platform" />
+          <p className="text-white/60 mb-8 max-w-2xl">
             The final UI adopted a clean enterprise SaaS aesthetic — dark layouts, structured cards, clear status indicators, and analytics-first interfaces prioritizing active trips, vehicle statuses, and fleet performance metrics.
           </p>
-          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-4">
+
+          {/* Main dashboard — full width */}
+          <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl mb-3">
             <img src="/figmaAssets/kudra-dashboard.png" alt="Kudra — Live Fleet Dashboard" className="w-full h-auto block" />
           </div>
-          <p className="text-center text-white/35 text-sm">
-            Kudra — Live Fleet Operations Dashboard. 84 vehicles, real-time status tiles, and live map tracking.
+          <p className="text-center text-white/30 text-xs mb-10">
+            Live Fleet Operations Dashboard — 84 vehicles, real-time status tiles, active trip monitoring
           </p>
+
+          {/* 2×2 screen grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              {
+                img: liveTrackingImg,
+                title: "Live Tracking",
+                desc: "Real-time vehicle route visualization on an interactive map, with halt-point timeline, duration markers, and 48-hour playback. Operators can trace a vehicle's exact path and pinpoint every stop.",
+                tag: "Live Tracking Module",
+              },
+              {
+                img: fleetMgmtImg,
+                title: "Fleet Management",
+                desc: "A structured vehicle registry showing GPS device IDs, vehicle numbers, last known location, operational status (In Transit / Idle / Inactive), and inline action controls for live tracking and editing.",
+                tag: "Fleet Management Module",
+              },
+              {
+                img: reportsImg,
+                title: "Vehicle Reports",
+                desc: "Per-vehicle analytics covering total distance, average and maximum speed, running hours, idle time, and halt points — filterable by date range. Enables managers to measure efficiency and identify underperforming assets.",
+                tag: "Reports Module",
+              },
+              {
+                img: addDeviceImg,
+                title: "Add New Device",
+                desc: "A structured onboarding form for registering fleet vehicles — capturing vehicle number, GPS device ID, vehicle type, capacity, service number, body type, FastTag ID, and driver assignment in a single workflow.",
+                tag: "Fleet Management · Add Device",
+              },
+            ].map((screen) => (
+              <div key={screen.title} className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden group hover:border-white/20 transition-all duration-300">
+                {/* Screen image */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={screen.img}
+                    alt={`Kudra — ${screen.title}`}
+                    className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <span
+                    className="absolute top-3 left-3 rounded-full border px-3 py-1 text-xs font-semibold"
+                    style={{ borderColor: AB, backgroundColor: "rgba(0,0,0,0.65)", color: A }}
+                  >
+                    {screen.tag}
+                  </span>
+                </div>
+                {/* Caption */}
+                <div className="p-5">
+                  <h4 className="font-bold text-white text-sm mb-2">{screen.title}</h4>
+                  <p className="text-white/50 text-xs leading-relaxed">{screen.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* ── KEY FEATURES ── */}
