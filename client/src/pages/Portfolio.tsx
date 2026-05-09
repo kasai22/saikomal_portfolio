@@ -19,7 +19,7 @@ const tools = [
 
 const projects = [
   {
-    title: "GRS Innovations — HSL Website Redesign",
+    title: "HSL Website Redesign",
     description:
       "A comprehensive UX/UI redesign of Hindusthan Shipyard Limited's website. The project involved in-depth user research, competitive analysis, empathy mapping, wireframing, prototyping and high-fidelity visual design to create a modern, mobile-responsive platform.",
     tags: ["UX Research", "UI Design", "Prototyping", "Figma"],
@@ -29,7 +29,7 @@ const projects = [
     image: "/figmaAssets/image-16.png",
   },
   {
-    title: "Kudra V2 — Fleet & Trip Management Platform",
+    title: "Kudra — Fleet & Trip Management Platform",
     description:
       "End-to-end product design of an enterprise logistics SaaS platform. Transformed manual, call-heavy fleet operations into a trip-centric, data-driven system — covering UX research, product strategy, workflow design, and a full design system.",
     tags: ["Product Strategy", "Enterprise UX", "SaaS Design", "Fleet Management"],
