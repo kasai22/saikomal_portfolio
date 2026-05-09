@@ -58,15 +58,16 @@ export const KudraCaseStudy = (): JSX.Element => {
             <div>
               <div className="flex items-center gap-3 mb-5">
                 <span className="rounded-full border border-[#F5B731]/30 bg-[#F5B731]/10 px-4 py-1 text-xs font-semibold text-[#F5B731] tracking-widest uppercase">
-                  SaaS Enterprise
+                  Logistics / Fleet Management SaaS
                 </span>
-                <span className="text-white/30 text-xs">2024</span>
+                <span className="text-white/30 text-xs">2025–2026</span>
               </div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                Kudra <span style={{ color: "#F5B731" }}>V2</span>
+                <span style={{ color: "#F5B731" }}>Kudra</span>
               </h1>
+              <p className="text-white/40 italic text-base mb-4">"Transforming fleet operations through structured trip management."</p>
               <p className="text-xl text-white/70 leading-relaxed mb-8 max-w-lg">
-                Fleet & Trip Management Platform — A complete product redesign transforming logistics operations through trip-centric workflows and real-time fleet intelligence.
+                A logistics operations platform that evolved from simple GPS vehicle tracking into a centralized trip management ecosystem — eliminating call-heavy coordination and bringing full operational visibility to fleet teams.
               </p>
               <div className="flex flex-wrap gap-3">
                 {["Product Strategy", "UX Research", "Enterprise UI", "Fleet Management", "SaaS Design"].map((tag) => (
@@ -80,7 +81,7 @@ export const KudraCaseStudy = (): JSX.Element => {
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                 <img
                   src="/figmaAssets/kudra-dashboard.png"
-                  alt="Kudra V2 Dashboard"
+                  alt="Kudra Dashboard"
                   className="w-full h-auto block"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
@@ -109,25 +110,25 @@ export const KudraCaseStudy = (): JSX.Element => {
 
         {/* Dashboard Preview (mobile) */}
         <div className="lg:hidden rounded-2xl overflow-hidden border border-white/10">
-          <img src="/figmaAssets/kudra-dashboard.png" alt="Kudra V2 Dashboard" className="w-full h-auto block" />
+          <img src="/figmaAssets/kudra-dashboard.png" alt="Kudra Dashboard" className="w-full h-auto block" />
         </div>
 
         {/* Project Overview */}
         <section>
-          <SectionHeading label="Project Overview" title="What is" accent="Kudra V2?" />
+          <SectionHeading label="Project Overview" title="What is" accent="Kudra?" />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card>
               <h3 className="text-lg font-semibold text-[#F5B731] mb-4">The Platform</h3>
               <p className="text-white/70 leading-relaxed">
-                Kudra V2 is an enterprise fleet and trip management platform built for logistics operations. It evolved from a simple vehicle-tracking tool into a fully operational, trip-centric system that gives fleet managers, branch coordinators, and accounts teams a single source of truth for every moving vehicle in the network.
+                Kudra is an enterprise fleet and trip management platform built for logistics operations. The logistics industry had long relied on phone calls, spreadsheets, and WhatsApp coordination — fleet managers lacked operational visibility into trips, drivers, fuel usage, and vehicle performance. Kudra was designed to change that entirely.
               </p>
               <p className="text-white/70 leading-relaxed mt-4">
-                The product unifies real-time tracking, structured trip workflows, fuel analytics, driver accountability, and branch communication into one coherent operational dashboard — eliminating the fragmented, call-heavy coordination that plagued traditional fleet operations.
+                The platform evolved from a simple GPS vehicle-tracking tool into a centralized trip management ecosystem — unifying real-time tracking, structured trip workflows, fuel analytics, driver accountability, and branch communication into one coherent operational dashboard.
               </p>
             </Card>
             <div className="flex flex-col gap-6">
               {[
-                { label: "My Role", value: "Lead Product Designer & Product Owner — end-to-end from research to high-fidelity UI and design system" },
+                { label: "My Role", value: "Product Designer — UX research, workflow mapping, wireframing, dashboard UX design, design system, and high-fidelity UI" },
                 { label: "Domain", value: "Enterprise Logistics SaaS — B2B fleet management for mid-to-large logistics operators" },
                 { label: "Platform", value: "Web (desktop-first dashboard) with planned mobile companion for drivers" },
               ].map((item) => (
@@ -292,8 +293,8 @@ export const KudraCaseStudy = (): JSX.Element => {
               <thead>
                 <tr className="border-b border-white/10">
                   <th className="text-left py-4 pr-6 text-sm font-semibold text-white/40 uppercase tracking-widest">Capability</th>
-                  {["Manual Ops", "Basic GPS", "Fleet SaaS", "Kudra V2"].map((col) => (
-                    <th key={col} className={`py-4 px-4 text-sm font-semibold uppercase tracking-widest text-center ${col === "Kudra V2" ? "text-[#F5B731]" : "text-white/40"}`}>{col}</th>
+                  {["Manual Ops", "Basic GPS", "Fleet SaaS", "Kudra"].map((col) => (
+                    <th key={col} className={`py-4 px-4 text-sm font-semibold uppercase tracking-widest text-center ${col === "Kudra" ? "text-[#F5B731]" : "text-white/40"}`}>{col}</th>
                   ))}
                 </tr>
               </thead>
@@ -616,12 +617,12 @@ export const KudraCaseStudy = (): JSX.Element => {
           <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <img
               src="/figmaAssets/kudra-dashboard.png"
-              alt="Kudra V2 — Live Fleet Dashboard"
+              alt="Kudra — Live Fleet Dashboard"
               className="w-full h-auto block"
             />
           </div>
           <p className="text-center text-white/40 text-sm mt-4">
-            Kudra V2 — Live Fleet Operations Dashboard. 84 vehicles, real-time status tiles, and live map tracking.
+            Kudra — Live Fleet Operations Dashboard. 84 vehicles, real-time status tiles, and live map tracking.
           </p>
         </section>
 
