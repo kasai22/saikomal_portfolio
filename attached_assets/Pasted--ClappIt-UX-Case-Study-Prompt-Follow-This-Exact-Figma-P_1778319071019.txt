@@ -1,0 +1,427 @@
+# ClappIt UX Case Study Prompt — Follow This Exact Figma Portfolio Structure
+
+Reference Structure:
+[https://www.figma.com/design/HY5PUWjC1ImAWX0zo1UMMZ/GRS-Innovations?node-id=1095-900&t=T3G4bRQghnMIZ0G9-4](https://www.figma.com/design/HY5PUWjC1ImAWX0zo1UMMZ/GRS-Innovations?node-id=1095-900&t=T3G4bRQghnMIZ0G9-4)
+
+Reference Website:
+[https://clappit.io/](https://clappit.io/)
+
+---
+
+Create a premium Product Designer portfolio case study for ClappIt by closely following the layout structure, storytelling flow, typography hierarchy, visual composition, section ordering, and presentation style from the provided Figma reference.
+
+The final case study should feel like:
+
+* A high-end Behance presentation
+* A modern enterprise SaaS UX portfolio
+* A polished Product Designer case study
+* A visually immersive storytelling presentation
+
+The writing should be in first person as if I worked as a Product Designer / UX Designer on ClappIt in 2024.
+
+---
+
+# PROJECT TITLE
+
+# ClappIt
+
+### Simplifying Cloud Infrastructure Operations for Modern DevOps Teams
+
+---
+
+# DESIGN STYLE REQUIREMENTS
+
+Follow the same visual language as the Figma reference:
+
+* Dark theme presentation
+* Cyan / teal accent colors
+* Large typography hierarchy
+* Long scrolling storytelling layout
+* Modular sections
+* Floating UI mockups
+* Minimal enterprise visuals
+* Technical SaaS aesthetic
+* Process-driven storytelling
+* Premium spacing and alignment
+
+Use:
+
+* Bold section headings
+* Thin dividers
+* Grid layouts
+* Card-based content blocks
+* Process timelines
+* Persona cards
+* User flow diagrams
+* Dashboard showcases
+* Design system previews
+
+The case study should feel visually cinematic and recruiter-ready.
+
+---
+
+# CASE STUDY STRUCTURE (MATCH THE FIGMA REFERENCE)
+
+---
+
+# 1. Hero Section
+
+Create a visually strong opening section.
+
+Include:
+
+* ClappIt logo/title
+* Product tagline
+* Short product overview
+* Dashboard hero mockup
+* Timeline
+* Role
+* Team
+* Tools used
+
+Tone:
+Strategic, modern, enterprise-focused.
+
+Example direction:
+“Designing an enterprise cloud infrastructure platform that simplifies deployment visibility and operational workflows.”
+
+---
+
+# 2. Problem Statement
+
+Create a dedicated dark-theme section similar to the reference.
+
+Discuss:
+
+* Complex deployment workflows
+* Difficult infrastructure monitoring
+* Fragmented cloud management
+* Information overload
+* Poor dashboard clarity
+* High learning curve for DevOps teams
+
+Frame the challenge from:
+
+* User pain points
+* Business inefficiencies
+
+Add:
+
+* UX rationale
+* Product challenges
+* Technical workflow complexity
+
+---
+
+# 3. Target Audience
+
+Create illustrated or card-based audience sections.
+
+Audience types:
+
+* DevOps Engineers
+* Cloud Infrastructure Teams
+* Engineering Managers
+* Platform Administrators
+* Enterprise Operations Teams
+
+For each audience include:
+
+* Goals
+* Frustrations
+* Needs
+* Behaviors
+
+Match the layout structure from the reference.
+
+---
+
+# 4. Design Process Timeline
+
+Create a visual UX process timeline similar to the reference.
+
+Stages:
+
+1. Research
+2. Discovery
+3. Wireframing
+4. UX Flows
+5. UI Design
+6. Prototyping
+7. Testing
+8. Iteration
+
+Each stage should include:
+
+* Activities
+* UX deliverables
+* Product thinking
+* Key decisions
+
+Visual style:
+Minimal circular timeline or connected process flow.
+
+---
+
+# 5. Goals Section
+
+Create modular UX goals cards.
+
+Goals include:
+
+* Reduce cognitive overload
+* Improve deployment visibility
+* Simplify navigation
+* Increase workflow efficiency
+* Improve onboarding
+* Create scalable enterprise UX
+* Enhance operational transparency
+
+Use the same visual hierarchy as the reference.
+
+---
+
+# 6. Competitive Analysis
+
+Create a detailed competitor comparison section.
+
+Benchmark:
+
+* GitLab
+* Kubernetes Dashboard
+* Datadog
+* Harness
+* AWS Console
+
+Compare:
+
+* Dashboard usability
+* Navigation complexity
+* Monitoring visibility
+* Workflow clarity
+* Learning curve
+
+Highlight UX opportunities identified.
+
+Use:
+
+* Tables
+* Cards
+* Comparison grids
+
+---
+
+# 7. Design Thinking Process
+
+Create a storytelling section explaining:
+
+* UX research synthesis
+* Journey mapping
+* Workflow analysis
+* Information architecture restructuring
+* Iterative UX thinking
+* Systems design approach
+
+Focus heavily on:
+
+* Enterprise UX
+* Product strategy
+* Scalability
+* Technical-user behavior
+
+Make this section analytical and strategic.
+
+---
+
+# 8. Visual Design
+
+Create a polished visual design section.
+
+Describe:
+
+* Enterprise SaaS aesthetic
+* Dark mode dashboards
+* Data-heavy interfaces
+* Minimal visual clutter
+* Structured card systems
+* Real-time operational UI
+* Deployment pipeline visuals
+* Infrastructure analytics panels
+
+Mention:
+
+* Typography hierarchy
+* Color-coded status systems
+* Dashboard readability improvements
+
+---
+
+# 9. User Research
+
+Create persona-style user research sections similar to the Figma structure.
+
+Include realistic personas such as:
+
+* Senior DevOps Engineer
+* Infrastructure Manager
+* Startup Engineering Lead
+
+For each persona include:
+
+* Bio
+* Goals
+* Frustrations
+* Motivations
+* Technical behavior
+* Workflow expectations
+
+Include realistic UX insights gathered.
+
+---
+
+# 10. User Flow / IA
+
+Create detailed workflow diagrams.
+
+Flows to include:
+
+* Deployment Management
+* Infrastructure Monitoring
+* CI/CD Pipeline Tracking
+* Incident Response
+* Environment Management
+
+Explain:
+
+* Existing workflow pain points
+* Redesigned workflow improvements
+* Reduced operational friction
+* Faster task completion
+
+Visual direction:
+Flowchart-heavy presentation.
+
+---
+
+# 11. Typography & Colors
+
+Create a premium design system showcase.
+
+Include:
+
+* Typography hierarchy
+* Color palette
+* Status colors
+* Dark mode tokens
+* Grid system
+* Spacing rules
+* Component styling
+* UI consistency rules
+
+Show:
+
+* Primary font
+* Heading hierarchy
+* Interface color system
+* Reusable component patterns
+
+Match the visual presentation style from the reference.
+
+---
+
+# 12. High Fidelity Screens
+
+Create a cinematic UI showcase section.
+
+Showcase:
+
+* Dashboard screens
+* Monitoring panels
+* Deployment analytics
+* Infrastructure health views
+* Alert systems
+* CI/CD tracking
+* Environment management
+
+Presentation style:
+
+* Floating angled mockups
+* Large UI previews
+* Perspective compositions
+* Dark background contrast
+
+The section should feel visually premium and portfolio-focused.
+
+---
+
+# 13. Outcomes & Impact
+
+Add realistic UX/product metrics.
+
+Examples:
+
+* Reduced deployment tracking confusion
+* Improved operational efficiency
+* Faster onboarding
+* Better monitoring visibility
+* Increased workflow clarity
+* Improved task completion rates
+
+Add:
+
+* Stakeholder feedback
+* Engineering collaboration outcomes
+* UX improvements
+
+---
+
+# 14. Final Reflection
+
+End with a thoughtful reflection section.
+
+Discuss:
+
+* Enterprise UX learnings
+* Designing for technical audiences
+* Systems thinking
+* Cross-functional collaboration
+* Scalability in product design
+* Product strategy insights
+* Growth as a Product Designer
+
+Tone:
+Mature, reflective, senior-level.
+
+---
+
+# WRITING STYLE
+
+The writing should:
+
+* Sound like a real Product Designer portfolio
+* Feel authentic and human
+* Focus on UX decisions and rationale
+* Showcase business impact
+* Include systems thinking
+* Use modern enterprise SaaS terminology
+* Avoid generic AI wording
+
+---
+
+# FINAL OUTPUT EXPECTATION
+
+The generated case study should look and read like:
+
+* A premium Behance UX presentation
+* A senior Product Designer portfolio project
+* A polished enterprise SaaS case study
+* A modern Figma storytelling deck
+
+The entire case study should prioritize:
+
+* Visual storytelling
+* Product thinking
+* UX strategy
+* Enterprise systems design
+* Realistic workflow documentation
+* High-end presentation aesthetics.
