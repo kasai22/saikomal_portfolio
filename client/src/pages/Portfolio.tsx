@@ -19,23 +19,13 @@ const tools = [
 
 const projects = [
   {
-    title: "HSL Website Redesign",
-    description:
-      "A comprehensive UX/UI redesign of Hindusthan Shipyard Limited's website. The project involved in-depth user research, competitive analysis, empathy mapping, wireframing, prototyping and high-fidelity visual design to create a modern, mobile-responsive platform.",
-    tags: ["UX Research", "UI Design", "Prototyping", "Figma"],
-    accentColor: "#008080",
-    slug: "/case-study",
-    year: "2024",
-    image: "/figmaAssets/image-16.png",
-  },
-  {
     title: "Kudra — Fleet & Trip Management Platform",
     description:
       "End-to-end product design of an enterprise logistics SaaS platform. Transformed manual, call-heavy fleet operations into a trip-centric, data-driven system — covering UX research, product strategy, workflow design, and a full design system.",
     tags: ["Product Strategy", "Enterprise UX", "SaaS Design", "Fleet Management"],
     accentColor: "#F5B731",
     slug: "/case-study/kudra",
-    year: "2024",
+    year: "2025",
     image: "/figmaAssets/kudra-dashboard.png",
   },
   {
@@ -47,6 +37,16 @@ const projects = [
     slug: "/case-study/clappit",
     year: "2024",
     image: "/figmaAssets/clappit-dashboard.png",
+  },
+  {
+    title: "HSL Website Redesign",
+    description:
+      "A comprehensive UX/UI redesign of Hindusthan Shipyard Limited's website. The project involved in-depth user research, competitive analysis, empathy mapping, wireframing, prototyping and high-fidelity visual design to create a modern, mobile-responsive platform.",
+    tags: ["UX Research", "UI Design", "Prototyping", "Figma"],
+    accentColor: "#008080",
+    slug: "/case-study",
+    year: "2024",
+    image: "/figmaAssets/image-16.png",
   },
 ];
 
