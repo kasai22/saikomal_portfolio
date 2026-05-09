@@ -138,7 +138,7 @@ export const Portfolio = (): JSX.Element => {
             </h1>
 
             <div className="flex flex-wrap gap-3 mt-1">
-              {["✦ UI/UX Designer", "✦ Graphic Designer", "✦ Frontend Developer"].map(
+              {["✦ Product Designer", "✦ Graphic Designer", "✦ Frontend Developer"].map(
                 (tag) => (
                   <span
                     key={tag}
@@ -153,7 +153,7 @@ export const Portfolio = (): JSX.Element => {
             <p className="mt-2 max-w-xl text-base leading-relaxed text-white/70">
               I am a{" "}
               <span className="underline decoration-[#008080] text-white">
-                UI/UX Designer and Front-End Developer
+                Product Designer and Front-End Developer
               </span>{" "}
               with a strong passion for creating intuitive and engaging digital
               experiences. With expertise in{" "}
@@ -249,7 +249,7 @@ export const Portfolio = (): JSX.Element => {
             >
               <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm space-y-6">
                 <p className="text-white/80 leading-relaxed text-lg">
-                  I'm a <strong className="text-white">UI/UX Designer and Frontend Developer</strong> passionate about
+                  I'm a <strong className="text-white">Product Designer and Frontend Developer</strong> passionate about
                   crafting digital experiences that are not just beautiful but deeply usable.
                 </p>
                 <p className="text-white/70 leading-relaxed">
