@@ -1,32 +1,48 @@
 import { Link } from "wouter";
 import { Navbar } from "@/components/Navbar";
 
-const PillIcon = ({ color = "#F5B731" }: { color?: string }) => (
-  <div className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-[#1a1a1a]">
-    <div className="h-5 w-5 rounded-full" style={{ backgroundColor: color }} />
-  </div>
+const A = "#F5B731";
+const AL = "rgba(245,183,49,0.12)";
+const AB = "rgba(245,183,49,0.25)";
+
+const Label = ({ text }: { text: string }) => (
+  <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: A }}>{text}</span>
 );
 
 const SectionHeading = ({ label, title, accent }: { label: string; title: string; accent: string }) => (
   <div className="mb-10">
-    <span className="text-sm font-semibold tracking-widest uppercase" style={{ color: "#F5B731" }}>
-      {label}
-    </span>
+    <Label text={label} />
     <h2 className="mt-2 text-4xl sm:text-5xl font-bold text-white">
-      {title} <span style={{ color: "#F5B731" }}>{accent}</span>
+      {title} <span style={{ color: A }}>{accent}</span>
     </h2>
   </div>
 );
 
 const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8 ${className}`}>
-    {children}
-  </div>
+  <div className={`rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8 ${className}`}>{children}</div>
 );
 
-const YellowCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`rounded-2xl border border-[#F5B731]/30 bg-[#F5B731]/5 p-6 md:p-8 ${className}`}>
-    {children}
+const YCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+  <div className={`rounded-2xl border p-6 md:p-8 ${className}`} style={{ borderColor: AB, backgroundColor: AL }}>{children}</div>
+);
+
+const Dot = () => (
+  <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: A }} />
+);
+
+const BulletList = ({ items }: { items: string[] }) => (
+  <ul className="space-y-2">
+    {items.map((i) => (
+      <li key={i} className="flex items-start gap-3 text-sm text-white/65 leading-relaxed">
+        <Dot /> {i}
+      </li>
+    ))}
+  </ul>
+);
+
+const StepBadge = ({ n }: { n: string }) => (
+  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 font-bold text-xs" style={{ borderColor: A, color: A }}>
+    {n}
   </div>
 );
 
@@ -35,18 +51,17 @@ export const KudraCaseStudy = (): JSX.Element => {
     <div className="min-h-screen bg-[#0a0a0a] text-white font-['Poppins']">
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative min-h-[70vh] flex items-end overflow-hidden pt-20">
+      {/* ── HERO ── */}
+      <section className="relative min-h-[80vh] flex items-end overflow-hidden pt-20">
         <div
           className="absolute inset-0 z-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 30% 40%, rgba(245,183,49,0.12) 0%, transparent 70%), radial-gradient(ellipse 50% 70% at 80% 60%, rgba(245,183,49,0.06) 0%, transparent 60%), #0a0a0a",
-          }}
+          style={{ background: `radial-gradient(ellipse 80% 60% at 25% 40%, rgba(245,183,49,0.10) 0%, transparent 65%), radial-gradient(ellipse 50% 70% at 80% 55%, rgba(245,183,49,0.05) 0%, transparent 60%), #0a0a0a` }}
         />
         <div className="relative z-10 mx-auto max-w-7xl w-full px-6 pb-16 pt-24">
           <Link href="/">
-            <button className="mb-10 flex items-center gap-2 text-[#F5B731] hover:text-white transition-colors font-['Poppins'] text-sm font-medium group">
+            <button className="mb-10 flex items-center gap-2 text-sm font-medium group transition-colors" style={{ color: A }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = A)}>
               <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -55,51 +70,58 @@ export const KudraCaseStudy = (): JSX.Element => {
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left */}
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <span className="rounded-full border border-[#F5B731]/30 bg-[#F5B731]/10 px-4 py-1 text-xs font-semibold text-[#F5B731] tracking-widest uppercase">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="rounded-full border px-4 py-1 text-xs font-semibold tracking-widest uppercase" style={{ borderColor: AB, backgroundColor: AL, color: A }}>
                   Logistics / Fleet Management SaaS
                 </span>
-                <span className="text-white/30 text-xs">2025–2026</span>
               </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                <span style={{ color: "#F5B731" }}>Kudra</span>
-              </h1>
-              <p className="text-white/40 italic text-base mb-4">"Transforming fleet operations through structured trip management."</p>
-              <p className="text-xl text-white/70 leading-relaxed mb-8 max-w-lg">
-                A logistics operations platform that evolved from simple GPS vehicle tracking into a centralized trip management ecosystem — eliminating call-heavy coordination and bringing full operational visibility to fleet teams.
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-none mb-3" style={{ color: A }}>Kudra</h1>
+              <p className="text-white/40 italic text-base mb-6">
+                "Transforming Fleet Operations Through Structured Trip Management"
               </p>
-              <div className="flex flex-wrap gap-3">
-                {["Product Strategy", "UX Research", "Enterprise UI", "Fleet Management", "SaaS Design"].map((tag) => (
-                  <span key={tag} className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs text-white/60">
-                    {tag}
-                  </span>
+              <p className="text-lg text-white/65 leading-relaxed mb-10 max-w-lg">
+                A logistics operations platform that evolved from simple GPS tracking into a centralized trip management ecosystem — bringing visibility, structure, and accountability to fleet operations.
+              </p>
+
+              {/* Metadata grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {[
+                  { label: "Role", value: "Product Designer" },
+                  { label: "Timeline", value: "2025 – 2026" },
+                  { label: "Platform", value: "Web Application" },
+                  { label: "Domain", value: "Fleet Management" },
+                  { label: "Tools", value: "Figma · Miro · FigJam · Notion" },
+                ].map((m) => (
+                  <div key={m.label} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                    <div className="text-xs text-white/35 uppercase tracking-widest mb-1">{m.label}</div>
+                    <div className="text-sm font-semibold text-white">{m.value}</div>
+                  </div>
                 ))}
               </div>
             </div>
+
+            {/* Right — dashboard */}
             <div className="hidden lg:block">
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <img
-                  src="/figmaAssets/kudra-dashboard.png"
-                  alt="Kudra Dashboard"
-                  className="w-full h-auto block"
-                />
+                <img src="/figmaAssets/kudra-dashboard.png" alt="Kudra Dashboard" className="w-full h-auto block" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
             </div>
           </div>
 
-          {/* Stats bar */}
-          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {/* Stats */}
+          <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { value: "84", label: "Vehicles Tracked" },
-              { value: "40%", label: "Reduced Manual Coordination" },
-              { value: "9", label: "Core Workflows Designed" },
-              { value: "6+", label: "Months Research & Design" },
+              { value: "40%", label: "Less Manual Coordination" },
+              { value: "7", label: "Core Workflow Steps" },
+              { value: "2025–26", label: "Design Timeline" },
             ].map((s) => (
               <div key={s.label} className="rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-center">
-                <div className="text-3xl font-bold" style={{ color: "#F5B731" }}>{s.value}</div>
-                <div className="text-sm text-white/50 mt-1">{s.label}</div>
+                <div className="text-3xl font-bold mb-1" style={{ color: A }}>{s.value}</div>
+                <div className="text-xs text-white/45">{s.label}</div>
               </div>
             ))}
           </div>
@@ -108,271 +130,263 @@ export const KudraCaseStudy = (): JSX.Element => {
 
       <div className="mx-auto max-w-7xl px-6 pb-24 space-y-24">
 
-        {/* Dashboard Preview (mobile) */}
+        {/* Mobile dashboard */}
         <div className="lg:hidden rounded-2xl overflow-hidden border border-white/10">
           <img src="/figmaAssets/kudra-dashboard.png" alt="Kudra Dashboard" className="w-full h-auto block" />
         </div>
 
-        {/* Project Overview */}
+        {/* ── CASE STUDY INTRO ── */}
         <section>
-          <SectionHeading label="Project Overview" title="What is" accent="Kudra?" />
+          <SectionHeading label="Case Study" title="The" accent="Overview" />
+          <YCard>
+            <p className="text-white/75 leading-relaxed text-lg mb-4">
+              Kudra was designed to transform fragmented logistics operations into a centralized trip management ecosystem. The platform evolved beyond simple vehicle tracking and introduced structured workflows for fleet managers, branch operators, and logistics teams.
+            </p>
+            <p className="text-white/65 leading-relaxed">
+              The goal was to reduce operational dependency on calls and spreadsheets while improving visibility across trips, drivers, fuel usage, and fleet analytics. The product focused on building a scalable enterprise workflow where every vehicle movement was tied to a structured operational trip.
+            </p>
+          </YCard>
+        </section>
+
+        {/* ── PROBLEM STATEMENT ── */}
+        <section>
+          <SectionHeading label="Problem Statement" title="The Operational" accent="Reality" />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card>
-              <h3 className="text-lg font-semibold text-[#F5B731] mb-4">The Platform</h3>
-              <p className="text-white/70 leading-relaxed">
-                Kudra is an enterprise fleet and trip management platform built for logistics operations. The logistics industry had long relied on phone calls, spreadsheets, and WhatsApp coordination — fleet managers lacked operational visibility into trips, drivers, fuel usage, and vehicle performance. Kudra was designed to change that entirely.
-              </p>
-              <p className="text-white/70 leading-relaxed mt-4">
-                The platform evolved from a simple GPS vehicle-tracking tool into a centralized trip management ecosystem — unifying real-time tracking, structured trip workflows, fuel analytics, driver accountability, and branch communication into one coherent operational dashboard.
-              </p>
+              <h3 className="font-semibold text-white mb-5">How logistics teams coordinated</h3>
+              <BulletList items={["Phone calls", "WhatsApp communication", "Spreadsheets", "Paper-based tracking"]} />
             </Card>
-            <div className="flex flex-col gap-6">
-              {[
-                { label: "My Role", value: "Product Designer — UX research, workflow mapping, wireframing, dashboard UX design, design system, and high-fidelity UI" },
-                { label: "Domain", value: "Enterprise Logistics SaaS — B2B fleet management for mid-to-large logistics operators" },
-                { label: "Platform", value: "Web (desktop-first dashboard) with planned mobile companion for drivers" },
-              ].map((item) => (
-                <Card key={item.label} className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold tracking-widest text-white/40 uppercase">{item.label}</span>
-                  <span className="text-white/80 leading-relaxed">{item.value}</span>
-                </Card>
-              ))}
-            </div>
+            <Card>
+              <h3 className="font-semibold text-white mb-5">What this created</h3>
+              <BulletList items={[
+                "No structured trip lifecycle",
+                "Lack of trip visibility",
+                "Poor coordination between branches",
+                "No centralized fuel tracking",
+                "Limited driver accountability",
+                "No operational analytics",
+              ]} />
+            </Card>
           </div>
-        </section>
-
-        {/* Problem Statement */}
-        <section>
-          <SectionHeading label="Problem Statement" title="The Operational" accent="Crisis" />
-          <YellowCard className="mb-8">
-            <p className="text-lg text-white/80 leading-relaxed">
-              Logistics operations were running on fragmented, informal systems. Fleet managers had zero structured visibility into trip status, fuel consumption, or driver behavior. Every piece of coordination happened through phone calls and WhatsApp groups — creating noise, errors, and total lack of accountability.
-            </p>
-          </YellowCard>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              { title: "No Trip Lifecycle", desc: "Trips had no structured start, ongoing, or completion states. Everything was verbal. There was no operational record." },
-              { title: "Manual Coordination", desc: "Fleet managers made 20–40 calls per day to coordinate dispatches, check vehicle locations, and confirm deliveries." },
-              { title: "Zero Fuel Tracking", desc: "Fuel expenses were recorded manually in spreadsheets — with no connection to mileage, vehicle, or trip data." },
-              { title: "No Driver Accountability", desc: "There was no system to track driver halts, stoppages, or route deviations. Driver behavior was invisible." },
-              { title: "Branch Blind Spots", desc: "Branch managers had no visibility into incoming vehicles, ETA, or active dispatches. Every update was reactive." },
-              { title: "No Operational Data", desc: "With no centralized system, generating any report meant manually consolidating data from multiple sources over days." },
-            ].map((p) => (
-              <div key={p.title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                <div className="w-8 h-1 rounded-full bg-[#F5B731] mb-4" />
-                <h4 className="font-semibold text-white mb-2">{p.title}</h4>
-                <p className="text-white/60 text-sm leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Business Goals */}
-        <section>
-          <SectionHeading label="Business Goals" title="What We Were" accent="Solving For" />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              {[
-                { goal: "Structured trip management", detail: "Create a defined trip lifecycle that every stakeholder could track in real-time." },
-                { goal: "Reduce operational communication overhead", detail: "Cut coordination calls by embedding status visibility directly into the platform." },
-                { goal: "Full fleet visibility", detail: "Live map view with vehicle status, location, and operational state for every asset." },
-                { goal: "Driver and vehicle analytics", detail: "Build data models that surface driver efficiency, halt patterns, and vehicle health trends." },
-                { goal: "Faster operational workflows", detail: "Reduce trip creation time from ~15 minutes (manual) to under 2 minutes in-platform." },
-                { goal: "Branch coordination through announcements", detail: "Replace WhatsApp groups with a structured, in-platform announcement system for branch teams." },
-              ].map((g, i) => (
-                <div key={g.goal} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <span className="text-2xl font-bold text-[#F5B731]/30 w-8 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                  <div>
-                    <div className="font-semibold text-white text-sm">{g.goal}</div>
-                    <div className="text-white/55 text-sm mt-1 leading-relaxed">{g.detail}</div>
-                  </div>
+          <YCard className="mt-6">
+            <h3 className="font-semibold text-white mb-4">Vehicles were moving without operational context.</h3>
+            <p className="text-white/65 text-sm leading-relaxed mb-4">Teams could not easily identify:</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {["Why a vehicle was moving", "Which trip it belonged to", "Who the assigned driver was", "Fuel usage during trips", "Trip completion status", "Branch coordination status"].map((i) => (
+                <div key={i} className="flex items-start gap-2 rounded-xl border border-white/10 bg-white/5 p-3 text-sm text-white/65">
+                  <span style={{ color: A }}>✦</span> {i}
                 </div>
               ))}
             </div>
-            <YellowCard className="flex flex-col justify-center">
-              <h3 className="text-xl font-bold text-[#F5B731] mb-4">North Star Metric</h3>
-              <p className="text-white/70 leading-relaxed mb-6">
-                The core product north star was <strong className="text-white">operational trip completion rate with zero manual intervention</strong> — measuring how many trips could be created, dispatched, monitored, and closed entirely within the platform.
-              </p>
-              <div className="border-t border-white/10 pt-6 grid grid-cols-2 gap-4">
-                {[
-                  { v: "Before", stat: "~5%", label: "trips fully managed in-platform" },
-                  { v: "Target", stat: "80%+", label: "trips managed without external coordination" },
-                ].map((m) => (
-                  <div key={m.v} className="text-center">
-                    <div className="text-xs text-white/40 uppercase tracking-widest mb-1">{m.v}</div>
-                    <div className="text-3xl font-bold text-[#F5B731]">{m.stat}</div>
-                    <div className="text-xs text-white/50 mt-1">{m.label}</div>
-                  </div>
-                ))}
-              </div>
-            </YellowCard>
+          </YCard>
+        </section>
+
+        {/* ── PRODUCT VISION ── */}
+        <section>
+          <SectionHeading label="Product Vision" title="The" accent="North Star" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <Card>
+                <p className="text-white/75 leading-relaxed text-lg mb-6">
+                  To create a centralized operational control system for logistics fleets that provides complete visibility into trip planning, dispatch, monitoring, and analytics.
+                </p>
+                <p className="text-white/65 leading-relaxed">
+                  Kudra aimed to establish a workflow-first ecosystem where operations teams could manage logistics through structured trip lifecycles rather than fragmented communication.
+                </p>
+              </Card>
+            </div>
+            <YCard className="flex flex-col justify-center gap-4">
+              {[
+                "Streamline fleet operations",
+                "Improve trip visibility",
+                "Reduce operational chaos",
+                "Generate actionable analytics",
+                "Improve branch coordination",
+              ].map((g) => (
+                <div key={g} className="flex items-center gap-3 text-sm text-white/70">
+                  <span style={{ color: A }}>→</span> {g}
+                </div>
+              ))}
+            </YCard>
           </div>
         </section>
 
-        {/* User Research */}
+        {/* ── TARGET AUDIENCE ── */}
         <section>
-          <SectionHeading label="User Research" title="Understanding the" accent="People" />
-          <p className="text-white/60 mb-8 max-w-2xl">
-            We conducted structured interviews, field observations, and contextual inquiry sessions with four core user groups across three logistics operators over six weeks.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <SectionHeading label="Target Audience" title="Who Uses" accent="Kudra?" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                role: "Fleet Manager",
+                role: "Fleet Managers",
                 icon: "🚛",
-                painPoints: [
-                  "Spent 3–4 hours daily on coordination calls",
-                  "No single view of all active vehicles",
-                  "Could not generate trip cost reports without manual effort",
-                  "Driver misbehavior was impossible to track or prove",
-                ],
-                insight: "\"I need to know where every vehicle is, who's driving it, and whether the trip is on time — without making a single call.\"",
+                responsibilities: ["Trip creation", "Vehicle assignment", "Driver assignment", "Monitoring active trips", "Reviewing fleet analytics"],
+                painPoints: ["Difficulty tracking multiple ongoing trips", "Excessive operational calls", "Lack of fuel visibility", "No centralized operational dashboard"],
               },
               {
-                role: "Branch Manager",
+                role: "Branch Managers",
                 icon: "🏢",
-                painPoints: [
-                  "Received no ETA updates until the truck arrived",
-                  "No way to flag urgent announcements to fleet teams",
-                  "Had to call the main office for every operational query",
-                  "Could not plan dock capacity without arrival data",
-                ],
-                insight: "\"I need visibility into what's coming my way — ETA, vehicle number, driver contact — before the truck shows up.\"",
+                responsibilities: ["Monitoring incoming and outgoing vehicles", "Updating operational statuses", "Coordinating dispatch communication"],
+                painPoints: ["No visibility into incoming trips", "Delayed operational updates", "Dependency on manual communication"],
               },
               {
-                role: "Accounts Team",
+                role: "Accounts Teams",
                 icon: "📊",
-                painPoints: [
-                  "Fuel bills had no trip context or validation",
-                  "Generating monthly fleet cost reports took 2–3 days",
-                  "No way to reconcile fuel claimed vs. fuel actually consumed",
-                  "Driver allowances were tracked in spreadsheets outside the system",
-                ],
-                insight: "\"Every report I generate is a fight against scattered data. I need the system to do the math for me.\"",
-              },
-              {
-                role: "Driver",
-                icon: "👤",
-                painPoints: [
-                  "Received trip instructions verbally — easy to misremember",
-                  "Had to call dispatch every time they made a halt",
-                  "No record of their own performance or trip history",
-                  "Fuel log was a paper form that often got lost",
-                ],
-                insight: "\"I do my job, but there's no record of what I did right. Only calls when something goes wrong.\"",
+                responsibilities: ["Fuel expense tracking", "Driver halt payments", "Trip reconciliation"],
+                painPoints: ["Missing operational records", "Manual expense verification", "Lack of trip-level financial tracking"],
               },
             ].map((u) => (
               <Card key={u.role}>
-                <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center gap-3 mb-6">
                   <span className="text-3xl">{u.icon}</span>
-                  <h3 className="text-lg font-bold text-white">{u.role}</h3>
+                  <h3 className="font-bold text-white text-lg">{u.role}</h3>
                 </div>
-                <h4 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-3">Pain Points</h4>
-                <ul className="space-y-2 mb-5">
-                  {u.painPoints.map((pt) => (
-                    <li key={pt} className="flex items-start gap-2 text-sm text-white/65">
-                      <span className="text-[#F5B731] mt-1 shrink-0">✦</span>
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-                <div className="rounded-xl bg-[#F5B731]/10 border border-[#F5B731]/20 p-4">
-                  <p className="text-sm text-[#F5B731] italic leading-relaxed">{u.insight}</p>
+                <div className="mb-5">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-white/35 mb-3">Responsibilities</p>
+                  <BulletList items={u.responsibilities} />
+                </div>
+                <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-red-400/70 mb-3">Pain Points</p>
+                  <ul className="space-y-2">
+                    {u.painPoints.map((p) => (
+                      <li key={p} className="flex items-start gap-2 text-sm text-white/55 leading-relaxed">
+                        <span className="text-red-400/60 mt-0.5 shrink-0">✗</span> {p}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </Card>
             ))}
           </div>
         </section>
 
-        {/* Competitive Analysis */}
+        {/* ── RESEARCH & DISCOVERY ── */}
         <section>
-          <SectionHeading label="Competitive Analysis" title="Where Existing Tools" accent="Failed" />
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[700px] border-collapse">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left py-4 pr-6 text-sm font-semibold text-white/40 uppercase tracking-widest">Capability</th>
-                  {["Manual Ops", "Basic GPS", "Fleet SaaS", "Kudra"].map((col) => (
-                    <th key={col} className={`py-4 px-4 text-sm font-semibold uppercase tracking-widest text-center ${col === "Kudra" ? "text-[#F5B731]" : "text-white/40"}`}>{col}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
+          <SectionHeading label="Research & Discovery" title="Understanding the" accent="Operations" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <p className="text-white/65 leading-relaxed mb-6">
+                To better understand operational workflows, interviews and observational research were conducted with logistics operators, dispatch teams, and fleet managers. Research focused on:
+              </p>
+              <div className="space-y-3">
                 {[
-                  { cap: "Real-time vehicle tracking", vals: ["❌", "✅", "✅", "✅"] },
-                  { cap: "Structured trip lifecycle", vals: ["❌", "❌", "⚠️ Partial", "✅"] },
-                  { cap: "Fuel tracking & analytics", vals: ["❌", "❌", "⚠️ Partial", "✅"] },
-                  { cap: "Driver halt management", vals: ["❌", "❌", "❌", "✅"] },
-                  { cap: "Branch announcements", vals: ["❌", "❌", "❌", "✅"] },
-                  { cap: "Operational dashboard", vals: ["❌", "⚠️ Basic", "✅", "✅"] },
-                  { cap: "Frequent route suggestions", vals: ["❌", "❌", "❌", "✅"] },
-                  { cap: "Integrated reports & analytics", vals: ["❌", "❌", "⚠️ Partial", "✅"] },
-                ].map((row) => (
-                  <tr key={row.cap} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
-                    <td className="py-4 pr-6 text-sm text-white/70">{row.cap}</td>
-                    {row.vals.map((v, i) => (
-                      <td key={i} className={`py-4 px-4 text-center text-sm ${i === 3 ? "text-[#F5B731] font-medium" : "text-white/60"}`}>{v}</td>
-                    ))}
-                  </tr>
+                  { area: "Dispatch coordination workflows", desc: "How trips were verbally coordinated between fleet and branches" },
+                  { area: "Trip tracking processes", desc: "How teams monitored vehicle movement and status" },
+                  { area: "Fuel logging systems", desc: "Paper-based fuel records and their accuracy gaps" },
+                  { area: "Driver communication patterns", desc: "Call frequency and information loss in verbal updates" },
+                  { area: "Branch coordination methods", desc: "How branches learned about incoming deliveries" },
+                  { area: "Reporting inefficiencies", desc: "Manual effort required to compile operational data" },
+                ].map((r) => (
+                  <div key={r.area} className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4">
+                    <div className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: A }} />
+                    <div>
+                      <div className="font-semibold text-white text-sm">{r.area}</div>
+                      <div className="text-white/50 text-sm mt-0.5">{r.desc}</div>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
+            <YCard className="flex flex-col justify-center">
+              <h3 className="font-bold mb-2 text-lg" style={{ color: A }}>Research Approach</h3>
+              <p className="text-white/60 text-sm leading-relaxed mb-6">
+                Structured interviews and contextual observation sessions with logistics operators across multiple branches. Focus was on shadowing real operational workflows — not just asking about them.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { v: "3", l: "Logistics Operators" },
+                  { v: "6wk", l: "Research Duration" },
+                  { v: "4", l: "User Groups" },
+                  { v: "16+", l: "Sessions Conducted" },
+                ].map((s) => (
+                  <div key={s.l} className="text-center rounded-xl border border-white/10 bg-white/5 p-4">
+                    <div className="text-2xl font-bold" style={{ color: A }}>{s.v}</div>
+                    <div className="text-xs text-white/45 mt-1">{s.l}</div>
+                  </div>
+                ))}
+              </div>
+            </YCard>
           </div>
         </section>
 
-        {/* Product Strategy */}
+        {/* ── KEY INSIGHTS ── */}
         <section>
-          <SectionHeading label="Product Strategy" title="Why Trips Became the" accent="Core Unit" />
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <SectionHeading label="Key Insights" title="What We" accent="Discovered" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { title: "Trip as the Atomic Unit", desc: "Every logistics action — fuel, driver, route, cost, time — exists in the context of a trip. Making the trip the central data object unified all operational data under one coherent structure." },
-              { title: "Operational Transparency First", desc: "Before analytics, we focused on status visibility. Stakeholders needed to know what was happening right now — not just what happened last month. Real-time transparency reduces the need for coordination calls." },
-              { title: "Integration-First Architecture", desc: "Rather than building isolated features, every module (fuel, drivers, vehicles, branches) connects back to trips. This means reports generate themselves from live operational data — no manual consolidation needed." },
-            ].map((s) => (
-              <YellowCard key={s.title}>
-                <div className="w-8 h-1 rounded-full bg-[#F5B731] mb-4" />
-                <h4 className="font-bold text-white mb-3">{s.title}</h4>
-                <p className="text-white/65 text-sm leading-relaxed">{s.desc}</p>
-              </YellowCard>
+              {
+                num: "01",
+                title: "Trips Needed to Become the Core Operational Unit",
+                desc: "Operations teams naturally thought in terms of trips rather than vehicles. Fleet managers talked about \"the Chennai trip\" — not \"truck KA-01-AB-1234\". This insight became the foundation of the entire product strategy.",
+              },
+              {
+                num: "02",
+                title: "Operational Data Was Fragmented",
+                desc: "Critical trip information existed across calls, WhatsApp messages, spreadsheets, and human memory. There was no centralized operational visibility — every status update required a phone call.",
+              },
+              {
+                num: "03",
+                title: "Managers Needed Real-Time Operational Visibility",
+                desc: "Fleet managers wanted to instantly understand active trips, delayed vehicles, driver activity, fuel usage, and trip completion status — without making a single call.",
+              },
+              {
+                num: "04",
+                title: "Branches Required Automatic Operational Updates",
+                desc: "Destination branches were often completely unaware of incoming vehicles. This created coordination delays, dock planning failures, and operational inefficiencies at every hub.",
+              },
+            ].map((ins) => (
+              <Card key={ins.num}>
+                <div className="text-4xl font-bold mb-4" style={{ color: A, opacity: 0.25 }}>{ins.num}</div>
+                <h4 className="font-bold text-white text-base mb-3">{ins.title}</h4>
+                <p className="text-white/60 text-sm leading-relaxed">{ins.desc}</p>
+              </Card>
             ))}
           </div>
-          <Card>
-            <h3 className="text-lg font-semibold text-[#F5B731] mb-4">Strategic Pillars</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { p: "Trip Lifecycle Thinking", d: "Define, track, and close every trip through structured states — Created → Dispatched → In Transit → Completed → Closed." },
-                { p: "Analytics-Driven Optimization", d: "Surface fuel efficiency, driver performance, and route intelligence directly inside operational workflows — not in a separate reporting module." },
-                { p: "Reduce Coordination Dependency", d: "Every feature was evaluated on whether it reduced a phone call. If a feature didn't cut communication, it needed rethinking." },
-                { p: "Progressive Disclosure UX", d: "Show fleet managers what they need now; let them drill into details on demand. Dense data without hierarchy creates cognitive overload." },
-              ].map((item) => (
-                <div key={item.p} className="flex items-start gap-3">
-                  <span className="text-[#F5B731] text-lg shrink-0 mt-0.5">→</span>
-                  <div>
-                    <div className="font-semibold text-white text-sm">{item.p}</div>
-                    <div className="text-white/55 text-sm mt-1 leading-relaxed">{item.d}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
         </section>
 
-        {/* Information Architecture */}
+        {/* ── UX GOALS ── */}
+        <section>
+          <SectionHeading label="UX Goals" title="What We Were" accent="Designing For" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { goal: "Simplify operational workflows", desc: "Reduce the number of steps required to complete core fleet operations" },
+              { goal: "Reduce coordination dependency", desc: "Embed visibility that eliminates the need for manual status calls" },
+              { goal: "Improve active trip visibility", desc: "Give all stakeholders real-time context on every moving vehicle" },
+              { goal: "Reduce cognitive overload", desc: "Surface the right information at the right moment — not everything at once" },
+              { goal: "Enable faster trip creation", desc: "Reduce trip creation time from 15+ minutes to under 2 minutes" },
+              { goal: "Create scalable enterprise workflows", desc: "Build a system that works for 10 vehicles today and 1,000 tomorrow" },
+            ].map((g) => (
+              <div key={g.goal} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="w-6 h-1 rounded-full mb-3" style={{ backgroundColor: A }} />
+                <h4 className="font-semibold text-white text-sm mb-2">{g.goal}</h4>
+                <p className="text-white/50 text-xs leading-relaxed">{g.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── INFORMATION ARCHITECTURE ── */}
         <section>
           <SectionHeading label="Information Architecture" title="Platform" accent="Structure" />
+          <p className="text-white/60 mb-8 max-w-2xl">
+            The platform architecture was designed around operational efficiency — ensuring quick access to the most-used workflows while reducing navigation complexity.
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { module: "Dashboard", icon: "📊", desc: "Real-time fleet status, active trips, vehicle states, and operational KPIs." },
-              { module: "Trip Management", icon: "🗺️", desc: "Create, dispatch, monitor, and close trips. Full lifecycle in one place." },
-              { module: "Vehicle Management", icon: "🚛", desc: "Vehicle profiles, maintenance records, performance analytics, and status tracking." },
-              { module: "Driver Management", icon: "👤", desc: "Driver profiles, trip history, halt logs, and efficiency scoring." },
-              { module: "Reports & Analytics", icon: "📈", desc: "Fleet-wide reports on fuel, trips, vehicles, and drivers with export capability." },
-              { module: "Frequent Routes", icon: "📍", desc: "AI-assisted route suggestions based on historical trip data to speed up trip creation." },
-              { module: "Locations", icon: "🏢", desc: "Manage branch locations, hubs, and delivery points used in trip planning." },
-              { module: "Announcements", icon: "📣", desc: "Structured branch-to-branch and ops-to-driver communication replacing WhatsApp groups." },
+              { module: "Trip Management", icon: "🗺️", desc: "Create, dispatch, monitor, and close trips through a structured lifecycle." },
+              { module: "Vehicle Management", icon: "🚛", desc: "Vehicle profiles, maintenance records, performance analytics, and status." },
+              { module: "Driver Management", icon: "👤", desc: "Driver profiles, trip history, halt logs, and efficiency tracking." },
+              { module: "Reports & Analytics", icon: "📈", desc: "Fleet-wide reports on fuel, trips, vehicles, and drivers with export." },
+              { module: "Notifications", icon: "🔔", desc: "Automatic branch alerts and operational announcements across hubs." },
+              { module: "Frequent Routes", icon: "📍", desc: "Route suggestions based on historical trip data to speed up creation." },
+              { module: "Locations", icon: "🏢", desc: "Manage branches, hubs, and delivery points used in trip planning." },
             ].map((m) => (
-              <div key={m.module} className="rounded-2xl border border-white/10 bg-white/5 p-5 hover:border-[#F5B731]/30 hover:bg-[#F5B731]/5 transition-all duration-200">
+              <div
+                key={m.module}
+                className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all duration-200 cursor-default"
+                onMouseEnter={e => { e.currentTarget.style.borderColor = AB; e.currentTarget.style.backgroundColor = AL; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = ""; e.currentTarget.style.backgroundColor = ""; }}
+              >
                 <div className="text-2xl mb-3">{m.icon}</div>
                 <h4 className="font-semibold text-white text-sm mb-2">{m.module}</h4>
                 <p className="text-white/50 text-xs leading-relaxed">{m.desc}</p>
@@ -381,30 +395,49 @@ export const KudraCaseStudy = (): JSX.Element => {
           </div>
         </section>
 
-        {/* Core Workflow */}
+        {/* ── CORE WORKFLOW ── */}
         <section>
-          <SectionHeading label="Core Workflow" title="End-to-End" accent="Trip Lifecycle" />
+          <SectionHeading label="Core Workflow" title="The Trip" accent="Lifecycle" />
           <div className="relative">
-            <div className="hidden lg:block absolute left-[27px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-[#F5B731] to-transparent" />
+            <div className="hidden lg:block absolute left-[19px] top-10 bottom-10 w-0.5" style={{ background: `linear-gradient(to bottom, ${A}, transparent)` }} />
             <div className="space-y-4">
               {[
-                { step: "01", title: "Trip Creation", desc: "Fleet manager creates a trip by selecting origin, destination, freight details, and vehicle type. The system auto-suggests frequent routes based on historical data — reducing creation time from 15 minutes to under 2." },
-                { step: "02", title: "Vehicle & Driver Assignment", desc: "System surfaces available vehicles matching the required type and capacity. Driver assignment pulls from the active driver pool with availability status clearly displayed." },
-                { step: "03", title: "Dispatch", desc: "One-click dispatch sends the trip brief to the assigned driver (SMS/app), notifies the origin branch, and updates the live dashboard. All stakeholders see the trip status change in real-time." },
-                { step: "04", title: "Ongoing Monitoring", desc: "Fleet managers see the vehicle moving on the live map. Trip status progresses through checkpoints. Automated alerts trigger for extended halts, route deviations, or delayed ETAs." },
-                { step: "05", title: "Fuel Tracking", desc: "Fuel entries can be logged against a trip by the driver or fleet manager, with amount, vendor, and odometer reading. The system calculates actual vs. expected fuel consumption per km." },
-                { step: "06", title: "Driver Halt Tracking", desc: "The system logs every vehicle halt exceeding a threshold (5–10 minutes) against the trip. Fleet managers can view halt locations, durations, and patterns over time." },
-                { step: "07", title: "Trip Completion", desc: "Upon arrival and delivery confirmation, the trip is marked complete. All attached data (fuel, halts, route, time, driver) is committed to the trip record." },
-                { step: "08", title: "Financial Closure", desc: "Accounts team reviews the trip cost breakdown — fuel, driver allowances, toll, and freight charges — and approves financial closure without needing to contact anyone." },
-                { step: "09", title: "Reports Generation", desc: "Trip data automatically feeds into fleet reports. Monthly summaries, driver efficiency scores, fuel analytics, and cost-per-km reports are generated with zero manual data entry." },
+                {
+                  step: "01", title: "Trip Creation",
+                  items: ["Select origin and destination", "Assign driver and vehicle", "Select route from frequent route suggestions", "Add freight and planned trip details"],
+                },
+                {
+                  step: "02", title: "Trip Dispatch",
+                  items: ["Capture starting odometer", "Record starting fuel level", "Confirm dispatch — status changes to Dispatched", "Automatic notifications sent to destination branch"],
+                },
+                {
+                  step: "03", title: "Ongoing Monitoring",
+                  items: ["Track vehicle movement on live map", "Monitor trip progress and checkpoints", "View refueling updates in real-time", "Track driver halt activity and delays"],
+                },
+                {
+                  step: "04", title: "Fuel Tracking",
+                  items: ["Operators record refueling amount and cost", "Fuel quantity and location captured per stop", "Enables mileage and efficiency reporting", "Data tied directly to the active trip record"],
+                },
+                {
+                  step: "05", title: "Driver Halt Tracking",
+                  items: ["System records halt locations and durations", "Halt reasons and waiting times captured", "Improves operational accountability", "Supports driver payment calculations"],
+                },
+                {
+                  step: "06", title: "Trip Completion",
+                  items: ["Capture ending odometer and fuel level", "Platform auto-calculates distance, mileage, and fuel efficiency", "Trip duration and completion time recorded", "Status moves to Completed → Closed"],
+                },
+                {
+                  step: "07", title: "Reports & Analytics",
+                  items: ["Vehicle reports — mileage, fuel efficiency, utilization", "Driver reports — halt duration, trip completion history", "Operational reports — route performance, fleet utilization trends"],
+                },
               ].map((w) => (
-                <div key={w.step} className="relative flex items-start gap-6 lg:pl-16">
-                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-[#F5B731] bg-[#0a0a0a] lg:absolute lg:left-0 lg:top-2">
-                    <span className="text-xs font-bold text-[#F5B731]">{w.step}</span>
+                <div key={w.step} className="relative flex items-start gap-5 lg:pl-14">
+                  <div className="relative z-10 lg:absolute lg:left-0 lg:top-3">
+                    <StepBadge n={w.step} />
                   </div>
                   <Card className="flex-1">
-                    <h4 className="font-bold text-white mb-2">{w.title}</h4>
-                    <p className="text-white/65 text-sm leading-relaxed">{w.desc}</p>
+                    <h4 className="font-bold text-white mb-3">{w.title}</h4>
+                    <BulletList items={w.items} />
                   </Card>
                 </div>
               ))}
@@ -412,173 +445,363 @@ export const KudraCaseStudy = (): JSX.Element => {
           </div>
         </section>
 
-        {/* Feature Breakdown */}
+        {/* ── USER FLOW ── */}
         <section>
-          <SectionHeading label="Feature Breakdown" title="Core" accent="Capabilities" />
+          <SectionHeading label="User Flow" title="Trip" accent="Lifecycle States" />
+          <YCard>
+            <p className="text-white/65 text-sm mb-8 max-w-xl">
+              The lifecycle was intentionally simplified to improve operational clarity and reduce process confusion across all stakeholder groups.
+            </p>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-0">
+              {[
+                { state: "Created", desc: "Trip defined with all operational details" },
+                { state: "Dispatched", desc: "Vehicle and driver confirmed, branch notified" },
+                { state: "Ongoing", desc: "Trip in motion, live tracking active" },
+                { state: "Completed", desc: "Destination reached, metrics captured" },
+                { state: "Closed", desc: "Financial reconciliation complete" },
+              ].map((s, i, arr) => (
+                <div key={s.state} className="flex items-center gap-0 sm:flex-1">
+                  <div className="flex flex-col items-center flex-1">
+                    <div className="rounded-xl px-4 py-3 text-center w-full border" style={{ borderColor: AB, backgroundColor: AL }}>
+                      <div className="font-bold text-sm" style={{ color: A }}>{s.state}</div>
+                      <div className="text-xs text-white/45 mt-1 hidden sm:block">{s.desc}</div>
+                    </div>
+                  </div>
+                  {i < arr.length - 1 && (
+                    <div className="text-white/20 px-1 sm:px-2 text-lg">→</div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 sm:hidden space-y-2">
+              {[
+                { state: "Created", desc: "Trip defined with all operational details" },
+                { state: "Dispatched", desc: "Vehicle and driver confirmed, branch notified" },
+                { state: "Ongoing", desc: "Trip in motion, live tracking active" },
+                { state: "Completed", desc: "Destination reached, metrics captured" },
+                { state: "Closed", desc: "Financial reconciliation complete" },
+              ].map(s => (
+                <div key={s.state} className="flex items-center gap-3 text-sm">
+                  <span className="font-semibold w-24 shrink-0" style={{ color: A }}>{s.state}</span>
+                  <span className="text-white/50 text-xs">{s.desc}</span>
+                </div>
+              ))}
+            </div>
+          </YCard>
+        </section>
+
+        {/* ── WIREFRAMING & EXPLORATION ── */}
+        <section>
+          <SectionHeading label="Wireframing & Exploration" title="From Concept to" accent="Structure" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <p className="text-white/65 leading-relaxed mb-2">Early explorations focused on establishing the right operational hierarchy before touching visual design.</p>
+              {[
+                { area: "Dashboard hierarchy", desc: "Prioritizing real-time trip status and vehicle states above all other data" },
+                { area: "Operational visibility", desc: "Making trip progress scannable within 3 seconds for fleet managers" },
+                { area: "Data-heavy layouts", desc: "Structuring dense operational tables without creating cognitive overload" },
+                { area: "Trip status visibility", desc: "Designing status indicators that communicated state at a glance" },
+                { area: "Fleet monitoring efficiency", desc: "Placing the most-used actions at minimum click depth" },
+              ].map((e) => (
+                <div key={e.area} className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4">
+                  <div className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: A }} />
+                  <div>
+                    <div className="font-semibold text-white text-sm">{e.area}</div>
+                    <div className="text-white/50 text-sm mt-0.5">{e.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <YCard className="flex flex-col justify-between gap-8">
+              <div>
+                <h3 className="font-bold text-lg mb-4" style={{ color: A }}>The Balancing Act</h3>
+                <p className="text-white/60 text-sm leading-relaxed mb-5">
+                  Low-fidelity wireframes went through 5 rounds of iteration. The central challenge was balancing three competing forces across every screen:
+                </p>
+                <div className="grid grid-cols-1 gap-3">
+                  {[
+                    { f: "Information density", v: "Show everything that matters" },
+                    { f: "Readability", v: "Still be scannable under pressure" },
+                    { f: "Operational speed", v: "Reach any action in two clicks" },
+                    { f: "Enterprise scalability", v: "Work for 10 vehicles or 10,000" },
+                  ].map((b) => (
+                    <div key={b.f} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                      <span className="text-sm text-white/70">{b.f}</span>
+                      <span className="text-xs text-white/40 italic">{b.v}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold text-white text-sm mb-3">Low-fidelity wireframes established:</h3>
+                <BulletList items={["Status prioritization hierarchy", "KPI card placement", "Navigation structure", "Workflow step sequencing"]} />
+              </div>
+            </YCard>
+          </div>
+        </section>
+
+        {/* ── DESIGN SYSTEM ── */}
+        <section>
+          <SectionHeading label="Design System" title="Visual" accent="Language" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <Card>
+                <h3 className="font-semibold text-white mb-4">Design Principles</h3>
+                <div className="space-y-3">
+                  {[
+                    { p: "High readability", d: "Operators read dashboards in seconds — typography and contrast must work at a glance" },
+                    { p: "Minimal cognitive load", d: "Show only what's needed for the current task; everything else one click away" },
+                    { p: "Status-first hierarchy", d: "Trip and vehicle states always take visual precedence over secondary data" },
+                    { p: "Data clarity", d: "Numbers and operational metrics are the product — they must be immediately parseable" },
+                    { p: "Scannable interfaces", d: "Tables, cards, and lists designed for rapid vertical scanning under pressure" },
+                  ].map((pr) => (
+                    <div key={pr.p} className="flex items-start gap-3 border-t border-white/5 pt-3 first:border-0 first:pt-0">
+                      <span className="shrink-0 mt-0.5" style={{ color: A }}>→</span>
+                      <div>
+                        <div className="font-medium text-white text-sm">{pr.p}</div>
+                        <div className="text-white/50 text-xs mt-0.5 leading-relaxed">{pr.d}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </div>
+            <div className="space-y-5">
+              <Card>
+                <h3 className="font-semibold text-white mb-4">UI Decisions</h3>
+                <div className="space-y-3">
+                  {[
+                    "Color-coded trip states (Created / Dispatched / Ongoing / Completed / Closed)",
+                    "Structured dashboard cards with consistent header, filter, and data zones",
+                    "Clear typography hierarchy — metrics large, labels small, metadata smallest",
+                    "Modular analytics widgets that can be added/removed per user role",
+                    "Simplified operational tables with status-first column ordering",
+                  ].map((d) => (
+                    <div key={d} className="flex items-start gap-3 text-sm text-white/65">
+                      <Dot /> {d}
+                    </div>
+                  ))}
+                </div>
+              </Card>
+              <YCard>
+                <h3 className="font-semibold mb-3" style={{ color: A }}>Status Color Semantics</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { state: "Moving", color: "#22c55e", label: "Green" },
+                    { state: "Halted", color: "#F5B731", label: "Amber" },
+                    { state: "Stopped", color: "#ef4444", label: "Red" },
+                    { state: "Inactive", color: "#6b7280", label: "Grey" },
+                  ].map((c) => (
+                    <div key={c.state} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                      <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: c.color }} />
+                      <div>
+                        <div className="text-xs font-semibold text-white">{c.state}</div>
+                        <div className="text-xs text-white/40">{c.label}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </YCard>
+            </div>
+          </div>
+        </section>
+
+        {/* ── HIGH FIDELITY DESIGN ── */}
+        <section>
+          <SectionHeading label="High Fidelity Design" title="The Final" accent="Dashboard" />
+          <p className="text-white/60 mb-6 max-w-2xl">
+            The final UI adopted a clean enterprise SaaS aesthetic — dark layouts, structured cards, clear status indicators, and analytics-first interfaces prioritizing active trips, vehicle statuses, and fleet performance metrics.
+          </p>
+          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-4">
+            <img src="/figmaAssets/kudra-dashboard.png" alt="Kudra — Live Fleet Dashboard" className="w-full h-auto block" />
+          </div>
+          <p className="text-center text-white/35 text-sm">
+            Kudra — Live Fleet Operations Dashboard. 84 vehicles, real-time status tiles, and live map tracking.
+          </p>
+        </section>
+
+        {/* ── KEY FEATURES ── */}
+        <section>
+          <SectionHeading label="Key Features" title="Core" accent="Capabilities" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 feature: "Trip Lifecycle Management",
                 icon: "🗺️",
-                detail: "A structured state machine — Created, Dispatched, In Transit, Halted, Completed, Closed — gives every stakeholder clear visibility into where a trip stands without any manual communication.",
+                detail: "A structured state machine — Created → Dispatched → Ongoing → Completed → Closed — gives every stakeholder clear visibility into where a trip stands without any manual communication.",
               },
               {
                 feature: "Frequent Route Suggestions",
                 icon: "📍",
-                detail: "Machine-assisted route creation that learns from historical trip data. When a fleet manager starts a trip from a known origin, the system suggests the most common destination and freight type — reducing creation friction significantly.",
+                detail: "The system analyzed historical trips to recommend frequently used routes. Benefits: faster trip creation, reduced manual effort, and standardized operational workflows across branches.",
               },
               {
-                feature: "Fuel Consumption Tracking",
+                feature: "Fuel Tracking",
                 icon: "⛽",
-                detail: "Trip-level fuel logging with automatic mileage calculation. Expected vs. actual fuel consumption is surfaced per trip and aggregated per vehicle — making fuel anomalies immediately visible to the accounts team.",
+                detail: "Fuel logs integrated directly into trip workflows — enabling mileage tracking, fuel efficiency reporting, and cost visibility per trip tied to the live operational record.",
               },
               {
-                feature: "Driver Halt Management",
+                feature: "Driver Halt Tracking",
                 icon: "⏸️",
-                detail: "Automated halt detection and logging with geolocation data. Fleet managers see halt frequency, duration, and patterns per driver — replacing guesswork with auditable data for driver reviews.",
+                detail: "Operators could track halt duration and delays during trips — improving operational accountability, driver payment workflows, and delay visibility for fleet managers.",
               },
               {
-                feature: "Branch Announcements",
+                feature: "Branch Notifications",
                 icon: "📣",
-                detail: "Structured in-platform communication system for branch-to-branch and ops-to-field announcements. Replaces scattered WhatsApp chains with context-aware, timestamped operational messages.",
+                detail: "Automatic announcements triggered when trips were created or dispatched. Replaced WhatsApp chains with context-aware, timestamped notifications across hubs.",
               },
               {
-                feature: "Vehicle Performance Reports",
+                feature: "Fleet Analytics",
                 icon: "📊",
-                detail: "Per-vehicle analytics covering trip frequency, fuel efficiency, maintenance intervals, and downtime. Fleet managers can identify underperforming vehicles and proactively schedule maintenance.",
+                detail: "Integrated analytics enabling vehicle performance tracking, driver efficiency monitoring, operational optimization, and fleet utilization analysis — all from live trip data.",
               },
             ].map((f) => (
               <Card key={f.feature} className="flex flex-col gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#F5B731]/10 border border-[#F5B731]/20 flex items-center justify-center text-xl shrink-0">
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl shrink-0 border" style={{ borderColor: AB, backgroundColor: AL }}>
                     {f.icon}
                   </div>
                   <h4 className="font-bold text-white">{f.feature}</h4>
                 </div>
-                <p className="text-white/65 text-sm leading-relaxed">{f.detail}</p>
+                <p className="text-white/60 text-sm leading-relaxed">{f.detail}</p>
               </Card>
             ))}
           </div>
         </section>
 
-        {/* UX Process */}
-        <section>
-          <SectionHeading label="UX Process" title="How We" accent="Designed It" />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              {[
-                { phase: "Discovery & Research", desc: "6 weeks of field research across 3 logistics operators. Structured interviews with fleet managers, branch managers, accounts teams, and drivers. Contextual observation of daily dispatch routines." },
-                { phase: "User Flow Mapping", desc: "End-to-end flow diagrams for every role — fleet manager trip creation, driver dispatch confirmation, branch arrival visibility, accounts financial closure. Each flow was validated against real user feedback." },
-                { phase: "Wireframing & Low Fidelity", desc: "Paper and Figma wireframes for all 8 platform modules. 3 rounds of wireframe review with stakeholders before any visual design began. Focus was on information hierarchy and workflow clarity." },
-                { phase: "Dashboard Structuring", desc: "Dashboard design went through 5 iterations. Key decisions: vehicle status tiles as the primary visual, live map above the fold, trip list with status filters, and no charts on the main dashboard — those belong in reports." },
-                { phase: "Design System", desc: "Built a Kudra-specific design system with operational color semantics (green=moving, amber=halted, red=stopped, grey=inactive), consistent data table patterns, and mobile-ready components for future driver app expansion." },
-                { phase: "Enterprise UX Considerations", desc: "Data density, keyboard navigation, quick-scan table design, and zero-latency perceived interactions were prioritized — this is a tool used under operational pressure, not a casual consumer app." },
-              ].map((p) => (
-                <div key={p.phase} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <PillIcon />
-                  <div>
-                    <h4 className="font-semibold text-white text-sm">{p.phase}</h4>
-                    <p className="text-white/55 text-sm mt-1 leading-relaxed">{p.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="space-y-6">
-              <YellowCard>
-                <h3 className="font-bold text-[#F5B731] mb-3">Key Design Decisions</h3>
-                <div className="space-y-4">
-                  {[
-                    { d: "Trip-based workflows over vehicle-based", r: "Vehicles are assets. Trips are the unit of value. Organizing around trips naturally connects all operational data." },
-                    { d: "Status visibility over input-heavy forms", r: "Fleet managers scan dashboards in seconds. Forms are secondary — status tiles and trip lists must communicate state at a glance." },
-                    { d: "Analytics embedded in workflows", r: "Insights are most useful at the decision point — inside trip creation, driver assignment, and vehicle selection — not in a separate analytics module opened after the fact." },
-                    { d: "Notifications as coordination replacers", r: "Every notification was designed to eliminate a specific type of coordination call. If a notification doesn't prevent a call, it's noise." },
-                  ].map((item) => (
-                    <div key={item.d} className="border-t border-white/10 pt-4 first:border-0 first:pt-0">
-                      <div className="font-medium text-white text-sm">{item.d}</div>
-                      <div className="text-white/55 text-sm mt-1">{item.r}</div>
-                    </div>
-                  ))}
-                </div>
-              </YellowCard>
-            </div>
-          </div>
-        </section>
-
-        {/* Metrics & Outcomes */}
-        <section>
-          <SectionHeading label="Metrics & Outcomes" title="Measurable" accent="Impact" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              { metric: "40%", label: "Reduction in manual coordination calls", desc: "Fleet managers reported a 40% drop in daily coordination call volume within 8 weeks of platform adoption." },
-              { metric: "78%", label: "Faster trip creation", desc: "Average trip creation time dropped from ~15 minutes to under 3 minutes using frequent route suggestions and pre-filled driver data." },
-              { metric: "100%", label: "Trip cost visibility", desc: "All trips now have a complete cost record — fuel, driver allowances, toll — available without any manual data consolidation." },
-              { metric: "60%", label: "Reduction in reporting effort", desc: "Monthly fleet reports now generate automatically from live trip data. What took 2–3 days of manual work now takes minutes." },
-              { metric: "3×", label: "Increase in fleet accountability", desc: "Driver halt tracking and fuel analytics created a measurable accountability framework that didn't exist before." },
-              { metric: "84", label: "Vehicles actively tracked", desc: "Full fleet of 84 vehicles across multiple branches now tracked under a single operational system." },
-            ].map((m) => (
-              <div key={m.metric} className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                <div className="text-4xl font-bold text-[#F5B731] mb-2">{m.metric}</div>
-                <div className="font-semibold text-white text-sm mb-2">{m.label}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{m.desc}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Challenges */}
+        {/* ── CHALLENGES ── */}
         <section>
           <SectionHeading label="Challenges" title="What Made This" accent="Hard" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                ch: "Complex Logistics Workflows",
-                detail: "Logistics operations are non-linear. Vehicles stop unexpectedly, trips get rerouted, drivers swap mid-journey. The platform needed to handle edge cases gracefully without turning the UI into a complex decision tree.",
-                solution: "Designed flexible trip states with override capabilities, and built exception handling directly into the workflow rather than as post-hoc fixes.",
+                ch: "Designing for Complex Logistics Workflows",
+                detail: "Fleet operations involved multiple stakeholders and edge-case scenarios — vehicles rerouted mid-trip, drivers swapping, branches changing plans. Balancing simplicity with operational depth became a central design challenge.",
+                solution: "Built flexible trip states with override capabilities and designed exception handling directly into the workflow — not as an afterthought.",
+              },
+              {
+                ch: "Managing Data-Heavy Interfaces",
+                detail: "The platform required displaying large amounts of operational information without overwhelming users. A single dashboard could surface hundreds of data points simultaneously.",
+                solution: "Careful prioritization of visual hierarchy, information grouping, and dashboard readability — with progressive disclosure to keep the primary view clean.",
               },
               {
                 ch: "Multiple Stakeholder Needs",
-                detail: "Fleet managers, branch managers, and accounts teams have fundamentally different information needs from the same data. One dashboard could not serve all roles.",
-                solution: "Implemented role-based views with shared underlying data — same trip record, different UI surfaces depending on who's looking.",
-              },
-              {
-                ch: "Data-Heavy Enterprise UX",
-                detail: "The platform handles hundreds of data points per trip. Traditional enterprise UIs make this data inaccessible through poor hierarchy and information overload.",
-                solution: "Applied progressive disclosure systematically — overview first, details on demand — with careful attention to table density, contrast, and scanning patterns.",
-              },
-              {
-                ch: "Balancing Simplicity with Functionality",
-                detail: "Every powerful feature added cognitive load. The risk was building a system so complex that field staff couldn't use it under operational pressure.",
-                solution: "Every feature was evaluated with a '3-second rule' — if a fleet manager couldn't understand the current state of a trip in 3 seconds, the design went back to wireframes.",
+                detail: "Fleet managers, branch managers, and accounts teams required different workflows and levels of visibility from the same underlying data. One screen could not serve all roles equally.",
+                solution: "Role-based views with shared data — same trip record, different UI surfaces depending on who's looking. The product supported fleet ops, branch coordination, financial reconciliation, and driver monitoring.",
               },
             ].map((c) => (
               <Card key={c.ch}>
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-8 h-1 rounded-full bg-red-500/60 mt-3 shrink-0" />
-                  <h4 className="font-bold text-white">{c.ch}</h4>
-                </div>
+                <div className="w-8 h-1 rounded-full bg-red-500/50 mb-4" />
+                <h4 className="font-bold text-white mb-3 text-sm">{c.ch}</h4>
                 <p className="text-white/60 text-sm leading-relaxed mb-4">{c.detail}</p>
-                <div className="rounded-xl bg-[#F5B731]/10 border border-[#F5B731]/20 p-4">
-                  <span className="text-xs font-semibold text-[#F5B731] uppercase tracking-widest">Resolution</span>
-                  <p className="text-white/70 text-sm mt-2 leading-relaxed">{c.solution}</p>
+                <div className="rounded-xl p-4 border text-sm" style={{ borderColor: AB, backgroundColor: AL }}>
+                  <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: A }}>Resolution</span>
+                  <p className="text-white/65 mt-2 leading-relaxed text-sm">{c.solution}</p>
                 </div>
               </Card>
             ))}
           </div>
         </section>
 
-        {/* Future Scope */}
+        {/* ── OUTCOMES ── */}
+        <section>
+          <SectionHeading label="Outcomes & Impact" title="Measurable" accent="Results" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+            {[
+              { metric: "40%", label: "Reduced manual operational coordination", desc: "Fleet managers reported a significant drop in daily coordination call volume." },
+              { metric: "78%", label: "Faster trip creation", desc: "Average trip creation time dropped from ~15 minutes to under 3 minutes using frequent route suggestions." },
+              { metric: "100%", label: "Trip cost visibility", desc: "All trips now have a complete cost record — fuel, driver allowances, tolls — without manual data consolidation." },
+              { metric: "60%", label: "Reduction in reporting effort", desc: "Monthly fleet reports now generate automatically. What took 2–3 days of manual work now takes minutes." },
+              { metric: "3×", label: "Increase in fleet accountability", desc: "Driver halt tracking and fuel analytics created a measurable accountability framework." },
+              { metric: "84", label: "Vehicles actively tracked", desc: "Full fleet across multiple branches now tracked under a single operational system." },
+            ].map((m) => (
+              <div key={m.metric} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <div className="text-4xl font-bold mb-2" style={{ color: A }}>{m.metric}</div>
+                <div className="font-semibold text-white text-sm mb-2">{m.label}</div>
+                <div className="text-white/45 text-xs leading-relaxed">{m.desc}</div>
+              </div>
+            ))}
+          </div>
+          <YCard>
+            <h3 className="font-bold text-white mb-4">Product Impact Summary</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                "Reduced manual operational coordination by 40%",
+                "Improved active trip visibility across branches",
+                "Faster trip creation workflows",
+                "Better fleet accountability",
+                "Improved operational reporting accuracy",
+                "Reduced dependency on calls and spreadsheets",
+              ].map((i) => (
+                <div key={i} className="flex items-start gap-3 text-sm text-white/65">
+                  <span style={{ color: A }}>✦</span> {i}
+                </div>
+              ))}
+            </div>
+          </YCard>
+        </section>
+
+        {/* ── LEARNINGS ── */}
+        <section>
+          <SectionHeading label="Learnings" title="What This Project" accent="Taught Me" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card>
+              <div className="space-y-5">
+                {[
+                  { l: "Workflow-first UX thinking", d: "The best interface decisions came from mapping the operational reality first — not from UI patterns. Understanding what fleet managers actually do before designing how they do it was essential." },
+                  { l: "Enterprise dashboard hierarchy", d: "In high-pressure operational environments, visual hierarchy isn't aesthetic — it's functional. Wrong prioritization means missed alerts and operational failures." },
+                  { l: "Operational visibility design", d: "Visibility is a feature, not a side effect. Every screen had to answer 'what does the user need to know right now?' before 'what can we show them?'" },
+                  { l: "Human-centered logistics systems", d: "Behind every data point is a driver, a fleet manager, a branch coordinator. Designing for the human context — not just the data model — was what made the system usable under pressure." },
+                  { l: "Designing for real-world operational environments", d: "This is a tool used during crisis — a delayed vehicle, a missed delivery, a fuel discrepancy. It must be calm, clear, and fast when the user is not." },
+                ].map((i) => (
+                  <div key={i.l} className="flex items-start gap-3 border-t border-white/5 pt-4 first:border-0 first:pt-0">
+                    <span className="shrink-0 mt-0.5" style={{ color: A }}>→</span>
+                    <div>
+                      <div className="font-semibold text-white text-sm">{i.l}</div>
+                      <div className="text-white/55 text-sm mt-1 leading-relaxed">{i.d}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+            <YCard className="flex flex-col justify-center">
+              <h3 className="font-bold text-lg mb-4" style={{ color: A }}>Final Reflection</h3>
+              <p className="text-white/70 leading-relaxed mb-4">
+                Kudra was more than a fleet management dashboard.
+              </p>
+              <p className="text-white/65 leading-relaxed mb-4">
+                It was an operational transformation project that introduced structure, visibility, and accountability into logistics workflows.
+              </p>
+              <p className="text-white/65 leading-relaxed mb-6">
+                By shifting operations from fragmented communication into a centralized trip management ecosystem, the platform helped logistics teams operate with greater efficiency, transparency, and control.
+              </p>
+              <div className="border-t border-white/10 pt-5">
+                <p className="text-sm text-white/40 italic">
+                  "The project also highlighted how strong UX can reduce operational chaos in enterprise systems."
+                </p>
+              </div>
+            </YCard>
+          </div>
+        </section>
+
+        {/* ── FUTURE SCOPE ── */}
         <section>
           <SectionHeading label="Future Scope" title="What Comes" accent="Next" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { title: "Multi-Stop Trip Planning", icon: "🛣️", desc: "Support complex trips with multiple waypoints, intermediate pickups, and sequential delivery confirmations." },
+              { title: "Multi-Stop Trip Workflows", icon: "🛣️", desc: "Support complex trips with multiple waypoints, intermediate pickups, and sequential delivery confirmations." },
+              { title: "AI-Powered Route Optimization", icon: "🗺️", desc: "AI-powered routing that suggests optimal paths based on traffic, distance, fuel efficiency, and historical trip data." },
               { title: "Predictive Fuel Analytics", icon: "⛽", desc: "ML-driven fuel consumption forecasting based on route, vehicle age, load weight, and driver behavior patterns." },
-              { title: "Route Optimization Engine", icon: "🗺️", desc: "AI-powered routing that suggests optimal paths based on traffic, distance, fuel efficiency, and historical trip data." },
               { title: "Driver Mobile Application", icon: "📱", desc: "Companion app for drivers enabling trip confirmation, halt logging, fuel entry, and delivery confirmation from the field." },
-              { title: "Automated Dispatch Planning", icon: "🤖", desc: "AI-assisted dispatch that matches available vehicles and drivers to incoming trip requests based on capacity, location, and priority." },
-              { title: "Fleet Intelligence Reports", icon: "📊", desc: "Executive-level fleet intelligence dashboards with trend analysis, predictive maintenance alerts, and cost optimization recommendations." },
+              { title: "Automated Dispatch Planning", icon: "🤖", desc: "AI-assisted dispatch that matches available vehicles and drivers to incoming trip requests based on capacity and location." },
+              { title: "Fleet Intelligence Systems", icon: "📊", desc: "Executive-level fleet intelligence dashboards with trend analysis, predictive maintenance alerts, and cost optimization." },
             ].map((f) => (
-              <div key={f.title} className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-[#F5B731]/30 transition-all duration-200">
+              <div
+                key={f.title}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-200 cursor-default"
+                onMouseEnter={e => { e.currentTarget.style.borderColor = AB; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = ""; }}
+              >
                 <div className="text-2xl mb-3">{f.icon}</div>
                 <h4 className="font-semibold text-white text-sm mb-2">{f.title}</h4>
                 <p className="text-white/50 text-xs leading-relaxed">{f.desc}</p>
@@ -587,70 +810,54 @@ export const KudraCaseStudy = (): JSX.Element => {
           </div>
         </section>
 
-        {/* Deliverables */}
+        {/* ── DELIVERABLES ── */}
         <section>
           <SectionHeading label="Deliverables" title="What Was" accent="Produced" />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {[
-              { d: "Product Strategy", icon: "🎯" },
-              { d: "UX Research Report", icon: "📋" },
-              { d: "User Flow Diagrams", icon: "🔀" },
-              { d: "Wireframes (Lo-Fi)", icon: "📐" },
-              { d: "High Fidelity UI", icon: "🎨" },
-              { d: "Design System", icon: "🧩" },
+              { d: "UX Research", icon: "🔍" },
+              { d: "User Personas", icon: "👤" },
+              { d: "Workflow Mapping", icon: "🗺️" },
+              { d: "User Flows", icon: "🔀" },
+              { d: "Wireframes", icon: "📐" },
               { d: "Dashboard UX", icon: "📊" },
+              { d: "High-Fidelity UI", icon: "🎨" },
+              { d: "Design System", icon: "🧩" },
               { d: "Operational Workflows", icon: "⚙️" },
-              { d: "Analytics Design", icon: "📈" },
-              { d: "Component Library", icon: "🗂️" },
-            ].map((item) => (
-              <div key={item.d} className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center hover:border-[#F5B731]/30 transition-all duration-200">
-                <div className="text-2xl mb-2">{item.icon}</div>
-                <div className="text-xs text-white/65 leading-relaxed">{item.d}</div>
+              { d: "Analytics Experience", icon: "📈" },
+            ].map((del) => (
+              <div key={del.d} className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center hover:border-white/20 transition-colors">
+                <div className="text-2xl mb-2">{del.icon}</div>
+                <div className="text-xs text-white/60 leading-tight">{del.d}</div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Dashboard showcase (full width) */}
-        <section>
-          <SectionHeading label="Final Design" title="Live" accent="Dashboard" />
-          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <img
-              src="/figmaAssets/kudra-dashboard.png"
-              alt="Kudra — Live Fleet Dashboard"
-              className="w-full h-auto block"
-            />
-          </div>
-          <p className="text-center text-white/40 text-sm mt-4">
-            Kudra — Live Fleet Operations Dashboard. 84 vehicles, real-time status tiles, and live map tracking.
-          </p>
-        </section>
-
-        {/* Back CTA */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-3xl border border-[#F5B731]/20 bg-[#F5B731]/5 p-8 md:p-12">
+        {/* ── CTA ── */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-3xl p-8 md:p-12 border" style={{ borderColor: AB, backgroundColor: AL }}>
           <div>
-            <h3 className="text-2xl font-bold text-white mb-2">
-              Like what you see?
-            </h3>
-            <p className="text-white/60">
-              Let's discuss how I can bring the same product thinking to your next project.
-            </p>
+            <h3 className="text-2xl font-bold text-white mb-2">Want to work together?</h3>
+            <p className="text-white/55">Let's build something operationally transformative.</p>
           </div>
           <div className="flex gap-4 shrink-0">
             <Link href="/">
-              <button className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:border-[#F5B731]/50 transition-colors">
+              <button className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:border-white/40 transition-colors">
                 Back to Portfolio
               </button>
             </Link>
             <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); window.location.href = "/#contact"; }}
-              className="rounded-full bg-[#F5B731] px-6 py-3 text-sm font-semibold text-black hover:bg-[#d4a017] transition-colors"
+              href="/#contact"
+              className="rounded-full px-6 py-3 text-sm font-semibold text-white transition-colors"
+              style={{ backgroundColor: A }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#d4a017")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = A)}
             >
               Get in Touch
             </a>
           </div>
         </div>
+
       </div>
     </div>
   );
