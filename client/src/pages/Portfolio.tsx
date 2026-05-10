@@ -35,7 +35,7 @@ const skillGroups = [
   },
 ];
 
-const projects = [
+const caseStudies = [
   {
     title: "Kudra — Fleet & Trip Management Platform",
     description:
@@ -65,6 +65,63 @@ const projects = [
     slug: "/case-study",
     year: "2024",
     image: "/figmaAssets/image-16.png",
+  },
+];
+
+const codingProjects = [
+  {
+    title: "ONDL Jolt",
+    tagline: "Hyperfast next-day delivery to remote areas",
+    description: "A full-stack marketing and logistics platform for ONDL's Jolt delivery service — enabling businesses to check delivery availability across Tier 2, Tier 3, and rural markets.",
+    url: "https://www.joltdelivery.in/",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    image: "/figmaAssets/jolt-screenshot.png",
+    accent: "#7C3AED",
+    year: "2024",
+  },
+  {
+    title: "ONDL",
+    tagline: "Enterprise logistics & operations platform",
+    description: "The primary web platform for ONDL — a modern enterprise logistics company. Built with a performance-first architecture and clean enterprise SaaS aesthetic to support B2B operations.",
+    url: "https://www.ondl.in/",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    image: null,
+    accent: "#008080",
+    year: "2024",
+  },
+  {
+    title: "HotelFirst Advisory",
+    tagline: "Strategic hotel advisory, delivered first",
+    description: "A premium advisory firm website for HotelFirst — showcasing strategic hotel consulting services with a polished, conversion-focused design and clean content hierarchy.",
+    url: "https://www.hotelfirst.one/",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    image: "/figmaAssets/hotelfirst-screenshot.png",
+    accent: "#EA580C",
+    year: "2024",
+  },
+];
+
+const graphicProjects = [
+  {
+    title: "Brand Identity & Visual Design",
+    description: "Logo design, brand systems, and visual identity work across multiple client projects — from logistics startups to enterprise software companies.",
+    tags: ["Brand Identity", "Logo Design", "Visual Systems"],
+    accent: "#8B5CF6",
+    icon: "◈",
+  },
+  {
+    title: "Marketing & Social Media Creatives",
+    description: "Campaign creatives, social media templates, and digital marketing assets designed for product launches and ongoing brand communication.",
+    tags: ["Social Media", "Digital Marketing", "Campaign Design"],
+    accent: "#EC4899",
+    icon: "⬡",
+  },
+  {
+    title: "UI Illustration & Iconography",
+    description: "Custom illustration sets, icon libraries, and product-integrated artwork created to complement SaaS product interfaces and marketing materials.",
+    tags: ["Illustration", "Iconography", "Product Art"],
+    accent: "#F59E0B",
+    icon: "◎",
   },
 ];
 
@@ -425,31 +482,42 @@ export const Portfolio = (): JSX.Element => {
         <div className="mx-auto max-w-7xl">
           <div
             data-animate
-            className="opacity-0 translate-y-8 transition-all duration-700 ease-out mb-12"
+            className="opacity-0 translate-y-8 transition-all duration-700 ease-out mb-16"
           >
             <span className="text-[#008080] text-sm font-semibold tracking-widest uppercase">
-              Case Studies
+              My Work
             </span>
             <h2 className="mt-2 text-4xl sm:text-5xl font-bold">
-              My <span className="text-[#008080]">Work</span>
+              Selected <span className="text-[#008080]">Projects</span>
             </h2>
             <p className="mt-4 text-white/60 max-w-xl">
-              A collection of design projects where I've applied research, strategy, and craft to solve real problems.
+              Product design case studies, live websites I've built, and graphic design work — spanning UX strategy, frontend development, and visual craft.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8">
-            {projects.map((project, i) => (
+          {/* ── Product Case Studies ── */}
+          <div data-animate className="opacity-0 translate-y-8 transition-all duration-700 ease-out mb-6">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold border border-[#008080]/40 bg-[#008080]/10 text-[#008080]">01</div>
+              <div>
+                <h3 className="text-xl font-bold text-white">Product Case Studies</h3>
+                <p className="text-white/40 text-sm">End-to-end UX design, research, and product strategy</p>
+              </div>
+              <div className="flex-1 h-px bg-white/8 ml-4" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 mb-20">
+            {caseStudies.map((project, i) => (
               <div
                 key={project.title}
                 data-animate
                 className="opacity-0 translate-y-8 transition-all duration-700 ease-out"
-                style={{ transitionDelay: `${i * 100}ms` }}
+                style={{ transitionDelay: `${i * 80}ms` }}
               >
                 <Link href={project.slug}>
                   <div
                     className="group cursor-pointer rounded-3xl border border-white/10 bg-white/5 overflow-hidden transition-all duration-300"
-                    style={{ ["--accent" as string]: project.accentColor }}
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = project.accentColor + "66")}
                     onMouseLeave={(e) => (e.currentTarget.style.borderColor = "")}
                   >
@@ -461,30 +529,17 @@ export const Portfolio = (): JSX.Element => {
                           className="w-full h-64 lg:h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
-                      <div className="p-8 lg:p-12 flex flex-col justify-center gap-6">
+                      <div className="p-8 lg:p-12 flex flex-col justify-center gap-5">
                         <div className="flex items-center gap-3">
-                          <span className="text-xs font-semibold tracking-widest text-white/40 uppercase">
-                            {project.year}
-                          </span>
+                          <span className="text-xs font-semibold tracking-widest text-white/40 uppercase">{project.year}</span>
                           <span className="w-1 h-1 rounded-full bg-white/20" />
-                          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: project.accentColor }}>
-                            Case Study
-                          </span>
+                          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: project.accentColor }}>Case Study</span>
                         </div>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white transition-colors duration-200" style={{ ["--hover-color" as string]: project.accentColor }}>
-                          {project.title}
-                        </h3>
-                        <p className="text-white/60 leading-relaxed">
-                          {project.description}
-                        </p>
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white">{project.title}</h3>
+                        <p className="text-white/60 leading-relaxed">{project.description}</p>
                         <div className="flex flex-wrap gap-2">
                           {project.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60"
-                            >
-                              {tag}
-                            </span>
+                            <span key={tag} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">{tag}</span>
                           ))}
                         </div>
                         <div className="flex items-center gap-2 font-semibold text-sm group-hover:gap-4 transition-all duration-200" style={{ color: project.accentColor }}>
@@ -497,6 +552,125 @@ export const Portfolio = (): JSX.Element => {
                     </div>
                   </div>
                 </Link>
+              </div>
+            ))}
+          </div>
+
+          {/* ── Coding Projects ── */}
+          <div data-animate className="opacity-0 translate-y-8 transition-all duration-700 ease-out mb-6" style={{ transitionDelay: "100ms" }}>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold border border-[#008080]/40 bg-[#008080]/10 text-[#008080]">02</div>
+              <div>
+                <h3 className="text-xl font-bold text-white">Coding Projects</h3>
+                <p className="text-white/40 text-sm">Live websites built with Next.js, TypeScript & Tailwind CSS</p>
+              </div>
+              <div className="flex-1 h-px bg-white/8 ml-4" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-20">
+            {codingProjects.map((project, i) => (
+              <div
+                key={project.title}
+                data-animate
+                className="opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                style={{ transitionDelay: `${120 + i * 80}ms` }}
+              >
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden h-full transition-all duration-300 cursor-pointer"
+                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = project.accent + "66")}
+                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = "")}
+                >
+                  {/* Image / Placeholder */}
+                  <div className="relative overflow-hidden bg-[#0e0e0e] h-48 shrink-0">
+                    {project.image ? (
+                      <>
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      </>
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center" style={{ background: `radial-gradient(ellipse at center, ${project.accent}18, transparent 70%), #0e0e0e` }}>
+                        <div className="text-5xl font-black opacity-20" style={{ color: project.accent }}>
+                          {project.title.charAt(0)}
+                        </div>
+                      </div>
+                    )}
+                    {/* Live badge */}
+                    <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/70 px-3 py-1 backdrop-blur-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="text-xs text-white/70 font-medium">Live</span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex flex-col flex-1 p-5 gap-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold tracking-widest text-white/35 uppercase">{project.year}</span>
+                    </div>
+                    <h4 className="font-bold text-white text-lg leading-tight">{project.title}</h4>
+                    <p className="text-white/45 text-xs leading-relaxed italic">{project.tagline}</p>
+                    <p className="text-white/60 text-sm leading-relaxed flex-1">{project.description}</p>
+
+                    {/* Tech stack */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {project.tech.map((t) => (
+                        <span key={t} className="rounded-full border px-2.5 py-1 text-xs font-medium" style={{ borderColor: project.accent + "44", color: project.accent, backgroundColor: project.accent + "0f" }}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* CTA */}
+                    <div className="flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all duration-200 pt-1" style={{ color: project.accent }}>
+                      View Live Site
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {/* ── Graphic Design ── */}
+          <div data-animate className="opacity-0 translate-y-8 transition-all duration-700 ease-out mb-6" style={{ transitionDelay: "200ms" }}>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold border border-[#008080]/40 bg-[#008080]/10 text-[#008080]">03</div>
+              <div>
+                <h3 className="text-xl font-bold text-white">Graphic Design</h3>
+                <p className="text-white/40 text-sm">Brand identity, visual communication, and creative direction</p>
+              </div>
+              <div className="flex-1 h-px bg-white/8 ml-4" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {graphicProjects.map((project, i) => (
+              <div
+                key={project.title}
+                data-animate
+                className="opacity-0 translate-y-8 transition-all duration-700 ease-out rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-white/20 transition-all duration-200"
+                style={{ transitionDelay: `${220 + i * 80}ms` }}
+              >
+                <div className="text-3xl mb-4" style={{ color: project.accent }}>{project.icon}</div>
+                <h4 className="font-bold text-white mb-2">{project.title}</h4>
+                <p className="text-white/55 text-sm leading-relaxed mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tags.map((t) => (
+                    <span key={t} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/50">{t}</span>
+                  ))}
+                </div>
+                <div className="mt-4 pt-4 border-t border-white/8">
+                  <span className="text-xs text-white/25 italic">Portfolio pieces available on request</span>
+                </div>
               </div>
             ))}
           </div>
