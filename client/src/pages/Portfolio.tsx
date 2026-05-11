@@ -178,7 +178,6 @@ export const Portfolio = (): JSX.Element => {
   return (
     <div className="min-h-screen bg-black text-white font-['Poppins']">
       <Navbar />
-
       {/* Hero Section */}
       <section
         id="home"
@@ -218,9 +217,7 @@ export const Portfolio = (): JSX.Element => {
 
             <p className="mt-2 max-w-xl text-base leading-relaxed text-white/70">
               I am a{" "}
-              <span className="underline decoration-[#008080] text-white">
-                Product Designer and Front-End Developer
-              </span>{" "}
+              <span className="underline decoration-[#008080] text-white">Product Designer focused on SaaS, logistics systems, enterprise workflows, and AI-assisted experiences.</span>{" "}
               with a strong passion for creating intuitive and engaging digital
               experiences. With expertise in{" "}
               <span className="underline decoration-[#008080] text-white">
@@ -292,7 +289,6 @@ export const Portfolio = (): JSX.Element => {
           </svg>
         </div>
       </section>
-
       {/* About Section */}
       <section id="about" ref={aboutRef} className="py-24 px-6">
         <div className="mx-auto max-w-7xl">
@@ -377,7 +373,6 @@ export const Portfolio = (): JSX.Element => {
           </div>
         </div>
       </section>
-
       {/* Skills Section */}
       <section id="skills" ref={skillsRef} className="py-24 px-6 bg-white/[0.02]">
         <div className="mx-auto max-w-7xl">
@@ -476,7 +471,6 @@ export const Portfolio = (): JSX.Element => {
           </div>
         </div>
       </section>
-
       {/* Projects Section */}
       <section id="projects" ref={projectsRef} className="py-24 px-6">
         <div className="mx-auto max-w-7xl">
@@ -676,7 +670,6 @@ export const Portfolio = (): JSX.Element => {
           </div>
         </div>
       </section>
-
       {/* Contact Section */}
       <section id="contact" ref={contactRef} className="py-24 px-6 bg-white/[0.02]">
         <div className="mx-auto max-w-7xl">
@@ -789,7 +782,6 @@ export const Portfolio = (): JSX.Element => {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-white/10">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4">
