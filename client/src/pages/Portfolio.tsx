@@ -621,7 +621,7 @@ export const Portfolio = (): JSX.Element => {
               My Work
             </span>
             <h2 className="mt-2 text-4xl sm:text-5xl font-bold">
-              Selected <span className="text-[#008080]">Projects</span>
+              Selected <span className="text-[#008080]">Projects </span>
             </h2>
             <p className="mt-4 text-white/60 max-w-xl">
               Product design case studies, live websites I've built, and graphic
