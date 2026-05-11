@@ -625,8 +625,8 @@ export const Portfolio = (): JSX.Element => {
             </h2>
             <p className="mt-4 text-white/60 max-w-xl">
               Product design case studies, live websites I've built, and graphic
-              design work — spanning UX strategy, frontend development, and
-              visual craft.
+              design work — spanning UX strategy , frontend development, and
+              visual craft. a
             </p>
           </div>
 
