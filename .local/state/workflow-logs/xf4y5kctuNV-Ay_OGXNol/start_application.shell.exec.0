@@ -1,0 +1,63 @@
+[1G[0K⠙[1G[0K
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+[1G[0K⠙[1G[0K8:44:29 AM [express] serving on port 5000
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m8:53:34 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/Portfolio.tsx, /src/index.css[22m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m8:57:52 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/Portfolio.tsx, /src/index.css[22m [33m(x2)[39m
+[RUNTIME_ERROR]{"type":"runtime-error","timestamp":1778317072640,"name":"Error","message":"skills.map is not a function","stack":"    at Portfolio /home/runner/workspace/client/src/pages/Portfolio.tsx:339:21\n\n\n\n\n\n\n\n\n","loc":{"line":339,"column":21,"file":"/home/runner/workspace/client/src/pages/Portfolio.tsx"},"frame":"337|  \n338|            <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6 mb-12\">\n339|              {skills.map((group, i) => (\n   |                      ^\n340|                <div\n341|                  key={group.category}"}
+[1G[0K⠙[1G[0K[1mnpm[22m [96mnotice[39m
+[1mnpm[22m [96mnotice[39m New [31mmajor[39m version of npm available! [31m10.8.2[39m -> [34m11.14.1[39m
+[1mnpm[22m [96mnotice[39m Changelog: [34mhttps://github.com/npm/cli/releases/tag/v11.14.1[39m
+[1mnpm[22m [96mnotice[39m To update run: [4mnpm install -g npm@11.14.1[24m
+[1mnpm[22m [96mnotice[39m
+[1G[0K⠙[1G[0K

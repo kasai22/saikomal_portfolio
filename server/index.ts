@@ -4,7 +4,7 @@ import { serveStatic } from "./static";
 import { createServer } from "http";
 
 const app = express();
-const httpServer = createServer(app)
+const httpServer = createServer(app);
 
 declare module "http" {
   interface IncomingMessage {
@@ -93,8 +93,7 @@ app.use((req, res, next) => {
   httpServer.listen(
     {
       port,
-      host: "0.0.0.0",
-      reusePort: true,
+      host: "localhost",
     },
     () => {
       log(`serving on port ${port}`);
