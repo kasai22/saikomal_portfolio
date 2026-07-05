@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 65%;
+  --popover: 0 0% 5%;
+  --popover-foreground: 0 0% 98%;
+  --border: 0 0% 100% / 0.1;
+  --input: 0 0% 100% / 0.1;
+  --card: 0 0% 4%;
+  --card-foreground: 0 0% 98%;
+  --primary: 180 100% 25%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 180 100% 25%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 180 100% 25%;
+  --radius: 0.75rem;
+
+  /* Figma-derived text styles used across the case study pages */
+  --adaptivemedium: rgba(255, 255, 255, 0.8);
+  --adaptivestrong: rgba(255, 255, 255, 1);
+  --adaptiveweak: rgba(113, 118, 137, 1);
+  --display-semibold-l-font-family: "Inter", Helvetica;
+  --display-semibold-l-font-size: 48px;
+  --display-semibold-l-font-weight: 400;
+  --display-semibold-l-line-height: 56px;
+  --display-semibold-l-letter-spacing: 0px;
+  --heading-regular-l-font-family: "Inter", Helvetica;
+  --heading-regular-l-font-size: 20px;
+  --heading-regular-l-font-weight: 400;
+  --heading-regular-l-line-height: 28px;
+  --heading-regular-l-letter-spacing: 0px;
+  --heading-regular-s-font-family: "Inter", Helvetica;
+  --heading-regular-s-font-size: 16px;
+  --heading-regular-s-font-weight: 400;
+  --heading-regular-s-line-height: 24px;
+  --heading-regular-s-letter-spacing: 0px;
+  --heading-semibold-m-font-family: "Inter", Helvetica;
+  --heading-semibold-m-font-size: 18px;
+  --heading-semibold-m-font-weight: 400;
+  --heading-semibold-m-line-height: 24px;
+  --heading-semibold-m-letter-spacing: 0px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+
+  /* Visible, consistent focus ring for keyboard users across the whole app */
+  :focus-visible {
+    outline: 2px solid #00b3b3;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Respect users who've asked the OS for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Figma text styles, collapsed into single classes instead of long
+     arbitrary-value chains repeated across every case study section. */
+  .text-style-display-semibold-l {
+    font-family: var(--display-semibold-l-font-family);
+    font-size: var(--display-semibold-l-font-size);
+    font-weight: var(--display-semibold-l-font-weight);
+    line-height: var(--display-semibold-l-line-height);
+    letter-spacing: var(--display-semibold-l-letter-spacing);
+  }
+  .text-style-heading-regular-l {
+    font-family: var(--heading-regular-l-font-family);
+    font-size: var(--heading-regular-l-font-size);
+    font-weight: var(--heading-regular-l-font-weight);
+    line-height: var(--heading-regular-l-line-height);
+    letter-spacing: var(--heading-regular-l-letter-spacing);
+  }
+  .text-style-heading-regular-s {
+    font-family: var(--heading-regular-s-font-family);
+    font-size: var(--heading-regular-s-font-size);
+    font-weight: var(--heading-regular-s-font-weight);
+    line-height: var(--heading-regular-s-line-height);
+    letter-spacing: var(--heading-regular-s-letter-spacing);
+  }
+  .text-style-heading-semibold-m {
+    font-family: var(--heading-semibold-m-font-family);
+    font-size: var(--heading-semibold-m-font-size);
+    font-weight: var(--heading-semibold-m-font-weight);
+    line-height: var(--heading-semibold-m-line-height);
+    letter-spacing: var(--heading-semibold-m-letter-spacing);
+  }
+  .text-adaptive-medium {
+    color: var(--adaptivemedium);
+  }
+  .text-adaptive-strong {
+    color: var(--adaptivestrong);
+  }
+  .text-adaptive-weak {
+    color: var(--adaptiveweak);
+  }
+}

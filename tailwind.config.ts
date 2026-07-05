@@ -1,15 +1,17 @@
-module.exports = {
-  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}",
-    "./src/**/*.{html,js,ts,jsx,tsx}",
-    "app/**/*.{ts,tsx}",
-    "components/**/*.{ts,tsx}",
-  ],
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  darkMode: ["class"],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./features/**/*.{ts,tsx}"],
   theme: {
+    container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
     extend: {
       colors: {
-        adaptivemedium: "var(--adaptivemedium)",
-        adaptivestrong: "var(--adaptivestrong)",
-        adaptiveweak: "var(--adaptiveweak)",
+        brand: {
+          DEFAULT: "#008080",
+          dark: "#006666",
+          light: "#00b3b3",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -45,19 +47,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        "display-semibold-l": "var(--display-semibold-l-font-family)",
-        "heading-regular-l": "var(--heading-regular-l-font-family)",
-        "heading-regular-s": "var(--heading-regular-s-font-family)",
-        "heading-semibold-m": "var(--heading-semibold-m-font-family)",
-        sans: [
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
-        ],
+        display: ["var(--font-poppins)", "ui-sans-serif", "system-ui", "sans-serif"],
+        body: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -73,14 +64,24 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-16px)" },
+        },
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(2rem)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        float: "float 6s ease-in-out infinite",
+        "fade-up": "fade-up 0.7s ease-out forwards",
       },
     },
-    container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-  darkMode: ["class"],
+  plugins: [require("tailwindcss-animate")],
 };
+
+export default config;

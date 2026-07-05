@@ -1,0 +1,47 @@
+import { SectionHeading } from "@/components/case-study/section-heading";
+import { AccentCard } from "@/components/case-study/accent-card";
+import { RESEARCH_AREAS, RESEARCH_STATS } from "@/features/case-study-kudra/constants/data";
+
+export function ResearchSection() {
+  return (
+    <section>
+      <SectionHeading label="Research & Discovery" title="Understanding the" accent="Operations" />
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div>
+          <p className="mb-6 leading-relaxed text-white/65">
+            To better understand operational workflows, interviews and observational research
+            were conducted with logistics operators, dispatch teams, and fleet managers. Research
+            focused on:
+          </p>
+          <div className="space-y-3">
+            {RESEARCH_AREAS.map((r) => (
+              <div key={r.area} className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--accent)]" />
+                <div>
+                  <div className="text-sm font-semibold text-white">{r.area}</div>
+                  <div className="mt-0.5 text-sm text-white/50">{r.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <AccentCard className="flex flex-col justify-center">
+          <h3 className="mb-2 text-lg font-bold text-[color:var(--accent)]">Research Approach</h3>
+          <p className="mb-6 text-sm leading-relaxed text-white/60">
+            Structured interviews and contextual observation sessions with logistics operators
+            across multiple branches. Focus was on shadowing real operational workflows — not
+            just asking about them.
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            {RESEARCH_STATS.map((s) => (
+              <div key={s.l} className="rounded-xl border border-white/10 bg-white/5 p-4 text-center">
+                <div className="text-2xl font-bold text-[color:var(--accent)]">{s.v}</div>
+                <div className="mt-1 text-xs text-white/45">{s.l}</div>
+              </div>
+            ))}
+          </div>
+        </AccentCard>
+      </div>
+    </section>
+  );
+}
