@@ -43,8 +43,8 @@ export function HighFidelitySection() {
               <Image
                 src={screen.imageSrc}
                 alt={`Kudra — ${screen.title}`}
-                width={IMAGE_DIMENSIONS[screen.imageSrc].width}
-                height={IMAGE_DIMENSIONS[screen.imageSrc].height}
+                width={IMAGE_DIMENSIONS[screen.imageSrc]?.width ?? 1918}
+                height={IMAGE_DIMENSIONS[screen.imageSrc]?.height ?? 1026}
                 className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />

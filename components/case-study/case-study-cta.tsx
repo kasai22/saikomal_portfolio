@@ -18,12 +18,12 @@ export function CaseStudyCta({ tagline }: CaseStudyCtaProps) {
         >
           Back to Portfolio
         </Link>
-        <a
+        <Link
           href="/#contact"
           className="rounded-full bg-[color:var(--accent,#008080)] px-6 py-3 text-sm font-semibold text-white transition-[filter] duration-200 hover:brightness-90"
         >
           Get in Touch
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export function useActiveSection(sectionIds: string[]): string | null {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visible.length > 0) {
-          setActiveId(visible[0].target.id);
+          setActiveId(visible[0]?.target.id ?? null);
         }
       },
       { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
