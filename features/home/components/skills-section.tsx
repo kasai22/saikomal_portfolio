@@ -16,8 +16,9 @@ export function SkillsSection() {
             What I <span className="text-brand">Work With</span>
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/50">
-            A senior product design toolkit built for SaaS — spanning strategy, systems thinking,
-            AI-assisted workflows, and developer collaboration.
+            A UX engineering toolkit built to move from research to prototype to production —
+            spanning user-centered design, rapid prototyping, front-end implementation, and
+            close developer collaboration.
           </p>
         </RevealItem>
 

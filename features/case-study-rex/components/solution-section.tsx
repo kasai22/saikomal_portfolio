@@ -1,0 +1,30 @@
+import { SectionHeading } from "@/components/case-study/section-heading";
+import { AccentCard } from "@/components/case-study/accent-card";
+import { SOLUTION_INTRO, SOLUTION_PILLARS } from "@/features/case-study-rex/constants/data";
+
+export function SolutionSection() {
+  return (
+    <section>
+      <SectionHeading
+        label="Solution"
+        title="An Agentic Engine"
+        accent="Behind a Human Experience"
+        sub="Every conversational or Wizard interaction is backed by a governed, multi-agent architecture — designed so customers feel a stylist's intuition while the business retains full control."
+      />
+      <AccentCard className="mb-8">
+        <p className="text-lg leading-relaxed text-white/80">{SOLUTION_INTRO}</p>
+      </AccentCard>
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {SOLUTION_PILLARS.map((s) => (
+          <div key={s.title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] text-xl">
+              {s.icon}
+            </div>
+            <h4 className="mb-2 text-sm font-bold text-white">{s.title}</h4>
+            <p className="text-sm leading-relaxed text-white/55">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

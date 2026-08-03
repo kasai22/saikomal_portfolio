@@ -20,18 +20,18 @@ const inter = Inter({
 
 const SITE_URL = "https://saikomal.dev";
 const SITE_DESCRIPTION =
-  "Sai Komal is a Product Designer and Frontend Developer specializing in SaaS, logistics systems, enterprise workflows, and AI-assisted experiences.";
+  "Sai Komal is a User Experience Engineer and Product Designer who translates design concepts into functional prototypes — spanning user research, usability testing, wireframing, and front-end implementation across SaaS, logistics, and AI-assisted products.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sai Komal — Product Designer & Frontend Developer",
+    default: "Sai Komal — User Experience Engineer",
     template: "%s — Sai Komal",
   },
   description: SITE_DESCRIPTION,
   icons: { icon: "/favicon.png" },
   openGraph: {
-    title: "Sai Komal — Product Designer & Frontend Developer",
+    title: "Sai Komal — User Experience Engineer",
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: "Sai Komal Portfolio",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sai Komal — Product Designer & Frontend Developer",
+    title: "Sai Komal — User Experience Engineer",
     description: SITE_DESCRIPTION,
   },
 };

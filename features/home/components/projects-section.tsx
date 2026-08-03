@@ -19,7 +19,7 @@ export function ProjectsSection() {
           </h2>
           <p className="mt-4 max-w-xl text-white/60">
             Product design case studies, live websites I&apos;ve built, and graphic design work —
-            spanning UX strategy, frontend development, and visual craft.
+            spanning user research, prototyping, front-end development, and visual craft.
           </p>
         </RevealItem>
 
@@ -28,7 +28,7 @@ export function ProjectsSection() {
           <SectionDivider
             number="01"
             title="Product Case Studies"
-            subtitle="End-to-end UX design, research, and product strategy"
+            subtitle="End-to-end UX research, prototyping, and design-to-code translation"
           />
         </RevealItem>
         <div className="mb-20 grid grid-cols-1 gap-6">

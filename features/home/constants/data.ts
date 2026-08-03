@@ -13,88 +13,99 @@ export const SOCIALS: Social[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/chsk1999", platform: "linkedin" },
 ];
 
-export const HERO_TAGS = ["Product Designer", "Graphic Designer", "Frontend Developer"];
+export const HERO_TAGS = ["User Experience Engineer", "UX/UI Prototyping", "Front-End Development"];
 
 export const ABOUT_STATS: AboutStat[] = [
   { label: "Projects", value: "10+" },
   { label: "Case Studies", value: "5+" },
   { label: "Skills", value: "18+" },
-  { label: "Years Active", value: "3+" },
+  { label: "Years in UX", value: "3+" },
 ];
 
 export const WHAT_I_BRING = [
-  "User-centered design approach with deep empathy for real users",
-  "End-to-end design capability from research to high-fidelity prototypes",
-  "Frontend skills to implement and validate designs in code",
-  "Strong collaboration with developers, stakeholders, and product teams",
+  "Fast, tangible translation of design concepts into working prototypes — balancing technical feasibility with design intent",
+  "Hands-on user research and usability testing to validate decisions with real feedback, not assumptions",
+  "Wireframing and prototyping fluency across Figma, Sketch, and Adobe XD, from low-fidelity flows to interactive hi-fi builds",
+  "Front-end implementation skills (React, Next.js, Tailwind CSS) that let me speak the same language as engineering teams",
+  "Independent, SME-level ownership of UX problems, with active contribution in cross-functional team discussions",
 ];
 
 export const DESIGN_PHILOSOPHY_QUOTE =
-  "Good design is invisible — it empowers users to accomplish their goals without friction or confusion. Every pixel, every interaction, every word on the screen is a decision that either builds or breaks trust.";
+  "Great UX engineering lives in the handoff — where a design concept has to survive contact with real technical constraints without losing its intent. My job is to make that translation as fast, tangible, and faithful as possible.";
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     icon: "◈",
-    category: "Product Design",
-    description: "End-to-end design thinking from research to pixel-perfect delivery",
+    category: "UX Design & Research",
+    description: "User-centered design methodology from discovery through validation",
     items: [
-      "Product Design",
-      "UX Strategy",
-      "SaaS Workflows",
+      "User Experience (UX) Design",
+      "User-Centered Design Principles",
+      "User Research",
+      "Usability Testing",
       "Information Architecture",
       "User Flows",
       "Wireframing",
-      "High-Fidelity UI",
       "Interaction Design",
-      "Dashboard Design",
-      "Usability Testing",
+      "Design Systems",
+      "Accessibility",
     ],
   },
   {
     icon: "⬡",
-    category: "Systems & Collaboration",
-    description: "Scalable design infrastructure built for cross-functional teams",
+    category: "Prototyping & Front-End Engineering",
+    description: "Turning design intent into tangible, technically feasible prototypes",
     items: [
-      "Design Systems",
-      "Atomic Design",
-      "Design Tokens",
+      "Figma",
+      "Sketch",
+      "Adobe XD",
+      "Rapid Prototyping",
+      "High-Fidelity UI",
+      "HTML / CSS / JavaScript",
+      "React / Next.js",
+      "Tailwind CSS",
       "Component Libraries",
-      "Scalable UI Architecture",
       "Developer Handoff",
-      "Cross-functional Collaboration",
-      "Product Discovery",
-      "SDLC Awareness",
-      "API-driven UI Thinking",
     ],
   },
   {
     icon: "◎",
-    category: "Tools & AI Workflow",
-    description: "Modern toolchain with AI-assisted workflows for rapid iteration",
+    category: "Process & Collaboration",
+    description: "Cross-functional partnership with designers, developers, and stakeholders",
     items: [
-      "Figma",
+      "Cross-functional Collaboration",
+      "Design–Dev Alignment",
+      "Product Discovery",
+      "SDLC Awareness",
+      "Agile / Jira",
       "Miro",
       "Notion",
-      "Jira",
-      "Claude AI",
-      "ChatGPT",
-      "AI-assisted Prototyping",
-      "Rapid UI Iteration",
-      "React / Next.js",
-      "Tailwind CSS",
+      "Claude AI / ChatGPT",
+      "AI-Assisted Prototyping",
+      "Stakeholder Communication",
     ],
   },
 ];
 
 export const WORKFLOW_METRICS: WorkflowMetric[] = [
-  { label: "Research → Strategy", pct: 90 },
-  { label: "Wireframes → Hi-Fi", pct: 95 },
-  { label: "Design Systems", pct: 88 },
+  { label: "User Research → Insight", pct: 88 },
+  { label: "Wireframes → Prototype", pct: 95 },
+  { label: "Prototype → Front-End Code", pct: 90 },
+  { label: "Usability Testing", pct: 85 },
   { label: "Developer Handoff", pct: 92 },
-  { label: "AI-Assisted Design", pct: 85 },
 ];
 
 export const CASE_STUDIES: CaseStudyProject[] = [
+  {
+    title: "Onliest REX — Luxury AI Fashion Stylist",
+    description:
+      "Product design and BRD ownership for REX, an agentic AI recommendation and design engine for a luxury fashion platform. Covers conversational and guided-wizard UX, live virtual try-on with explainable match scoring, image-based inspiration understanding, and an Admin-governed multi-agent architecture.",
+    tags: ["Conversational AI", "Agentic Architecture", "Fashion Tech", "BRD → Product"],
+    accentColor: "#c9a86a",
+    slug: "/case-study/rex",
+    year: "2026",
+    image: "/rex/rex-hero.jpg",
+  },
   {
     title: "Kudra — Fleet & Trip Management Platform",
     description:

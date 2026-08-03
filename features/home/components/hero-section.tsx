@@ -39,15 +39,17 @@ export function HeroSection() {
           <p className="mt-2 max-w-xl text-base leading-relaxed text-white/70">
             I am a{" "}
             <span className="text-white underline decoration-brand">
-              Product Designer focused on SaaS, logistics systems, enterprise workflows, and
-              AI-assisted experiences.
+              User Experience Engineer who translates design concepts into tangible prototype
+              solutions
             </span>{" "}
-            with a strong passion for creating intuitive and engaging digital experiences. With
-            expertise in{" "}
+            for SaaS, logistics, enterprise, and AI-assisted products — balancing technical
+            feasibility with design intent. With hands-on expertise in{" "}
             <span className="text-white underline decoration-brand">
-              design research, wireframing, prototyping, and front-end development
+              user research, usability testing, wireframing, prototyping, and front-end
+              development
             </span>
-            , I craft user-centric interfaces that enhance usability and accessibility.
+            , I work closely with designers and engineers to keep every experience intuitive,
+            buildable, and grounded in real user feedback.
           </p>
 
           <SocialLinks socials={SOCIALS} variant="icon" className="mt-2" />

@@ -21,21 +21,23 @@ export function AboutSection() {
               <p className="text-lg leading-relaxed text-white/80">
                 I&apos;m a{" "}
                 <strong className="text-white">
-                  Product Designer and Frontend Developer
+                  User Experience Engineer and Product Designer
                 </strong>{" "}
-                passionate about crafting digital experiences that are not just beautiful but
-                deeply usable.
+                accountable for turning design concepts into prototype solutions that are both
+                technically feasible and true to the original design intent.
               </p>
               <p className="leading-relaxed text-white/70">
-                With a background spanning design research, wireframing, and front-end
-                implementation, I bridge the gap between design and development — bringing ideas
-                to life with pixel-perfect precision and user empathy at the core.
+                My process spans user research and usability testing, wireframing and interactive
+                prototyping, and enough front-end fluency (React, Next.js, Tailwind CSS) to
+                collaborate directly with engineering teams — so a prototype is never just a
+                mockup, it&apos;s the closest possible preview of the real product.
               </p>
               <p className="leading-relaxed text-white/70">
-                My design process centers around understanding real users — their needs,
-                frustrations, and goals. Whether it&apos;s a shipyard website, a mobile app, or a
-                SaaS dashboard, I approach every project with the same rigor: research first,
-                iterate fast, validate always.
+                I work independently as a subject-matter expert while staying closely aligned with
+                designers, developers, and stakeholders — contributing actively in team
+                discussions and treating every project, from a shipyard website to an AI stylist
+                platform, with the same rigor: research first, prototype fast, validate with real
+                users, iterate always.
               </p>
               <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
                 {ABOUT_STATS.map((stat) => (
