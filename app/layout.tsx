@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "@/components/layout/navbar";
 import { SkipToContentLink } from "@/components/layout/skip-to-content-link";
 import "./globals.css";
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SkipToContentLink />
         <Navbar />
         <main id="main-content">{children}</main>
+        <Analytics />
       </body>
     </html>
   );
