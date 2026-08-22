@@ -1,98 +1,78 @@
-import { PillHeading } from "@/components/case-study/pill-heading";
-import { NestedMarkerIcon } from "@/components/case-study/nested-marker-icon";
-import { COLOR_SWATCHES, FONT_DESCRIPTION, FONT_SAMPLES } from "@/features/case-study-hsl/constants/data";
+import { SectionHeading } from "@/components/case-study/section-heading";
+import { SurfaceCard } from "@/components/case-study/surface-card";
+import {
+  COLOR_SWATCHES,
+  FONT_DESCRIPTION,
+  FONT_NAME,
+  FONT_SAMPLES,
+} from "@/features/case-study-hsl/constants/data";
 
 export function TypographyAndColorsSection() {
   return (
-    <section className="w-full text-white">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-16">
-        <PillHeading
-          pillWidth={520}
-          fontSize={38}
-          segments={[
-            { text: "Typography &", accent: false },
-            { text: " Colors", accent: true },
-          ]}
-        />
+    <section>
+      <SectionHeading label="Design System" title="Typography &" accent="Colour" />
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,480px)_minmax(0,1fr)] lg:items-start lg:gap-16">
-          <div className="flex flex-col gap-8">
-            <div className="flex items-start gap-3">
-              <NestedMarkerIcon
-                outerClassName="mt-1 h-[34px] w-[35px] rounded-[17px/17px]"
-                middleClassName="left-1 top-1 h-[27px] w-7 rounded-[14px/13px]"
-                innerClassName="left-[7px] top-[7px] h-5 w-5 rounded-[10px/10px]"
-              />
-              <h3 className="font-body text-2xl font-medium text-white sm:text-[34px]">
-                Font Used
-              </h3>
-            </div>
-
-            <div className="flex flex-col gap-8 pl-0 lg:pl-[49px]">
-              <div className="relative inline-flex w-fit items-center justify-center border-[1.5px] border-white px-5 py-4">
-                <span className="absolute -left-[7px] -top-[7px] block h-[13px] w-[13px] border border-white bg-white" />
-                <span className="absolute -bottom-[7px] -left-[7px] block h-[13px] w-[13px] border border-white bg-white" />
-                <span className="absolute -right-[7px] -top-[7px] block h-[13px] w-[13px] border border-white bg-white" />
-                <span className="absolute -bottom-[7px] -right-[7px] block h-[13px] w-[13px] border border-white bg-white" />
-                <p className="pr-10 font-body text-5xl font-bold text-brand sm:text-6xl lg:text-7xl">
-                  Nato Sans
-                </p>
-              </div>
-              <div className="space-y-2 font-body text-2xl text-white sm:text-[28px]">
-                <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
-                <p>abcdefghijklmnopqrstuvwxyz</p>
-                <p>1234567890</p>
-              </div>
-            </div>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <SurfaceCard>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/35">
+            Typeface
+          </p>
+          <p className="mb-6 text-5xl font-bold text-[color:var(--accent)] sm:text-6xl">
+            {FONT_NAME}
+          </p>
+          <div className="mb-6 space-y-1 text-lg text-white/50">
+            <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+            <p>abcdefghijklmnopqrstuvwxyz</p>
+            <p>1234567890</p>
           </div>
+          <p className="text-sm leading-relaxed text-white/60">{FONT_DESCRIPTION}</p>
+        </SurfaceCard>
 
-          <div className="flex flex-col gap-8">
-            <p className="font-body text-xl text-white sm:text-[28px]">
-              <span className="font-medium">Satoshi</span> {FONT_DESCRIPTION}
+        <div className="space-y-6">
+          <SurfaceCard>
+            <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-white/35">
+              Weights in use
             </p>
-            <div className="grid grid-cols-1 gap-x-10 gap-y-6 rounded-[25px] bg-[#212121] p-6 shadow-[0px_2px_10px_#0000001a] sm:grid-cols-2 sm:p-8">
+            <div className="space-y-3">
               {FONT_SAMPLES.map((sample) => (
-                <p
-                  key={`${sample.label}-${sample.text}`}
-                  className={`font-body text-3xl text-white sm:text-[35px] ${sample.weightClassName}`}
+                <div
+                  key={sample.label}
+                  className="flex items-baseline justify-between gap-4 border-b border-white/5 pb-3 last:border-0 last:pb-0"
                 >
-                  {sample.text}
-                </p>
+                  <span className={`text-2xl text-white ${sample.weightClassName}`}>
+                    {sample.text}
+                  </span>
+                  <span className="shrink-0 text-xs uppercase tracking-widest text-white/35">
+                    {sample.label}
+                  </span>
+                </div>
               ))}
             </div>
-          </div>
-        </div>
+          </SurfaceCard>
 
-        <div className="flex flex-col gap-10">
-          <div className="flex items-start gap-3">
-            <NestedMarkerIcon
-              outerClassName="mt-1 h-[34px] w-[35px] rounded-[17px/17px]"
-              middleClassName="left-1 top-1 h-[27px] w-7 rounded-[14px/13px]"
-              innerClassName="left-[7px] top-[7px] h-5 w-5 rounded-[10px/10px]"
-            />
-            <h3 className="font-body text-2xl font-medium text-white sm:text-[34px]">
-              Color Used
-            </h3>
-          </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
-            {COLOR_SWATCHES.map((swatch, index) => (
-              <div key={`${swatch.title}-${index}`} className="flex flex-col items-center text-center">
+          <SurfaceCard>
+            <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-white/35">
+              Colour
+            </p>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {COLOR_SWATCHES.map((swatch, index) => (
                 <div
-                  className="h-[120px] w-[120px] rounded-2xl border border-white/10 shadow-[0px_4px_16px_#00000033]"
-                  style={{ backgroundColor: swatch.value }}
-                  aria-hidden="true"
-                />
-                <div className="mt-5 space-y-1">
-                  <h4 className="font-body text-xl font-medium text-white sm:text-2xl">
-                    {swatch.title}
-                  </h4>
-                  <p className="font-body text-lg text-white sm:text-xl lg:text-2xl">
-                    {swatch.value}
-                  </p>
+                  key={`${swatch.title}-${index}`}
+                  className="overflow-hidden rounded-xl border border-white/10"
+                >
+                  <div
+                    className="h-16 w-full"
+                    style={{ backgroundColor: swatch.value }}
+                    aria-hidden="true"
+                  />
+                  <div className="bg-white/5 px-3 py-2">
+                    <div className="text-xs font-semibold text-white">{swatch.title}</div>
+                    <div className="mt-0.5 font-mono text-xs text-white/40">{swatch.value}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </SurfaceCard>
         </div>
       </div>
     </section>

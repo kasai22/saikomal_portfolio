@@ -47,7 +47,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-poppins)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // One typeface for the whole site — hierarchy comes from weight,
+        // size and tracking, not from mixing typefaces. `display` is kept
+        // as an alias (rather than removed) so existing `font-display`
+        // usage across the case-study pages keeps working unchanged.
+        display: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
         body: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       borderRadius: {
@@ -72,12 +76,17 @@ const config: Config = {
           from: { opacity: "0", transform: "translateY(2rem)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.6", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.08)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 6s ease-in-out infinite",
         "fade-up": "fade-up 0.7s ease-out forwards",
+        "pulse-glow": "pulse-glow 5s ease-in-out infinite",
       },
     },
   },

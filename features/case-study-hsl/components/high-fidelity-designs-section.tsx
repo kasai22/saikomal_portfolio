@@ -1,18 +1,16 @@
 import Image from "next/image";
-import { PillHeading } from "@/components/case-study/pill-heading";
+import { SectionHeading } from "@/components/case-study/section-heading";
 
 export function HighFidelityDesignsSection() {
   return (
-    <section className="mx-auto flex w-full max-w-[1202px] flex-col items-center">
-      <PillHeading
-        pillWidth={525}
-        fontSize={45}
-        segments={[
-          { text: "High-Fidelity ", accent: true },
-          { text: "Designs", accent: false },
-        ]}
+    <section>
+      <SectionHeading
+        label="High Fidelity Design"
+        title="The Final"
+        accent="Screens"
+        sub="The flows that removed the email round-trip — candidate status, tender listings, and the module surfaces around them."
       />
-      <div className="mt-[70px] w-full">
+      <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-4 md:p-8">
         <Image
           src="/figmaAssets/mask-group.png"
           alt="Collage of high-fidelity mobile design screens for the HSL website"

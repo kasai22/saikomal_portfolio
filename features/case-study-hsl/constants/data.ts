@@ -4,356 +4,413 @@ import type {
   DesignThinkingStep,
   EmpathyQuadrant,
   FontSample,
+  HeroMeta,
+  HeroStat,
   InterviewGroup,
-  Persona,
+  ModuleScope,
+  OutcomeItem,
   RoleItem,
   TextSegment,
-  TimelineCard,
+  TimelinePhase,
+  UserGroup,
 } from "@/features/case-study-hsl/types";
+
+export const HERO_TAG = "Public Sector · Enterprise Ecosystem";
+export const HERO_TITLE = "Hindustan Shipyard";
+export const HERO_SUBTITLE = "Enterprise Digital Experience";
+
+export const HERO_QUOTE =
+  "The system already knew every status — but only a person could release it.";
+
+export const HERO_SUMMARY =
+  "Five disconnected modules wearing one logo. Applicants applied into silence, vendors waited on email, and HSL's own teams spent their days answering \"where does mine stand?\" by phone. I ran the stakeholder research across every branch and redesigned the ecosystem around a single rule: wherever someone was sending an email to find out where they stood, give them a screen that just tells them.";
+
+export const HERO_METADATA: HeroMeta[] = [
+  { label: "Role", value: "UX Researcher & Designer" },
+  { label: "Also", value: "Stakeholder POC" },
+  { label: "Client", value: "Hindustan Shipyard Ltd." },
+  { label: "At", value: "Sweya Infotech" },
+  { label: "Timeline", value: "12 weeks" },
+  { label: "Year", value: "2024" },
+];
+
+export const HERO_STATS: HeroStat[] = [
+  { value: "5", label: "Modules unified" },
+  { value: "~5", label: "Stakeholders per module" },
+  { value: "3", label: "User groups served" },
+  { value: "Live", label: "Shipped to production" },
+];
+
+export const MODULE_SCOPE: ModuleScope[] = [
+  {
+    icon: "◈",
+    title: "Recruitment / HRMS",
+    description:
+      "Candidate applications, status visibility, payroll and attendance for internal staff.",
+  },
+  {
+    icon: "◎",
+    title: "Tenders",
+    description:
+      "Live tender listings, requirements, and updates — moved out of email and onto the platform.",
+  },
+  {
+    icon: "⬡",
+    title: "Vendor Management",
+    description: "Procurement and partnership touchpoints for suppliers working with the shipyard.",
+  },
+  {
+    icon: "✦",
+    title: "Vigilance",
+    description: "Case raising and follow-up, with compliance-mandated content kept intact.",
+  },
+  {
+    icon: "◇",
+    title: "Company Portfolio",
+    description: "Capability, projects, and contact routes for clients, partners, and the public.",
+  },
+  {
+    icon: "◐",
+    title: "Accessibility",
+    description:
+      "Treated as a cross-cutting baseline across every module rather than a finishing pass.",
+  },
+];
 
 export const INTRO_PARAGRAPHS: TextSegment[][] = [
   [
-    {
-      text: "Product design is a dynamic and multifaceted discipline that blends aesthetics, functionality, and innovation to ",
-      highlight: false,
-    },
-    { text: "create products", highlight: true },
-    { text: " that enhance users' lives and experiences. Through a meticulous process of ", highlight: false },
-    { text: "research", highlight: true },
-    { text: ", ", highlight: false },
-    { text: "ideation", highlight: true },
-    { text: ", ", highlight: false },
-    { text: "prototyping", highlight: true },
-    { text: ", and ", highlight: false },
-    { text: "iteration", highlight: true },
-    {
-      text: ", product designers transform concepts into tangible ",
-      highlight: false,
-    },
-    { text: "solutions", highlight: true },
-    { text: ", addressing both practical needs and emotional desires.", highlight: false },
+    { text: "Hindustan Shipyard Limited builds and repairs ships for the Indian Navy and commercial fleets. Its digital presence, though, was ", highlight: false },
+    { text: "five disconnected systems wearing one logo", highlight: true },
+    { text: " — recruitment, tenders, vendor management, vigilance, and the public company portfolio. Whichever one you landed in, the experience ended the same way: ", highlight: false },
+    { text: "send an email, then wait", highlight: true },
+    { text: ".", highlight: false },
   ],
   [
-    { text: "Striking a delicate balance between ", highlight: false },
-    { text: "form", highlight: true },
-    { text: " and ", highlight: false },
-    { text: "function", highlight: true },
-    {
-      text: ", product design continually evolves to adapt to emerging technologies, societal trends, and user preferences, ",
-      highlight: false,
-    },
-    { text: "shaping the way", highlight: true },
-    { text: " we interact with the world around us and defining the landscape of our everyday lives.", highlight: false },
+    { text: "I worked on this at Sweya Infotech as the ", highlight: false },
+    { text: "UX researcher and designer", highlight: true },
+    { text: ", and as the point of contact for stakeholder management — the person who sat with each module's owners at HSL, worked out what their branch actually needed, and carried it back into design. I ran sessions with ", highlight: false },
+    { text: "roughly five stakeholders per module", highlight: true },
+    { text: " and turned what they told me into one connected ecosystem, built to a single design language. ", highlight: false },
+    { text: "It went live.", highlight: true },
   ],
 ];
 
 export const POSSIBLE_SOLUTION_DESCRIPTION =
-  "To address the challenges faced by Hindusthan Shipyard Limited (HSL), the website redesign will focus on creating a modern and visually appealing design that aligns with the company's brand identity, simplifying the navigation structure to enhance user experience, and ensuring full mobile responsiveness to cater to all device users. This includes reorganizing content to make important information easily accessible, integrating a search functionality for quick information retrieval, and conducting thorough usability testing to refine the design based on user feedback. By implementing these solutions, the redesigned website will improve user engagement, reduce bounce rates, and effectively communicate HSL's capabilities and services to its stakeholders.";
+  "The brief arrived as a website redesign. The stakeholder sessions turned it into something else: an ecosystem problem where five modules each expected the user to ask a human for information the system already had. So the redesign was organised around one rule — wherever someone was currently sending an email to find out where they stood, give them a screen that just tells them. That meant a candidate login for recruitment, where an applicant can see their submitted resume and whether they are selected, rejected, or still in process. It meant a tenders dashboard that puts live tenders, requirements, and updates on the site instead of in a mailbox. And it meant carrying the same navigation model, component set, and accessibility standard across HRMS, vendor management, vigilance, and the public portfolio, so that HSL read as one organisation rather than five.";
+
+export const MY_ROLE_SUMMARY =
+  "I was the UX researcher and designer on the engagement and the point of contact between our team and HSL. That meant running the discovery sessions with each module's stakeholders, reconciling requirements that often contradicted each other across branches, and owning the work from research through information architecture, flows, and high-fidelity design into engineering handoff.";
 
 export const ROLE_ITEMS: RoleItem[] = [
-  "Design Strategy",
-  "Problem Solution",
+  "Stakeholder Research",
+  "Requirement Discovery",
   "Information Architecture",
-  "Empathy Mapping",
-  "Usability Testing",
-  "User Flow",
-  "Prototyping",
-  "Wireframes",
-  "Competitive Analysis",
-  "Visual Design",
-  "User Research",
-  "User Persona",
+  "User Flows & Wireframes",
+  "Accessibility",
+  "UI & Design System",
 ].map((label) => ({ label }));
 
 export const PROBLEM_STATEMENT =
-  "Hindusthan Shipyard Limited (HSL) faced significant issues with its outdated and non-responsive website, which failed to reflect the company's modern capabilities and hindered user engagement. Users struggled with poor navigation and inefficient content organization, making it difficult to access crucial information quickly. Additionally, the lack of mobile optimization led to a subpar experience for users on smartphones and tablets. These problems collectively resulted in low user satisfaction and engagement, adversely affecting HSL's ability to effectively communicate with its stakeholders and showcase its services. The objective is to redesign the website to create a modern, user-friendly, and mobile-responsive platform that enhances user experience and effectively represents HSL's brand and services.";
+  "HSL's platform was outdated and non-responsive, but that was the symptom rather than the problem. The real cost was that none of the five modules could answer a question on its own. A candidate who applied for a job had no way to know whether anyone had opened their application — they applied, and then waited for an email that might never come. A vendor tracking a tender waited on email confirmations and updates rather than checking a status themselves. Internally, that turned HSL's HR and tender teams into a human status API: a meaningful share of their day went to answering phone calls and emails asking some version of 'where does my application/tender stand?' — questions a well-designed screen could have answered instantly. The objective was to redesign the ecosystem so that each audience could self-serve the answer they were currently chasing, on any device, to a standard accessible enough for a public-sector organisation serving the general public.";
 
 export const AUDIENCE_APPROACH_ENTRIES: AudienceApproachEntry[] = [
   {
     id: "audience",
-    heading: [
-      { text: "Target", accent: false },
-      { text: " Audience", accent: true },
-    ],
-    pillWidth: 374,
-    imageSrc: "/figmaAssets/undraw-target-re-fi8j-1.svg",
-    imageAlt: "Illustration representing target audience",
-    imageFirstOnMobile: false,
     kind: "list",
     listItems: [
-      "Potential Clients and Customers:",
-      "Industry Partners and Suppliers",
-      "Employees and Job Seekers",
-      "Investors and Stakeholders",
-      "Government and Regulatory Bodies",
-      "Media and Press",
-      "General Public and Community",
+      "Job applicants — applying to HSL and waiting on an outcome (Recruitment)",
+      "Vendors and bidders — tracking live tenders and submission requirements (Tenders)",
+      "HSL employees — payroll, attendance, internal communication (HRMS)",
+      "Vigilance staff and complainants — raising and following up on cases (Vigilance)",
+      "Clients, partners and the public — capability, projects, contact (Portfolio)",
     ],
   },
   {
     id: "approach",
-    heading: [
-      { text: "The", accent: false },
-      { text: " Approach", accent: true },
-    ],
-    pillWidth: 283,
-    imageSrc: "/figmaAssets/undraw-logic-re-nyb4-1.svg",
-    imageAlt: "Illustration representing a logical approach",
-    imageFirstOnMobile: true,
     kind: "paragraph",
     paragraph:
-      "For the Hindusthan Shipyard Limited (HSL) project, the approach will involve conducting comprehensive design research to understand the needs of various stakeholders, including clients, partners, employees, investors, and the general public. We will start with user surveys and usability testing on the current website to identify pain points and areas for improvement. Based on these insights, we'll create wireframes and high-fidelity prototypes focusing on a modern, intuitive design that enhances navigation and accessibility. Ensuring full mobile responsiveness, we will implement a streamlined content organization and robust search functionality. The design will undergo multiple iterations based on user feedback to ensure optimal usability and satisfaction, ultimately delivering a website that effectively represents HSL's brand and services while meeting the needs of its diverse audience.",
+      "I worked module by module rather than page by page. For each of the five modules I ran sessions with about five HSL stakeholders — the people who actually operated that branch day to day — and walked their current process step by step: what comes in, who touches it, where it stalls, and what they get asked on the phone. That framing is what surfaced the pattern across every module: the bottleneck was never the page layout, it was that status lived in someone's inbox instead of in the product. From there I mapped a shared information architecture, wireframed the flows that removed the email round-trip, and built out high-fidelity screens on a common component set so five modules could ship as one system. Requirements frequently conflicted between branches, so a large part of the role was reconciling them into one model before anything reached engineering.",
   },
 ];
 
-const TIMELINE_TITLE_LG = "text-[32px] font-medium text-[#212121] font-body";
-const TIMELINE_TITLE_SM = "text-[22px] leading-[28px] font-medium text-[#212121] font-body";
-
-export const TIMELINE_WEEKS = Array.from({ length: 12 }, (_, i) => `${i + 1}${["st", "nd", "rd"][i] ?? "th"}`);
-
-export const TIMELINE_CARDS: TimelineCard[] = [
-  { title: "UX Design", color: "#ff66c4", colStart: 1, colSpan: 8, rowStart: 1, fontSizeClass: TIMELINE_TITLE_LG },
-  { title: "UI Design", color: "#ff66c4", colStart: 9, colSpan: 4, rowStart: 1, fontSizeClass: TIMELINE_TITLE_LG },
-  { title: "Strategy\n(Research)", color: "#a882fd", colStart: 1, colSpan: 2, rowStart: 2, fontSizeClass: TIMELINE_TITLE_SM },
-  { title: "Paper\nWireframes", color: "#a882fd", colStart: 9, colSpan: 2, rowStart: 2, fontSizeClass: TIMELINE_TITLE_SM },
-  { title: "Interview, Empathy Map,\nUser Journey Map", color: "#a882fd", colStart: 2, colSpan: 3, rowStart: 3, fontSizeClass: TIMELINE_TITLE_SM },
-  { title: "Visual Design\n& Prototyping", color: "#a882fd", colStart: 9, colSpan: 2, rowStart: 3, fontSizeClass: TIMELINE_TITLE_SM },
-  { title: "Problem Statement &\nGoal Statement", color: "#a882fd", colStart: 4, colSpan: 3, rowStart: 4, fontSizeClass: TIMELINE_TITLE_SM },
-  { title: "Usability\nTesting Phase", color: "#a882fd", colStart: 11, colSpan: 2, rowStart: 4, fontSizeClass: TIMELINE_TITLE_SM },
-  { title: "Competitive Analysis &\nInformation Architecture", color: "#a882fd", colStart: 5, colSpan: 3, rowStart: 5, fontSizeClass: TIMELINE_TITLE_SM },
+export const TIMELINE_PHASES: TimelinePhase[] = [
+  {
+    phase: "UX Design",
+    weeks: "Weeks 1–8",
+    share: 67,
+    steps: [
+      "Strategy and research planning across the five modules",
+      "Stakeholder sessions, empathy mapping, and user journey mapping",
+      "Problem statement and goal statement, reframed around status visibility",
+      "Competitive analysis and a shared information architecture",
+    ],
+  },
+  {
+    phase: "UI Design",
+    weeks: "Weeks 9–12",
+    share: 33,
+    steps: [
+      "Paper wireframes for the candidate and tender flows",
+      "Visual design and prototyping on a common component set",
+      "Usability checks and stakeholder review before handoff",
+    ],
+  },
 ];
 
 export const QUALITATIVE_RESEARCH_SUMMARY =
-  "Qualitative research for Hindusthan Shipyard Limited (HSL) involves conducting in-depth interviews, focus groups, observational studies, and usability tests to gain deep insights into stakeholder perceptions, behaviors, and needs related to the current website and its redesign. By exploring user experiences, preferences, and challenges through open-ended questions and direct observations, the research aims to uncover nuanced insights that inform a user-centered approach to improving website navigation, content accessibility, visual design, and overall user experience.";
+  "Research here was stakeholder-led rather than survey-led. HSL is a public-sector shipyard, and the people who understood each workflow were the branch teams operating it — so instead of a broad user survey, I ran working sessions with roughly five stakeholders per module across recruitment, tenders, vendor management, vigilance, and the public portfolio. Each session was a walkthrough of the current process in their own words: what arrives, who handles it, where it waits, and which questions they end up answering by phone or email. Reconstructing those workflows out loud is what exposed the shared failure across modules — the system held the status, but only a person could release it.";
 
 export const INTERVIEW_GROUPS: InterviewGroup[] = [
   {
-    title: "For Vendors",
+    title: "Recruitment & HRMS teams",
     questions: [
-      "How do you currently engage with HSL regarding procurement and partnership opportunities?",
-      "What information or resources do you typically seek on the HSL website when considering collaboration?",
-      "What are the key factors that influence your decision to partner with a shipyard like HSL?",
-      "In what ways could the HSL website better facilitate communication and information exchange between suppliers and the shipyard?",
-      "What improvements would you suggest to enhance the procurement process and transparency on the website?",
+      "Walk me through what happens from the moment a candidate submits an application to the moment they hear back.",
+      "What do candidates call or email you to ask, and how often?",
+      "At which point in the process does an application sit the longest, and who is waiting on whom?",
+      "What would a candidate need to see on screen for that call not to happen?",
     ],
   },
   {
-    title: "For Employees",
+    title: "Tenders & vendor teams",
     questions: [
-      "How would you describe the current effectiveness of the HSL website in communicating the company's capabilities and services?",
-      "What feedback have you received from clients, partners, or other stakeholders regarding their experience with the website?",
-      "Are there specific areas of the website's navigation or content organization that you believe could be improved?",
-      "How does the website currently support internal processes such as HR communications, news updates, or corporate announcements?",
-      "From your perspective, what are the key goals or objectives that the redesigned website should achieve?",
+      "How does a vendor currently find out that a tender is live, and how do they learn when something about it changes?",
+      "What information do you end up re-sending by email that already exists somewhere?",
+      "Which parts of the tender process do vendors most often get wrong or misunderstand?",
+      "If a vendor could check one screen instead of contacting you, what would need to be on it?",
     ],
   },
   {
-    title: "General Questions",
+    title: "Vigilance & public portfolio owners",
     questions: [
-      "How often do you visit the HSL website, and for what specific purposes?",
-      "What do you find most valuable about the current website, and what aspects do you find least helpful?",
-      "Can you share a recent positive or negative experience you had while navigating or using the HSL website?",
-      "How does the website compare to competitors or industry standards in terms of usability, design, and content?",
-      "What suggestions or recommendations would you have for improving the overall user experience on the HSL website?",
+      "Who visits this section, and what are they trying to accomplish before they leave?",
+      "What information are you obliged to publish, and what currently makes that hard to keep current?",
+      "Where do people get stuck or contact the wrong department entirely?",
+      "What has to stay exactly as it is for compliance reasons, and what is genuinely open to redesign?",
     ],
   },
 ];
 
 export const KEY_INSIGHTS_FROM_RESEARCH: string[] = [
-  "Navigation Complexity: Users frequently encounter challenges with the current website's navigation, finding it complex and difficult to locate specific information such as services offered, project details, and contact information. Simplifying and streamlining navigation emerged as a top priority.",
-  "Mobile Usability: Mobile users, including clients and vendors, face significant usability issues due to the website's lack of responsiveness and slow loading times on mobile devices. Enhancing mobile optimization is essential to improve accessibility and user experience across all devices.",
-  "Content Accessibility: Stakeholders expressed a need for clearer and more organized content presentation. Important information is currently buried deep within the site, making it hard for users to find relevant details quickly. A structured and searchable content layout is essential for facilitating efficient information retrieval.",
-  "Visual Design and Brand Representation: The outdated visual design of the current website does not align with HSL's modern capabilities and industry standards. Stakeholders emphasized the importance of a visually appealing and professional design that reflects HSL's brand identity as a leading shipyard.",
-  "Communication Effectiveness: There is a strong consensus among stakeholders regarding the need for improved communication channels and transparency on the website. Clear and accessible contact information, along with responsive communication channels, are critical for fostering trust and facilitating business interactions.",
-  "User Engagement and Interaction: Stakeholders value interactive elements and engaging features that enhance user experience and encourage exploration of the website. Incorporating interactive tools, client testimonials, and multimedia content can significantly enhance user engagement and satisfaction.",
+  "Applying to HSL was a black box. A candidate submitted an application and then had no signal of any kind — no acknowledgement, no stage, no outcome — until an email arrived, if one arrived. The anxiety wasn't caused by a slow process; it was caused by an invisible one. This became the single clearest design mandate in the project.",
+  "Tender information lived in inboxes rather than on the platform. Vendors depended on email confirmations and updates to know where a tender stood, which meant the authoritative source of truth was a message thread — impossible to search, easy to miss, and inconsistent between recipients.",
+  "HSL staff were being used as a status lookup. Across both recruitment and tenders, teams described spending a significant part of the day answering 'where does mine stand?' calls. That is a design problem showing up as a staffing cost — every one of those calls represented information the system had but never surfaced.",
+  "Five modules meant five mental models. Recruitment, tenders, vendor management, vigilance, and the portfolio had each grown separately, with different navigation logic and terminology. Users crossing between them effectively had to relearn the site, and internal teams had no shared vocabulary to hand over between branches.",
+  "Accessibility could not be a finishing pass. As a public-sector organisation serving applicants, vendors, and the general public across a wide range of devices and connection quality, HSL needed accessibility and mobile responsiveness treated as a baseline requirement across every module rather than as a polish item at the end of UI.",
 ];
 
 export const EMPATHY_MAP: EmpathyQuadrant[] = [
   {
     title: "Says",
     items: [
-      "I need easy access to tender details.",
-      "How can I track my application?",
-      "I want to connect with the right department quickly.",
+      "Has anyone actually looked at my application?",
+      "Can I see the tender documents without waiting for the mail?",
+      "I just need to know which department handles this.",
     ],
   },
   {
     title: "Thinks",
     items: [
-      "Is this information reliable and up-to-date?",
-      "Is this process secure?",
-      "Will I get timely updates on my application or tender?",
+      "Is this information current, or is it last year's?",
+      "Did my submission even go through?",
+      "Will I be told if something changes, or do I have to keep checking?",
     ],
   },
   {
     title: "Does",
     items: [
-      "Logs in to the employee portal for payroll or attendance tracking.",
-      "Searches for current tenders.",
-      "Applies for a job opening.",
-      'Uses the "Contact Us" feature to ask a question or report an issue.',
+      "Applies for a job opening, then waits with no confirmation.",
+      "Calls or emails the office to ask for a status update.",
+      "Re-checks the tenders page repeatedly for changes.",
+      "Logs in to the employee portal for payroll or attendance.",
     ],
   },
   {
     title: "Feels",
     items: [
-      "Feels confused if the navigation isn't intuitive.",
-      "Feels frustrated if there's no clear status tracking for tenders or job applications.",
-      "Feels relieved when support is easily accessible.",
-      "Feels satisfied when tasks are completed smoothly and promptly.",
+      "Anxious after applying, because silence is indistinguishable from rejection.",
+      "Frustrated at having to phone a person to retrieve a fact.",
+      "Reassured when a status is visible without asking anyone.",
+      "Confident in the organisation when the platform looks and behaves current.",
     ],
   },
 ];
 
 export const DESIGN_THINKING_STEPS: DesignThinkingStep[] = [
   {
-    title: "Emphatize",
-    iconSrc: "/figmaAssets/carbon-text-link-analysis.svg",
-    iconAlt: "Research icon",
-    connectorSrc: "/figmaAssets/group-387.png",
-    items: ["User Research", "User Interview", "Entrant Analysis"],
+    title: "Empathize",
+    items: ["Stakeholder Sessions", "Workflow Walkthroughs", "Competitive Analysis"],
   },
   {
     title: "Define",
-    iconSrc: "/figmaAssets/fluent-calendar-search-16-regular.svg",
-    iconAlt: "Definition icon",
-    connectorSrc: "/figmaAssets/group-419.png",
-    items: ["User Persona", "User Jouney Map", "Goal Statement", "Empathy Map"],
+    items: ["User Groups", "Journey Mapping", "Goal Statement", "Empathy Map"],
   },
   {
     title: "Ideate",
-    iconSrc: "/figmaAssets/icons8-idea.svg",
-    iconAlt: "Idea icon",
-    connectorSrc: "/figmaAssets/group-420.png",
-    items: ["Brainstorming", "Card Sorting", "User Flow"],
+    items: ["Brainstorming", "Card Sorting", "User Flows"],
   },
   {
     title: "Design",
-    iconSrc: "/figmaAssets/fluent-design-ideas-16-regular.svg",
-    iconAlt: "Design icon",
-    connectorSrc: "/figmaAssets/group-421.png",
     items: ["Paper Wireframes", "Visual Design", "Prototype"],
   },
   {
     title: "Test",
-    iconSrc: "/figmaAssets/file-icons-testcafe.svg",
-    iconAlt: "Testing icon",
-    connectorSrc: null,
-    items: ["CheckUsability", "Survey Insight", "Improvements"],
+    items: ["Usability Checks", "Stakeholder Review", "Improvements"],
   },
 ];
 
 export const DESIGN_THINKING_INTRO =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+  "Five modules, five sets of stakeholders, and a brief that changed shape once research started — the process below is how that stayed manageable. The value wasn't the framework itself; it was that Empathize and Define ran long enough to reveal that this was a status-visibility problem rather than a visual one. Everything after that point was comparatively cheap, because the team was solving the right thing.";
 
-export const PERSONAS: Persona[] = [
+export const USER_GROUPS: UserGroup[] = [
   {
-    id: "persona-1",
-    title: "User Persona 1",
-    imageSrc: "/figmaAssets/ellipse-58.png",
-    imageAlt: "Portrait of Rakesh Sharma",
-    details: [
-      { label: "Name", value: "Rakesh Sharma" },
-      { label: "Age", value: "39" },
-      { label: "Occupation", value: "Business Owner (Engineering Supplies)" },
-      { label: "Location", value: "Mumbai, India" },
-    ],
-    story:
-      "Rakesh Sharma, a successful business owner from Mumbai, is eager to expand his engineering supplies company by securing tenders with Hindustan Shipyard Limited (HSL). However, he struggles with the HSL website's complex navigation, slow tender updates, and unclear submission processes. Rakesh's primary goal is to streamline the bidding process, allowing him to efficiently manage tenders and track their progress in real time. Winning more contracts with HSL would significantly grow his business, and he is motivated by the prospect of more efficient tender management.",
+    id: "applicants",
+    name: "Job Applicants",
+    module: "Recruitment / HRMS",
+    summary:
+      "Engineers and staff applying to HSL. They submit an application into a process with no visible stages, and then have no way to distinguish 'still under review' from 'never opened' from 'rejected'. Every follow-up requires contacting HSL directly.",
     sections: [
-      {
-        title: "Goals",
-        items: [
-          "Successfully bid for tenders on the HSL website.",
-          "Easily track the status of submitted tenders.",
-          "Receive timely notifications about new tenders and bidding deadlines.",
-        ],
-      },
       {
         title: "Frustrations",
         items: [
-          "Difficulty in finding current tenders quickly.",
-          "Lack of clear, real-time updates on tender status.",
-          "Complicated documentation upload process during tender submission.",
+          "No acknowledgement or reference after submitting an application.",
+          "No visibility into whether the application has been reviewed.",
+          "Outcomes communicated only by email, with no fallback if it is missed.",
         ],
       },
       {
-        title: "Needs",
+        title: "Goals",
         items: [
-          "A simplified tender submission process.",
-          "Clear guidelines and step-by-step instructions for bid submission.",
-          "Easy access to tender history and updates.",
+          "Find and apply for relevant openings without ambiguity about what was submitted.",
+          "Know the current stage of the application at any time.",
+          "Understand the recruitment process and what happens next.",
         ],
       },
       {
-        title: "Motivations",
+        title: "What I designed",
         items: [
-          "Expanding his business by securing large-scale contracts.",
-          "Ensuring that his company stays competitive in the industry.",
-          "Winning more tenders efficiently without wasting time on administrative tasks.",
+          "A candidate login where the submitted resume is visible on record.",
+          "An explicit application status — selected, rejected, or in process — surfaced on the candidate's own dashboard.",
+          "Status shown in the product rather than delivered only as an email, so a missed message is no longer a dead end.",
         ],
       },
     ],
   },
   {
-    id: "persona-2",
-    title: "User Persona 2",
-    imageSrc: "/figmaAssets/ellipse-91.png",
-    imageAlt: "Portrait of Meera Patel",
-    details: [
-      { label: "Name", value: "Meera Patel" },
-      { label: "Age", value: "27" },
-      { label: "Occupation", value: "Mechanical Engineer" },
-      { label: "Location", value: "Visakhapatnam, India" },
-    ],
-    story:
-      "Meera Patel, a mechanical engineer from Visakhapatnam, is keen to secure a job at Hindustan Shipyard Limited (HSL) but finds the application process difficult to navigate. The website's recruitment section is confusing, and the lack of communication after submitting her application leaves her anxious. Meera's goal is to land a stable engineering job, but she feels disconnected and frustrated by the unclear process. She wishes for a more transparent and responsive system that keeps candidates informed at every step, motivating her to pursue her career aspirations.",
+    id: "vendors",
+    name: "Vendors & Bidders",
+    module: "Tenders / Vendor Management",
+    summary:
+      "Suppliers and contractors bidding for HSL work. Their view of a live tender depended on email — confirmations, documents, and updates all arrived in a thread, which made the mailbox the de facto system of record and put the burden of chasing changes on the vendor.",
     sections: [
-      {
-        title: "Goals",
-        items: [
-          "Find and apply for relevant job openings at HSL.",
-          "Track the status of her job application.",
-          "Understand the company's recruitment process and timelines.",
-        ],
-      },
       {
         title: "Frustrations",
         items: [
-          "Difficulty navigating the recruitment section of the website.",
-          "Lack of clear information on the status of her job application.",
-          "Slow response times to inquiries regarding her application.",
+          "Tender details and updates arriving only by email, with no authoritative page to check.",
+          "No way to confirm a submission was received without contacting the tender cell.",
+          "Repeatedly re-checking the site for changes that were never announced there.",
         ],
       },
       {
-        title: "Needs",
+        title: "Goals",
         items: [
-          "A user-friendly application process with all steps clearly outlined.",
-          "Immediate acknowledgment and regular updates after submitting an application.",
-          "Easy access to FAQs or contact information for recruitment-related queries.",
+          "See all live tenders and their requirements in one place.",
+          "Confirm submission and current standing without making a phone call.",
+          "Be confident the information on screen is the current version.",
         ],
       },
       {
-        title: "Motivations",
+        title: "What I designed",
         items: [
-          "Securing a stable and well-paying job in a reputed organization.",
-          "Finding a job that aligns with her engineering background.",
-          "Receiving prompt communication and updates to reduce anxiety about her application status.",
+          "A tenders dashboard holding live tenders, requirements, and updates on the platform itself.",
+          "Details surfaced on screen rather than distributed by email, so the site becomes the source of truth.",
+          "A consistent structure across tenders so vendors stop relearning each listing.",
         ],
       },
     ],
   },
+  {
+    id: "internal",
+    name: "HSL Internal Teams",
+    module: "HR, Tender Cell, Vigilance",
+    summary:
+      "The branch teams operating each module. Because status was invisible to everyone outside the building, these teams absorbed the gap personally — fielding the calls and emails asking where an application or tender stood, and re-sending information that already existed.",
+    sections: [
+      {
+        title: "Frustrations",
+        items: [
+          "A recurring share of the working day spent answering status questions by phone and email.",
+          "Manually re-sending information the system already held.",
+          "Each branch running its own terminology and process, with nothing shared between modules.",
+        ],
+      },
+      {
+        title: "Goals",
+        items: [
+          "Stop being the lookup mechanism for information the platform already has.",
+          "Publish once and have it stay current for every audience.",
+          "Keep compliance-mandated content intact while modernising everything around it.",
+        ],
+      },
+      {
+        title: "What I designed",
+        items: [
+          "Self-service status for applicants and vendors, removing the most common inbound question at its source.",
+          "A shared navigation model and component set so five modules behave as one system.",
+          "Accessibility and mobile responsiveness applied as a baseline across modules, not retrofitted per branch.",
+        ],
+      },
+    ],
+  },
+];
+
+export const OUTCOME_INTRO =
+  "The redesigned ecosystem went live. The clearest signal of impact came from the teams who had been absorbing the problem: with candidate status and tender information now published in the product, HR and the tender cell reported a noticeable drop in inbound status calls — the work that had been done by phone was now being done by the interface.";
+
+export const OUTCOMES: OutcomeItem[] = [
+  {
+    title: "Shipped to production",
+    description:
+      "The redesign went live across the modules in scope, rather than ending as a prototype or a pitch deck.",
+  },
+  {
+    title: "Fewer status calls to HR and tenders",
+    description:
+      "Both teams reported reduced inbound calls and emails once applicants and vendors could check their own status. The support burden moved from people to the product.",
+  },
+  {
+    title: "Applying is no longer a black box",
+    description:
+      "Candidates can log in and see their submitted resume and whether they are selected, rejected, or in process — replacing an indefinite wait for an email.",
+  },
+  {
+    title: "Tender information left the inbox",
+    description:
+      "Live tenders, requirements, and updates moved onto the platform, making the site the authoritative source instead of a mail thread.",
+  },
+  {
+    title: "Five modules, one system",
+    description:
+      "A shared IA, component set, and accessibility baseline across recruitment, tenders, vendor management, vigilance, and the public portfolio.",
+  },
+];
+
+export const REFLECTION_POINTS: string[] = [
+  "The brief was a website redesign; the problem was status visibility. Had I designed to the brief as written, HSL would have received a better-looking version of the same bottleneck. The stakeholder walkthroughs — asking what people get asked on the phone — are what reframed it, and that question is now the first one I ask on any operational product.",
+  "Being the stakeholder point of contact was the harder half of the job. Five branches had five sets of requirements that regularly contradicted each other, and most of the design work was reconciling them into one model before a single screen reached engineering.",
+  "What I would do differently: I did not instrument the launch. I have the qualitative signal from HR and the tender cell, but not the numbers behind it — call volume before and after, application-status page usage, drop-off in the tender flow. On later work I define those measures during design rather than hoping to reconstruct them afterwards.",
 ];
 
 export const FONT_SAMPLES: FontSample[] = [
-  { label: "Bold", text: "Nato Sans", weightClassName: "font-bold" },
-  { label: "Regular", text: "Nato SansG", weightClassName: "font-normal" },
-  { label: "Medium", text: "Nato Sans", weightClassName: "font-medium" },
-  { label: "Light", text: "Nato Sans", weightClassName: "font-light" },
+  { label: "Bold", text: "Noto Sans", weightClassName: "font-bold" },
+  { label: "Regular", text: "Noto Sans", weightClassName: "font-normal" },
+  { label: "Medium", text: "Noto Sans", weightClassName: "font-medium" },
+  { label: "Light", text: "Noto Sans", weightClassName: "font-light" },
 ];
 
+export const FONT_NAME = "Noto Sans";
+
 export const FONT_DESCRIPTION =
-  "font is a elegant and modern sans serif font. It is very neat and clean. It have more readability and variety of options. That's why I used this font.";
+  "A neutral, highly legible sans-serif chosen for reach rather than personality. HSL's platform has to work for applicants, vendors, and the general public across a wide range of devices and screen sizes, so the priority was clarity at small sizes and a full weight range to carry hierarchy through dense content like tender listings and HR records — without the typeface itself competing for attention.";
 
 export const COLOR_SWATCHES: ColorSwatch[] = [
   { title: "Primary Color", value: "#2947a3" },

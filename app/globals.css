@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 0%;
+  --background: 220 8% 5%;
   --foreground: 0 0% 100%;
   --muted: 0 0% 12%;
   --muted-foreground: 0 0% 65%;
@@ -24,19 +24,32 @@
   --ring: 180 100% 25%;
   --radius: 0.75rem;
 
+  /* Liquid Glass material system — four surface levels, from barely-there
+     nav chrome up to focused/selected states. Consumed via the GlassSurface
+     component (components/ui/glass-surface.tsx) rather than hand-rolled
+     blur/opacity classes, so the material stays consistent everywhere. */
+  --glass-1-bg: rgba(255, 255, 255, 0.04);
+  --glass-1-border: rgba(255, 255, 255, 0.1);
+  --glass-2-bg: rgba(255, 255, 255, 0.06);
+  --glass-2-border: rgba(255, 255, 255, 0.12);
+  --glass-3-bg: rgba(255, 255, 255, 0.08);
+  --glass-3-border: rgba(255, 255, 255, 0.16);
+  --glass-4-bg: rgba(255, 255, 255, 0.12);
+  --glass-4-border: rgba(255, 255, 255, 0.22);
+
   /* Figma-derived text styles used across the case study pages */
   --adaptivemedium: rgba(255, 255, 255, 0.8);
   --adaptivestrong: rgba(255, 255, 255, 1);
   --adaptiveweak: rgba(113, 118, 137, 1);
   --display-semibold-l-font-family: "Inter", Helvetica;
-  --display-semibold-l-font-size: 48px;
+  --display-semibold-l-font-size: 32px;
   --display-semibold-l-font-weight: 400;
-  --display-semibold-l-line-height: 56px;
+  --display-semibold-l-line-height: 40px;
   --display-semibold-l-letter-spacing: 0px;
   --heading-regular-l-font-family: "Inter", Helvetica;
-  --heading-regular-l-font-size: 20px;
+  --heading-regular-l-font-size: 16px;
   --heading-regular-l-font-weight: 400;
-  --heading-regular-l-line-height: 28px;
+  --heading-regular-l-line-height: 24px;
   --heading-regular-l-letter-spacing: 0px;
   --heading-regular-s-font-family: "Inter", Helvetica;
   --heading-regular-s-font-size: 16px;
@@ -138,5 +151,21 @@
   }
   .text-adaptive-weak {
     color: var(--adaptiveweak);
+  }
+
+  /* Subtle film-grain texture — adds tactile depth to large dark hero sections
+     without any image asset. Applied as a low-opacity overlay, not a filter,
+     so it stays cheap and doesn't affect layout. */
+  .bg-noise {
+    position: relative;
+  }
+  .bg-noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 }

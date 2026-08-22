@@ -1,11 +1,11 @@
 import type {
   AboutStat,
+  CapabilityGroup,
   CaseStudyProject,
   CodingProject,
-  GraphicProject,
-  SkillGroup,
+  ExperienceEntry,
+  ProcessStep,
   Social,
-  WorkflowMetric,
 } from "@/features/home/types";
 
 export const SOCIALS: Social[] = [
@@ -13,13 +13,18 @@ export const SOCIALS: Social[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/chsk1999", platform: "linkedin" },
 ];
 
-export const HERO_TAGS = ["User Experience Engineer", "UX/UI Prototyping", "Front-End Development"];
+export const HERO_EYEBROW = "I'm Sai Komal";
+export const HERO_TAGS = ["Product Design", "Front-End Engineering", "Enterprise SaaS"];
+export const HERO_HEADLINE_LINE_1 = "I design digital products that";
+export const HERO_HEADLINE_LINE_2 = "make complex workflows simple.";
+export const HERO_SUBCOPY =
+  "Product Designer and UX Engineer with 4+ years designing dashboards, admin consoles, and operational workflows for logistics, DevOps, and fashion-tech platforms. I do the full loop myself — research, wireframes, high-fidelity UI, and the React/Next.js code to make it real.";
 
 export const ABOUT_STATS: AboutStat[] = [
   { label: "Projects", value: "10+" },
   { label: "Case Studies", value: "5+" },
   { label: "Skills", value: "18+" },
-  { label: "Years in UX", value: "3+" },
+  { label: "Years in UX", value: "4+" },
 ];
 
 export const WHAT_I_BRING = [
@@ -31,81 +36,150 @@ export const WHAT_I_BRING = [
 ];
 
 export const DESIGN_PHILOSOPHY_QUOTE =
-  "Great UX engineering lives in the handoff — where a design concept has to survive contact with real technical constraints without losing its intent. My job is to make that translation as fast, tangible, and faithful as possible.";
+  "Most of the real design work happens after the mockup is 'done' — when it meets a real API, a loading state, or an edge case nobody drew. I'd rather be in the room for that part than hand off a static file and hope it survives.";
 
-export const SKILL_GROUPS: SkillGroup[] = [
+export const CAPABILITY_GROUPS: CapabilityGroup[] = [
   {
     icon: "◈",
-    category: "UX Design & Research",
-    description: "User-centered design methodology from discovery through validation",
+    category: "Product Strategy",
+    description: "Turning an ambiguous problem into a scoped, buildable product decision",
+    items: ["Product Discovery", "Problem Framing", "User Research", "Feature Validation", "Product Workflows"],
+  },
+  {
+    icon: "◎",
+    category: "UX Design",
+    description: "Research, structure, and interaction work that shapes what gets built before UI does",
     items: [
-      "User Experience (UX) Design",
-      "User-Centered Design Principles",
-      "User Research",
+      "User-Centered Design",
       "Usability Testing",
       "Information Architecture",
       "User Flows",
       "Wireframing",
       "Interaction Design",
-      "Design Systems",
       "Accessibility",
     ],
   },
   {
     icon: "⬡",
-    category: "Prototyping & Front-End Engineering",
-    description: "Turning design intent into tangible, technically feasible prototypes",
+    category: "UI Design",
+    description: "Turning validated flows into scalable, production-ready interface systems",
     items: [
-      "Figma",
-      "Sketch",
-      "Adobe XD",
-      "Rapid Prototyping",
-      "High-Fidelity UI",
-      "HTML / CSS / JavaScript",
-      "React / Next.js",
-      "Tailwind CSS",
+      "High-Fidelity UI Design",
+      "Design Systems",
+      "Atomic Design",
+      "Design Tokens",
       "Component Libraries",
-      "Developer Handoff",
+      "Scalable UI Systems",
+      "Rapid Prototyping",
     ],
   },
   {
-    icon: "◎",
-    category: "Process & Collaboration",
-    description: "Cross-functional partnership with designers, developers, and stakeholders",
+    icon: "✦",
+    category: "Product Collaboration",
+    description: "Working the handoff so design intent survives contact with engineering",
     items: [
       "Cross-functional Collaboration",
       "Design–Dev Alignment",
-      "Product Discovery",
-      "SDLC Awareness",
-      "Agile / Jira",
-      "Miro",
-      "Notion",
-      "Claude AI / ChatGPT",
-      "AI-Assisted Prototyping",
+      "Developer Handoff",
       "Stakeholder Communication",
+      "Agile / Jira",
+      "SDLC Awareness",
+      "AI-Assisted Design",
     ],
   },
 ];
 
-export const WORKFLOW_METRICS: WorkflowMetric[] = [
-  { label: "User Research → Insight", pct: 88 },
-  { label: "Wireframes → Prototype", pct: 95 },
-  { label: "Prototype → Front-End Code", pct: 90 },
-  { label: "Usability Testing", pct: 85 },
-  { label: "Developer Handoff", pct: 92 },
+export const TOOL_GROUPS: { label: string; items: string[] }[] = [
+  { label: "Design", items: ["Figma", "Sketch", "Adobe XD"] },
+  { label: "Product & Collaboration", items: ["Jira", "Notion", "Miro", "Claude"] },
+  { label: "Technology", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
 ];
 
-export const CASE_STUDIES: CaseStudyProject[] = [
+export const PROCESS_STEPS: ProcessStep[] = [
   {
-    title: "Onliest REX — Luxury AI Fashion Stylist",
+    number: "01",
+    title: "Discover",
     description:
-      "Product design and BRD ownership for REX, an agentic AI recommendation and design engine for a luxury fashion platform. Covers conversational and guided-wizard UX, live virtual try-on with explainable match scoring, image-based inspiration understanding, and an Admin-governed multi-agent architecture.",
-    tags: ["Conversational AI", "Agentic Architecture", "Fashion Tech", "BRD → Product"],
-    accentColor: "#c9a86a",
-    slug: "/case-study/rex",
-    year: "2026",
-    image: "/rex/rex-hero.jpg",
+      "Talk to the people who'll actually use it, dig into the operational reality behind the request, and frame the actual problem before touching a screen.",
   },
+  {
+    number: "02",
+    title: "Define",
+    description:
+      "Scope the problem into a buildable product decision — what's in, what's out, and what success actually looks like for the business and the user.",
+  },
+  {
+    number: "03",
+    title: "Design",
+    description:
+      "Wireframes through high-fidelity UI, built on a consistent design system rather than one-off screens, so the product holds together as it grows.",
+  },
+  {
+    number: "04",
+    title: "Build",
+    description:
+      "Wire up interactive flows myself in React and Next.js, so what engineering gets isn't a static file — it's close to what actually ships.",
+  },
+  {
+    number: "05",
+    title: "Validate",
+    description:
+      "Usability testing and real usage tell me what to fix next — the design isn't done when the mockup is, it's done when it survives contact with reality.",
+  },
+];
+
+export const EXPERIENCE: ExperienceEntry[] = [
+  {
+    company: "ONDL",
+    role: "Product Owner",
+    location: "Visakhapatnam, India",
+    duration: "Oct 2024 — Present",
+    current: true,
+    summary: [
+      "Contributed to scalable design systems using atomic design principles and reusable component structures, improving UI consistency across product modules.",
+      "Led development of logistics platforms (Kudra, Parivahan, Karta) focusing on scalable fleet and trip-lifecycle workflows.",
+      "Designed product flows for trip creation, driver assignment, fuel tracking, and vehicle allocation systems.",
+      "Improved operational efficiency by 20% through workflow redesign.",
+      "Collaborated closely with engineering teams to ensure scalable technical implementation.",
+      "Leveraged generative AI tools to accelerate UI exploration and product design iterations.",
+    ],
+  },
+  {
+    company: "Sweya Infotech",
+    role: "Associate UX Designer",
+    location: "Visakhapatnam, India",
+    duration: "May 2023 — Oct 2024",
+    summary: [
+      "Designed user interfaces for enterprise software platforms focusing on workflow optimization.",
+      "Conducted user research and usability testing to improve product experiences.",
+      "Built scalable UI components and contributed to design system documentation.",
+      "Designed interfaces considering loading, empty, error, and partial data states.",
+    ],
+  },
+  {
+    company: "Oracle",
+    role: "SQL Developer",
+    location: "Hyderabad, India",
+    duration: "Mar 2022 — Apr 2023",
+    summary: [
+      "Developed data-integration modules connecting Oracle PaaS with enterprise systems.",
+      "Built internal reporting tools that improved data accessibility for business teams.",
+    ],
+  },
+];
+
+export const RECRUITER_SNAPSHOT = {
+  experience: "4+ years",
+  focus: "Enterprise SaaS & AI-assisted products",
+  industries: ["Fashion tech", "Logistics", "DevOps", "Government"],
+  frontEnd: "React, Next.js, Tailwind CSS",
+  design: "Figma, design systems, prototyping",
+  ai: "Building with Claude & AI-assisted workflows",
+  location: "India · open to remote",
+  availability: "Open to new roles",
+};
+
+export const CASE_STUDIES: CaseStudyProject[] = [
   {
     title: "Kudra — Fleet & Trip Management Platform",
     description:
@@ -115,26 +189,38 @@ export const CASE_STUDIES: CaseStudyProject[] = [
     slug: "/case-study/kudra",
     year: "2025",
     image: "/figmaAssets/kudra-dashboard.png",
+    role: "Product Designer",
+    timeline: "2025 – 2026",
+    businessGoal: "Replace call-and-spreadsheet coordination with one system",
+    readMins: 9,
   },
   {
-    title: "ClappIt — Cloud Infrastructure & DevOps Platform",
+    title: "Onliest REX — Luxury AI Fashion Stylist",
     description:
-      "Full UX redesign of an AI-powered cloud infrastructure automation platform. Transformed cognitively overloaded DevOps dashboards into a clarity-first enterprise product — covering UX research, information architecture, design system, and high-fidelity UI.",
-    tags: ["Enterprise UX", "Dashboard Design", "Design System", "DevOps SaaS"],
-    accentColor: "#E8273A",
-    slug: "/case-study/clappit",
-    year: "2024",
-    image: "/figmaAssets/clappit-dashboard.png",
+      "Product design and BRD ownership for REX, an agentic AI recommendation and design engine for a luxury fashion platform. Covers conversational and guided-wizard UX, live virtual try-on with explainable match scoring, image-based inspiration understanding, and an Admin-governed multi-agent architecture.",
+    tags: ["Conversational AI", "Agentic Architecture", "Fashion Tech", "BRD → Product"],
+    accentColor: "#c9a86a",
+    slug: "/case-study/rex",
+    year: "2026",
+    image: "/rex/rex-hero.svg",
+    role: "Product Owner / Designer",
+    timeline: "~6 weeks",
+    businessGoal: "Replace generic search with a scored AI stylist",
+    readMins: 8,
   },
   {
-    title: "HSL Website Redesign",
+    title: "Hindustan Shipyard Enterprise Digital Experience",
     description:
-      "A comprehensive UX/UI redesign of Hindusthan Shipyard Limited's website. The project involved in-depth user research, competitive analysis, empathy mapping, wireframing, prototyping and high-fidelity visual design to create a modern, mobile-responsive platform.",
-    tags: ["UX Research", "UI Design", "Prototyping", "Figma"],
-    accentColor: "#008080",
+      "Five disconnected modules — recruitment, tenders, vendor, vigilance, portfolio — where every question became a phone call. I ran stakeholder research across each branch, then designed a candidate portal that shows applicants their real status and a tenders dashboard that moved bidding information out of email. Shipped; HR and the tender cell report fewer status calls.",
+    tags: ["Stakeholder Research", "Enterprise Ecosystem", "Public Sector", "Accessibility"],
+    accentColor: "#0FA3A3",
     slug: "/case-study",
     year: "2024",
     image: "/figmaAssets/image-16.png",
+    role: "UX Researcher & Designer · Stakeholder POC",
+    timeline: "12 weeks",
+    businessGoal: "Replace status-chasing calls with self-serve visibility",
+    readMins: 6,
   },
 ];
 
@@ -171,33 +257,6 @@ export const CODING_PROJECTS: CodingProject[] = [
     image: "/figmaAssets/hotelfirst-screenshot.png",
     accent: "#EA580C",
     year: "2024",
-  },
-];
-
-export const GRAPHIC_PROJECTS: GraphicProject[] = [
-  {
-    title: "Brand Identity & Visual Design",
-    description:
-      "Logo design, brand systems, and visual identity work across multiple client projects — from logistics startups to enterprise software companies.",
-    tags: ["Brand Identity", "Logo Design", "Visual Systems"],
-    accent: "#8B5CF6",
-    icon: "◈",
-  },
-  {
-    title: "Marketing & Social Media Creatives",
-    description:
-      "Campaign creatives, social media templates, and digital marketing assets designed for product launches and ongoing brand communication.",
-    tags: ["Social Media", "Digital Marketing", "Campaign Design"],
-    accent: "#EC4899",
-    icon: "⬡",
-  },
-  {
-    title: "UI Illustration & Iconography",
-    description:
-      "Custom illustration sets, icon libraries, and product-integrated artwork created to complement SaaS product interfaces and marketing materials.",
-    tags: ["Illustration", "Iconography", "Product Art"],
-    accent: "#F59E0B",
-    icon: "◎",
   },
 ];
 

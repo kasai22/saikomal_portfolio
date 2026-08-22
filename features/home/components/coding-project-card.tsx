@@ -1,5 +1,7 @@
-import Image from "next/image";
 import { ExternalLinkIcon } from "@/components/icons";
+import { GlassSurface } from "@/components/ui/glass-surface";
+import { TiltCard, GlassHighlight } from "@/components/ui/tilt-card";
+import { ParallaxImage } from "@/components/ui/parallax-image";
 import { cssVars } from "@/lib/css-vars";
 import type { CodingProject } from "@/features/home/types";
 
@@ -9,22 +11,26 @@ interface CodingProjectCardProps {
 
 export function CodingProjectCard({ project }: CodingProjectCardProps) {
   return (
-    <a
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={cssVars({ "--accent": project.accent })}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition-colors duration-300 hover:[border-color:var(--accent)]"
-    >
+    <TiltCard maxDeg={5} className="h-full">
+      <GlassSurface
+        as="a"
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor="view"
+        level={2}
+        style={cssVars({ "--accent": project.accent })}
+        className="group relative flex h-full flex-col overflow-hidden transition-colors duration-300 hover:[border-color:var(--accent)]"
+      >
       <div className="relative h-48 shrink-0 overflow-hidden bg-[#0e0e0e]">
         {project.image ? (
           <>
-            <Image
+            <ParallaxImage
               src={project.image}
               alt={project.title}
               fill
               sizes="(min-width: 768px) 33vw, 100vw"
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              className="object-top transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </>
@@ -35,7 +41,7 @@ export function CodingProjectCard({ project }: CodingProjectCardProps) {
               background: `radial-gradient(ellipse at center, ${project.accent}18, transparent 70%), #0e0e0e`,
             }}
           >
-            <span className="text-5xl font-black opacity-20 [color:var(--accent)]">
+            <span className="text-3xl font-black opacity-20 [color:var(--accent)]">
               {project.title.charAt(0)}
             </span>
           </div>
@@ -76,6 +82,8 @@ export function CodingProjectCard({ project }: CodingProjectCardProps) {
           <ExternalLinkIcon className="h-3.5 w-3.5" />
         </div>
       </div>
-    </a>
+        <GlassHighlight />
+      </GlassSurface>
+    </TiltCard>
   );
 }

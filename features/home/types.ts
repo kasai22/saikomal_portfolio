@@ -6,16 +6,26 @@ export interface Social {
   platform: SocialPlatform;
 }
 
-export interface SkillGroup {
+export interface CapabilityGroup {
   icon: string;
   category: string;
   description: string;
   items: string[];
 }
 
-export interface WorkflowMetric {
-  label: string;
-  pct: number;
+export interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface ExperienceEntry {
+  company: string;
+  role: string;
+  location: string;
+  duration: string;
+  current?: boolean;
+  summary: string[];
 }
 
 export interface AboutStat {
@@ -31,6 +41,10 @@ export interface CaseStudyProject {
   slug: string;
   year: string;
   image: string;
+  role: string;
+  timeline: string;
+  businessGoal: string;
+  readMins: number;
 }
 
 export interface CodingProject {
@@ -42,12 +56,4 @@ export interface CodingProject {
   image: string | null;
   accent: string;
   year: string;
-}
-
-export interface GraphicProject {
-  title: string;
-  description: string;
-  tags: string[];
-  accent: string;
-  icon: string;
 }

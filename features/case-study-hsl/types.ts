@@ -1,8 +1,22 @@
-import type { HeadingSegment } from "@/components/case-study/pill-heading";
-
 export interface TextSegment {
   text: string;
   highlight: boolean;
+}
+
+export interface HeroMeta {
+  label: string;
+  value: string;
+}
+
+export interface HeroStat {
+  value: string;
+  label: string;
+}
+
+export interface ModuleScope {
+  icon: string;
+  title: string;
+  description: string;
 }
 
 export interface RoleItem {
@@ -11,23 +25,17 @@ export interface RoleItem {
 
 export interface AudienceApproachEntry {
   id: "audience" | "approach";
-  heading: HeadingSegment[];
-  pillWidth: number;
-  imageSrc: string;
-  imageAlt: string;
-  imageFirstOnMobile: boolean;
   kind: "list" | "paragraph";
   listItems?: string[];
   paragraph?: string;
 }
 
-export interface TimelineCard {
-  title: string;
-  color: string;
-  colStart: number;
-  colSpan: number;
-  rowStart: number;
-  fontSizeClass: string;
+export interface TimelinePhase {
+  phase: string;
+  weeks: string;
+  /** Share of the 12-week engagement, used for the progress bar width. */
+  share: number;
+  steps: string[];
 }
 
 export interface InterviewGroup {
@@ -42,30 +50,29 @@ export interface EmpathyQuadrant {
 
 export interface DesignThinkingStep {
   title: string;
-  iconSrc: string;
-  iconAlt: string;
-  connectorSrc: string | null;
   items: string[];
 }
 
-export interface PersonaDetail {
-  label: string;
-  value: string;
-}
-
-export interface PersonaSection {
-  title: "Goals" | "Frustrations" | "Needs" | "Motivations";
+export interface UserGroupSection {
+  title: "Goals" | "Frustrations" | "What I designed";
   items: string[];
 }
 
-export interface Persona {
+/**
+ * Real user groups observed in stakeholder research, replacing the
+ * invented personas the case study previously used.
+ */
+export interface UserGroup {
   id: string;
+  name: string;
+  module: string;
+  summary: string;
+  sections: UserGroupSection[];
+}
+
+export interface OutcomeItem {
   title: string;
-  imageSrc: string;
-  imageAlt: string;
-  details: PersonaDetail[];
-  story: string;
-  sections: PersonaSection[];
+  description: string;
 }
 
 export interface FontSample {

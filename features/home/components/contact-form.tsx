@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState, type FormEvent } from "react";
+import { GlassSurface } from "@/components/ui/glass-surface";
 import { CONTACT_EMAIL } from "@/features/home/constants/data";
 
 export function ContactForm() {
@@ -17,7 +18,7 @@ export function ContactForm() {
     const email = String(data.get("email") ?? "");
     const message = String(data.get("message") ?? "");
 
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+    const subject = encodeURIComponent(`Role opportunity — from ${name}`);
     const body = encodeURIComponent(`${message}\n\nFrom: ${name} (${email})`);
     window.open(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`, "_blank");
 
@@ -26,8 +27,8 @@ export function ContactForm() {
   };
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-      <h3 className="mb-6 text-xl font-semibold text-white">Send a Message</h3>
+    <GlassSurface level={2} className="p-6">
+      <h3 className="mb-5 text-lg font-semibold text-white">Reach Out</h3>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <div>
           <label htmlFor={nameId} className="mb-2 block text-sm text-white/50">
@@ -67,7 +68,7 @@ export function ContactForm() {
             required
             rows={4}
             className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/30 transition-colors focus:border-brand focus:outline-none"
-            placeholder="Tell me about your project..."
+            placeholder="Tell me about the role — team, tech stack, timeline..."
           />
         </div>
         <button
@@ -80,6 +81,6 @@ export function ContactForm() {
           {status}
         </p>
       </form>
-    </div>
+    </GlassSurface>
   );
 }

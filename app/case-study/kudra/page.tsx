@@ -40,7 +40,7 @@ export default function KudraCaseStudyPage() {
     <div style={ACCENT_VARS} className="min-h-screen bg-[#0a0a0a] text-white">
       <HeroSection />
 
-      <div className="mx-auto max-w-7xl space-y-24 px-6 pb-24">
+      <div className="mx-auto max-w-7xl space-y-6 px-6 pb-16">
         <div className="overflow-hidden rounded-2xl border border-white/10 lg:hidden">
           <Image
             src="/figmaAssets/kudra-dashboard.png"

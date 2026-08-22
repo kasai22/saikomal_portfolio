@@ -23,6 +23,7 @@ import type {
 
 export const HERO_METADATA: MetadataItem[] = [
   { label: "Role", value: "Product Designer" },
+  { label: "Team", value: "Product Designer (me) · Fleet Operations SMEs · Engineering Team" },
   { label: "Timeline", value: "2025 – 2026" },
   { label: "Platform", value: "Web Application" },
   { label: "Domain", value: "Fleet Management" },

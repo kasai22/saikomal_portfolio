@@ -1,69 +1,69 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { BackToPortfolioLink } from "@/components/case-study/back-to-portfolio-link";
-import { IntroSection } from "@/features/case-study-hsl/components/intro-section";
-import { PossibleSolutionSection } from "@/features/case-study-hsl/components/possible-solution-section";
-import { AudienceAndApproachSection } from "@/features/case-study-hsl/components/audience-and-approach-section";
-import { MyRoleSection } from "@/features/case-study-hsl/components/my-role-section";
+import { CaseStudyCta } from "@/components/case-study/case-study-cta";
+import { cssVars } from "@/lib/css-vars";
+import { HeroSection } from "@/features/case-study-hsl/components/hero-section";
+import { OverviewSection } from "@/features/case-study-hsl/components/overview-section";
 import { ProblemStatementSection } from "@/features/case-study-hsl/components/problem-statement-section";
+import { SolutionSection } from "@/features/case-study-hsl/components/solution-section";
+import { MyRoleSection } from "@/features/case-study-hsl/components/my-role-section";
+import { AudienceAndApproachSection } from "@/features/case-study-hsl/components/audience-and-approach-section";
 import { ProjectTimelineSection } from "@/features/case-study-hsl/components/project-timeline-section";
-import { EmpathizePhaseSection } from "@/features/case-study-hsl/components/empathize-phase-section";
+import { ResearchSection } from "@/features/case-study-hsl/components/research-section";
 import { EmpathyMapSection } from "@/features/case-study-hsl/components/empathy-map-section";
+import { UserGroupsSection } from "@/features/case-study-hsl/components/user-groups-section";
 import { DesignThinkingStepsSection } from "@/features/case-study-hsl/components/design-thinking-steps-section";
-import { VisualDesignSection } from "@/features/case-study-hsl/components/visual-design-section";
-import { UserPersonasSection } from "@/features/case-study-hsl/components/user-personas-section";
 import { InformationArchitectureSection } from "@/features/case-study-hsl/components/information-architecture-section";
+import { VisualDesignSection } from "@/features/case-study-hsl/components/visual-design-section";
 import { TypographyAndColorsSection } from "@/features/case-study-hsl/components/typography-and-colors-section";
 import { HighFidelityDesignsSection } from "@/features/case-study-hsl/components/high-fidelity-designs-section";
+import { OutcomesSection } from "@/features/case-study-hsl/components/outcomes-section";
 
 export const metadata: Metadata = {
-  title: "HSL Website Redesign — Case Study",
+  title: "Hindustan Shipyard Enterprise Digital Experience — Case Study",
   description:
-    "A UX/UI case study on redesigning Hindusthan Shipyard Limited's website: research, information architecture, design system, and high-fidelity UI.",
+    "How five disconnected modules at Hindustan Shipyard Limited became one ecosystem — replacing status-chasing phone calls with a candidate portal and a live tenders dashboard. Shipped.",
 };
+
+const ACCENT_VARS = cssVars({
+  "--accent": "#0FA3A3",
+  "--accent-subtle": "rgba(15,163,163,0.12)",
+  "--accent-border": "rgba(15,163,163,0.28)",
+});
 
 export default function HslCaseStudyPage() {
   return (
-    <div className="px-4 pt-20 sm:px-8 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-[1440px]">
-        <BackToPortfolioLink />
+    <div style={ACCENT_VARS} className="min-h-screen bg-[#0a0a0a] text-white">
+      <HeroSection />
 
-        <section className="relative mb-12 w-full">
-          <IntroSection />
+      <div className="mx-auto max-w-7xl space-y-16 px-6 pb-16">
+        <div className="overflow-hidden rounded-2xl border border-white/10 lg:hidden">
           <Image
-            src="/figmaAssets/image-147.png"
-            alt="GRS Innovations"
-            width={2704}
-            height={1481}
-            className="pointer-events-none absolute right-4 top-[120px] hidden h-[249px] w-[454px] object-cover md:right-12 lg:right-[131px] lg:block"
+            src="/figmaAssets/image-16.png"
+            alt="Redesigned Hindustan Shipyard Limited homepage"
+            width={1424}
+            height={711}
+            className="block h-auto w-full"
           />
-        </section>
-
-        <div className="flex flex-col gap-16 pb-20">
-          <PossibleSolutionSection />
-          <AudienceAndApproachSection />
-          <MyRoleSection />
-
-          <section className="w-full rounded-2xl bg-[#0e0e0e] p-6 md:p-10">
-            <ProblemStatementSection />
-          </section>
-
-          <section className="w-full overflow-x-auto rounded-2xl bg-[#0e0e0e] p-6 md:p-10">
-            <h2 className="mb-6 font-display text-2xl font-medium text-white">
-              Project <span className="font-bold text-brand">Timeline</span>
-            </h2>
-            <ProjectTimelineSection />
-          </section>
-
-          <EmpathizePhaseSection />
-          <EmpathyMapSection />
-          <DesignThinkingStepsSection />
-          <VisualDesignSection />
-          <UserPersonasSection />
-          <InformationArchitectureSection />
-          <TypographyAndColorsSection />
-          <HighFidelityDesignsSection />
         </div>
+
+        <OverviewSection />
+        <ProblemStatementSection />
+        <SolutionSection />
+        <MyRoleSection />
+        <AudienceAndApproachSection />
+        <ProjectTimelineSection />
+        <ResearchSection />
+        <EmpathyMapSection />
+        <UserGroupsSection />
+        <DesignThinkingStepsSection />
+        <InformationArchitectureSection />
+        <VisualDesignSection />
+        <TypographyAndColorsSection />
+        <HighFidelityDesignsSection />
+        <OutcomesSection />
+
+        <CaseStudyCta tagline="Let's make the status visible before it becomes a phone call." />
       </div>
     </div>
   );

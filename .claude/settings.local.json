@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npx --yes playwright --version)",
+      "Bash(npx --yes playwright install chromium --with-deps)",
+      "Bash(NODE_PATH=\"C:\\\\Users\\\\Sai Komal Work\\\\Downloads\\\\New folder \\(4\\)\\\\saikomal_portfolio\\\\node_modules\" node shot.mjs)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(node shot.mjs)",
+      "Bash(lsof -ti:3000 -sTCP:LISTEN)",
+      "Bash(xargs -r kill)",
+      "Bash(node shot-cs.mjs)",
+      "Read(//c/Users/Sai Komal Work/Downloads/**)",
+      "Read(//c/Users/Sai Komal Work/**)",
+      "Bash(node shot-v2.mjs)",
+      "Bash(npx tsc *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(break)",
+      "Bash(node shot-hero.mjs)",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/tailwindcss/package.json'\\).version\\)\")",
+      "Bash(node shot-hero2.mjs)",
+      "Bash(node shot-fullsite.mjs)",
+      "Bash(node shot-scroll2.mjs)",
+      "Bash(node shot-restored.mjs)",
+      "PowerShell(Remove-Item -Path \"features\\\\case-study-hsl\\\\components\\\\user-personas-section.tsx\" -Confirm:$false)"
+    ]
+  }
+}
