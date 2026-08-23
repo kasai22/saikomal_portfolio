@@ -1,10 +1,20 @@
-import { GithubIcon, LinkedinIcon, ExternalLinkIcon } from "@/components/icons";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  XIcon,
+  DiscordIcon,
+  SlackIcon,
+  ExternalLinkIcon,
+} from "@/components/icons";
 import { cn } from "@/lib/utils";
 import type { Social } from "@/features/home/types";
 
 const PLATFORM_ICON = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
+  x: XIcon,
+  discord: DiscordIcon,
+  slack: SlackIcon,
 } as const;
 
 interface SocialLinksProps {

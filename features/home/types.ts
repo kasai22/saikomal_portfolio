@@ -1,4 +1,4 @@
-export type SocialPlatform = "github" | "linkedin";
+export type SocialPlatform = "github" | "linkedin" | "x" | "discord" | "slack";
 
 export interface Social {
   label: string;

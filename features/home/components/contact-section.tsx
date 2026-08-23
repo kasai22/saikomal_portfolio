@@ -3,7 +3,7 @@ import { RevealItem } from "@/components/ui/reveal-item";
 import { SectionParallaxBg } from "@/components/ui/section-parallax-bg";
 import { SocialLinks } from "@/features/home/components/social-links";
 import { ContactForm } from "@/features/home/components/contact-form";
-import { SOCIALS } from "@/features/home/constants/data";
+import { CONTACT_SOCIALS } from "@/features/home/constants/data";
 
 export function ContactSection() {
   return (
@@ -27,7 +27,7 @@ export function ContactSection() {
               you&apos;re filling, the fastest way to reach me is below — or grab my resume from
               the nav and email directly.
             </p>
-            <SocialLinks socials={SOCIALS} variant="row" />
+            <SocialLinks socials={CONTACT_SOCIALS} variant="row" />
           </RevealItem>
 
           <RevealItem delayMs={200}>

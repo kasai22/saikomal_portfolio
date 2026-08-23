@@ -15,7 +15,7 @@ const COLUMNS = [
   },
   {
     label: "UX",
-    detail: "4+ years across logistics, DevOps & fashion-tech products",
+    detail: "3+ years across logistics, DevOps & fashion-tech products",
     points: ["Research", "Information architecture", "Interaction design", "Usability testing"],
   },
 ];

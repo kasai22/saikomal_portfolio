@@ -13,18 +13,29 @@ export const SOCIALS: Social[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/chsk1999", platform: "linkedin" },
 ];
 
+export const CONTACT_SOCIALS: Social[] = [
+  ...SOCIALS,
+  { label: "X", href: "https://x.com/SaiKomal4", platform: "x" },
+  { label: "Discord", href: "https://discord.com/users/695223950757593098", platform: "discord" },
+  {
+    label: "Slack",
+    href: "https://mywork-tok1009.slack.com/team/U0BRJ480NLX",
+    platform: "slack",
+  },
+];
+
 export const HERO_EYEBROW = "I'm Sai Komal";
 export const HERO_TAGS = ["Product Design", "Front-End Engineering", "Enterprise SaaS"];
 export const HERO_HEADLINE_LINE_1 = "I design digital products that";
 export const HERO_HEADLINE_LINE_2 = "make complex workflows simple.";
 export const HERO_SUBCOPY =
-  "Product Designer and UX Engineer with 4+ years designing dashboards, admin consoles, and operational workflows for logistics, DevOps, and fashion-tech platforms. I do the full loop myself — research, wireframes, high-fidelity UI, and the React/Next.js code to make it real.";
+  "Product Designer and UX Engineer with 3+ years designing dashboards, admin consoles, and operational workflows for logistics, DevOps, and fashion-tech platforms. I do the full loop myself — research, wireframes, high-fidelity UI, and the React/Next.js code to make it real.";
 
 export const ABOUT_STATS: AboutStat[] = [
   { label: "Projects", value: "10+" },
   { label: "Case Studies", value: "5+" },
   { label: "Skills", value: "18+" },
-  { label: "Years in UX", value: "4+" },
+  { label: "Years in UX", value: "3+" },
 ];
 
 export const WHAT_I_BRING = [
@@ -169,7 +180,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
 ];
 
 export const RECRUITER_SNAPSHOT = {
-  experience: "4+ years",
+  experience: "3+ years",
   focus: "Enterprise SaaS & AI-assisted products",
   industries: ["Fashion tech", "Logistics", "DevOps", "Government"],
   frontEnd: "React, Next.js, Tailwind CSS",
