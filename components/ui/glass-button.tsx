@@ -51,7 +51,7 @@ export function GlassButton({ as = "a", variant = "glass", children, className, 
       whileTap={reducedMotion ? undefined : { scale: 0.97 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200",
+        "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold tracking-[0.01em] transition-colors duration-200",
         variant === "solid" &&
           "bg-brand text-white shadow-[0_8px_30px_rgba(0,128,128,0.35)] hover:bg-brand-dark hover:shadow-[0_10px_40px_rgba(0,179,179,0.5)]",
         variant === "glass" &&

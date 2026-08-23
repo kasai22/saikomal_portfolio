@@ -38,15 +38,15 @@ export function HeroSection() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="mb-4 flex flex-wrap items-center gap-3">
-              <span className="rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[color:var(--accent)]">
+              <span className="rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--accent)]">
                 Luxury AI Fashion Platform
               </span>
-              <span className="text-xs font-medium text-white/30">2026</span>
+              <span className="text-[11px] font-medium text-white/30">2026</span>
             </div>
-            <h1 className="mb-4 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
+            <h1 className="t-display mb-4">
               Onliest <span className="text-[color:var(--accent)]">REX</span>
             </h1>
-            <p className="mb-6 max-w-lg border-l-2 border-[color:var(--accent-border)] pl-4 text-sm leading-relaxed text-white/60">
+            <p className="mb-6 max-w-lg border-l-2 border-[color:var(--accent-border)] pl-4 text-[13px] leading-relaxed text-white/60">
               {HERO_TAGLINE}
             </p>
 
@@ -56,8 +56,8 @@ export function HeroSection() {
                   key={m.label}
                   className="rounded-xl border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] p-3 text-center backdrop-blur-md"
                 >
-                  <div className="text-sm font-bold text-[color:var(--accent)]">{m.value}</div>
-                  <div className="mt-1 text-xs text-white/35">{m.label}</div>
+                  <div className="text-[13px] font-bold text-[color:var(--accent)]">{m.value}</div>
+                  <div className="mt-1 text-[11px] text-white/35">{m.label}</div>
                 </div>
               ))}
             </div>
@@ -66,7 +66,7 @@ export function HeroSection() {
               {HERO_TAGS.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] px-3 py-1.5 text-xs text-white/55 backdrop-blur-md"
+                  className="rounded-full border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] px-3 py-1.5 text-[11px] text-white/55 backdrop-blur-md"
                 >
                   {tag}
                 </span>
@@ -104,10 +104,10 @@ export function HeroSection() {
         >
           {TEAM_TOOLS.map((item) => (
             <div key={item.label}>
-              <span className="text-xs font-semibold uppercase tracking-widest text-white/30">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-white/30">
                 {item.label}
               </span>
-              <p className="mt-2 text-sm leading-relaxed text-white/65">{item.value}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-white/65">{item.value}</p>
             </div>
           ))}
         </motion.div>

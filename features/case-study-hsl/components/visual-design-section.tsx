@@ -20,7 +20,7 @@ export function VisualDesignSection() {
             height={711}
             className="block h-auto w-full"
           />
-          <figcaption className="px-5 py-4 text-xs text-white/40">
+          <figcaption className="px-5 py-4 text-[11px] text-white/40">
             Redesigned homepage — capability, tenders, and careers surfaced on the landing view
             instead of buried in navigation.
           </figcaption>
@@ -36,7 +36,7 @@ export function VisualDesignSection() {
               className="block h-auto w-full"
             />
           </div>
-          <figcaption className="px-5 py-4 text-xs text-white/40">
+          <figcaption className="px-5 py-4 text-[11px] text-white/40">
             Mobile responsive — a baseline requirement, given how many applicants and vendors reach
             the site from a phone.
           </figcaption>

@@ -9,8 +9,8 @@ export function UxGoalsSection() {
         {UX_GOALS.map((g) => (
           <div key={g.goal} className="rounded-2xl border border-white/10 bg-white/5 p-5">
             <div className="mb-3 h-1 w-6 rounded-full bg-[color:var(--accent)]" />
-            <h4 className="mb-2 text-sm font-semibold text-white">{g.goal}</h4>
-            <p className="text-xs leading-relaxed text-white/50">{g.desc}</p>
+            <h3 className="t-h4 mb-2 text-white">{g.goal}</h3>
+            <p className="text-[11px] leading-relaxed text-white/50">{g.desc}</p>
           </div>
         ))}
       </div>

@@ -1,5 +1,6 @@
 import { RevealSection } from "@/components/ui/reveal-section";
 import { RevealItem } from "@/components/ui/reveal-item";
+import { SectionHeading } from "@/features/home/components/section-heading";
 import { SectionDivider } from "@/features/home/components/section-divider";
 import { FeaturedProjectPanel } from "@/features/home/components/featured-project-panel";
 import { CaseStudyCard } from "@/features/home/components/case-study-card";
@@ -10,37 +11,30 @@ export function ProjectsSection() {
   const [featuredCaseStudy, ...otherCaseStudies] = CASE_STUDIES;
 
   return (
-    <RevealSection id="projects" className="px-6 py-16">
+    <RevealSection id="projects" className="px-6 py-14">
       <div className="mx-auto max-w-7xl">
-        <RevealItem className="mb-10">
-          <span className="text-xs font-semibold uppercase tracking-widest text-brand">
-            Selected Work
-          </span>
-          <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
-            Selected <span className="text-brand">Work</span>
-          </h2>
-          <p className="mt-3 max-w-xl text-sm text-white/60">
-            Products, platforms and experiences designed across logistics, SaaS, dashboards and
-            operational systems — spanning research, prototyping, and design-to-code translation.
-          </p>
-        </RevealItem>
+        <SectionHeading
+          eyebrow="Work"
+          title={
+            <>
+              Selected <span className="text-brand">work</span>
+            </>
+          }
+          intro="Logistics, SaaS dashboards and operational systems — research through to shipped code."
+        />
 
         {/* Product Case Studies — editorial hierarchy: one dominant featured
             panel, then a compact grid, instead of a repeated card grid. */}
-        <RevealItem className="mb-6">
-          <SectionDivider
-            number="01"
-            title="Product Case Studies"
-            subtitle="End-to-end UX research, prototyping, and design-to-code translation"
-          />
+        <RevealItem className="mb-5">
+          <SectionDivider number="01" title="Case Studies" subtitle="End to end, research to code" />
         </RevealItem>
-        <div className="mb-14 flex flex-col gap-6">
+        <div className="mb-12 flex flex-col gap-5">
           {featuredCaseStudy && (
             <RevealItem layered>
               <FeaturedProjectPanel project={featuredCaseStudy} />
             </RevealItem>
           )}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {otherCaseStudies.map((project, i) => (
               <RevealItem key={project.title} layered delayMs={i * 100}>
                 <CaseStudyCard project={project} />
@@ -50,14 +44,10 @@ export function ProjectsSection() {
         </div>
 
         {/* Coding Projects */}
-        <RevealItem delayMs={100} className="mb-6">
-          <SectionDivider
-            number="02"
-            title="Coding Projects"
-            subtitle="Live websites built with Next.js, TypeScript & Tailwind CSS"
-          />
+        <RevealItem delayMs={100} className="mb-5">
+          <SectionDivider number="02" title="Shipped Code" subtitle="Live sites — Next.js, TypeScript, Tailwind" />
         </RevealItem>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {CODING_PROJECTS.map((project, i) => (
             <RevealItem key={project.title} layered delayMs={i * 100}>
               <CodingProjectCard project={project} />

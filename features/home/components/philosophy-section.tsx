@@ -2,29 +2,31 @@ import { RevealSection } from "@/components/ui/reveal-section";
 import { RevealItem } from "@/components/ui/reveal-item";
 import { GlassSurface } from "@/components/ui/glass-surface";
 import { SectionParallaxBg } from "@/components/ui/section-parallax-bg";
-import { DESIGN_PHILOSOPHY_QUOTE, WHAT_I_BRING } from "@/features/home/constants/data";
+import { SectionHeading } from "@/features/home/components/section-heading";
+import { DESIGN_PHILOSOPHY_QUOTE, STRENGTHS } from "@/features/home/constants/data";
 
+/**
+ * The five "what I bring" claims used to be full sentences stacked in a
+ * list. They're now icon + title + a short qualifier, so the column scans
+ * in a glance and the quote stays the only long-form text in the section.
+ */
 export function PhilosophySection() {
   return (
-    <RevealSection id="philosophy" className="relative px-6 py-16">
+    <RevealSection id="philosophy" className="relative px-6 py-14">
       <SectionParallaxBg className="left-[10%] top-0 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
       <div className="mx-auto max-w-7xl">
-        <RevealItem className="mb-8">
-          <span className="text-xs font-semibold uppercase tracking-widest text-brand">
-            Product Design Philosophy
-          </span>
-          <h2 className="mt-2 max-w-3xl text-xl font-bold leading-tight sm:text-2xl">
-            The handoff is where design either survives or falls apart.
-          </h2>
-        </RevealItem>
+        <SectionHeading
+          eyebrow="Philosophy"
+          title="The handoff is where design survives or falls apart."
+        />
 
-        <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-5">
+        <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-5">
           <RevealItem delayMs={100} className="lg:col-span-3">
-            <GlassSurface level={3} className="flex h-full flex-col justify-center p-6 lg:p-10">
-              <span className="mb-3 text-3xl text-brand/40" aria-hidden="true">
+            <GlassSurface level={3} className="flex h-full flex-col justify-center p-6 lg:p-9">
+              <span className="mb-2 text-2xl leading-none text-brand/40" aria-hidden="true">
                 &ldquo;
               </span>
-              <p className="text-lg font-medium leading-relaxed text-white sm:text-xl">
+              <p className="text-base font-medium leading-[1.55] text-white sm:text-lg">
                 {DESIGN_PHILOSOPHY_QUOTE}
               </p>
             </GlassSurface>
@@ -32,16 +34,20 @@ export function PhilosophySection() {
 
           <RevealItem delayMs={200} className="lg:col-span-2">
             <GlassSurface level={2} className="h-full p-6">
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/50">
-                What I Bring
-              </h3>
-              <ul className="space-y-4">
-                {WHAT_I_BRING.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/75">
-                    <span className="mt-1.5 shrink-0 text-brand" aria-hidden="true">
-                      ✦
+              <h3 className="t-eyebrow mb-4 text-white/40">What I bring</h3>
+              <ul className="flex flex-col gap-3.5">
+                {STRENGTHS.map((strength) => (
+                  <li key={strength.title} className="flex items-start gap-3">
+                    <span
+                      className="mt-px shrink-0 text-xs leading-5 text-brand"
+                      aria-hidden="true"
+                    >
+                      {strength.icon}
                     </span>
-                    <span>{item}</span>
+                    <span className="min-w-0">
+                      <span className="t-h4 block text-white/90">{strength.title}</span>
+                      <span className="t-meta block text-white/40">{strength.detail}</span>
+                    </span>
                   </li>
                 ))}
               </ul>

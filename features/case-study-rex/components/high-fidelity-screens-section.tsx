@@ -25,16 +25,16 @@ export function HighFidelityScreensSection() {
               />
             </div>
             <div className="mb-3 flex flex-wrap items-center gap-3">
-              <h4 className="text-base font-bold text-white">{f.screen}</h4>
-              <span className="rounded-full bg-[color:var(--accent-subtle)] px-2.5 py-1 text-xs font-medium text-[color:var(--accent)]">
+              <h3 className="t-h4 text-white">{f.screen}</h3>
+              <span className="rounded-full bg-[color:var(--accent-subtle)] px-2.5 py-1 text-[11px] font-medium text-[color:var(--accent)]">
                 {f.tag}
               </span>
             </div>
-            <div className="rounded-xl border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] p-4 text-sm">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[color:var(--accent)]">
+            <div className="rounded-xl border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] p-4 text-[13px]">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-[color:var(--accent)]">
                 Design Rationale
               </span>
-              <p className="mt-2 text-sm leading-relaxed text-white/65">{f.decision}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-white/65">{f.decision}</p>
             </div>
           </div>
         ))}

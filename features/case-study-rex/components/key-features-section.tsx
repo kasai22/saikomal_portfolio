@@ -16,11 +16,11 @@ export function KeyFeaturesSection() {
             key={f.title}
             className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-200 hover:border-white/20"
           >
-            <span className="mb-3 inline-block rounded-full bg-[color:var(--accent-subtle)] px-2.5 py-1 text-xs font-medium text-[color:var(--accent)]">
+            <span className="mb-3 inline-block rounded-full bg-[color:var(--accent-subtle)] px-2.5 py-1 text-[11px] font-medium text-[color:var(--accent)]">
               {f.tag}
             </span>
-            <h4 className="mb-2 text-sm font-bold text-white">{f.title}</h4>
-            <p className="text-sm leading-relaxed text-white/55">{f.desc}</p>
+            <h3 className="t-h4 mb-2 text-white">{f.title}</h3>
+            <p className="text-[13px] leading-relaxed text-white/55">{f.desc}</p>
           </div>
         ))}
       </div>

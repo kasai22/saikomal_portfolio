@@ -7,29 +7,32 @@ interface CapabilityGroupCardProps {
 
 export function CapabilityGroupCard({ group }: CapabilityGroupCardProps) {
   return (
-    <GlassSurface level={2} className="group relative overflow-hidden p-7 hover:border-brand/40">
+    <GlassSurface level={2} className="group relative h-full overflow-hidden p-6 hover:border-brand/40">
       <div
         className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{ background: "radial-gradient(circle, rgba(0,128,128,0.15) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
 
-      <div className="mb-5 flex items-start gap-3 border-b border-white/[0.08] pb-5">
-        <span className="mt-0.5 shrink-0 text-2xl leading-none text-brand" aria-hidden="true">
+      <div className="mb-4 flex items-start gap-3 border-b border-white/[0.08] pb-4">
+        <span className="mt-px shrink-0 text-lg leading-none text-brand" aria-hidden="true">
           {group.icon}
         </span>
-        <div>
-          <h3 className="text-base font-bold leading-tight text-white">{group.category}</h3>
-          <p className="mt-1 text-xs leading-relaxed text-white/40">{group.description}</p>
+        <div className="min-w-0">
+          <h3 className="t-h4 text-white">{group.category}</h3>
+          <p className="t-meta mt-1 text-white/40">{group.description}</p>
         </div>
+        <span
+          className="ml-auto shrink-0 text-[10px] font-semibold tabular-nums text-white/20"
+          aria-hidden="true"
+        >
+          {group.items.length}
+        </span>
       </div>
 
-      <ul className="flex flex-wrap gap-2">
+      <ul className="flex flex-wrap gap-1.5">
         {group.items.map((skill) => (
-          <li
-            key={skill}
-            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/65 transition-all duration-200 group-hover:border-brand/20"
-          >
+          <li key={skill} className="t-chip transition-colors duration-200 group-hover:border-brand/20">
             {skill}
           </li>
         ))}

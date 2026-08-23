@@ -13,10 +13,10 @@ export function SectionHeading({ label, title, accent, sub, className }: Section
   return (
     <div className={`mb-10 ${className ?? ""}`}>
       <SectionLabel text={label} />
-      <h2 className="mt-2 text-4xl font-bold text-white sm:text-5xl">
+      <h2 className="t-h2 mt-2 text-white">
         {title} <span className="text-[color:var(--accent,#008080)]">{accent}</span>
       </h2>
-      {sub && <p className="mt-4 max-w-2xl leading-relaxed text-white/55">{sub}</p>}
+      {sub && <p className="t-body mt-2 max-w-xl text-white/50">{sub}</p>}
     </div>
   );
 }

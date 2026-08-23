@@ -16,8 +16,8 @@ export function DesignSystemSection() {
               <div key={pr.p} className="flex items-start gap-3 border-t border-white/5 pt-3 first:border-0 first:pt-0">
                 <span className="mt-0.5 shrink-0 text-[color:var(--accent)]">→</span>
                 <div>
-                  <div className="text-sm font-medium text-white">{pr.p}</div>
-                  <div className="mt-0.5 text-xs leading-relaxed text-white/50">{pr.d}</div>
+                  <div className="text-[13px] font-medium text-white">{pr.p}</div>
+                  <div className="mt-0.5 text-[11px] leading-relaxed text-white/50">{pr.d}</div>
                 </div>
               </div>
             ))}
@@ -36,8 +36,8 @@ export function DesignSystemSection() {
                 <div key={c.state} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
                   <div className="h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: c.color }} />
                   <div>
-                    <div className="text-xs font-semibold text-white">{c.state}</div>
-                    <div className="text-xs text-white/40">{c.label}</div>
+                    <div className="text-[11px] font-semibold text-white">{c.state}</div>
+                    <div className="text-[11px] text-white/40">{c.label}</div>
                   </div>
                 </div>
               ))}

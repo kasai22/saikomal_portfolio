@@ -12,7 +12,7 @@ export function OverviewSection() {
         sub="REX was built to make discovering and designing the perfect saree feel effortless, personal, and inspiring — for a platform where trust and craftsmanship matter as much as technology."
       />
       <AccentCard className="mb-8">
-        <p className="text-lg leading-relaxed text-white/80">{OVERVIEW_INTRO}</p>
+        <p className="text-[15px] leading-relaxed text-white/80">{OVERVIEW_INTRO}</p>
       </AccentCard>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
         {OVERVIEW_POINTS.map((p) => (
@@ -21,8 +21,8 @@ export function OverviewSection() {
             className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors duration-200 hover:border-white/20"
           >
             <div className="mb-4 h-0.5 w-8 rounded-full bg-[color:var(--accent)]" />
-            <h4 className="mb-2 text-sm font-semibold text-white">{p.label}</h4>
-            <p className="text-sm leading-relaxed text-white/55">{p.value}</p>
+            <h3 className="t-h4 mb-2 text-white">{p.label}</h3>
+            <p className="text-[13px] leading-relaxed text-white/55">{p.value}</p>
           </div>
         ))}
       </div>

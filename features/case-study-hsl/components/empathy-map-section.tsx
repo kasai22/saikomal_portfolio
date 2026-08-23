@@ -24,18 +24,18 @@ export function EmpathyMapSection() {
           <SurfaceCard key={quadrant.title}>
             <div className="mb-5 flex items-center gap-3">
               <span
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] text-sm text-[color:var(--accent)]"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] text-[13px] text-[color:var(--accent)]"
                 aria-hidden="true"
               >
                 {QUADRANT_ICONS[quadrant.title]}
               </span>
-              <h3 className="text-lg font-bold text-white">{quadrant.title}</h3>
+              <h3 className="text-[15px] font-bold text-white">{quadrant.title}</h3>
             </div>
             <ul className="space-y-3">
               {quadrant.items.map((item) => (
                 <li
                   key={item}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-relaxed text-white/65"
+                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[13px] leading-relaxed text-white/65"
                 >
                   {item}
                 </li>

@@ -27,21 +27,21 @@ export function SolutionSection() {
       <SectionHeading label="The Solution" title="One Rule, Applied" accent="Everywhere" />
 
       <AccentCard className="mb-6">
-        <p className="mb-4 text-lg font-medium leading-relaxed text-white">
+        <p className="mb-4 text-[15px] font-medium leading-relaxed text-white">
           Wherever someone was sending an email to find out where they stood, give them a screen
           that just tells them.
         </p>
-        <p className="text-base leading-relaxed text-white/65">{POSSIBLE_SOLUTION_DESCRIPTION}</p>
+        <p className="text-[13px] leading-relaxed text-white/65">{POSSIBLE_SOLUTION_DESCRIPTION}</p>
       </AccentCard>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {SOLUTION_PILLARS.map((pillar, index) => (
           <SurfaceCard key={pillar.title}>
-            <div className="mb-4 text-xs font-bold tracking-widest text-[color:var(--accent)]">
+            <div className="mb-4 text-[11px] font-bold tracking-widest text-[color:var(--accent)]">
               {String(index + 1).padStart(2, "0")}
             </div>
-            <h3 className="mb-3 text-sm font-bold text-white">{pillar.title}</h3>
-            <p className="text-sm leading-relaxed text-white/60">{pillar.detail}</p>
+            <h3 className="mb-3 text-[13px] font-bold text-white">{pillar.title}</h3>
+            <p className="text-[13px] leading-relaxed text-white/60">{pillar.detail}</p>
           </SurfaceCard>
         ))}
       </div>

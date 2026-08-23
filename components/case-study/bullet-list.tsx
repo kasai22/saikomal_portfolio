@@ -15,7 +15,7 @@ export function BulletList({ items }: BulletListProps) {
   return (
     <ul className="space-y-2">
       {items.map((item) => (
-        <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/65">
+        <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-white/65">
           <BulletDot /> {item}
         </li>
       ))}

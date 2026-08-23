@@ -7,12 +7,12 @@ export function MyRoleSection() {
     <section>
       <SectionHeading label="My Role" title="What I Actually" accent="Owned" />
       <AccentCard>
-        <p className="mb-6 text-base leading-relaxed text-white/75">{MY_ROLE_SUMMARY}</p>
+        <p className="mb-6 text-[13px] leading-relaxed text-white/75">{MY_ROLE_SUMMARY}</p>
         <ul className="flex flex-wrap gap-2">
           {ROLE_ITEMS.map((role) => (
             <li
               key={role.label}
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[13px] text-white/70"
             >
               {role.label}
             </li>

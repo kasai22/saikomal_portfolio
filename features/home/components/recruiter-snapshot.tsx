@@ -13,17 +13,20 @@ const ROWS: { label: string; value: string }[] = [
   { label: "Availability", value: RECRUITER_SNAPSHOT.availability },
 ];
 
+/**
+ * The thirty-second version, for anyone scanning rather than reading — a
+ * flat definition list of the facts a recruiter checks first, with the
+ * resume one click away.
+ */
 export function RecruiterSnapshot() {
   return (
     <section aria-label="Recruiter snapshot" className="border-y border-white/10 bg-white/[0.02]">
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-        <dl className="grid flex-1 grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
+      <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
+        <dl className="grid flex-1 grid-cols-2 gap-x-6 gap-y-3.5 sm:grid-cols-4">
           {ROWS.map((row) => (
             <div key={row.label}>
-              <dt className="text-xs font-semibold uppercase tracking-widest text-white/40">
-                {row.label}
-              </dt>
-              <dd className="mt-1 text-sm text-white/90">{row.value}</dd>
+              <dt className="t-eyebrow text-white/30">{row.label}</dt>
+              <dd className="t-meta mt-1 text-white/85">{row.value}</dd>
             </div>
           ))}
         </dl>
@@ -35,8 +38,8 @@ export function RecruiterSnapshot() {
           download="SaiKomal_Resume.pdf"
           className="shrink-0"
         >
-          Download resume
-          <DownloadIcon className="h-4 w-4" />
+          Resume
+          <DownloadIcon className="h-3.5 w-3.5" />
         </GlassButton>
       </div>
     </section>

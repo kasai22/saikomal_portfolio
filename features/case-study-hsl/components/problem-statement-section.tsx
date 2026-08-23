@@ -22,7 +22,7 @@ export function ProblemStatementSection() {
       <SectionHeading label="Problem Statement" title="The Operational" accent="Reality" />
 
       <AccentCard className="mb-6">
-        <p className="text-base leading-relaxed text-white/75">{PROBLEM_STATEMENT}</p>
+        <p className="text-[13px] leading-relaxed text-white/75">{PROBLEM_STATEMENT}</p>
       </AccentCard>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -37,7 +37,7 @@ export function ProblemStatementSection() {
             {WHAT_IT_COST.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 text-sm leading-relaxed text-white/65"
+                className="flex items-start gap-3 text-[13px] leading-relaxed text-white/65"
               >
                 <span className="mt-0.5 shrink-0 text-red-400/60">✗</span> {item}
               </li>

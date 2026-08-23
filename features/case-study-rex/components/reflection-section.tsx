@@ -16,7 +16,7 @@ export function ReflectionSection() {
           {REFLECTION_POINTS.map((point) => (
             <div key={point} className="flex items-start gap-3">
               <span className="mt-0.5 shrink-0 text-[color:var(--accent)]">✦</span>
-              <p className="text-sm leading-relaxed text-white/70">{point}</p>
+              <p className="text-[13px] leading-relaxed text-white/70">{point}</p>
             </div>
           ))}
         </div>

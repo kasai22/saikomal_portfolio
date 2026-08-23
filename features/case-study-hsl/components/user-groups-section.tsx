@@ -41,11 +41,11 @@ export function UserGroupsSection() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {USER_GROUPS.map((group) => (
           <SurfaceCard key={group.id} className="flex flex-col">
-            <span className="mb-4 w-fit rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[color:var(--accent)]">
+            <span className="mb-4 w-fit rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--accent)]">
               {group.module}
             </span>
-            <h3 className="mb-3 text-lg font-bold text-white">{group.name}</h3>
-            <p className="mb-6 text-sm leading-relaxed text-white/60">{group.summary}</p>
+            <h3 className="mb-3 text-[15px] font-bold text-white">{group.name}</h3>
+            <p className="mb-6 text-[13px] leading-relaxed text-white/60">{group.summary}</p>
 
             <div className="mt-auto space-y-4">
               {group.sections.map((section) => {
@@ -53,7 +53,7 @@ export function UserGroupsSection() {
                 return (
                   <div key={section.title} className={`rounded-xl border p-4 ${tone.border}`}>
                     <p
-                      className={`mb-3 text-xs font-semibold uppercase tracking-widest ${tone.label}`}
+                      className={`mb-3 text-[11px] font-semibold uppercase tracking-widest ${tone.label}`}
                     >
                       {section.title}
                     </p>
@@ -61,7 +61,7 @@ export function UserGroupsSection() {
                       {section.items.map((item) => (
                         <li
                           key={item}
-                          className="flex items-start gap-2 text-sm leading-relaxed text-white/60"
+                          className="flex items-start gap-2 text-[13px] leading-relaxed text-white/60"
                         >
                           <span className={`mt-0.5 shrink-0 ${tone.marker}`} aria-hidden="true">
                             {section.title === "Frustrations" ? "✗" : "✦"}

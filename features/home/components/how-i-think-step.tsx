@@ -15,7 +15,9 @@ interface HowIThinkStepProps {
  * A single "How I Think" stage. As it crosses the vertical center of the
  * viewport it becomes the emphasized/active stage — full opacity, slight
  * scale-up, accent border — while stages outside that band soften. Static
- * (always fully visible) under `prefers-reduced-motion`.
+ * (always fully visible) under `prefers-reduced-motion`. The `output` line
+ * names the artefact the stage produces, so the process reads as things
+ * handed over rather than adjectives.
  */
 export function HowIThinkStep({ step }: HowIThinkStepProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,9 +25,12 @@ export function HowIThinkStep({ step }: HowIThinkStepProps) {
   const isActive = useInView(ref, { margin: "-40% 0px -40% 0px" });
 
   return (
-    <div ref={ref} className="relative flex-1 pl-12 lg:pl-0">
+    <div ref={ref} className="relative flex-1 pl-10 lg:pl-0">
       <div
-        className="absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full border border-brand/40 bg-background text-xs font-bold text-brand lg:relative lg:mb-5"
+        className={cn(
+          "absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-full border bg-background text-[10px] font-bold transition-colors duration-300 lg:relative lg:mb-4",
+          isActive ? "border-brand bg-brand/15 text-brand-light" : "border-white/15 text-white/40",
+        )}
         aria-hidden="true"
       >
         {step.number}
@@ -37,10 +42,16 @@ export function HowIThinkStep({ step }: HowIThinkStepProps) {
       >
         <GlassSurface
           level={isActive ? 2 : 1}
-          className={cn("p-5 transition-colors duration-300 lg:min-h-[168px]", isActive && "border-brand/40")}
+          className={cn(
+            "flex flex-col p-4 transition-colors duration-300 lg:min-h-[150px]",
+            isActive && "border-brand/40",
+          )}
         >
-          <h3 className="mb-2 text-base font-bold text-white">{step.title}</h3>
-          <p className="text-sm leading-relaxed text-white/55">{step.description}</p>
+          <h3 className="t-h4 text-white">{step.title}</h3>
+          <p className="t-meta mt-1.5 flex-1 text-white/50">{step.description}</p>
+          <p className="mt-3 border-t border-white/10 pt-2.5 text-[10px] uppercase tracking-[0.1em] text-brand/70">
+            {step.output}
+          </p>
         </GlassSurface>
       </motion.div>
     </div>

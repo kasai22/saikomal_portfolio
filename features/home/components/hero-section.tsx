@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRightIcon, DownloadIcon, ChevronDownIcon } from "@/components/icons";
 import { GlassButton } from "@/components/ui/glass-button";
@@ -12,14 +12,16 @@ import {
   HERO_EYEBROW,
   HERO_HEADLINE_LINE_1,
   HERO_HEADLINE_LINE_2,
+  HERO_LOOP,
+  HERO_PROOF,
+  HERO_ROLE,
   HERO_SUBCOPY,
-  HERO_TAGS,
   SOCIALS,
 } from "@/features/home/constants/data";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-// Column-level entrance — identity line, headline, skill line, subcopy and
+// Column-level entrance — identity line, headline, subcopy, proof row and
 // the CTA row each reveal once on mount, in sequence (not on scroll).
 // `visible`'s stagger is inherited by every matching descendant, however
 // deep, that doesn't define its own initial/animate — see the headline's
@@ -33,7 +35,7 @@ const REVEAL_ITEM = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    transition: { duration: 0.7, ease: EASE },
   },
 };
 
@@ -52,13 +54,14 @@ const HEADLINE_LINE_2 = {
 const HEADLINE_WORDS_LINE_1 = HERO_HEADLINE_LINE_1.split(" ");
 
 /**
- * Identity-first hero: a real name/role line and a word-by-word headline
- * reveal, real fragments of shipped work standing in for a generic hero
- * illustration, and a five-tier scroll+mouse parallax system (background →
- * ambient glass → work fragments → headline → CTA). Entrance animation
- * plays once on mount; scroll/mouse parallax continues for the section's
- * own height. All motion is a no-op under `prefers-reduced-motion` — the
- * section still reads perfectly, just static.
+ * Identity-first hero, kept deliberately short: a name/role line, a two-line
+ * headline, one sentence, then evidence — three proof numbers and the
+ * design-to-ship loop drawn as a track. Real fragments of shipped work stand
+ * in for a generic hero illustration, over a five-tier scroll+mouse parallax
+ * system (background → ambient glass → work fragments → headline → CTA).
+ * Entrance animation plays once on mount; scroll/mouse parallax continues for
+ * the section's own height. All motion is a no-op under
+ * `prefers-reduced-motion` — the section still reads perfectly, just static.
  */
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -129,34 +132,39 @@ export function HeroSection() {
         variants={REVEAL_CONTAINER}
         className="relative z-10 mx-auto grid w-full max-w-5xl grid-cols-1 gap-8 px-6 py-20 sm:py-24 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-28"
       >
-        {/* TEXT — name/role, headline, skill line, subcopy */}
+        {/* TEXT — name/role, headline, one line of copy, proof */}
         <motion.div
-          className="flex flex-col gap-4 lg:col-start-1 lg:row-start-1"
+          className="flex flex-col gap-5 lg:col-start-1 lg:row-start-1"
           style={reducedMotion ? undefined : { y: headlineScrollY }}
         >
           <motion.div
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-5"
             style={reducedMotion ? undefined : { x: headlineMouseX, y: headlineMouseY }}
           >
-            <motion.div variants={REVEAL_ITEM} className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <p className="text-sm font-semibold text-white sm:text-base">{HERO_EYEBROW}</p>
-              <span className="flex items-center gap-1.5 text-[11px] font-medium text-white/45">
+            <motion.div variants={REVEAL_ITEM} className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <p className="t-h4 text-white">{HERO_EYEBROW}</p>
+              <span className="h-3 w-px bg-white/20" aria-hidden="true" />
+              <p className="t-meta text-white/50">{HERO_ROLE}</p>
+              <span className="flex items-center gap-1.5 rounded-full border border-brand/25 bg-brand/10 px-2 py-0.5 text-[10px] font-medium text-brand-light">
                 <span
                   className="h-1 w-1 animate-pulse rounded-full bg-brand-light shadow-[0_0_6px_rgba(0,179,179,0.7)]"
                   aria-hidden="true"
                 />
-                Open to new roles
+                Open to roles
               </span>
             </motion.div>
 
-            <motion.h1
-              variants={HEADLINE_CONTAINER}
-              className="text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-5xl"
-            >
+            <motion.h1 variants={HEADLINE_CONTAINER} className="t-display text-white">
+              {/* Each word animates independently, so it needs its own
+                  element — but the real space between them has to survive
+                  in the text layer too, or assistive tech reads the line
+                  back as one run-on word. */}
               {HEADLINE_WORDS_LINE_1.map((word, i) => (
-                <motion.span key={`${word}-${i}`} variants={HEADLINE_WORD} className="mr-[0.22em] inline-block">
-                  {word}
-                </motion.span>
+                <Fragment key={`${word}-${i}`}>
+                  <motion.span variants={HEADLINE_WORD} className="inline-block">
+                    {word}
+                  </motion.span>{" "}
+                </Fragment>
               ))}
               <br />
               <motion.span variants={HEADLINE_LINE_2} className="relative inline-block">
@@ -172,25 +180,42 @@ export function HeroSection() {
               </motion.span>
             </motion.h1>
 
-            <motion.p
-              variants={REVEAL_ITEM}
-              className="flex flex-wrap items-center gap-x-2 text-xs font-medium text-white/40"
-            >
-              {HERO_TAGS.map((tag, i) => (
-                <span key={tag} className="flex items-center gap-2">
-                  {i > 0 && (
-                    <span className="text-white/20" aria-hidden="true">
-                      ·
-                    </span>
-                  )}
-                  {tag}
-                </span>
-              ))}
-            </motion.p>
-
-            <motion.p variants={REVEAL_ITEM} className="max-w-sm text-xs leading-relaxed text-white/50">
+            <motion.p variants={REVEAL_ITEM} className="t-body max-w-xs text-white/55">
               {HERO_SUBCOPY}
             </motion.p>
+
+            {/* The design-to-ship loop as a track — the process claim, drawn
+                rather than described. */}
+            <motion.ul
+              variants={REVEAL_ITEM}
+              aria-label="How I work"
+              className="flex flex-wrap items-center gap-x-2 gap-y-1.5"
+            >
+              {HERO_LOOP.map((stage, i) => (
+                <li key={stage} className="flex items-center gap-2">
+                  {i > 0 && (
+                    <span className="h-px w-4 bg-gradient-to-r from-brand/50 to-brand/20" aria-hidden="true" />
+                  )}
+                  <span className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/45">
+                    <span className="h-1 w-1 rounded-full bg-brand" aria-hidden="true" />
+                    {stage}
+                  </span>
+                </li>
+              ))}
+            </motion.ul>
+
+            {/* Proof — three numbers instead of a paragraph of claims. */}
+            <motion.dl variants={REVEAL_ITEM} className="flex flex-wrap gap-x-7 gap-y-3">
+              {HERO_PROOF.map((proof) => (
+                <div key={proof.label}>
+                  <dt className="sr-only">{proof.label}</dt>
+                  <dd className="t-metric text-brand-light">{proof.value}</dd>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-white/35">
+                    {proof.label}
+                  </p>
+                </div>
+              ))}
+            </motion.dl>
           </motion.div>
         </motion.div>
 
@@ -211,13 +236,13 @@ export function HeroSection() {
           className="lg:col-start-1 lg:row-start-2"
           style={reducedMotion ? undefined : { y: ctaScrollY }}
         >
-          <motion.div variants={REVEAL_ITEM} className="flex flex-wrap items-center gap-4">
+          <motion.div variants={REVEAL_ITEM} className="flex flex-wrap items-center gap-3">
             <GlassButton as="a" href="#projects" variant="solid">
-              View My Work
-              <ArrowRightIcon className="h-4 w-4" />
+              See the work
+              <ArrowRightIcon className="h-3.5 w-3.5" />
             </GlassButton>
             <GlassButton as="a" href="#contact" variant="glass">
-              Let&apos;s Talk
+              Hire me
             </GlassButton>
             <a
               href="/SaiKomal_Resume.pdf"
@@ -225,23 +250,21 @@ export function HeroSection() {
               rel="noopener noreferrer"
               download="SaiKomal_Resume.pdf"
               data-cursor="open"
-              className="flex items-center gap-2 text-sm font-semibold text-white/60 transition-colors duration-200 hover:text-brand-light"
+              className="t-meta flex items-center gap-1.5 font-semibold text-white/60 transition-colors duration-200 hover:text-brand-light"
             >
               Resume
-              <DownloadIcon className="h-4 w-4" />
+              <DownloadIcon className="h-3.5 w-3.5" />
             </a>
             <SocialLinks socials={SOCIALS} variant="icon" className="ml-1" />
           </motion.div>
         </motion.div>
       </motion.div>
 
-      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5">
-        <div className="flex h-9 w-9 animate-bounce items-center justify-center rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md">
-          <ChevronDownIcon className="h-4 w-4 text-white/50" />
+      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+        <div className="flex h-8 w-8 animate-bounce items-center justify-center rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md">
+          <ChevronDownIcon className="h-3.5 w-3.5 text-white/50" />
         </div>
-        <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-white/30">
-          Explore the work
-        </span>
+        <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/30">Scroll</span>
       </div>
     </section>
   );

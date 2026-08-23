@@ -68,13 +68,13 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="select-none font-display text-xl font-bold text-white"
+          className="select-none font-display text-base font-bold text-white"
           onClick={() => setMenuOpen(false)}
         >
           &lt; <span className="text-brand">{BRAND_NAME}</span> /&gt;
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
               <NavLink link={link} isActive={isLinkActive(link)} onNavigate={handleNavigate} showActiveIndicator />
@@ -89,12 +89,12 @@ export function Navbar() {
             rel="noopener noreferrer"
             download="SaiKomal_Resume.pdf"
             data-cursor="open"
-            className="flex items-center gap-1.5 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-brand-light"
+            className="flex items-center gap-1.5 text-xs font-medium text-white/70 transition-colors duration-200 hover:text-brand-light"
           >
             Resume
             <DownloadIcon className="h-3.5 w-3.5" />
           </a>
-          <GlassButton as="a" href="/#contact" variant="solid" className="px-5 py-2 text-xs">
+          <GlassButton as="a" href="/#contact" variant="solid" className="px-4 py-2">
             Let&apos;s Talk
           </GlassButton>
         </div>
@@ -118,7 +118,7 @@ export function Navbar() {
                 link={link}
                 isActive={isLinkActive(link)}
                 onNavigate={handleNavigate}
-                className="block text-base"
+                className="block text-sm"
               />
             </li>
           ))}
@@ -128,7 +128,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               download="SaiKomal_Resume.pdf"
-              className="flex items-center gap-1.5 text-base font-medium text-white/70"
+              className="flex items-center gap-1.5 text-sm font-medium text-white/70"
             >
               Resume
               <DownloadIcon className="h-4 w-4" />

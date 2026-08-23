@@ -9,11 +9,11 @@ export function KeyInsightsSection() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {KEY_INSIGHTS.map((ins) => (
           <SurfaceCard key={ins.num}>
-            <div className="mb-4 text-4xl font-bold text-[color:var(--accent)] opacity-25">
+            <div className="mb-4 text-2xl font-bold text-[color:var(--accent)] opacity-25">
               {ins.num}
             </div>
-            <h4 className="mb-3 text-base font-bold text-white">{ins.title}</h4>
-            <p className="text-sm leading-relaxed text-white/60">{ins.desc}</p>
+            <h3 className="t-h4 mb-3 text-white">{ins.title}</h3>
+            <p className="text-[13px] leading-relaxed text-white/60">{ins.desc}</p>
           </SurfaceCard>
         ))}
       </div>

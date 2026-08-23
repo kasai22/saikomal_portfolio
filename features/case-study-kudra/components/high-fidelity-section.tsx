@@ -28,7 +28,7 @@ export function HighFidelitySection() {
           className="block h-auto w-full"
         />
       </div>
-      <p className="mb-10 text-center text-xs text-white/30">
+      <p className="mb-10 text-center text-[11px] text-white/30">
         Live Fleet Operations Dashboard — 84 vehicles, real-time status tiles, active trip
         monitoring
       </p>
@@ -48,13 +48,13 @@ export function HighFidelitySection() {
                 className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              <span className="absolute left-3 top-3 rounded-full border border-[color:var(--accent-border)] bg-black/65 px-3 py-1 text-xs font-semibold text-[color:var(--accent)]">
+              <span className="absolute left-3 top-3 rounded-full border border-[color:var(--accent-border)] bg-black/65 px-3 py-1 text-[11px] font-semibold text-[color:var(--accent)]">
                 {screen.tag}
               </span>
             </div>
             <div className="p-5">
-              <h4 className="mb-2 text-sm font-bold text-white">{screen.title}</h4>
-              <p className="text-xs leading-relaxed text-white/50">{screen.desc}</p>
+              <h3 className="t-h4 mb-2 text-white">{screen.title}</h3>
+              <p className="text-[11px] leading-relaxed text-white/50">{screen.desc}</p>
             </div>
           </div>
         ))}

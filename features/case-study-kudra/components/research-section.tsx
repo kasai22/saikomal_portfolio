@@ -18,16 +18,16 @@ export function ResearchSection() {
               <div key={r.area} className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4">
                 <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--accent)]" />
                 <div>
-                  <div className="text-sm font-semibold text-white">{r.area}</div>
-                  <div className="mt-0.5 text-sm text-white/50">{r.desc}</div>
+                  <div className="text-[13px] font-semibold text-white">{r.area}</div>
+                  <div className="mt-0.5 text-[13px] text-white/50">{r.desc}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
         <AccentCard className="flex flex-col justify-center">
-          <h3 className="mb-2 text-lg font-bold text-[color:var(--accent)]">Research Approach</h3>
-          <p className="mb-6 text-sm leading-relaxed text-white/60">
+          <h3 className="mb-2 text-[15px] font-bold text-[color:var(--accent)]">Research Approach</h3>
+          <p className="mb-6 text-[13px] leading-relaxed text-white/60">
             Structured interviews and contextual observation sessions with logistics operators
             across multiple branches. Focus was on shadowing real operational workflows — not
             just asking about them.
@@ -35,8 +35,8 @@ export function ResearchSection() {
           <div className="grid grid-cols-2 gap-4">
             {RESEARCH_STATS.map((s) => (
               <div key={s.l} className="rounded-xl border border-white/10 bg-white/5 p-4 text-center">
-                <div className="text-2xl font-bold text-[color:var(--accent)]">{s.v}</div>
-                <div className="mt-1 text-xs text-white/45">{s.l}</div>
+                <div className="t-metric text-[color:var(--accent)]">{s.v}</div>
+                <div className="mt-1 text-[11px] text-white/45">{s.l}</div>
               </div>
             ))}
           </div>

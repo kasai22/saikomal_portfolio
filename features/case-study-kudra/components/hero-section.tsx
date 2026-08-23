@@ -29,18 +29,18 @@ export function HeroSection() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <span className="rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[color:var(--accent)]">
+              <span className="rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] px-4 py-1 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--accent)]">
                 Logistics / Fleet Management SaaS
               </span>
             </div>
-            <h1 className="mb-3 text-4xl font-bold leading-none text-[color:var(--accent)] sm:text-5xl lg:text-6xl">
+            <h1 className="t-display mb-3 text-[color:var(--accent)]">
               Kudra
             </h1>
-            <p className="mb-4 text-sm italic text-white/40">
+            <p className="mb-4 text-[13px] italic text-white/40">
               &quot;Fleet operations ran on phone calls and spreadsheets — every trip status
               required someone to pick up the phone.&quot;
             </p>
-            <p className="mb-8 max-w-lg text-sm leading-relaxed text-white/65">
+            <p className="mb-8 max-w-lg text-[13px] leading-relaxed text-white/65">
               Trip creation alone took ~15 minutes per trip, coordination happened over calls,
               WhatsApp, and paper, and destination branches routinely had zero warning before a
               vehicle arrived. Kudra replaced that with a single, structured trip management
@@ -53,10 +53,10 @@ export function HeroSection() {
                   key={m.label}
                   className="rounded-xl border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] px-4 py-3 backdrop-blur-md"
                 >
-                  <div className="mb-1 text-xs uppercase tracking-widest text-white/35">
+                  <div className="mb-1 text-[11px] uppercase tracking-widest text-white/35">
                     {m.label}
                   </div>
-                  <div className="text-sm font-semibold text-white">{m.value}</div>
+                  <div className="text-[13px] font-semibold text-white">{m.value}</div>
                 </div>
               ))}
             </div>
@@ -85,8 +85,8 @@ export function HeroSection() {
               key={s.label}
               className="rounded-2xl border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] px-5 py-4 text-center backdrop-blur-md"
             >
-              <div className="mb-1 text-2xl font-bold text-[color:var(--accent)]">{s.value}</div>
-              <div className="text-xs text-white/45">{s.label}</div>
+              <div className="t-metric mb-1 text-[color:var(--accent)]">{s.value}</div>
+              <div className="text-[11px] text-white/45">{s.label}</div>
             </div>
           ))}
         </motion.div>

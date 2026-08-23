@@ -6,6 +6,12 @@ export interface Social {
   platform: SocialPlatform;
 }
 
+/** A single numeric outcome — rendered as a metric chip, never a sentence. */
+export interface Metric {
+  value: string;
+  label: string;
+}
+
 export interface CapabilityGroup {
   icon: string;
   category: string;
@@ -16,7 +22,10 @@ export interface CapabilityGroup {
 export interface ProcessStep {
   number: string;
   title: string;
+  /** One short line. Anything longer belongs in a case study, not here. */
   description: string;
+  /** Concrete artefact this stage produces — shown as a caption chip. */
+  output: string;
 }
 
 export interface ExperienceEntry {
@@ -33,6 +42,20 @@ export interface AboutStat {
   value: string;
 }
 
+/** One stop on the "how I got here" track in the About section. */
+export interface CareerStep {
+  period: string;
+  label: string;
+  detail: string;
+}
+
+/** A short, scannable strength — replaces long "what I bring" prose. */
+export interface Strength {
+  icon: string;
+  title: string;
+  detail: string;
+}
+
 export interface CaseStudyProject {
   title: string;
   description: string;
@@ -45,6 +68,8 @@ export interface CaseStudyProject {
   timeline: string;
   businessGoal: string;
   readMins: number;
+  /** Headline outcomes, shown as chips on the card. */
+  metrics: Metric[];
 }
 
 export interface CodingProject {

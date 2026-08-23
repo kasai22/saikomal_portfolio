@@ -4,6 +4,9 @@ import { useId, useState, type FormEvent } from "react";
 import { GlassSurface } from "@/components/ui/glass-surface";
 import { CONTACT_EMAIL } from "@/features/home/constants/data";
 
+const FIELD_CLASS =
+  "w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-[13px] text-white placeholder-white/25 transition-colors focus:border-brand focus:outline-none";
+
 export function ContactForm() {
   const [status, setStatus] = useState<string | null>(null);
   const nameId = useId();
@@ -22,17 +25,17 @@ export function ContactForm() {
     const body = encodeURIComponent(`${message}\n\nFrom: ${name} (${email})`);
     window.open(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`, "_blank");
 
-    setStatus("Opening your email client with your message pre-filled…");
+    setStatus("Opening your email client with the message pre-filled…");
     form.reset();
   };
 
   return (
-    <GlassSurface level={2} className="p-6">
-      <h3 className="mb-5 text-lg font-semibold text-white">Reach Out</h3>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+    <GlassSurface level={2} className="p-5">
+      <h3 className="t-h3 mb-4 text-white">Reach out</h3>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
         <div>
-          <label htmlFor={nameId} className="mb-2 block text-sm text-white/50">
-            Your Name
+          <label htmlFor={nameId} className="t-meta mb-1.5 block text-white/45">
+            Name
           </label>
           <input
             id={nameId}
@@ -40,13 +43,13 @@ export function ContactForm() {
             type="text"
             required
             autoComplete="name"
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/30 transition-colors focus:border-brand focus:outline-none"
-            placeholder="John Doe"
+            className={FIELD_CLASS}
+            placeholder="Jane Doe"
           />
         </div>
         <div>
-          <label htmlFor={emailId} className="mb-2 block text-sm text-white/50">
-            Email Address
+          <label htmlFor={emailId} className="t-meta mb-1.5 block text-white/45">
+            Email
           </label>
           <input
             id={emailId}
@@ -54,12 +57,12 @@ export function ContactForm() {
             type="email"
             required
             autoComplete="email"
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/30 transition-colors focus:border-brand focus:outline-none"
-            placeholder="john@example.com"
+            className={FIELD_CLASS}
+            placeholder="jane@company.com"
           />
         </div>
         <div>
-          <label htmlFor={messageId} className="mb-2 block text-sm text-white/50">
+          <label htmlFor={messageId} className="t-meta mb-1.5 block text-white/45">
             Message
           </label>
           <textarea
@@ -67,17 +70,17 @@ export function ContactForm() {
             name="message"
             required
             rows={4}
-            className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/30 transition-colors focus:border-brand focus:outline-none"
-            placeholder="Tell me about the role — team, tech stack, timeline..."
+            className={`${FIELD_CLASS} resize-none`}
+            placeholder="Team, stack, timeline…"
           />
         </div>
         <button
           type="submit"
-          className="w-full rounded-xl bg-brand py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-dark"
+          className="w-full rounded-lg bg-brand py-2.5 text-xs font-semibold text-white transition-colors duration-200 hover:bg-brand-dark"
         >
-          Send Message
+          Send message
         </button>
-        <p role="status" aria-live="polite" className="min-h-[1.25rem] text-sm text-white/50">
+        <p role="status" aria-live="polite" className="t-meta min-h-[1rem] text-white/45">
           {status}
         </p>
       </form>

@@ -22,12 +22,12 @@ export function ProblemStatementSection() {
         <h3 className="mb-4 font-semibold text-white">
           Vehicles were moving without operational context.
         </h3>
-        <p className="mb-4 text-sm leading-relaxed text-white/65">Teams could not easily identify:</p>
+        <p className="mb-4 text-[13px] leading-relaxed text-white/65">Teams could not easily identify:</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {MISSING_CONTEXT_ITEMS.map((item) => (
             <div
               key={item}
-              className="flex items-start gap-2 rounded-xl border border-white/10 bg-white/5 p-3 text-sm text-white/65"
+              className="flex items-start gap-2 rounded-xl border border-white/10 bg-white/5 p-3 text-[13px] text-white/65"
             >
               <span className="text-[color:var(--accent)]">✦</span> {item}
             </div>

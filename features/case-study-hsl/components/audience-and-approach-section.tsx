@@ -20,7 +20,7 @@ export function AudienceAndApproachSection() {
         {approach?.paragraph && (
           <SurfaceCard>
             <h3 className="mb-5 font-semibold text-white">The approach</h3>
-            <p className="text-sm leading-relaxed text-white/65">{approach.paragraph}</p>
+            <p className="text-[13px] leading-relaxed text-white/65">{approach.paragraph}</p>
           </SurfaceCard>
         )}
       </div>

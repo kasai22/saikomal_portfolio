@@ -20,16 +20,16 @@ export function DesignThinkingStepsSection() {
           <li key={step.title}>
             <SurfaceCard className="h-full p-5 md:p-5">
               <div className="mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] text-xs font-bold text-[color:var(--accent)]">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] text-[11px] font-bold text-[color:var(--accent)]">
                   {index + 1}
                 </span>
-                <h3 className="text-sm font-bold text-white">{step.title}</h3>
+                <h3 className="text-[13px] font-bold text-white">{step.title}</h3>
               </div>
               <ul className="space-y-2">
                 {step.items.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-2 text-xs leading-relaxed text-white/55"
+                    className="flex items-start gap-2 text-[11px] leading-relaxed text-white/55"
                   >
                     <span className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-[color:var(--accent)]" />
                     {item}

@@ -11,7 +11,7 @@ export function OverviewSection() {
       <AccentCard>
         <div className="space-y-4">
           {INTRO_PARAGRAPHS.map((paragraph, paragraphIndex) => (
-            <p key={paragraphIndex} className="text-base leading-relaxed text-white/65">
+            <p key={paragraphIndex} className="text-[13px] leading-relaxed text-white/65">
               {paragraph.map((segment, segmentIndex) => (
                 <span
                   key={segmentIndex}
@@ -26,7 +26,7 @@ export function OverviewSection() {
       </AccentCard>
 
       <div className="mt-8">
-        <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/35">
+        <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-white/35">
           What was in scope
         </p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
