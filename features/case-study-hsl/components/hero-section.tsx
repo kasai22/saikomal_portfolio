@@ -31,7 +31,7 @@ export function HeroSection() {
         className="absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 25% 40%, rgba(0,128,128,0.14) 0%, transparent 65%), radial-gradient(ellipse 50% 70% at 80% 55%, rgba(0,128,128,0.07) 0%, transparent 60%), #0a0a0a",
+            "radial-gradient(ellipse 80% 60% at 25% 40%, rgba(232,163,61,0.16) 0%, transparent 65%), radial-gradient(ellipse 50% 70% at 80% 55%, rgba(232,163,61,0.09) 0%, transparent 60%), #FBF9F2",
         }}
       />
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-12 pt-20">
@@ -47,27 +47,27 @@ export function HeroSection() {
             <h1 className="t-display mb-1 text-[color:var(--accent)]">
               {HERO_TITLE}
             </h1>
-            <p className="t-body mb-4 max-w-lg text-white/70">{HERO_SUBTITLE}</p>
-            <p className="mb-4 text-[13px] italic text-white/40">&ldquo;{HERO_QUOTE}&rdquo;</p>
-            <p className="mb-8 max-w-lg text-[13px] leading-relaxed text-white/65">{HERO_SUMMARY}</p>
+            <p className="t-body mb-4 max-w-lg text-ink/72">{HERO_SUBTITLE}</p>
+            <p className="mb-4 text-[13px] italic text-ink/60">&ldquo;{HERO_QUOTE}&rdquo;</p>
+            <p className="mb-8 max-w-lg text-[13px] leading-relaxed text-ink/70">{HERO_SUMMARY}</p>
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {HERO_METADATA.map((m) => (
                 <div
                   key={m.label}
-                  className="rounded-xl border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] px-4 py-3 backdrop-blur-md"
+                  className="rounded-sm border border-[color:var(--panel-1-border)] bg-[var(--panel-1-bg)] px-4 py-3"
                 >
-                  <div className="mb-1 text-[11px] uppercase tracking-widest text-white/35">
+                  <div className="mb-1 text-[11px] uppercase tracking-widest text-ink/60">
                     {m.label}
                   </div>
-                  <div className="text-[13px] font-semibold text-white">{m.value}</div>
+                  <div className="text-[13px] font-semibold text-ink">{m.value}</div>
                 </div>
               ))}
             </div>
           </div>
 
           <motion.div className="hidden lg:block" style={reducedMotion ? undefined : { y: imageY }}>
-            <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+            <div className="relative overflow-hidden rounded-sm border border-ink/12 shadow-sm">
               <Image
                 src="/figmaAssets/image-16.png"
                 alt="Redesigned Hindustan Shipyard Limited homepage"
@@ -88,10 +88,10 @@ export function HeroSection() {
           {HERO_STATS.map((s) => (
             <div
               key={s.label}
-              className="rounded-2xl border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] px-5 py-4 text-center backdrop-blur-md"
+              className="rounded-sm border border-[color:var(--panel-1-border)] bg-[var(--panel-1-bg)] px-5 py-4 text-center"
             >
               <div className="t-metric mb-1 text-[color:var(--accent)]">{s.value}</div>
-              <div className="text-[11px] text-white/45">{s.label}</div>
+              <div className="text-[11px] text-ink/60">{s.label}</div>
             </div>
           ))}
         </motion.div>

@@ -1,3 +1,4 @@
+import { CountUp } from "@/components/ui/count-up";
 import { cn } from "@/lib/utils";
 import type { Metric } from "@/features/home/types";
 
@@ -22,12 +23,12 @@ export function MetricRow({ metrics, tone = "accent", className }: MetricRowProp
           <dd
             className={cn(
               "text-base font-semibold leading-none tracking-[-0.02em] tabular-nums",
-              tone === "accent" ? "[color:var(--accent)]" : "text-brand-light",
+              tone === "accent" ? "[color:var(--accent)]" : "text-brand-ink",
             )}
           >
-            {metric.value}
+            <CountUp value={metric.value} />
           </dd>
-          <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-white/35">{metric.label}</p>
+          <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-ink/60">{metric.label}</p>
         </div>
       ))}
     </dl>

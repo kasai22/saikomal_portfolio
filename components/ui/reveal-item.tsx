@@ -28,12 +28,23 @@ export function RevealItem({ children, delayMs = 0, className, layered = false }
   const reducedMotion = useReducedMotion();
 
   if (layered) {
+    // `initial`/`whileInView` are declared unconditionally rather than
+    // switched off under reduced motion. `useReducedMotion` resolves in an
+    // effect, so it is always false on the first render — gating the props
+    // on it meant framer applied `opacity: 0` on that first pass, then had
+    // no `whileInView` target left to animate to once the flag flipped,
+    // and the card stayed invisible forever. Reduced motion is honoured by
+    // collapsing the transition to zero instead: same end state, no motion.
     return (
       <motion.div
-        initial={reducedMotion ? undefined : { opacity: 0, y: 50, scale: 0.97, filter: "blur(8px)" }}
-        whileInView={reducedMotion ? undefined : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 50, scale: 0.97, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
         viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{ duration: 0.7, delay: delayMs / 1000, ease: [0.16, 1, 0.3, 1] }}
+        transition={
+          reducedMotion
+            ? { duration: 0 }
+            : { duration: 0.7, delay: delayMs / 1000, ease: [0.16, 1, 0.3, 1] }
+        }
         className={className}
       >
         {children}

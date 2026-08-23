@@ -7,6 +7,8 @@ import type {
   ExperienceEntry,
   Metric,
   ProcessStep,
+  Product,
+  Service,
   Social,
   Strength,
 } from "@/features/home/types";
@@ -41,12 +43,40 @@ export const HERO_SUBCOPY = "I design enterprise products — then write the fro
 /** Proof chips under the hero headline. */
 export const HERO_PROOF: Metric[] = [
   { value: "3+", label: "Years" },
-  { value: "20%", label: "Ops efficiency" },
+  { value: "30%", label: "Manual effort cut" },
   { value: "3", label: "Case studies" },
 ];
 
 /** The design-to-ship loop, drawn as a track in the hero. */
 export const HERO_LOOP = ["Research", "Design", "Prototype", "Ship"];
+
+/* ------------------------------------------------------------------ *
+ * The deck, sequenced work-first: the catalogue of what exists comes
+ * before the argument about how it was made. Chapter numbers live here
+ * so resequencing is a change in one place rather than eight.
+ * ------------------------------------------------------------------ */
+export const DECK = {
+  work: { chapter: "01", eyebrow: "Selected work" },
+  products: { chapter: "02", eyebrow: "Products I have shipped" },
+  development: { chapter: "03", eyebrow: "Development" },
+  help: { chapter: "04", eyebrow: "Ways I can help" },
+  process: { chapter: "05", eyebrow: "How I work" },
+  background: { chapter: "06", eyebrow: "About" },
+  track: { chapter: "07", eyebrow: "Track record" },
+  ask: { chapter: "08", eyebrow: "Contact" },
+} as const;
+
+/** Slide-level supporting lines — one sentence each, no more. */
+export const SLIDE_INTRO = {
+  work: "Long-form case studies. Every one replaced a manual process people were running by phone and spreadsheet.",
+  products: "The full catalogue — including the products that never got a case study of their own.",
+  development: "Sites I designed and shipped the front-end for, live in production.",
+  help: "What I actually take off a team's plate, and what gets handed back.",
+  process: "Five stages, each ending in something concrete enough to hand over.",
+  background: "Engineering, then data, then UX. Which is why my work is dashboards and admin consoles.",
+  track: "Four roles, one direction of travel — data, to design, to owning the product.",
+  ask: "Looking for a full-time Product Designer or UX Engineer role. The form is the fastest reply.",
+};
 
 export const ABOUT_STATS: AboutStat[] = [
   { label: "Projects", value: "10+" },
@@ -57,10 +87,11 @@ export const ABOUT_STATS: AboutStat[] = [
 
 /** About, told as a track rather than three paragraphs. */
 export const CAREER_PATH: CareerStep[] = [
-  { period: "2018–22", label: "Mechanical Engineering", detail: "B.Tech, VIT Vellore" },
-  { period: "2022–23", label: "SQL Developer", detail: "Oracle — data at scale" },
-  { period: "2023–24", label: "Associate UX Designer", detail: "Sweya — enterprise UI" },
-  { period: "2024–", label: "Product Owner", detail: "ONDL — logistics platforms" },
+  { period: "2017–21", label: "Mechanical Engineering", detail: "B.Tech, VIT Vellore" },
+  { period: "2021–23", label: "SQL Developer", detail: "Oracle — data at scale" },
+  { period: "2023–24", label: "UX Designer", detail: "Sweya — enterprise UI" },
+  { period: "2024–26", label: "Product Owner & UX Designer", detail: "ONDL — logistics platforms" },
+  { period: "2026–", label: "UX Designer", detail: "Onliest — AI products" },
 ];
 
 export const ABOUT_LEAD =
@@ -172,36 +203,47 @@ export const PROCESS_STEPS: ProcessStep[] = [
 
 export const EXPERIENCE: ExperienceEntry[] = [
   {
-    company: "ONDL",
-    role: "Product Owner",
+    company: "Onliest",
+    role: "UX Designer",
     location: "Visakhapatnam, India",
-    duration: "Oct 2024 — Present",
+    duration: "May 2026 — Present",
     current: true,
     summary: [
-      "Raised operational efficiency 20% by redesigning the trip-lifecycle workflow.",
-      "Led design for three logistics platforms — Kudra, Parivahan, Karta.",
-      "Built the atomic design system behind every product module.",
+      "Designed REX, an AI recommendation product — requirements through flows, interaction models and prototypes.",
+      "Designed the AI edge states: low-confidence, no-result, cold-start, loading, empty and error.",
+      "Built reusable Figma patterns across Marketplace, HR Admin and Revenue using Variables and Variants.",
+    ],
+  },
+  {
+    company: "ONDL",
+    role: "Product Owner & UX Designer",
+    location: "Visakhapatnam, India",
+    duration: "Oct 2024 — May 2026",
+    summary: [
+      "Cut trip-creation effort 20% and manual operational effort 30% by consolidating the workflow.",
+      "Designed Kudra end to end — trip creation, driver assignment, vehicle allocation, fuel tracking.",
+      "Ran field research with drivers, dispatchers and fleet supervisors.",
     ],
   },
   {
     company: "Sweya Infotech",
-    role: "Associate UX Designer",
+    role: "UX Designer",
     location: "Visakhapatnam, India",
     duration: "May 2023 — Oct 2024",
     summary: [
-      "Designed enterprise workflow interfaces end to end.",
-      "Ran user research and usability testing to steer product decisions.",
-      "Documented reusable UI components, including empty and error states.",
+      "Designed enterprise products from research and IA through to high-fidelity UI.",
+      "Ran interviews, usability testing and stakeholder workshops to find workflow breakage.",
+      "Created reusable components and design-system patterns for scalable interfaces.",
     ],
   },
   {
     company: "Oracle",
     role: "SQL Developer",
     location: "Hyderabad, India",
-    duration: "Mar 2022 — Apr 2023",
+    duration: "Nov 2021 — Apr 2023",
     summary: [
-      "Built data-integration modules between Oracle PaaS and enterprise systems.",
-      "Shipped internal reporting tools for business teams.",
+      "Built enterprise data-integration and reporting solutions across APIs and business workflows.",
+      "Shipped internal reporting tools that widened access to business data.",
     ],
   },
 ];
@@ -217,12 +259,96 @@ export const RECRUITER_SNAPSHOT = {
   availability: "Open to new roles",
 };
 
+/* ------------------------------------------------------------------ *
+ * The catalogue. Broader than CASE_STUDIES — every product worked on,
+ * including the two (HR Admin, ClappIt) that have no case study written
+ * yet. `href` is set only where there is one to enter.
+ * ------------------------------------------------------------------ */
+export const PRODUCTS: Product[] = [
+  {
+    category: "AI / Recommendation",
+    name: "REX",
+    tagline: "AI recommendation and product intelligence",
+    description:
+      "Personalised recommendation flows, conversational AI, multilingual input and inspiration-image discovery — with explainable ranking and graceful degradation.",
+    year: "2026",
+    href: "/case-study/rex",
+    image: "/rex/rex-hero.svg",
+  },
+  {
+    category: "HR technology",
+    name: "Onliest HR Admin",
+    tagline: "Internal HRMS across three roles",
+    description:
+      "Attendance, leave, onboarding and approvals simplified for Admin, Manager and Employee — with exception handling, bulk actions and audit trails.",
+    year: "2026",
+    image: null,
+  },
+  {
+    category: "Fleet management",
+    name: "Kudra",
+    tagline: "Fleet and trip management",
+    description:
+      "End-to-end fleet workflows — trip lifecycle, driver assignment, vehicle allocation and route monitoring — as scalable interaction patterns.",
+    year: "2025 – 2026",
+    href: "/case-study/kudra",
+    image: "/figmaAssets/kudra-dashboard.png",
+  },
+  {
+    category: "Cloud infrastructure",
+    name: "ClappIt",
+    tagline: "Cloud infrastructure platform",
+    description:
+      "Complex cloud-infrastructure workflows simplified for technical and non-technical users, on a reusable component set.",
+    year: "2023 – 2024",
+    image: "/figmaAssets/clappit-dashboard.png",
+  },
+  {
+    category: "Public sector",
+    name: "Hindustan Shipyard",
+    tagline: "Enterprise website redesign",
+    description:
+      "Information architecture, navigation and content hierarchy restructured across five modules — research-led, responsive and accessible.",
+    year: "2024",
+    href: "/case-study",
+    image: "/figmaAssets/image-16.png",
+  },
+];
+
+/** Ways I can help — offers, each naming what gets handed back. */
+export const SERVICES: Service[] = [
+  {
+    number: "01",
+    title: "Design the product end to end",
+    description: "Framing an ambiguous problem through to production-ready UI.",
+    deliverables: ["Research", "IA & flows", "Wireframes", "High-fidelity UI"],
+  },
+  {
+    number: "02",
+    title: "Build the front-end",
+    description: "The design shipped in React — not a static file thrown over the wall.",
+    deliverables: ["React / Next.js", "Tailwind", "Working prototype", "Dev handoff"],
+  },
+  {
+    number: "03",
+    title: "Set up the design system",
+    description: "Tokens, components and states, so the product holds together as it grows.",
+    deliverables: ["Design tokens", "Component library", "Edge states", "Documentation"],
+  },
+  {
+    number: "04",
+    title: "Design AI-facing interfaces",
+    description: "Making a model's output legible — and safe when it is uncertain.",
+    deliverables: ["Conversational UX", "Explainable ranking", "Confidence signals", "Fallback states"],
+  },
+];
+
 export const CASE_STUDIES: CaseStudyProject[] = [
   {
     title: "Kudra — Fleet & Trip Management",
     description: "Call-and-spreadsheet fleet coordination, rebuilt as one trip-centric system.",
     tags: ["Product Strategy", "Enterprise UX", "SaaS Design", "Fleet Management"],
-    accentColor: "#F5B731",
+    accentColor: "#956807",
     slug: "/case-study/kudra",
     year: "2025",
     image: "/figmaAssets/kudra-dashboard.png",
@@ -240,7 +366,7 @@ export const CASE_STUDIES: CaseStudyProject[] = [
     title: "Onliest REX — AI Fashion Stylist",
     description: "An agentic stylist that scores and explains every recommendation it makes.",
     tags: ["Conversational AI", "Agentic Architecture", "Fashion Tech", "BRD → Product"],
-    accentColor: "#c9a86a",
+    accentColor: "#8B6C32",
     slug: "/case-study/rex",
     year: "2026",
     image: "/rex/rex-hero.svg",
@@ -258,7 +384,7 @@ export const CASE_STUDIES: CaseStudyProject[] = [
     title: "Hindustan Shipyard Digital Experience",
     description: "Five siloed public-sector modules, unified so status-chasing calls stopped.",
     tags: ["Stakeholder Research", "Enterprise Ecosystem", "Public Sector", "Accessibility"],
-    accentColor: "#0FA3A3",
+    accentColor: "#0C7E7E",
     slug: "/case-study",
     year: "2024",
     image: "/figmaAssets/image-16.png",
@@ -302,7 +428,7 @@ export const CODING_PROJECTS: CodingProject[] = [
     url: "https://www.hotelfirst.one/",
     tech: ["Next.js", "TypeScript", "Tailwind"],
     image: "/figmaAssets/hotelfirst-screenshot.png",
-    accent: "#EA580C",
+    accent: "#C3490A",
     year: "2024",
   },
 ];

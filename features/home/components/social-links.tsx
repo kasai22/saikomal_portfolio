@@ -44,14 +44,14 @@ export function SocialLinks({ socials, variant = "icon", className }: SocialLink
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition-all duration-200 hover:border-brand/50 hover:bg-brand/5"
+              className="group flex items-center gap-3 rounded-sm border border-ink/12 bg-ink/[0.035] px-4 py-3 transition-all duration-200 hover:border-brand/50 hover:bg-brand/5"
             >
-              <span className="text-white/50 transition-colors group-hover:text-brand-light">
+              <span className="text-ink/60 transition-colors group-hover:text-brand-ink">
                 <Icon className="h-4 w-4" />
               </span>
-              <span className="t-h4 text-white/85">{social.label}</span>
-              <span className="t-meta text-white/30">{PLATFORM_CONTEXT[social.platform]}</span>
-              <ExternalLinkIcon className="ml-auto h-3.5 w-3.5 text-white/20 transition-colors group-hover:text-brand-light" />
+              <span className="t-h4 text-ink/85">{social.label}</span>
+              <span className="t-meta text-ink/60">{PLATFORM_CONTEXT[social.platform]}</span>
+              <ExternalLinkIcon className="ml-auto h-3.5 w-3.5 text-ink/60 transition-colors group-hover:text-brand-ink" />
             </a>
           );
         })}
@@ -70,7 +70,7 @@ export function SocialLinks({ socials, variant = "icon", className }: SocialLink
             target="_blank"
             rel="noopener noreferrer"
             aria-label={social.label}
-            className="text-white/55 transition-colors duration-200 hover:text-brand-light"
+            className="text-ink/62 transition-colors duration-200 hover:text-brand-ink"
           >
             <Icon className="h-4 w-4" />
           </a>

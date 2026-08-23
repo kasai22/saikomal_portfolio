@@ -59,7 +59,7 @@ export function TiltCard({ children, className, maxDeg = 4 }: TiltCardProps) {
 
 /**
  * A soft, pointer-following light sweep across a glass surface. Place as
- * the last child inside a `GlassSurface` (so it's clipped to the same
+ * the last child inside a `Panel` (so it's clipped to the same
  * rounded corners) within a `TiltCard`. Renders nothing outside one.
  */
 export function GlassHighlight() {

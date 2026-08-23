@@ -14,13 +14,13 @@ export function KeyFeaturesSection() {
         {KEY_FEATURES.map((f) => (
           <div
             key={f.title}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-200 hover:border-white/20"
+            className="rounded-sm border border-ink/12 bg-ink/[0.033] p-6 transition-colors duration-200 hover:border-ink/20"
           >
             <span className="mb-3 inline-block rounded-full bg-[color:var(--accent-subtle)] px-2.5 py-1 text-[11px] font-medium text-[color:var(--accent)]">
               {f.tag}
             </span>
-            <h3 className="t-h4 mb-2 text-white">{f.title}</h3>
-            <p className="text-[13px] leading-relaxed text-white/55">{f.desc}</p>
+            <h3 className="t-h4 mb-2 text-ink">{f.title}</h3>
+            <p className="text-[13px] leading-relaxed text-ink/62">{f.desc}</p>
           </div>
         ))}
       </div>

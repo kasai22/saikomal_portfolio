@@ -20,7 +20,7 @@ export function CoreWorkflowSection() {
                 <StepBadge n={w.step} />
               </div>
               <SurfaceCard className="flex-1">
-                <h3 className="t-h4 mb-3 text-white">{w.title}</h3>
+                <h3 className="t-h4 mb-3 text-ink">{w.title}</h3>
                 <BulletList items={w.items} />
               </SurfaceCard>
             </div>

@@ -28,8 +28,8 @@ export function NavLink({ link, isActive, onNavigate, className, showActiveIndic
       aria-current={isActive ? "true" : undefined}
       onClick={(event) => onNavigate(link, event)}
       className={cn(
-        "relative font-body text-xs font-medium text-white/80 transition-colors duration-200 hover:text-brand-light",
-        isActive && "text-brand-light",
+        "relative font-body text-xs font-medium text-ink/80 transition-colors duration-200 hover:text-brand-ink",
+        isActive && "text-brand-ink",
         className,
       )}
     >

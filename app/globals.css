@@ -3,64 +3,45 @@
 @tailwind utilities;
 
 :root {
-  --background: 220 8% 5%;
-  --foreground: 0 0% 100%;
-  --muted: 0 0% 12%;
-  --muted-foreground: 0 0% 65%;
-  --popover: 0 0% 5%;
-  --popover-foreground: 0 0% 98%;
-  --border: 0 0% 100% / 0.1;
-  --input: 0 0% 100% / 0.1;
-  --card: 0 0% 4%;
-  --card-foreground: 0 0% 98%;
-  --primary: 180 100% 25%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 10%;
-  --secondary-foreground: 0 0% 98%;
-  --accent: 180 100% 25%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  --ring: 180 100% 25%;
-  --radius: 0.75rem;
+  /* Warm cream page, warm near-black ink, one amber accent. */
+  --background: 44 43% 97%;
+  --foreground: 60 8% 7%;
+  --muted: 44 20% 92%;
+  --muted-foreground: 60 5% 38%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 60 8% 7%;
+  --border: 60 8% 7% / 0.12;
+  --input: 60 8% 7% / 0.14;
+  --card: 0 0% 100%;
+  --card-foreground: 60 8% 7%;
+  --primary: 36 79% 57%;
+  --primary-foreground: 60 8% 7%;
+  --secondary: 44 25% 90%;
+  --secondary-foreground: 60 8% 7%;
+  --accent: 36 79% 57%;
+  --accent-foreground: 60 8% 7%;
+  --destructive: 0 72% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 33 88% 29%;
 
-  /* Liquid Glass material system — four surface levels, from barely-there
-     nav chrome up to focused/selected states. Consumed via the GlassSurface
-     component (components/ui/glass-surface.tsx) rather than hand-rolled
-     blur/opacity classes, so the material stays consistent everywhere. */
-  --glass-1-bg: rgba(255, 255, 255, 0.04);
-  --glass-1-border: rgba(255, 255, 255, 0.1);
-  --glass-2-bg: rgba(255, 255, 255, 0.06);
-  --glass-2-border: rgba(255, 255, 255, 0.12);
-  --glass-3-bg: rgba(255, 255, 255, 0.08);
-  --glass-3-border: rgba(255, 255, 255, 0.16);
-  --glass-4-bg: rgba(255, 255, 255, 0.12);
-  --glass-4-border: rgba(255, 255, 255, 0.22);
+  /* Square by default — the technical-drawing look has no soft corners.
+     A 2px radius only takes the mechanical edge off, nothing more. */
+  --radius: 2px;
 
-  /* Figma-derived text styles used across the case study pages */
-  --adaptivemedium: rgba(255, 255, 255, 0.8);
-  --adaptivestrong: rgba(255, 255, 255, 1);
-  --adaptiveweak: rgba(113, 118, 137, 1);
-  --display-semibold-l-font-family: "Inter", Helvetica;
-  --display-semibold-l-font-size: 32px;
-  --display-semibold-l-font-weight: 400;
-  --display-semibold-l-line-height: 40px;
-  --display-semibold-l-letter-spacing: 0px;
-  --heading-regular-l-font-family: "Inter", Helvetica;
-  --heading-regular-l-font-size: 16px;
-  --heading-regular-l-font-weight: 400;
-  --heading-regular-l-line-height: 24px;
-  --heading-regular-l-letter-spacing: 0px;
-  --heading-regular-s-font-family: "Inter", Helvetica;
-  --heading-regular-s-font-size: 16px;
-  --heading-regular-s-font-weight: 400;
-  --heading-regular-s-line-height: 24px;
-  --heading-regular-s-letter-spacing: 0px;
-  --heading-semibold-m-font-family: "Inter", Helvetica;
-  --heading-semibold-m-font-size: 18px;
-  --heading-semibold-m-font-weight: 400;
-  --heading-semibold-m-line-height: 24px;
-  --heading-semibold-m-letter-spacing: 0px;
+  /* Panel system. Replaces the previous four translucent glass levels:
+     on cream, depth reads through paper tone and rule weight, not blur. */
+  --panel-1-bg: #ffffff;
+  --panel-1-border: rgba(20, 20, 15, 0.1);
+  --panel-2-bg: #ffffff;
+  --panel-2-border: rgba(20, 20, 15, 0.14);
+  --panel-3-bg: #ffffff;
+  --panel-3-border: rgba(20, 20, 15, 0.2);
+  --panel-4-bg: #f5f1e6;
+  --panel-4-border: rgba(20, 20, 15, 0.24);
+
+  /* Hairline used for section rules and technical framing. */
+  --rule: rgba(20, 20, 15, 0.14);
+  --rule-strong: rgba(20, 20, 15, 0.28);
 }
 
 @layer base {
@@ -72,8 +53,21 @@
     scroll-behavior: smooth;
   }
 
+  /* Lenis drives scrolling itself while it is mounted; leaving the native
+     smooth behaviour on makes anchor jumps fight the momentum loop. */
+  html.lenis-active {
+    scroll-behavior: auto;
+  }
+  html.lenis-active,
+  html.lenis-active body {
+    height: auto;
+  }
+  .lenis-active .lenis-content {
+    will-change: transform;
+  }
+
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    @apply bg-paper text-ink font-body antialiased;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
@@ -88,11 +82,16 @@
     @apply font-display;
   }
 
+  ::selection {
+    background: #e8a33d;
+    color: #14140f;
+  }
+
   /* Visible, consistent focus ring for keyboard users across the whole app */
   :focus-visible {
-    outline: 2px solid #00b3b3;
+    outline: 2px solid #8a5a0a;
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 1px;
   }
 
   /* Respect users who've asked the OS for reduced motion */
@@ -112,121 +111,110 @@
   }
 }
 
-@layer utilities {
-  /* Figma text styles, collapsed into single classes instead of long
-     arbitrary-value chains repeated across every case study section. */
-  .text-style-display-semibold-l {
-    font-family: var(--display-semibold-l-font-family);
-    font-size: var(--display-semibold-l-font-size);
-    font-weight: var(--display-semibold-l-font-weight);
-    line-height: var(--display-semibold-l-line-height);
-    letter-spacing: var(--display-semibold-l-letter-spacing);
-  }
-  .text-style-heading-regular-l {
-    font-family: var(--heading-regular-l-font-family);
-    font-size: var(--heading-regular-l-font-size);
-    font-weight: var(--heading-regular-l-font-weight);
-    line-height: var(--heading-regular-l-line-height);
-    letter-spacing: var(--heading-regular-l-letter-spacing);
-  }
-  .text-style-heading-regular-s {
-    font-family: var(--heading-regular-s-font-family);
-    font-size: var(--heading-regular-s-font-size);
-    font-weight: var(--heading-regular-s-font-weight);
-    line-height: var(--heading-regular-s-line-height);
-    letter-spacing: var(--heading-regular-s-letter-spacing);
-  }
-  .text-style-heading-semibold-m {
-    font-family: var(--heading-semibold-m-font-family);
-    font-size: var(--heading-semibold-m-font-size);
-    font-weight: var(--heading-semibold-m-font-weight);
-    line-height: var(--heading-semibold-m-line-height);
-    letter-spacing: var(--heading-semibold-m-letter-spacing);
-  }
-  .text-adaptive-medium {
-    color: var(--adaptivemedium);
-  }
-  .text-adaptive-strong {
-    color: var(--adaptivestrong);
-  }
-  .text-adaptive-weak {
-    color: var(--adaptiveweak);
-  }
-
-  /* Subtle film-grain texture — adds tactile depth to large dark hero sections
-     without any image asset. Applied as a low-opacity overlay, not a filter,
-     so it stays cheap and doesn't affect layout. */
-  .bg-noise {
-    position: relative;
-  }
-  .bg-noise::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-}
-
 @layer components {
   /* ------------------------------------------------------------------
      Type scale — one small, tight ramp used everywhere instead of each
-     section picking its own text-2xl/3xl/base/sm combination. Sizes are
-     deliberately restrained: hierarchy comes from weight, colour and
-     tracking, not from large type. Only `.t-display` and `.t-h2` scale
-     up on wider viewports; everything below stays fixed so body copy
-     reads the same size on every breakpoint and every page.
+     section picking its own sizes. Display sizes sit at weight 500 with
+     negative tracking; hierarchy comes from weight, colour and tracking
+     rather than from large type. Only `.t-display` and `.t-h2` scale up
+     on wider viewports so body copy reads identically everywhere.
      ------------------------------------------------------------------ */
 
-  /* Hero only — the single largest thing on the site. */
   .t-display {
-    @apply text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] sm:text-[34px] lg:text-[42px];
+    @apply text-[34px] font-medium leading-[1.04] tracking-[-0.032em] sm:text-[46px] lg:text-[58px];
   }
 
-  /* Section headings (h2). */
   .t-h2 {
-    @apply text-lg font-semibold leading-tight tracking-[-0.01em] sm:text-xl;
+    @apply text-[26px] font-medium leading-[1.1] tracking-[-0.028em] sm:text-[34px];
   }
 
-  /* Card / sub-section headings (h3). */
   .t-h3 {
-    @apply text-[15px] font-semibold leading-snug tracking-[-0.01em];
+    @apply text-[17px] font-medium leading-snug tracking-[-0.018em];
   }
 
-  /* Smallest heading tier — list-item and tile titles (h4). */
   .t-h4 {
-    @apply text-[13px] font-semibold leading-snug;
+    @apply text-[13px] font-semibold leading-snug tracking-[-0.008em];
   }
 
-  /* Kicker above a heading. */
-  .t-eyebrow {
-    @apply text-[10px] font-semibold uppercase tracking-[0.22em];
-  }
-
-  /* Default running copy. */
   .t-body {
     @apply text-[13px] leading-[1.65];
   }
 
-  /* Secondary copy, captions, list meta. */
   .t-meta {
     @apply text-[11px] leading-[1.5];
   }
 
-  /* Chips, tags, pills. */
-  .t-chip {
-    @apply rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] leading-none text-white/60;
-  }
-
-  /* Numeric callouts — stat tiles and outcome figures. */
   .t-metric {
-    @apply text-xl font-semibold leading-none tracking-[-0.02em] tabular-nums sm:text-2xl;
+    @apply text-[30px] font-medium leading-none tracking-[-0.03em] tabular-nums sm:text-[38px];
   }
 
-  /* Inline action link at the foot of a card. */
+  /* ---- The technical annotation layer -------------------------------
+     Every micro-label, index, chapter marker and figure caption is set
+     in mono, uppercase, wide-tracked. This is the device that makes the
+     page read as a technical document rather than a marketing site.
+     ------------------------------------------------------------------ */
+
+  .t-label {
+    @apply font-mono text-[10px] font-medium uppercase leading-none tracking-[0.16em];
+  }
+
+  .t-eyebrow {
+    @apply font-mono text-[10px] font-medium uppercase leading-none tracking-[0.16em];
+  }
+
   .t-action {
-    @apply text-[11px] font-semibold uppercase tracking-[0.14em];
+    @apply font-mono text-[10px] font-medium uppercase tracking-[0.14em];
+  }
+
+  .t-chip {
+    @apply border border-ink/[0.12] bg-ink/[0.03] px-2 py-1 font-mono text-[10px] uppercase leading-none tracking-[0.08em] text-ink/[0.62];
+  }
+
+  /* A full-width hairline with the section rule colour. */
+  .rule {
+    @apply h-px w-full bg-[color:var(--rule)];
+  }
+}
+
+@layer utilities {
+  /* Technical corner ticks — four short right-angle marks at the corners
+     of a block, the way a drawing marks its crop. Purely decorative. */
+  .corner-ticks {
+    position: relative;
+  }
+  .corner-ticks::before,
+  .corner-ticks::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    pointer-events: none;
+    border-color: var(--rule-strong);
+  }
+  .corner-ticks::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .corner-ticks::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+
+  /* Faint blueprint grid, for large empty areas. */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(20, 20, 15, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 20, 15, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Dotted plotting field, used behind diagram-like panels. */
+  .bg-dots {
+    background-image: radial-gradient(rgba(20, 20, 15, 0.14) 1px, transparent 1px);
+    background-size: 16px 16px;
   }
 }

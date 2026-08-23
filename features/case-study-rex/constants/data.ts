@@ -168,35 +168,35 @@ export const HIGH_FIDELITY_CAPTION =
 export const HIGH_FIDELITY_SCREENS: HighFidelityScreen[] = [
   {
     screen: "Interactive Stylist Chat",
-    image: "/rex/screen-1.png",
+    image: "/rex/screen-1.svg",
     tag: "Conversational Mode",
     decision:
       "Voice input, live transcript, and a stylist avatar sit alongside the generated design and a real-time Match Score — so the conversation and the recommendation are never more than a glance apart.",
   },
   {
     screen: "Guided Design Wizard",
-    image: "/rex/screen-2.png",
+    image: "/rex/screen-2.svg",
     tag: "Structured Mode · Step 14 of 14",
     decision:
       "A persistent step tracker and progress bar give customers who prefer control a transparent, undo-able path — while the same Match Score panel keeps both modes consistent.",
   },
   {
     screen: "Upload Your Inspiration",
-    image: "/rex/screen-3.png",
+    image: "/rex/screen-3.svg",
     tag: "Image Understanding",
     decision:
       "Drag-and-drop upload with format guidance (JPG/PNG/SVG/TIFF, 25MB max) sits next to REX's own conversational suggestion — reinforcing that upload is one of several ways in, not the only one.",
   },
   {
     screen: "Explore Curated Collections",
-    image: "/rex/screen-4.png",
+    image: "/rex/screen-4.svg",
     tag: "Discovery Mode",
     decision:
       "Filterable, ranked collections give browsing customers the same scored personalization as the chat and Wizard flows, closing the loop between passive discovery and active design.",
   },
   {
     screen: "REX Landing & Onboarding",
-    image: "/rex/screen-5.png",
+    image: "/rex/screen-5.svg",
     tag: "Entry Point",
     decision:
       "Four clear entry paths — Design Saree, Design Blouse, Just Exploring, Upload Inspiration — replace a single generic search bar, reducing the 'blank page' problem of a first-time AI stylist session.",

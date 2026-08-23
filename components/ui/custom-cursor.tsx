@@ -67,7 +67,7 @@ export function CustomCursor() {
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[100] hidden items-center justify-center whitespace-nowrap rounded-full border border-white/40 bg-white/10 px-0 text-[9px] font-semibold uppercase tracking-widest text-white backdrop-blur-sm transition-[width,height,padding,opacity] duration-200 ease-out md:flex"
+      className="pointer-events-none fixed left-0 top-0 z-[100] hidden items-center justify-center whitespace-nowrap rounded-full border border-ink/35 bg-ink/[0.06] px-0 text-[9px] font-semibold uppercase tracking-widest text-ink transition-[width,height,padding,opacity] duration-200 ease-out md:flex"
       style={{
         x,
         y,

@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { SkipToContentLink } from "@/components/layout/skip-to-content-link";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { PersonJsonLd } from "@/components/seo/person-json-ld";
 import { SITE_URL } from "@/constants/site";
 import "./globals.css";
 
-const inter = Inter({
+// Geometric grotesque for everything readable; a mono for the technical
+// annotation layer (FIG. markers, indices, micro-labels).
+const display = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+  variable: "--font-display",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -65,10 +75,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-body antialiased">
+    <html lang="en" className={`${display.variable} ${mono.variable}`}>
+      <body className="bg-paper font-body text-ink antialiased">
         <PersonJsonLd />
         <SkipToContentLink />
+        <SmoothScroll />
         <ScrollProgress />
         <CustomCursor />
         <Navbar />

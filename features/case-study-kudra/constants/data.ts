@@ -208,7 +208,7 @@ export const UI_DECISIONS = [
 
 export const STATUS_COLORS: StatusColor[] = [
   { state: "Moving", color: "#22c55e", label: "Green" },
-  { state: "Halted", color: "#F5B731", label: "Amber" },
+  { state: "Halted", color: "#956807", label: "Amber" },
   { state: "Stopped", color: "#ef4444", label: "Red" },
   { state: "Inactive", color: "#6b7280", label: "Grey" },
 ];

@@ -10,7 +10,7 @@ import { NAV_LINKS, BRAND_NAME } from "@/constants/navigation";
 import type { NavLink as NavLinkType } from "@/types/navigation";
 import { NavLink } from "@/components/layout/nav-link";
 import { MenuToggleButton } from "@/components/layout/menu-toggle-button";
-import { GlassButton } from "@/components/ui/glass-button";
+import { ActionButton } from "@/components/ui/action-button";
 import { DownloadIcon } from "@/components/icons";
 
 const SECTION_IDS = NAV_LINKS.map((link) => link.sectionId).filter(
@@ -55,23 +55,19 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed left-0 right-0 top-0 z-50 px-4 pt-4 transition-all duration-300 sm:px-6",
+        "fixed left-0 right-0 top-0 z-50 border-b transition-colors duration-300",
+        scrolled ? "border-[color:var(--rule)] bg-paper/90 backdrop-blur-sm" : "border-transparent",
       )}
     >
       <div
-        className={cn(
-          "mx-auto flex max-w-7xl items-center justify-between rounded-full px-6 py-3 backdrop-blur-md transition-all duration-300",
-          scrolled
-            ? "border border-[color:var(--glass-2-border)] bg-[var(--glass-2-bg)] shadow-lg shadow-black/20"
-            : "border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)]",
-        )}
+        className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-3.5"
       >
         <Link
           href="/"
-          className="select-none font-display text-base font-bold text-white"
+          className="select-none font-display text-[15px] font-semibold tracking-[-0.02em] text-ink"
           onClick={() => setMenuOpen(false)}
         >
-          &lt; <span className="text-brand">{BRAND_NAME}</span> /&gt;
+          &lt; <span className="text-brand-ink">{BRAND_NAME}</span> /&gt;
         </Link>
 
         <ul className="hidden items-center gap-7 md:flex">
@@ -89,14 +85,14 @@ export function Navbar() {
             rel="noopener noreferrer"
             download="SaiKomal_Resume.pdf"
             data-cursor="open"
-            className="flex items-center gap-1.5 text-xs font-medium text-white/70 transition-colors duration-200 hover:text-brand-light"
+            className="flex items-center gap-1.5 text-xs font-medium text-ink/72 transition-colors duration-200 hover:text-brand-ink"
           >
             Resume
             <DownloadIcon className="h-3.5 w-3.5" />
           </a>
-          <GlassButton as="a" href="/#contact" variant="solid" className="px-4 py-2">
-            Let&apos;s Talk
-          </GlassButton>
+          <ActionButton as="a" href="/#contact" variant="solid" className="px-4 py-2">
+            Let&apos;s talk
+          </ActionButton>
         </div>
 
         <MenuToggleButton
@@ -109,7 +105,7 @@ export function Navbar() {
       <div
         id={menuId}
         hidden={!menuOpen}
-        className="mx-auto mt-2 max-w-7xl rounded-3xl border border-[color:var(--glass-4-border)] bg-[var(--glass-4-bg)] px-6 py-6 backdrop-blur-xl md:hidden"
+        className="border-b border-[color:var(--rule)] bg-paper px-6 py-6 md:hidden"
       >
         <ul className="flex flex-col gap-4">
           {NAV_LINKS.map((link) => (
@@ -128,16 +124,16 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               download="SaiKomal_Resume.pdf"
-              className="flex items-center gap-1.5 text-sm font-medium text-white/70"
+              className="flex items-center gap-1.5 text-sm font-medium text-ink/72"
             >
               Resume
               <DownloadIcon className="h-4 w-4" />
             </a>
           </li>
           <li>
-            <GlassButton as="a" href="/#contact" variant="solid" className="w-full justify-center">
-              Let&apos;s Talk
-            </GlassButton>
+            <ActionButton as="a" href="/#contact" variant="solid" className="w-full justify-center">
+              Let&apos;s talk
+            </ActionButton>
           </li>
         </ul>
       </div>

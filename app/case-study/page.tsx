@@ -26,18 +26,18 @@ export const metadata: Metadata = {
 };
 
 const ACCENT_VARS = cssVars({
-  "--accent": "#0FA3A3",
-  "--accent-subtle": "rgba(15,163,163,0.12)",
-  "--accent-border": "rgba(15,163,163,0.28)",
+  "--accent": "#0C7E7E",
+  "--accent-subtle": "rgba(12,126,126,0.12)",
+  "--accent-border": "rgba(12,126,126,0.30)",
 });
 
 export default function HslCaseStudyPage() {
   return (
-    <div style={ACCENT_VARS} className="min-h-screen bg-[#0a0a0a] text-white">
+    <div style={ACCENT_VARS} className="min-h-screen bg-paper text-ink">
       <HeroSection />
 
       <div className="mx-auto max-w-7xl space-y-16 px-6 pb-16">
-        <div className="overflow-hidden rounded-2xl border border-white/10 lg:hidden">
+        <div className="overflow-hidden rounded-sm border border-ink/12 lg:hidden">
           <Image
             src="/figmaAssets/image-16.png"
             alt="Redesigned Hindustan Shipyard Limited homepage"

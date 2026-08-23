@@ -13,7 +13,7 @@ export function OutcomesSection() {
       <SectionHeading label="Outcomes & Impact" title="What Actually" accent="Shipped" />
 
       <AccentCard className="mb-8">
-        <p className="text-[13px] leading-relaxed text-white/75">{OUTCOME_INTRO}</p>
+        <p className="text-[13px] leading-relaxed text-ink/75">{OUTCOME_INTRO}</p>
       </AccentCard>
 
       <ul className="mb-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -21,21 +21,21 @@ export function OutcomesSection() {
           <li key={outcome.title}>
             <SurfaceCard className="h-full">
               <div className="mb-4 h-1 w-8 rounded-full bg-[color:var(--accent)]" />
-              <h3 className="mb-3 text-[13px] font-bold text-white">{outcome.title}</h3>
-              <p className="text-[13px] leading-relaxed text-white/60">{outcome.description}</p>
+              <h3 className="mb-3 text-[13px] font-bold text-ink">{outcome.title}</h3>
+              <p className="text-[13px] leading-relaxed text-ink/65">{outcome.description}</p>
             </SurfaceCard>
           </li>
         ))}
       </ul>
 
       <div>
-        <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-white/35">
+        <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-ink/60">
           What I took from it
         </p>
         <div className="space-y-4">
           {REFLECTION_POINTS.map((point) => (
             <SurfaceCard key={point}>
-              <p className="text-[13px] leading-relaxed text-white/65">{point}</p>
+              <p className="text-[13px] leading-relaxed text-ink/70">{point}</p>
             </SurfaceCard>
           ))}
         </div>

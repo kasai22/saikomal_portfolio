@@ -4,7 +4,7 @@ export function BackToPortfolioLink() {
   return (
     <Link
       href="/"
-      className="group mb-8 mt-4 inline-flex items-center gap-2 font-body text-[13px] font-medium text-[color:var(--accent,#008080)] transition-colors hover:text-white"
+      className="group mb-8 mt-4 inline-flex items-center gap-2 font-body text-[13px] font-medium text-[color:var(--accent,#008080)] transition-colors hover:text-ink"
     >
       <svg
         className="h-4 w-4 transition-transform group-hover:-translate-x-1"

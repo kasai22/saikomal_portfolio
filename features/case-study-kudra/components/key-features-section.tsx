@@ -10,12 +10,12 @@ export function KeyFeaturesSection() {
         {FEATURES.map((f) => (
           <SurfaceCard key={f.feature} className="flex flex-col gap-4">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] text-base">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] text-base">
                 {f.icon}
               </div>
-              <h3 className="t-h4 text-white">{f.feature}</h3>
+              <h3 className="t-h4 text-ink">{f.feature}</h3>
             </div>
-            <p className="text-[13px] leading-relaxed text-white/60">{f.detail}</p>
+            <p className="text-[13px] leading-relaxed text-ink/65">{f.detail}</p>
           </SurfaceCard>
         ))}
       </div>

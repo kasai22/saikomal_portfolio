@@ -7,10 +7,25 @@ const config: Config = {
     container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
     extend: {
       colors: {
+        // Warm cream page, warm near-black text, one amber accent.
+        // `brand` is the fill amber (always carries ink-coloured text on
+        // top); `brand.ink` is the darkened amber used for accent TEXT,
+        // because the fill amber does not reach AA on cream.
+        paper: {
+          DEFAULT: "#FBF9F2",
+          raised: "#F5F1E6",
+          panel: "#FFFFFF",
+          sunk: "#EFEADC",
+        },
+        ink: {
+          DEFAULT: "#14140F",
+          soft: "#3D3D35",
+        },
         brand: {
-          DEFAULT: "#008080",
-          dark: "#006666",
-          light: "#00b3b3",
+          DEFAULT: "#E8A33D",
+          dark: "#C9871F",
+          light: "#F6D9A6",
+          ink: "#8A5A0A",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -51,8 +66,11 @@ const config: Config = {
         // size and tracking, not from mixing typefaces. `display` is kept
         // as an alias (rather than removed) so existing `font-display`
         // usage across the case-study pages keeps working unchanged.
-        display: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
-        body: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
+        body: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Technical annotation face — every micro-label, index and FIG.
+        // marker on the site is set in this, never in the body face.
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -16,7 +16,7 @@ export function MenuToggleButton({ isOpen, onClick, controlsId }: MenuToggleButt
   return (
     <button
       type="button"
-      className="p-2 text-white md:hidden"
+      className="p-2 text-ink md:hidden"
       onClick={onClick}
       aria-expanded={isOpen}
       aria-controls={controlsId}
@@ -26,19 +26,19 @@ export function MenuToggleButton({ isOpen, onClick, controlsId }: MenuToggleButt
       <div className="space-y-1.5" aria-hidden="true">
         <span
           className={cn(
-            "block h-0.5 w-6 bg-white transition-transform duration-300",
+            "block h-0.5 w-6 bg-paper-panel transition-transform duration-300",
             isOpen && "translate-y-2 rotate-45",
           )}
         />
         <span
           className={cn(
-            "block h-0.5 w-6 bg-white transition-opacity duration-300",
+            "block h-0.5 w-6 bg-paper-panel transition-opacity duration-300",
             isOpen && "opacity-0",
           )}
         />
         <span
           className={cn(
-            "block h-0.5 w-6 bg-white transition-transform duration-300",
+            "block h-0.5 w-6 bg-paper-panel transition-transform duration-300",
             isOpen && "-translate-y-2 -rotate-45",
           )}
         />

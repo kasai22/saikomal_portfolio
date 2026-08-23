@@ -3,7 +3,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { motion, useTransform, type MotionValue } from "framer-motion";
-import { GlassSurface } from "@/components/ui/glass-surface";
+import { Panel } from "@/components/ui/panel";
 import { TiltCard, GlassHighlight } from "@/components/ui/tilt-card";
 import { ParallaxImage } from "@/components/ui/parallax-image";
 import { cssVars } from "@/lib/css-vars";
@@ -22,13 +22,13 @@ interface FragmentConfig {
 // so the hero and the work section read as the same object at two scales.
 const FRAGMENTS: FragmentConfig[] = CASE_STUDIES.map((project, i) => ({
   project,
-  size: [156, 122, 98][i] ?? 98,
+  size: [216, 168, 132][i] ?? 132,
   depth: [1, 0.72, 0.5][i] ?? 0.5,
   positionClassName:
     [
-      "right-2 top-0 rotate-[-2deg]",
-      "-right-2 top-[176px] z-10 rotate-[3deg]",
-      "right-32 top-[302px] rotate-[-4deg]",
+      "right-0 top-0 rotate-[-2deg]",
+      "right-[188px] top-[150px] z-10 rotate-[3deg]",
+      "right-4 top-[250px] rotate-[-4deg]",
     ][i] ?? "",
 }));
 
@@ -48,7 +48,7 @@ interface HeroWorkFragmentsDesktopProps {
  */
 export function HeroWorkFragmentsDesktop({ scrollYProgress, mouseX, mouseY }: HeroWorkFragmentsDesktopProps) {
   return (
-    <div className="relative hidden h-[400px] w-full max-w-sm lg:block">
+    <div className="relative hidden h-[400px] w-[420px] shrink-0 lg:block">
       {FRAGMENTS.map((fragment) => (
         <FragmentTile
           key={fragment.project.slug + fragment.project.title}
@@ -116,7 +116,7 @@ function FragmentCard({
       className={`group block ${className ?? ""}`}
     >
       <TiltCard maxDeg={6} className="h-full w-full">
-        <GlassSurface
+        <Panel
           level={3}
           className="relative h-full w-full overflow-hidden transition-colors duration-300 hover:[border-color:var(--accent)]"
         >
@@ -125,21 +125,21 @@ function FragmentCard({
             alt={project.title}
             fill
             range={8}
-            sizes="(min-width: 1024px) 220px, 33vw"
+            sizes="(min-width: 1024px) 260px, 33vw"
             className="object-cover"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"
+            className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/75 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             aria-hidden="true"
           />
           <div className="absolute inset-x-0 bottom-0 translate-y-1.5 p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-            <p className="line-clamp-1 text-xs font-semibold text-white">{project.title}</p>
+            <p className="line-clamp-1 text-xs font-semibold text-paper">{project.title}</p>
             <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider [color:var(--accent)]">
               {project.tags[0]}
             </p>
           </div>
           <GlassHighlight />
-        </GlassSurface>
+        </Panel>
       </TiltCard>
     </Link>
   );

@@ -13,14 +13,14 @@ export function AudienceAndApproachSection() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {audience?.listItems && (
           <SurfaceCard>
-            <h3 className="mb-5 font-semibold text-white">Who I designed for</h3>
+            <h3 className="mb-5 font-semibold text-ink">Who I designed for</h3>
             <BulletList items={audience.listItems} />
           </SurfaceCard>
         )}
         {approach?.paragraph && (
           <SurfaceCard>
-            <h3 className="mb-5 font-semibold text-white">The approach</h3>
-            <p className="text-[13px] leading-relaxed text-white/65">{approach.paragraph}</p>
+            <h3 className="mb-5 font-semibold text-ink">The approach</h3>
+            <p className="text-[13px] leading-relaxed text-ink/70">{approach.paragraph}</p>
           </SurfaceCard>
         )}
       </div>

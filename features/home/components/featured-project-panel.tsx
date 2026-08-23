@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/icons";
-import { GlassSurface } from "@/components/ui/glass-surface";
+import { Panel } from "@/components/ui/panel";
 import { TiltCard, GlassHighlight } from "@/components/ui/tilt-card";
 import { ParallaxImage } from "@/components/ui/parallax-image";
 import { MetricRow } from "@/features/home/components/metric-row";
@@ -27,7 +27,7 @@ export function FeaturedProjectPanel({ project }: FeaturedProjectPanelProps) {
       data-cursor="view"
     >
       <TiltCard maxDeg={2.5}>
-        <GlassSurface
+        <Panel
           level={3}
           className="relative overflow-hidden transition-colors duration-300 hover:[border-color:var(--accent)]"
         >
@@ -52,25 +52,25 @@ export function FeaturedProjectPanel({ project }: FeaturedProjectPanelProps) {
                 <span className="t-eyebrow rounded-full border border-[color:var(--accent)] px-2.5 py-1 [color:var(--accent)]">
                   Featured
                 </span>
-                <span className="t-eyebrow text-white/35">{project.year}</span>
-                <span className="ml-auto t-meta text-white/30">{project.readMins} min read</span>
+                <span className="t-eyebrow text-ink/60">{project.year}</span>
+                <span className="ml-auto t-meta text-ink/60">{project.readMins} min read</span>
               </div>
 
-              <h3 className="text-lg font-semibold leading-snug tracking-[-0.01em] text-white lg:text-xl">
+              <h3 className="text-lg font-semibold leading-snug tracking-[-0.01em] text-ink lg:text-xl">
                 {project.title}
               </h3>
-              <p className="t-body text-white/55">{project.description}</p>
+              <p className="t-body text-ink/62">{project.description}</p>
 
-              <MetricRow metrics={project.metrics} className="border-y border-white/10 py-4" />
+              <MetricRow metrics={project.metrics} className="border-y border-ink/12 py-4" />
 
               <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5">
                 <div>
-                  <dt className="t-eyebrow text-white/30">Role</dt>
-                  <dd className="t-meta mt-1 text-white/75">{project.role}</dd>
+                  <dt className="t-eyebrow text-ink/60">Role</dt>
+                  <dd className="t-meta mt-1 text-ink/75">{project.role}</dd>
                 </div>
                 <div>
-                  <dt className="t-eyebrow text-white/30">Timeline</dt>
-                  <dd className="t-meta mt-1 text-white/75">{project.timeline}</dd>
+                  <dt className="t-eyebrow text-ink/60">Timeline</dt>
+                  <dd className="t-meta mt-1 text-ink/75">{project.timeline}</dd>
                 </div>
               </dl>
 
@@ -89,7 +89,7 @@ export function FeaturedProjectPanel({ project }: FeaturedProjectPanelProps) {
             </div>
           </div>
           <GlassHighlight />
-        </GlassSurface>
+        </Panel>
       </TiltCard>
     </Link>
   );

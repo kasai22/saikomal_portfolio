@@ -22,22 +22,22 @@ export function ProblemStatementSection() {
       <SectionHeading label="Problem Statement" title="The Operational" accent="Reality" />
 
       <AccentCard className="mb-6">
-        <p className="text-[13px] leading-relaxed text-white/75">{PROBLEM_STATEMENT}</p>
+        <p className="text-[13px] leading-relaxed text-ink/75">{PROBLEM_STATEMENT}</p>
       </AccentCard>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <SurfaceCard>
-          <h3 className="mb-5 font-semibold text-white">Where people got stuck</h3>
+          <h3 className="mb-5 font-semibold text-ink">Where people got stuck</h3>
           <BulletList items={WHO_WAS_STUCK} />
         </SurfaceCard>
         <SurfaceCard>
           <div className="mb-5 h-1 w-8 rounded-full bg-red-500/50" />
-          <h3 className="mb-5 font-semibold text-white">What it cost HSL</h3>
+          <h3 className="mb-5 font-semibold text-ink">What it cost HSL</h3>
           <ul className="space-y-2">
             {WHAT_IT_COST.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 text-[13px] leading-relaxed text-white/65"
+                className="flex items-start gap-3 text-[13px] leading-relaxed text-ink/70"
               >
                 <span className="mt-0.5 shrink-0 text-red-400/60">✗</span> {item}
               </li>

@@ -16,8 +16,8 @@ export function AccentCard({ children, className }: AccentCardProps) {
   return (
     <div
       className={cn(
-        "rounded-2xl border p-6 md:p-8",
-        "border-[color:var(--accent-border,rgba(0,128,128,0.25))] bg-[color:var(--accent-subtle,rgba(0,128,128,0.12))]",
+        "rounded-sm border p-6 md:p-8",
+        "border-[color:var(--accent-border,rgba(232,163,61,0.35))] bg-[color:var(--accent-subtle,rgba(232,163,61,0.14))]",
         className,
       )}
     >

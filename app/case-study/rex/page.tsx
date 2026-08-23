@@ -19,18 +19,18 @@ export const metadata: Metadata = {
 };
 
 const ACCENT_VARS = cssVars({
-  "--accent": "#c9a86a",
-  "--accent-subtle": "rgba(201,168,106,0.12)",
-  "--accent-border": "rgba(201,168,106,0.28)",
+  "--accent": "#8B6C32",
+  "--accent-subtle": "rgba(139,108,50,0.12)",
+  "--accent-border": "rgba(139,108,50,0.30)",
 });
 
 export default function RexCaseStudyPage() {
   return (
-    <div style={ACCENT_VARS} className="min-h-screen bg-[#0a0a0a] text-white">
+    <div style={ACCENT_VARS} className="min-h-screen bg-paper text-ink">
       <HeroSection />
 
       <div className="mx-auto max-w-7xl space-y-6 px-6 pb-16">
-        <div className="overflow-hidden rounded-2xl border border-white/10 lg:hidden">
+        <div className="overflow-hidden rounded-sm border border-ink/12 lg:hidden">
           <Image
             src="/rex/rex-hero.svg"
             alt="Onliest REX interface"

@@ -10,7 +10,7 @@ export function InformationArchitectureSection() {
         accent="Architecture"
         sub="One structure spanning all five modules, so a user crossing from tenders into recruitment doesn't have to relearn the site."
       />
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
+      <div className="overflow-hidden rounded-sm border border-ink/12 bg-ink/[0.022]">
         <Image
           src="/figmaAssets/image-15.png"
           alt="Information architecture diagram showing the redesigned HSL site map"

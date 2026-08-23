@@ -1,5 +1,6 @@
 import { DownloadIcon } from "@/components/icons";
-import { GlassButton } from "@/components/ui/glass-button";
+import { ActionButton } from "@/components/ui/action-button";
+import { DrawBox } from "@/components/ui/wipe";
 import { RECRUITER_SNAPSHOT } from "@/features/home/constants/data";
 
 const ROWS: { label: string; value: string }[] = [
@@ -20,17 +21,17 @@ const ROWS: { label: string; value: string }[] = [
  */
 export function RecruiterSnapshot() {
   return (
-    <section aria-label="Recruiter snapshot" className="border-y border-white/10 bg-white/[0.02]">
-      <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
+    <section aria-label="Recruiter snapshot" className="bg-paper-raised">
+      <DrawBox className="mx-auto flex max-w-6xl flex-col gap-5 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
         <dl className="grid flex-1 grid-cols-2 gap-x-6 gap-y-3.5 sm:grid-cols-4">
           {ROWS.map((row) => (
             <div key={row.label}>
-              <dt className="t-eyebrow text-white/30">{row.label}</dt>
-              <dd className="t-meta mt-1 text-white/85">{row.value}</dd>
+              <dt className="t-eyebrow text-ink/60">{row.label}</dt>
+              <dd className="t-meta mt-1 text-ink/85">{row.value}</dd>
             </div>
           ))}
         </dl>
-        <GlassButton
+        <ActionButton
           as="a"
           href="/SaiKomal_Resume.pdf"
           target="_blank"
@@ -40,8 +41,8 @@ export function RecruiterSnapshot() {
         >
           Resume
           <DownloadIcon className="h-3.5 w-3.5" />
-        </GlassButton>
-      </div>
+        </ActionButton>
+      </DrawBox>
     </section>
   );
 }

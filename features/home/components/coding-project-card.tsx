@@ -1,5 +1,5 @@
 import { ExternalLinkIcon } from "@/components/icons";
-import { GlassSurface } from "@/components/ui/glass-surface";
+import { Panel } from "@/components/ui/panel";
 import { TiltCard, GlassHighlight } from "@/components/ui/tilt-card";
 import { ParallaxImage } from "@/components/ui/parallax-image";
 import { cssVars } from "@/lib/css-vars";
@@ -12,7 +12,7 @@ interface CodingProjectCardProps {
 export function CodingProjectCard({ project }: CodingProjectCardProps) {
   return (
     <TiltCard maxDeg={5} className="h-full">
-      <GlassSurface
+      <Panel
         as="a"
         href={project.url}
         target="_blank"
@@ -22,7 +22,7 @@ export function CodingProjectCard({ project }: CodingProjectCardProps) {
         style={cssVars({ "--accent": project.accent })}
         className="group relative flex h-full flex-col overflow-hidden transition-colors duration-300 hover:[border-color:var(--accent)]"
       >
-        <div className="relative h-40 shrink-0 overflow-hidden bg-[#0e0e0e]">
+        <div className="relative h-40 shrink-0 overflow-hidden bg-paper-sunk">
           {project.image ? (
             <>
               <ParallaxImage
@@ -38,29 +38,29 @@ export function CodingProjectCard({ project }: CodingProjectCardProps) {
             <div
               className="flex h-full w-full items-center justify-center"
               style={{
-                background: `radial-gradient(ellipse at center, ${project.accent}18, transparent 70%), #0e0e0e`,
+                background: `radial-gradient(ellipse at center, ${project.accent}1f, transparent 70%), #EFEADC`,
               }}
               aria-hidden="true"
             >
-              <span className="text-3xl font-black opacity-20 [color:var(--accent)]">
+              <span className="text-3xl font-medium opacity-30 [color:var(--accent)]">
                 {project.title.charAt(0)}
               </span>
             </div>
           )}
 
-          <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/70 px-2.5 py-1 backdrop-blur-sm">
+          <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-sm border border-paper/25 bg-ink/85 px-2.5 py-1">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" aria-hidden="true" />
-            <span className="text-[10px] font-medium uppercase tracking-[0.12em] text-white/70">Live</span>
+            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-paper">Live</span>
           </div>
         </div>
 
         <div className="flex flex-1 flex-col gap-2.5 p-5">
           <div className="flex items-baseline gap-2">
-            <h3 className="t-h3 text-white">{project.title}</h3>
-            <span className="t-eyebrow ml-auto text-white/30">{project.year}</span>
+            <h3 className="t-h3 text-ink">{project.title}</h3>
+            <span className="t-eyebrow ml-auto text-ink/60">{project.year}</span>
           </div>
           <p className="t-meta [color:var(--accent)]">{project.tagline}</p>
-          <p className="t-meta flex-1 text-white/45">{project.description}</p>
+          <p className="t-meta flex-1 text-ink/60">{project.description}</p>
 
           <ul className="flex flex-wrap gap-1.5 pt-0.5">
             {project.tech.map((tech) => (
@@ -84,7 +84,7 @@ export function CodingProjectCard({ project }: CodingProjectCardProps) {
           </div>
         </div>
         <GlassHighlight />
-      </GlassSurface>
+      </Panel>
     </TiltCard>
   );
 }

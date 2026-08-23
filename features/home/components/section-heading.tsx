@@ -1,28 +1,57 @@
 import { RevealItem } from "@/components/ui/reveal-item";
+import { Wipe } from "@/components/ui/wipe";
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
+  /** Two-digit slide number — the running order of the pitch. */
+  chapter: string;
+  /** What this slide is, in one or two words. */
   eyebrow: string;
+  /** The claim the slide makes. Written as a sentence, not a label. */
   title: React.ReactNode;
-  /** One line at most. If it needs two, it belongs in a case study. */
+  /** One line of support underneath. Anything longer belongs in a case study. */
   intro?: string;
   align?: "left" | "center";
   className?: string;
 }
 
 /**
- * The one section header used by every home section — eyebrow, h2, and at
- * most a single line of intro. Sections previously each picked their own
- * heading sizes (text-2xl/text-3xl/text-xl); routing them all through here
- * is what keeps the page on one type scale.
+ * One slide header, used by every home section. The chapter number and rule
+ * are what make the page read as a running deck rather than a stack of
+ * unrelated sections — and routing all of them through here is what keeps
+ * the type scale and the heading-to-content gap identical everywhere.
  */
-export function SectionHeading({ eyebrow, title, intro, align = "left", className }: SectionHeadingProps) {
+export function SectionHeading({
+  chapter,
+  eyebrow,
+  title,
+  intro,
+  align = "left",
+  className,
+}: SectionHeadingProps) {
   return (
-    <RevealItem className={cn("mb-8", align === "center" && "text-center", className)}>
-      <span className="t-eyebrow text-brand">{eyebrow}</span>
-      <h2 className="t-h2 mt-2 text-white">{title}</h2>
+    <RevealItem className={cn("mb-10", className)}>
+      <Wipe from="left" durationMs={520}>
+        <div className={cn("flex items-center gap-3", align === "center" && "justify-center")}>
+          <span className="t-eyebrow tabular-nums text-brand-ink">{chapter}</span>
+          <span className="h-px w-6 bg-brand/60" aria-hidden="true" />
+          <span className="t-eyebrow text-ink/60">{eyebrow}</span>
+        </div>
+      </Wipe>
+      <Wipe from="left" delayMs={90}>
+        <h2 className={cn("t-h2 mt-3 max-w-2xl text-ink", align === "center" && "mx-auto text-center")}>
+          {title}
+        </h2>
+      </Wipe>
       {intro && (
-        <p className={cn("t-meta mt-2 max-w-md text-white/45", align === "center" && "mx-auto")}>{intro}</p>
+        <p
+          className={cn(
+            "t-body mt-2.5 max-w-lg text-ink/60",
+            align === "center" && "mx-auto text-center",
+          )}
+        >
+          {intro}
+        </p>
       )}
     </RevealItem>
   );

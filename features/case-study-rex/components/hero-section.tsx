@@ -20,7 +20,7 @@ export function HeroSection() {
         className="absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 20% 40%, rgba(154,26,58,0.14) 0%, transparent 65%), radial-gradient(ellipse 55% 55% at 80% 65%, rgba(201,168,106,0.05) 0%, transparent 60%), #0a0a0a",
+            "radial-gradient(ellipse 70% 60% at 20% 40%, rgba(139,108,50,0.14) 0%, transparent 65%), radial-gradient(ellipse 55% 55% at 80% 65%, rgba(139,108,50,0.07) 0%, transparent 60%), #FBF9F2",
         }}
       />
       <div
@@ -41,12 +41,12 @@ export function HeroSection() {
               <span className="rounded-full border border-[color:var(--accent-border)] bg-[color:var(--accent-subtle)] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--accent)]">
                 Luxury AI Fashion Platform
               </span>
-              <span className="text-[11px] font-medium text-white/30">2026</span>
+              <span className="text-[11px] font-medium text-ink/60">2026</span>
             </div>
             <h1 className="t-display mb-4">
               Onliest <span className="text-[color:var(--accent)]">REX</span>
             </h1>
-            <p className="mb-6 max-w-lg border-l-2 border-[color:var(--accent-border)] pl-4 text-[13px] leading-relaxed text-white/60">
+            <p className="mb-6 max-w-lg border-l-2 border-[color:var(--accent-border)] pl-4 text-[13px] leading-relaxed text-ink/65">
               {HERO_TAGLINE}
             </p>
 
@@ -54,10 +54,10 @@ export function HeroSection() {
               {HERO_META.map((m) => (
                 <div
                   key={m.label}
-                  className="rounded-xl border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] p-3 text-center backdrop-blur-md"
+                  className="rounded-sm border border-[color:var(--panel-1-border)] bg-[var(--panel-1-bg)] p-3 text-center"
                 >
                   <div className="text-[13px] font-bold text-[color:var(--accent)]">{m.value}</div>
-                  <div className="mt-1 text-[11px] text-white/35">{m.label}</div>
+                  <div className="mt-1 text-[11px] text-ink/60">{m.label}</div>
                 </div>
               ))}
             </div>
@@ -66,7 +66,7 @@ export function HeroSection() {
               {HERO_TAGS.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-[color:var(--glass-1-border)] bg-[var(--glass-1-bg)] px-3 py-1.5 text-[11px] text-white/55 backdrop-blur-md"
+                  className="rounded-full border border-[color:var(--panel-1-border)] bg-[var(--panel-1-bg)] px-3 py-1.5 text-[11px] text-ink/62"
                 >
                   {tag}
                 </span>
@@ -80,11 +80,11 @@ export function HeroSection() {
           >
             <div className="relative">
               <div
-                className="absolute -inset-4 rounded-3xl opacity-20 blur-2xl"
+                className="absolute -inset-4 rounded-sm opacity-20 blur-2xl"
                 style={{ background: "radial-gradient(ellipse, rgba(154,26,58,0.33), transparent 70%)" }}
                 aria-hidden="true"
               />
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+              <div className="relative overflow-hidden rounded-sm border border-ink/12 shadow-sm">
                 <Image
                   src="/rex/rex-hero.svg"
                   alt="Onliest REX interface"
@@ -99,15 +99,15 @@ export function HeroSection() {
         </div>
 
         <motion.div
-          className="mt-10 grid grid-cols-1 gap-6 border-t border-white/[0.08] pt-8 sm:grid-cols-3"
+          className="mt-10 grid grid-cols-1 gap-6 border-t border-ink/[0.096] pt-8 sm:grid-cols-3"
           style={reducedMotion ? undefined : { y: teamY }}
         >
           {TEAM_TOOLS.map((item) => (
             <div key={item.label}>
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-white/30">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-ink/60">
                 {item.label}
               </span>
-              <p className="mt-2 text-[13px] leading-relaxed text-white/65">{item.value}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-ink/70">{item.value}</p>
             </div>
           ))}
         </motion.div>

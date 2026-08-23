@@ -6,7 +6,7 @@ export function InformationArchitectureSection() {
   return (
     <section>
       <SectionHeading label="Information Architecture" title="Platform" accent="Structure" />
-      <p className="mb-8 max-w-2xl text-white/60">
+      <p className="mb-8 max-w-2xl text-ink/65">
         The platform architecture was designed around operational efficiency — ensuring quick
         access to the most-used workflows while reducing navigation complexity.
       </p>

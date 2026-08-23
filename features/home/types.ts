@@ -82,3 +82,30 @@ export interface CodingProject {
   accent: string;
   year: string;
 }
+
+/**
+ * A product worked on, in the "media I operate" sense — the catalogue of
+ * things that exist, distinct from the long-form case studies. Several of
+ * these have no case study of their own.
+ */
+export interface Product {
+  /** Small uppercase classifier above the name. */
+  category: string;
+  name: string;
+  /** One line, what it is. */
+  tagline: string;
+  /** Two lines at most, what was done. */
+  description: string;
+  year: string;
+  /** Present when a full case study exists to enter. */
+  href?: string;
+  image?: string | null;
+}
+
+/** One offer in "Ways I can help" — a service, not a skill. */
+export interface Service {
+  number: string;
+  title: string;
+  description: string;
+  deliverables: string[];
+}

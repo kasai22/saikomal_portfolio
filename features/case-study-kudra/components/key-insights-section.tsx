@@ -12,8 +12,8 @@ export function KeyInsightsSection() {
             <div className="mb-4 text-2xl font-bold text-[color:var(--accent)] opacity-25">
               {ins.num}
             </div>
-            <h3 className="t-h4 mb-3 text-white">{ins.title}</h3>
-            <p className="text-[13px] leading-relaxed text-white/60">{ins.desc}</p>
+            <h3 className="t-h4 mb-3 text-ink">{ins.title}</h3>
+            <p className="text-[13px] leading-relaxed text-ink/65">{ins.desc}</p>
           </SurfaceCard>
         ))}
       </div>

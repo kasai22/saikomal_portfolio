@@ -10,7 +10,7 @@ export function HighFidelityDesignsSection() {
         accent="Screens"
         sub="The flows that removed the email round-trip — candidate status, tender listings, and the module surfaces around them."
       />
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-4 md:p-8">
+      <div className="overflow-hidden rounded-sm border border-ink/12 bg-ink/[0.022] p-4 md:p-8">
         <Image
           src="/figmaAssets/mask-group.png"
           alt="Collage of high-fidelity mobile design screens for the HSL website"

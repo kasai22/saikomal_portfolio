@@ -18,7 +18,7 @@ export function PersonJsonLd() {
     description:
       "Product Designer and UX Engineer specialising in enterprise dashboards, operational workflows and design-to-code delivery.",
     address: { "@type": "PostalAddress", addressCountry: "IN" },
-    worksFor: { "@type": "Organization", name: "ONDL" },
+    worksFor: { "@type": "Organization", name: "Onliest" },
     alumniOf: { "@type": "CollegeOrUniversity", name: "VIT Vellore" },
     knowsAbout: [
       "User Experience Design",
