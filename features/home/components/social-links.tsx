@@ -44,7 +44,7 @@ export function SocialLinks({ socials, variant = "icon", className }: SocialLink
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 rounded-sm border border-ink/12 bg-ink/[0.035] px-4 py-3 transition-all duration-200 hover:border-brand/50 hover:bg-brand/5"
+              className="group flex items-center gap-3 rounded-sm border border-ink/12 bg-ink/[0.035] px-4 py-3 transition-all duration-instant hover:border-brand/50 hover:bg-brand/5"
             >
               <span className="text-ink/60 transition-colors group-hover:text-brand-ink">
                 <Icon className="h-4 w-4" />
@@ -70,7 +70,7 @@ export function SocialLinks({ socials, variant = "icon", className }: SocialLink
             target="_blank"
             rel="noopener noreferrer"
             aria-label={social.label}
-            className="text-ink/62 transition-colors duration-200 hover:text-brand-ink"
+            className="text-ink/62 transition-colors duration-instant hover:text-brand-ink"
           >
             <Icon className="h-4 w-4" />
           </a>

@@ -14,7 +14,7 @@ export function KeyFeaturesSection() {
         {KEY_FEATURES.map((f) => (
           <div
             key={f.title}
-            className="rounded-sm border border-ink/12 bg-ink/[0.033] p-6 transition-colors duration-200 hover:border-ink/20"
+            className="rounded-sm border border-ink/12 bg-ink/[0.033] p-6 transition-colors duration-instant hover:border-ink/20"
           >
             <span className="mb-3 inline-block rounded-full bg-[color:var(--accent-subtle)] px-2.5 py-1 text-[11px] font-medium text-[color:var(--accent)]">
               {f.tag}

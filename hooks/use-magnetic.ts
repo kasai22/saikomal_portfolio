@@ -1,8 +1,10 @@
 "use client";
 
 import type { PointerEvent } from "react";
-import { useMotionValue, useSpring, type MotionValue } from "framer-motion";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useMotionValue, useSpring, type MotionValue } from "motion/react";
+import { MAGNETIC } from "@/lib/animations/constants";
+import { SPRING_MAGNETIC } from "@/lib/animations/springs";
+import { useMotionTier } from "@/hooks/use-motion-tier";
 
 interface MagneticResult {
   x: MotionValue<number>;
@@ -13,19 +15,25 @@ interface MagneticResult {
 
 /**
  * Pulls an element a few px toward the pointer while hovering, capped at
- * `maxPx`, with a spring return to (0,0) on leave — the "magnetic button"
- * micro-interaction. No-ops under `prefers-reduced-motion` or touch, since
- * `onPointerMove` is expected to be wired up conditionally by the caller.
+ * `maxPx`, with a spring return to (0,0) on leave.
+ *
+ * Shared by the `<Magnetic>` wrapper and by `ActionButton`, which applies the
+ * pull to the anchor itself rather than to a wrapper element so the button's
+ * `inline-flex` layout is untouched.
+ *
+ * Returns motion values that never move when the tier doesn't support pointer
+ * motion, so callers pass them to `style` unconditionally — no branching on a
+ * flag, which is what used to leave a one-frame window of applied motion.
  */
-export function useMagnetic(maxPx = 8): MagneticResult {
-  const reducedMotion = useReducedMotion();
+export function useMagnetic(maxPx: number = MAGNETIC.base): MagneticResult {
+  const { rich } = useMotionTier();
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
-  const x = useSpring(rawX, { stiffness: 200, damping: 20, mass: 0.5 });
-  const y = useSpring(rawY, { stiffness: 200, damping: 20, mass: 0.5 });
+  const x = useSpring(rawX, SPRING_MAGNETIC);
+  const y = useSpring(rawY, SPRING_MAGNETIC);
 
   const onPointerMove = (event: PointerEvent<HTMLElement>) => {
-    if (reducedMotion || event.pointerType === "touch") return;
+    if (!rich || event.pointerType === "touch") return;
     const rect = event.currentTarget.getBoundingClientRect();
     const px = (event.clientX - rect.left) / rect.width - 0.5;
     const py = (event.clientY - rect.top) / rect.height - 0.5;

@@ -20,7 +20,7 @@ export function CaseStudyCta({ tagline }: CaseStudyCtaProps) {
         </Link>
         <Link
           href="/#contact"
-          className="rounded-full bg-[color:var(--accent,#008080)] px-6 py-3 text-[13px] font-semibold text-ink transition-[filter] duration-200 hover:brightness-90"
+          className="rounded-full bg-[color:var(--accent,#008080)] px-6 py-3 text-[13px] font-semibold text-ink transition-[filter] duration-instant hover:brightness-90"
         >
           Get in Touch
         </Link>

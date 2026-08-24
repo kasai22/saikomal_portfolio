@@ -1,4 +1,4 @@
-import { CountUp } from "@/components/ui/count-up";
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
 import { cn } from "@/lib/utils";
 import type { Metric } from "@/features/home/types";
 
@@ -26,7 +26,7 @@ export function MetricRow({ metrics, tone = "accent", className }: MetricRowProp
               tone === "accent" ? "[color:var(--accent)]" : "text-brand-ink",
             )}
           >
-            <CountUp value={metric.value} />
+            <AnimatedCounter value={metric.value} />
           </dd>
           <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-ink/60">{metric.label}</p>
         </div>

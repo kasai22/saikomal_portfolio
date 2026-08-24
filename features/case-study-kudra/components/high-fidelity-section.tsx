@@ -37,7 +37,7 @@ export function HighFidelitySection() {
         {SCREEN_SHOWCASE.map((screen) => (
           <div
             key={screen.title}
-            className="group overflow-hidden rounded-sm border border-ink/12 bg-ink/[0.022] transition-all duration-300 hover:border-ink/20"
+            className="group overflow-hidden rounded-sm border border-ink/12 bg-ink/[0.022] transition-all duration-fast hover:border-ink/20"
           >
             <div className="relative overflow-hidden">
               <Image
@@ -45,7 +45,7 @@ export function HighFidelitySection() {
                 alt={`Kudra — ${screen.title}`}
                 width={IMAGE_DIMENSIONS[screen.imageSrc]?.width ?? 1918}
                 height={IMAGE_DIMENSIONS[screen.imageSrc]?.height ?? 1026}
-                className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                className="block h-auto w-full transition-transform duration-base group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               <span className="absolute left-3 top-3 rounded-sm border border-paper/25 bg-ink/85 px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-paper">

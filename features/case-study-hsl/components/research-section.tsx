@@ -1,3 +1,5 @@
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
+import { STAGGER } from "@/lib/animations/constants";
 import { SectionHeading } from "@/components/case-study/section-heading";
 import { SurfaceCard } from "@/components/case-study/surface-card";
 import { AccentCard } from "@/components/case-study/accent-card";
@@ -33,12 +35,14 @@ export function ResearchSection() {
             asking them to describe it in the abstract.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            {RESEARCH_STATS.map((stat) => (
+            {RESEARCH_STATS.map((stat, i) => (
               <div
                 key={stat.label}
                 className="rounded-sm border border-ink/12 bg-ink/[0.035] p-4 text-center"
               >
-                <div className="t-metric text-[color:var(--accent)]">{stat.value}</div>
+                <div className="t-metric text-[color:var(--accent)]">
+                  <AnimatedCounter value={stat.value} delay={i * STAGGER.tight} />
+                </div>
                 <div className="mt-1 text-[11px] text-ink/60">{stat.label}</div>
               </div>
             ))}

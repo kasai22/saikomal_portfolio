@@ -1,4 +1,5 @@
-import { RevealItem } from "@/components/ui/reveal-item";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { Panel } from "@/components/ui/panel";
 import { HomeSection } from "@/features/home/components/home-section";
 import { SectionHeading } from "@/features/home/components/section-heading";
@@ -34,9 +35,9 @@ export function ServicesSection() {
         intro={SLIDE_INTRO.help}
       />
 
-      <div className="grid grid-cols-1 gap-px overflow-hidden border border-ink/12 bg-ink/12 md:grid-cols-2">
-        {SERVICES.map((service, i) => (
-          <RevealItem key={service.number} delayMs={i * 80}>
+      <Stagger className="grid grid-cols-1 gap-px overflow-hidden border border-ink/12 bg-ink/12 md:grid-cols-2">
+        {SERVICES.map((service) => (
+          <StaggerItem key={service.number}>
             <div className="flex h-full flex-col gap-3 bg-paper-panel p-6">
               <div className="flex items-baseline gap-3">
                 <span className="t-eyebrow tabular-nums text-brand-ink">{service.number}</span>
@@ -51,22 +52,22 @@ export function ServicesSection() {
                 ))}
               </ul>
             </div>
-          </RevealItem>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
-      <RevealItem className="mb-4 mt-10">
+      <FadeIn direction="up" distance="nudge" className="mb-4 mt-10">
         <p className="t-eyebrow text-ink/60">The detail behind it</p>
-      </RevealItem>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {CAPABILITY_GROUPS.map((group, i) => (
-          <RevealItem key={group.category} delayMs={i * 80}>
+      </FadeIn>
+      <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {CAPABILITY_GROUPS.map((group) => (
+          <StaggerItem key={group.category}>
             <CapabilityGroupCard group={group} />
-          </RevealItem>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
-      <RevealItem delayMs={200} className="mt-4">
+      <FadeIn direction="up" className="mt-4">
         <Panel level={1} className="flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center">
           <span className="t-eyebrow shrink-0 text-ink/60">Tools</span>
           <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2">
@@ -78,7 +79,7 @@ export function ServicesSection() {
             ))}
           </div>
         </Panel>
-      </RevealItem>
+      </FadeIn>
     </HomeSection>
   );
 }

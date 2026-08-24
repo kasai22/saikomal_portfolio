@@ -2,10 +2,13 @@
 
 import type { CSSProperties } from "react";
 import Link from "next/link";
-import { motion, useTransform, type MotionValue } from "framer-motion";
+import { type MotionValue } from "motion/react";
 import { Panel } from "@/components/ui/panel";
 import { TiltCard, GlassHighlight } from "@/components/ui/tilt-card";
 import { ParallaxImage } from "@/components/ui/parallax-image";
+import { ParallaxLayer } from "@/components/animations/Parallax";
+import { CARD, PARALLAX, POINTER } from "@/lib/animations/constants";
+import { useParallaxTier, usePointerTier } from "@/hooks/use-scroll-tier";
 import { cssVars } from "@/lib/css-vars";
 import { CASE_STUDIES } from "@/features/home/constants/data";
 import type { CaseStudyProject } from "@/features/home/types";
@@ -33,29 +36,38 @@ const FRAGMENTS: FragmentConfig[] = CASE_STUDIES.map((project, i) => ({
 }));
 
 interface HeroWorkFragmentsDesktopProps {
-  scrollYProgress: MotionValue<number>;
+  /** The hero section's own scroll progress — not a new subscription. */
+  progress: MotionValue<number>;
   mouseX: MotionValue<number>;
   mouseY: MotionValue<number>;
+  enabled: boolean;
 }
 
 /**
  * Real fragments of shipped work (Kudra / REX / HSL), scattered across the
- * hero's visual column instead of one abstract dashboard mockup. Each tile
- * gets its own scroll+mouse depth tier (faster for the nearer/larger
- * tiles) layered on top of the hero's own parallax system, plus the shared
- * tactile hover (tilt, glass highlight) and links straight to its case
- * study. Desktop only — see `HeroWorkFragmentsMobile` for small screens.
+ * hero's visual column instead of one abstract dashboard mockup.
+ *
+ * Each tile gets its own depth tier derived from the hero's single scroll
+ * subscription and single pointer listener — three tiles, three depths, one
+ * of each listener. Each also carries the shared tactile hover (tilt, glass
+ * highlight) and links straight to its case study.
  */
-export function HeroWorkFragmentsDesktop({ scrollYProgress, mouseX, mouseY }: HeroWorkFragmentsDesktopProps) {
+export function HeroWorkFragmentsDesktop({
+  progress,
+  mouseX,
+  mouseY,
+  enabled,
+}: HeroWorkFragmentsDesktopProps) {
   return (
     <div className="relative hidden h-[400px] w-[420px] shrink-0 lg:block">
       {FRAGMENTS.map((fragment) => (
         <FragmentTile
           key={fragment.project.slug + fragment.project.title}
           {...fragment}
-          scrollYProgress={scrollYProgress}
+          progress={progress}
           mouseX={mouseX}
           mouseY={mouseY}
+          enabled={enabled}
         />
       ))}
     </div>
@@ -63,9 +75,9 @@ export function HeroWorkFragmentsDesktop({ scrollYProgress, mouseX, mouseY }: He
 }
 
 /**
- * Compact static row for small/touch screens — the same real fragments,
- * no absolute scatter and no pointer parallax (touch never drives that
- * layer anyway), sitting between the copy and the CTA row.
+ * Compact static row for small/touch screens — the same real fragments, no
+ * absolute scatter and no pointer parallax, sitting between the copy and the
+ * CTA row.
  */
 export function HeroWorkFragmentsMobile() {
   return (
@@ -82,20 +94,23 @@ function FragmentTile({
   size,
   depth,
   positionClassName,
-  scrollYProgress,
+  progress,
   mouseX,
   mouseY,
+  enabled,
 }: FragmentConfig & HeroWorkFragmentsDesktopProps) {
-  const y = useTransform(scrollYProgress, [0, 1], [0, -70 * depth]);
-  const mx = useTransform(mouseX, [-0.5, 0.5], [-16 * depth, 16 * depth]);
-  const my = useTransform(mouseY, [-0.5, 0.5], [-16 * depth, 16 * depth]);
+  const y = useParallaxTier(progress, PARALLAX.base * 1.75 * depth, enabled);
+  // Capped at POINTER.near so even the front tile stays inside the
+  // 8-15px band the hero brief sets; the rest scale down by depth.
+  const mx = usePointerTier(mouseX, POINTER.near * depth, enabled);
+  const my = usePointerTier(mouseY, POINTER.near * depth, enabled);
 
   return (
-    <motion.div className={`absolute ${positionClassName}`} style={{ y }}>
-      <motion.div style={{ x: mx, y: my }}>
+    <ParallaxLayer y={y} className={`absolute ${positionClassName}`}>
+      <ParallaxLayer x={mx} y={my}>
         <FragmentCard project={project} style={{ width: size, height: size }} />
-      </motion.div>
-    </motion.div>
+      </ParallaxLayer>
+    </ParallaxLayer>
   );
 }
 
@@ -115,10 +130,10 @@ function FragmentCard({
       style={{ ...cssVars({ "--accent": project.accentColor }), ...style }}
       className={`group block ${className ?? ""}`}
     >
-      <TiltCard maxDeg={6} className="h-full w-full">
+      <TiltCard maxDeg={CARD.tiltFragment} className="h-full w-full">
         <Panel
           level={3}
-          className="relative h-full w-full overflow-hidden transition-colors duration-300 hover:[border-color:var(--accent)]"
+          className="relative h-full w-full overflow-hidden transition-colors duration-fast hover:[border-color:var(--accent)]"
         >
           <ParallaxImage
             src={project.image}
@@ -129,10 +144,10 @@ function FragmentCard({
             className="object-cover"
           />
           <div
-            className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/75 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/75 to-transparent opacity-0 transition-opacity duration-fast group-hover:opacity-100"
             aria-hidden="true"
           />
-          <div className="absolute inset-x-0 bottom-0 translate-y-1.5 p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="absolute inset-x-0 bottom-0 translate-y-1.5 p-3 opacity-0 transition-all duration-fast group-hover:translate-y-0 group-hover:opacity-100">
             <p className="line-clamp-1 text-xs font-semibold text-paper">{project.title}</p>
             <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider [color:var(--accent)]">
               {project.tags[0]}

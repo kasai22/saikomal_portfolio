@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { SkipToContentLink } from "@/components/layout/skip-to-content-link";
-import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { CustomCursor } from "@/components/ui/custom-cursor";
+import { MotionProvider } from "@/components/animations/MotionProvider";
+import { ScrollProgress } from "@/components/animations/ScrollProgress";
+import { Cursor } from "@/components/animations/Cursor";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { PersonJsonLd } from "@/components/seo/person-json-ld";
 import { SITE_URL } from "@/constants/site";
@@ -79,11 +80,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-paper font-body text-ink antialiased">
         <PersonJsonLd />
         <SkipToContentLink />
-        <SmoothScroll />
-        <ScrollProgress />
-        <CustomCursor />
-        <Navbar />
-        <main id="main-content">{children}</main>
+        {/* MotionProvider sets `reducedMotion="user"` for the whole tree, so
+            Motion itself honours the OS setting rather than each component
+            branching on a preference flag. */}
+        <MotionProvider>
+          <SmoothScroll />
+          <ScrollProgress />
+          <Cursor />
+          <Navbar />
+          <main id="main-content">{children}</main>
+        </MotionProvider>
       </body>
     </html>
   );

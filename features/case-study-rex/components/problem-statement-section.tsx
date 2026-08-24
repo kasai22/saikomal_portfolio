@@ -18,7 +18,7 @@ export function ProblemStatementSection() {
         {PROBLEM_POINTS.map((p) => (
           <div
             key={p.title}
-            className="rounded-sm border border-ink/12 bg-ink/[0.035] p-6 transition-colors duration-200 hover:border-ink/20"
+            className="rounded-sm border border-ink/12 bg-ink/[0.035] p-6 transition-colors duration-instant hover:border-ink/20"
           >
             <div className="mb-4 h-0.5 w-8 rounded-full bg-[color:var(--accent)]" />
             <h3 className="t-h4 mb-2 text-ink">{p.title}</h3>

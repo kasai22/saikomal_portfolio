@@ -7,10 +7,10 @@ import type {
   ExperienceEntry,
   Metric,
   ProcessStep,
-  Product,
   Service,
   Social,
   Strength,
+  TriadConcept,
 } from "@/features/home/types";
 
 export const SOCIALS: Social[] = [
@@ -43,7 +43,7 @@ export const HERO_SUBCOPY = "I design enterprise products — then write the fro
 /** Proof chips under the hero headline. */
 export const HERO_PROOF: Metric[] = [
   { value: "3+", label: "Years" },
-  { value: "30%", label: "Manual effort cut" },
+  { value: "40%", label: "Manual coordination cut" },
   { value: "3", label: "Case studies" },
 ];
 
@@ -57,19 +57,17 @@ export const HERO_LOOP = ["Research", "Design", "Prototype", "Ship"];
  * ------------------------------------------------------------------ */
 export const DECK = {
   work: { chapter: "01", eyebrow: "Selected work" },
-  products: { chapter: "02", eyebrow: "Products I have shipped" },
-  development: { chapter: "03", eyebrow: "Development" },
-  help: { chapter: "04", eyebrow: "Ways I can help" },
-  process: { chapter: "05", eyebrow: "How I work" },
-  background: { chapter: "06", eyebrow: "About" },
-  track: { chapter: "07", eyebrow: "Track record" },
-  ask: { chapter: "08", eyebrow: "Contact" },
+  development: { chapter: "02", eyebrow: "Development" },
+  help: { chapter: "03", eyebrow: "Ways I can help" },
+  process: { chapter: "04", eyebrow: "How I work" },
+  background: { chapter: "05", eyebrow: "About" },
+  track: { chapter: "06", eyebrow: "Track record" },
+  ask: { chapter: "07", eyebrow: "Contact" },
 } as const;
 
 /** Slide-level supporting lines — one sentence each, no more. */
 export const SLIDE_INTRO = {
   work: "Long-form case studies. Every one replaced a manual process people were running by phone and spreadsheet.",
-  products: "The full catalogue — including the products that never got a case study of their own.",
   development: "Sites I designed and shipped the front-end for, live in production.",
   help: "What I actually take off a team's plate, and what gets handed back.",
   process: "Five stages, each ending in something concrete enough to hand over.",
@@ -78,10 +76,11 @@ export const SLIDE_INTRO = {
   ask: "Looking for a full-time Product Designer or UX Engineer role. The form is the fastest reply.",
 };
 
+/** Counts of what is actually on this site, not rounded-up claims. */
 export const ABOUT_STATS: AboutStat[] = [
-  { label: "Projects", value: "10+" },
-  { label: "Case Studies", value: "5+" },
-  { label: "Skills", value: "18+" },
+  { label: "Projects", value: "6" },
+  { label: "Case studies", value: "3" },
+  { label: "Capabilities", value: "26" },
   { label: "Years in UX", value: "3+" },
 ];
 
@@ -106,6 +105,33 @@ export const STRENGTHS: Strength[] = [
   { icon: "◈", title: "Systems, not screens", detail: "Tokens, components, states" },
   { icon: "◉", title: "Edge-state literate", detail: "Loading, empty, error, partial data" },
   { icon: "✦", title: "Owns the ambiguity", detail: "Frames the problem before scoping it" },
+];
+
+/* ------------------------------------------------------------------ *
+ * Engineering + UX + Product.
+ *
+ * Restored verbatim from the triad component that used to hold this
+ * content inline before it was deleted from the working tree. Nothing here
+ * is new copy — the three concepts, their one-line provenance and their
+ * contributions are exactly as they were written. `ABOUT_FOCUS` above is
+ * the synthesis line, and was orphaned by the same deletion.
+ * ------------------------------------------------------------------ */
+export const PRODUCT_THINKING: TriadConcept[] = [
+  {
+    label: "Engineering",
+    detail: "B.Tech Mechanical — VIT Vellore",
+    points: ["Systems thinking", "Technical constraints", "Structured problem solving", "Feasibility"],
+  },
+  {
+    label: "UX",
+    detail: "3+ years — logistics, DevOps, fashion-tech",
+    points: ["Research", "Information architecture", "Interaction design", "Usability testing"],
+  },
+  {
+    label: "Product",
+    detail: "What actually ships",
+    points: ["Business goals", "User needs", "Technical feasibility", "Usability"],
+  },
 ];
 
 export const DESIGN_PHILOSOPHY_QUOTE =
@@ -259,62 +285,6 @@ export const RECRUITER_SNAPSHOT = {
   availability: "Open to new roles",
 };
 
-/* ------------------------------------------------------------------ *
- * The catalogue. Broader than CASE_STUDIES — every product worked on,
- * including the two (HR Admin, ClappIt) that have no case study written
- * yet. `href` is set only where there is one to enter.
- * ------------------------------------------------------------------ */
-export const PRODUCTS: Product[] = [
-  {
-    category: "AI / Recommendation",
-    name: "REX",
-    tagline: "AI recommendation and product intelligence",
-    description:
-      "Personalised recommendation flows, conversational AI, multilingual input and inspiration-image discovery — with explainable ranking and graceful degradation.",
-    year: "2026",
-    href: "/case-study/rex",
-    image: "/rex/rex-hero.svg",
-  },
-  {
-    category: "HR technology",
-    name: "Onliest HR Admin",
-    tagline: "Internal HRMS across three roles",
-    description:
-      "Attendance, leave, onboarding and approvals simplified for Admin, Manager and Employee — with exception handling, bulk actions and audit trails.",
-    year: "2026",
-    image: null,
-  },
-  {
-    category: "Fleet management",
-    name: "Kudra",
-    tagline: "Fleet and trip management",
-    description:
-      "End-to-end fleet workflows — trip lifecycle, driver assignment, vehicle allocation and route monitoring — as scalable interaction patterns.",
-    year: "2025 – 2026",
-    href: "/case-study/kudra",
-    image: "/figmaAssets/kudra-dashboard.png",
-  },
-  {
-    category: "Cloud infrastructure",
-    name: "ClappIt",
-    tagline: "Cloud infrastructure platform",
-    description:
-      "Complex cloud-infrastructure workflows simplified for technical and non-technical users, on a reusable component set.",
-    year: "2023 – 2024",
-    image: "/figmaAssets/clappit-dashboard.png",
-  },
-  {
-    category: "Public sector",
-    name: "Hindustan Shipyard",
-    tagline: "Enterprise website redesign",
-    description:
-      "Information architecture, navigation and content hierarchy restructured across five modules — research-led, responsive and accessible.",
-    year: "2024",
-    href: "/case-study",
-    image: "/figmaAssets/image-16.png",
-  },
-];
-
 /** Ways I can help — offers, each naming what gets handed back. */
 export const SERVICES: Service[] = [
   {
@@ -377,7 +347,7 @@ export const CASE_STUDIES: CaseStudyProject[] = [
     metrics: [
       { value: "6", label: "Agents orchestrated" },
       { value: "6 wks", label: "BRD to prototype" },
-      { value: "2", label: "Entry paths" },
+      { value: "4", label: "Entry paths" },
     ],
   },
   {

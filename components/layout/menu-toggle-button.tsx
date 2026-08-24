@@ -1,6 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
+import { SPRING_PRESS } from "@/lib/animations/springs";
+import { SCALE } from "@/lib/animations/constants";
 
 interface MenuToggleButtonProps {
   isOpen: boolean;
@@ -9,40 +11,47 @@ interface MenuToggleButtonProps {
 }
 
 /**
- * Three-line hamburger icon that morphs into an X. Purely presentational;
- * all open/close state lives in the parent Navbar.
+ * Three-line hamburger that morphs into an X.
+ *
+ * The two outer bars rotate and converge while the middle one fades — a
+ * single continuous gesture rather than one icon being swapped for another,
+ * so the control reads as the same object in two states. Spring-driven, so
+ * tapping it mid-transition reverses smoothly instead of restarting.
+ *
+ * Purely presentational; all open/close state lives in the parent `Navbar`.
  */
 export function MenuToggleButton({ isOpen, onClick, controlsId }: MenuToggleButtonProps) {
+  const bar = "block h-0.5 w-6 origin-center rounded-full bg-ink";
+
   return (
-    <button
+    <motion.button
       type="button"
-      className="p-2 text-ink md:hidden"
+      className="-mr-2 p-2 text-ink md:hidden"
       onClick={onClick}
       aria-expanded={isOpen}
       aria-controls={controlsId}
       aria-label={isOpen ? "Close menu" : "Open menu"}
+      whileTap={{ scale: SCALE.tap }}
+      transition={SPRING_PRESS}
     >
       <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
-      <div className="space-y-1.5" aria-hidden="true">
-        <span
-          className={cn(
-            "block h-0.5 w-6 bg-paper-panel transition-transform duration-300",
-            isOpen && "translate-y-2 rotate-45",
-          )}
+      <span className="flex flex-col items-center gap-1.5" aria-hidden="true">
+        <motion.span
+          className={bar}
+          animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+          transition={SPRING_PRESS}
         />
-        <span
-          className={cn(
-            "block h-0.5 w-6 bg-paper-panel transition-opacity duration-300",
-            isOpen && "opacity-0",
-          )}
+        <motion.span
+          className={bar}
+          animate={isOpen ? { opacity: 0, scaleX: 0.4 } : { opacity: 1, scaleX: 1 }}
+          transition={SPRING_PRESS}
         />
-        <span
-          className={cn(
-            "block h-0.5 w-6 bg-paper-panel transition-transform duration-300",
-            isOpen && "-translate-y-2 -rotate-45",
-          )}
+        <motion.span
+          className={bar}
+          animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+          transition={SPRING_PRESS}
         />
-      </div>
-    </button>
+      </span>
+    </motion.button>
   );
 }

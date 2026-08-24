@@ -8,6 +8,8 @@ import { ProblemStatementSection } from "@/features/case-study-rex/components/pr
 import { SolutionSection } from "@/features/case-study-rex/components/solution-section";
 import { KeyFeaturesSection } from "@/features/case-study-rex/components/key-features-section";
 import { AgentArchitectureSection } from "@/features/case-study-rex/components/agent-architecture-section";
+import { ProcessArtifactsSection } from "@/features/case-study-rex/components/process-artifacts-section";
+import { CourseCorrection } from "@/components/case-study/course-correction";
 import { HighFidelityScreensSection } from "@/features/case-study-rex/components/high-fidelity-screens-section";
 import { OutcomesSection } from "@/features/case-study-rex/components/outcomes-section";
 import { ReflectionSection } from "@/features/case-study-rex/components/reflection-section";
@@ -44,9 +46,16 @@ export default function RexCaseStudyPage() {
         <ProblemStatementSection />
         <SolutionSection />
         <KeyFeaturesSection />
+        <ProcessArtifactsSection />
         <AgentArchitectureSection />
         <HighFidelityScreensSection />
         <OutcomesSection />
+        <CourseCorrection
+          firstTake="I designed the conversational flow first and treated the guided wizard as a fallback for people who did not get on with chat."
+          whatChangedIt="Walking the flows with the fashion curator made it obvious that a blank conversation is its own blank page. For a high-value purchase, plenty of customers want to be led — the wizard was not a fallback, it was a first-class path."
+          whatIDid="Gave both modes the same Match Score panel and the same underlying engine, so neither is the degraded option, and put four explicit entry paths on the landing instead of one prompt."
+          cost="The scoring panel had to be redesigned to work in two very different layouts rather than one."
+        />
         <ReflectionSection />
 
         <CaseStudyCta tagline="Let's design AI experiences people can actually trust." />

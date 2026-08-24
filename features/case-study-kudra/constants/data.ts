@@ -38,8 +38,8 @@ export const HERO_STATS: StatItem[] = [
 ];
 
 export const OVERVIEW_PARAGRAPHS = [
-  "Kudra was designed to transform fragmented logistics operations into a centralized trip management ecosystem. The platform evolved beyond simple vehicle tracking and introduced structured workflows for fleet managers, branch operators, and logistics teams.",
-  "The goal was to reduce operational dependency on calls and spreadsheets while improving visibility across trips, drivers, fuel usage, and fleet analytics. The product focused on building a scalable enterprise workflow where every vehicle movement was tied to a structured operational trip.",
+  "Kudra turns fragmented logistics operations into one trip management system — beyond vehicle tracking, into structured workflows for fleet managers, branch operators and logistics teams.",
+  "The goal was to cut the dependency on calls and spreadsheets while improving visibility across trips, drivers, fuel and fleet analytics, with every vehicle movement tied to a structured trip.",
 ];
 
 export const COORDINATION_METHODS = ["Phone calls", "WhatsApp communication", "Spreadsheets", "Paper-based tracking"];
@@ -63,8 +63,8 @@ export const MISSING_CONTEXT_ITEMS = [
 ];
 
 export const VISION_PARAGRAPHS = [
-  "To create a centralized operational control system for logistics fleets that provides complete visibility into trip planning, dispatch, monitoring, and analytics.",
-  "Kudra aimed to establish a workflow-first ecosystem where operations teams could manage logistics through structured trip lifecycles rather than fragmented communication.",
+  "A central control system for logistics fleets, with full visibility into trip planning, dispatch, monitoring and analytics.",
+  "A workflow-first ecosystem where operations run on structured trip lifecycles rather than fragmented communication.",
 ];
 
 export const VISION_GOALS = [
@@ -79,30 +79,30 @@ export const USER_ROLES: UserRole[] = [
   {
     role: "Fleet Managers",
     icon: "🚛",
-    responsibilities: ["Trip creation", "Vehicle assignment", "Driver assignment", "Monitoring active trips", "Reviewing fleet analytics"],
-    painPoints: ["Difficulty tracking multiple ongoing trips", "Excessive operational calls", "Lack of fuel visibility", "No centralized operational dashboard"],
+    responsibilities: ["Trip creation", "Vehicle and driver assignment", "Monitoring active trips", "Fleet analytics"],
+    painPoints: ["Tracking many trips at once", "Excessive calls", "No fuel visibility", "No central dashboard"],
   },
   {
     role: "Branch Managers",
     icon: "🏢",
-    responsibilities: ["Monitoring incoming and outgoing vehicles", "Updating operational statuses", "Coordinating dispatch communication"],
-    painPoints: ["No visibility into incoming trips", "Delayed operational updates", "Dependency on manual communication"],
+    responsibilities: ["Incoming and outgoing vehicles", "Status updates", "Dispatch coordination"],
+    painPoints: ["No visibility into incoming trips", "Delayed updates", "Manual communication"],
   },
   {
     role: "Accounts Teams",
     icon: "📊",
-    responsibilities: ["Fuel expense tracking", "Driver halt payments", "Trip reconciliation"],
-    painPoints: ["Missing operational records", "Manual expense verification", "Lack of trip-level financial tracking"],
+    responsibilities: ["Fuel expenses", "Driver halt payments", "Trip reconciliation"],
+    painPoints: ["Missing records", "Manual verification", "No trip-level financials"],
   },
 ];
 
 export const RESEARCH_AREAS: ResearchArea[] = [
-  { area: "Dispatch coordination workflows", desc: "How trips were verbally coordinated between fleet and branches" },
-  { area: "Trip tracking processes", desc: "How teams monitored vehicle movement and status" },
-  { area: "Fuel logging systems", desc: "Paper-based fuel records and their accuracy gaps" },
-  { area: "Driver communication patterns", desc: "Call frequency and information loss in verbal updates" },
-  { area: "Branch coordination methods", desc: "How branches learned about incoming deliveries" },
-  { area: "Reporting inefficiencies", desc: "Manual effort required to compile operational data" },
+  { area: "Dispatch coordination", desc: "How trips were verbally coordinated between fleet and branches" },
+  { area: "Trip tracking", desc: "How teams monitored vehicle movement and status" },
+  { area: "Fuel logging", desc: "Paper records and their accuracy gaps" },
+  { area: "Driver communication", desc: "Call frequency and information loss in verbal updates" },
+  { area: "Branch coordination", desc: "How branches learned about incoming deliveries" },
+  { area: "Reporting", desc: "What managers assembled by hand each month" },
 ];
 
 export const RESEARCH_STATS: ResearchStat[] = [
@@ -115,33 +115,33 @@ export const RESEARCH_STATS: ResearchStat[] = [
 export const KEY_INSIGHTS: KeyInsight[] = [
   {
     num: "01",
-    title: "Trips Needed to Become the Core Operational Unit",
-    desc: 'Operations teams naturally thought in terms of trips rather than vehicles. Fleet managers talked about "the Chennai trip" — not "truck KA-01-AB-1234". This insight became the foundation of the entire product strategy.',
+    title: "Trips, Not Vehicles, Are the Operational Unit",
+    desc: 'Managers talked about "the Chennai trip", never "truck KA-01-AB-1234". This became the foundation of the product strategy.',
   },
   {
     num: "02",
     title: "Operational Data Was Fragmented",
-    desc: "Critical trip information existed across calls, WhatsApp messages, spreadsheets, and human memory. There was no centralized operational visibility — every status update required a phone call.",
+    desc: "Trip information lived across calls, WhatsApp, spreadsheets and memory. Every status update required a phone call.",
   },
   {
     num: "03",
-    title: "Managers Needed Real-Time Operational Visibility",
-    desc: "Fleet managers wanted to instantly understand active trips, delayed vehicles, driver activity, fuel usage, and trip completion status — without making a single call.",
+    title: "Managers Needed Real-Time Visibility",
+    desc: "Active trips, delayed vehicles, driver activity, fuel and completion status — without making a call.",
   },
   {
     num: "04",
-    title: "Branches Required Automatic Operational Updates",
-    desc: "Destination branches were often completely unaware of incoming vehicles. This created coordination delays, dock planning failures, and operational inefficiencies at every hub.",
+    title: "Branches Needed Automatic Updates",
+    desc: "Destination branches were often unaware of incoming vehicles, causing dock-planning failures at every hub.",
   },
 ];
 
 export const UX_GOALS: UxGoal[] = [
-  { goal: "Simplify operational workflows", desc: "Reduce the number of steps required to complete core fleet operations" },
-  { goal: "Reduce coordination dependency", desc: "Embed visibility that eliminates the need for manual status calls" },
-  { goal: "Improve active trip visibility", desc: "Give all stakeholders real-time context on every moving vehicle" },
-  { goal: "Reduce cognitive overload", desc: "Surface the right information at the right moment — not everything at once" },
-  { goal: "Enable faster trip creation", desc: "Reduce trip creation time from 15+ minutes to under 2 minutes" },
-  { goal: "Create scalable enterprise workflows", desc: "Build a system that works for 10 vehicles today and 1,000 tomorrow" },
+  { goal: "Simplify operational workflows", desc: "Fewer steps per core fleet operation" },
+  { goal: "Reduce coordination dependency", desc: "Visibility that removes the manual status call" },
+  { goal: "Improve active trip visibility", desc: "Real-time context on every moving vehicle" },
+  { goal: "Reduce cognitive overload", desc: "The right information at the right moment, not everything at once" },
+  { goal: "Enable faster trip creation", desc: "From 15+ minutes to under 2" },
+  { goal: "Scale the workflow", desc: "Works at 10 vehicles and at 1,000" },
 ];
 
 export const ARCHITECTURE_MODULES: ArchitectureModule[] = [

@@ -49,17 +49,17 @@ export const OVERVIEW_POINTS = [
   {
     label: "My Role",
     value:
-      "Owned the end-to-end Business Requirements Document and translated it into the conversational, wizard, and try-on experiences shown here — partnering with AI/ML, GenAI, and security stakeholders to keep the product both premium and governable.",
+      "Owned the Business Requirements Document end to end and translated it into the conversational, wizard and try-on experiences shown here.",
   },
   {
     label: "The Challenge",
     value:
-      "Turn a highly technical, multi-agent AI system (product-line algorithms, LLM routing, hallucination guardrails) into an experience that feels like working with a personal stylist, not filling out a form.",
+      "Turn a multi-agent AI system into something that feels like working with a stylist, not filling out a form.",
   },
   {
     label: "The Approach",
     value:
-      "Pair a low-friction conversational entry point with a structured guided Wizard, backed by a scored, explainable recommendation engine that a customer can trust and an Admin team can control.",
+      "A low-friction conversation paired with a structured wizard, backed by a scored engine a customer can trust and an Admin team can control.",
   },
 ];
 
@@ -69,27 +69,23 @@ export const PROBLEM_INTRO =
 export const PROBLEM_POINTS: ProblemPoint[] = [
   {
     title: "Decision Paralysis",
-    desc: "Customers browsing thousands of sarees have no reliable way to know what actually suits their body, skin tone, occasion, or cultural context — so they default to endless scrolling instead of confident decisions.",
+    desc:
+      "Browsing thousands of sarees with no reliable way to know what suits your body, skin tone, occasion or cultural context. Customers default to endless scrolling.",
   },
   {
     title: "One-Size-Fits-All Recommenders",
-    desc: "Generic e-commerce recommendation logic treats a saree, a blouse, and jewelry the same way — ignoring that fit, drape, embroidery, and occasion rules are fundamentally different per product line.",
+    desc:
+      "Generic e-commerce logic treats a saree, a blouse and jewellery the same way, ignoring that fit, drape and occasion rules differ per product line.",
   },
   {
     title: "Inspiration Without Translation",
-    desc: "Customers save Pinterest boards and wedding photos but have no way to turn 'I like this' into a manufacturable, Onliest-suitable design without a human stylist in the loop.",
+    desc:
+      "Customers save Pinterest boards and wedding photos, but have no way to turn “I like this” into a manufacturable design without a human stylist.",
   },
   {
     title: "Trust & Hallucination Risk",
-    desc: "An AI stylist that invents availability, price, or delivery promises destroys trust instantly — especially for high-value bridal and wedding purchases where timing is non-negotiable.",
-  },
-  {
-    title: "Cost at Scale",
-    desc: "Premium LLM-driven conversations are expensive. Serving guests, unpaid users, and Platinum members the same way would make the experience commercially unsustainable.",
-  },
-  {
-    title: "Opaque, Ungovernable AI",
-    desc: "Without a central configuration layer, recommendation logic, prompts, and scoring weights risk becoming hardcoded, unauditable, and impossible for the business to safely iterate on.",
+    desc:
+      "An AI stylist that invents availability, price or delivery destroys trust instantly — and bridal timing is non-negotiable.",
   },
 ];
 
@@ -100,32 +96,32 @@ export const SOLUTION_PILLARS: SolutionPillar[] = [
   {
     icon: "💬",
     title: "Conversational + Guided Wizard",
-    desc: "Customers can free-chat, speak, or upload inspiration with REX's stylist avatar, or step through a structured 14-step Wizard (fabric, border, blouse, fasteners…) — two entry points into the same recommendation engine.",
+    desc:
+      "Free chat, voice or an uploaded image, or a structured 14-step wizard — two entry points into the same engine.",
   },
   {
     icon: "🧩",
     title: "Product-Line Independent Scoring",
-    desc: "Sarees, blouses, and future categories each carry their own weights, fit rules, and penalty logic instead of one generic formula — so a blouse's neckline scoring never distorts a saree's drape scoring.",
+    desc:
+      "Each category carries its own weights, fit rules and penalties, so a blouse's neckline scoring never distorts a saree's drape.",
   },
   {
     icon: "🕸️",
     title: "Hierarchical Agent Orchestration",
-    desc: "An Orchestrator/Planner routes work to specialized agents (preference discovery, trend intelligence, image understanding, scoring, hallucination guardrail) through MCP-style tools — no agent exposes output directly to the user.",
+    desc:
+      "An orchestrator routes work to specialist agents through MCP-style tools. No agent reaches the customer directly.",
   },
   {
     icon: "🎚️",
     title: "Tiered, Cost-Aware LLM Routing",
-    desc: "Guests get lightweight rule-based recommendations, unpaid users route to Llama, and paid/Platinum members get OpenAI-powered concierge flows — all configurable by Admin, not hardcoded.",
+    desc:
+      "Guests get rule-based results, unpaid users route to Llama, paid members to OpenAI — configurable by Admin, not hardcoded.",
   },
   {
     icon: "🛡️",
     title: "Hallucination Guardrails",
-    desc: "Every product, price, inventory, and delivery claim is validated against the catalog, Pricing, and Inventory services before REX ever shows it — low-confidence outputs ask a clarifying question instead of guessing.",
-  },
-  {
-    icon: "📊",
-    title: "Transparent Match Scoring",
-    desc: "Every recommendation surfaces a single Match Score broken into Confidence, Color Harmony, Occasion Match, and Preference Match — so the AI's reasoning is visible, not a black box.",
+    desc:
+      "Every product, price, inventory and delivery claim is validated against the catalogue before display.",
   },
 ];
 

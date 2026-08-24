@@ -1,5 +1,5 @@
 import { Panel } from "@/components/ui/panel";
-import { RevealItem } from "@/components/ui/reveal-item";
+import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import type { ExperienceEntry } from "@/features/home/types";
 
 interface ExperienceTimelineProps {
@@ -11,21 +11,24 @@ interface ExperienceTimelineProps {
  * actually changed on the right. That split is what lets the timeline use
  * the full slide width — a single narrow column left half the slide empty
  * while the rest of the deck ran edge to edge.
+ *
+ * The connector rule sits in a wrapper rather than inside the `<ol>`: a list
+ * may only contain list items, and the rule is decoration, not an entry.
  */
 export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
   return (
-    <ol className="relative flex flex-col gap-4">
+    <div className="relative">
       <div
         className="absolute bottom-0 left-[13px] top-2 w-px bg-gradient-to-b from-brand via-ink/[0.06] to-transparent"
         aria-hidden="true"
       />
-      {entries.map((entry, i) => (
-        <RevealItem key={entry.company} delayMs={i * 100}>
-          <li className="relative pl-10">
+      <Stagger as="ol" className="flex flex-col gap-4">
+        {entries.map((entry) => (
+          <StaggerItem key={entry.company} as="li" className="relative pl-10">
             <div
               className={`absolute left-0 top-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border ${
- entry.current ? "border-brand bg-brand/15" : "border-ink/16 bg-ink/[0.035]"
- }`}
+                entry.current ? "border-brand bg-brand/15" : "border-ink/16 bg-ink/[0.035]"
+              }`}
               aria-hidden="true"
             >
               <span
@@ -51,9 +54,9 @@ export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
                 </ul>
               </div>
             </Panel>
-          </li>
-        </RevealItem>
-      ))}
-    </ol>
+          </StaggerItem>
+        ))}
+      </Stagger>
+    </div>
   );
 }

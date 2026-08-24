@@ -1,21 +1,23 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { ParallaxLayer } from "@/components/animations/Parallax";
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
+import { PARALLAX, STAGGER } from "@/lib/animations/constants";
+import { VT } from "@/lib/view-transition";
+import { useParallaxTier, useSectionScroll } from "@/hooks/use-scroll-tier";
 import Image from "next/image";
 import { BackToPortfolioLink } from "@/components/case-study/back-to-portfolio-link";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { HERO_META, HERO_TAGLINE, HERO_TAGS, TEAM_TOOLS } from "@/features/case-study-rex/constants/data";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -25]);
-  const teamY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const { progress, enabled } = useSectionScroll(sectionRef);
+  const imageY = useParallaxTier(progress, PARALLAX.subtle + 10, enabled);
+  const teamY = useParallaxTier(progress, PARALLAX.base, enabled);
 
   return (
-    <section ref={sectionRef} className="relative flex min-h-[70vh] items-end overflow-hidden pt-20">
+    <section ref={sectionRef} className="relative flex min-h-[70svh] items-end overflow-hidden pt-20">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -43,7 +45,7 @@ export function HeroSection() {
               </span>
               <span className="text-[11px] font-medium text-ink/60">2026</span>
             </div>
-            <h1 className="t-display mb-4">
+            <h1 style={{ viewTransitionName: VT.title }} className="t-display mb-4">
               Onliest <span className="text-[color:var(--accent)]">REX</span>
             </h1>
             <p className="mb-6 max-w-lg border-l-2 border-[color:var(--accent-border)] pl-4 text-[13px] leading-relaxed text-ink/65">
@@ -51,12 +53,14 @@ export function HeroSection() {
             </p>
 
             <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {HERO_META.map((m) => (
+              {HERO_META.map((m, i) => (
                 <div
                   key={m.label}
                   className="rounded-sm border border-[color:var(--panel-1-border)] bg-[var(--panel-1-bg)] p-3 text-center"
                 >
-                  <div className="text-[13px] font-bold text-[color:var(--accent)]">{m.value}</div>
+                  <div className="text-[13px] font-bold text-[color:var(--accent)]">
+                    <AnimatedCounter value={m.value} delay={i * STAGGER.tight} />
+                  </div>
                   <div className="mt-1 text-[11px] text-ink/60">{m.label}</div>
                 </div>
               ))}
@@ -74,9 +78,10 @@ export function HeroSection() {
             </div>
           </div>
 
-          <motion.div
+          <ParallaxLayer
+            viewTransitionName={VT.image}
             className="hidden lg:col-span-7 lg:block"
-            style={reducedMotion ? undefined : { y: imageY }}
+            y={imageY}
           >
             <div className="relative">
               <div
@@ -95,12 +100,12 @@ export function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
             </div>
-          </motion.div>
+          </ParallaxLayer>
         </div>
 
-        <motion.div
+        <ParallaxLayer
           className="mt-10 grid grid-cols-1 gap-6 border-t border-ink/[0.096] pt-8 sm:grid-cols-3"
-          style={reducedMotion ? undefined : { y: teamY }}
+          y={teamY}
         >
           {TEAM_TOOLS.map((item) => (
             <div key={item.label}>
@@ -110,7 +115,7 @@ export function HeroSection() {
               <p className="mt-2 text-[13px] leading-relaxed text-ink/70">{item.value}</p>
             </div>
           ))}
-        </motion.div>
+        </ParallaxLayer>
       </div>
     </section>
   );

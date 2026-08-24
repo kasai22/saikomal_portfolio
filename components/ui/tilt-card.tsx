@@ -1,19 +1,22 @@
 "use client";
 
-import { createContext, useContext, useState, type ReactNode } from "react";
-import { motion, useTransform, type MotionValue } from "framer-motion";
+import { createContext, useContext, type ReactNode } from "react";
+import { motion, useMotionValue, useTransform, type MotionValue } from "motion/react";
+import { DISTANCE } from "@/lib/animations/constants";
+import { SPRING_TILT } from "@/lib/animations/springs";
+import { HOVER } from "@/lib/animations/transitions";
 import { useTilt } from "@/hooks/use-tilt";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface TiltPointerContextValue {
   pointerX: MotionValue<number>;
   pointerY: MotionValue<number>;
-  isHovering: boolean;
+  /** 0 → 1. A motion value, not state — see the note in `TiltCard`. */
+  hover: MotionValue<number>;
 }
 
 const TiltPointerContext = createContext<TiltPointerContextValue | null>(null);
 
-/** Read by `ParallaxImage`/`GlassHighlight` when nested inside a `TiltCard`. Null outside one. */
+/** Read by `ParallaxImage` and `GlassHighlight` when nested inside a `TiltCard`. Null outside one. */
 export function useTiltPointer() {
   return useContext(TiltPointerContext);
 }
@@ -25,30 +28,37 @@ interface TiltCardProps {
 }
 
 /**
- * Shared "tactile glass card" wrapper for project/case-study cards: a
- * subtle pointer-tilt (capped at `maxDeg`) plus a small hover elevation.
- * Exposes pointer position via context so a nested `ParallaxImage` and
- * `GlassHighlight` can react to the same pointer independently of the
- * card's own tilt. No-ops under `prefers-reduced-motion` or touch — the
- * underlying `useTilt` hook simply never receives pointer coordinates.
+ * The tactile card wrapper: a small pointer-tilt plus a hover lift.
+ *
+ * Exposes pointer position through context so a nested `ParallaxImage` and
+ * `GlassHighlight` can react to the same pointer independently of the card's
+ * own tilt — one listener, three effects.
+ *
+ * Hover state is a **motion value**, not React state. The previous version
+ * kept `isHovering` in state and passed it through context, so entering or
+ * leaving a card re-rendered the whole subtree: the panel, the image, the
+ * metrics and every chip inside it. Nothing about a hover needs to reach
+ * React, so nothing does.
+ *
+ * Inert below the `rich` tier and under reduced motion — `useTilt` pins its
+ * output to zero, so this becomes a plain `div` in behaviour.
  */
 export function TiltCard({ children, className, maxDeg = 4 }: TiltCardProps) {
   const { rotateX, rotateY, pointerX, pointerY, onPointerMove, onPointerLeave } = useTilt(maxDeg);
-  const reducedMotion = useReducedMotion();
-  const [isHovering, setIsHovering] = useState(false);
+  const hover = useMotionValue(0);
 
   return (
-    <TiltPointerContext.Provider value={{ pointerX, pointerY, isHovering }}>
+    <TiltPointerContext.Provider value={{ pointerX, pointerY, hover }}>
       <motion.div
         onPointerMove={onPointerMove}
-        onPointerEnter={() => setIsHovering(true)}
+        onPointerEnter={() => hover.set(1)}
         onPointerLeave={() => {
           onPointerLeave();
-          setIsHovering(false);
+          hover.set(0);
         }}
-        style={reducedMotion ? undefined : { rotateX, rotateY, transformPerspective: 800 }}
-        whileHover={reducedMotion ? undefined : { y: -4 }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        style={{ rotateX, rotateY, transformPerspective: 800 }}
+        whileHover={{ y: -DISTANCE.nudge / 2 }}
+        transition={SPRING_TILT}
         className={className}
       >
         {children}
@@ -58,41 +68,36 @@ export function TiltCard({ children, className, maxDeg = 4 }: TiltCardProps) {
 }
 
 /**
- * A soft, pointer-following light sweep across a glass surface. Place as
- * the last child inside a `Panel` (so it's clipped to the same
- * rounded corners) within a `TiltCard`. Renders nothing outside one.
+ * A soft, pointer-following light sweep across the card surface. Place as the
+ * last child inside a `Panel` so it is clipped to the same corners. Renders
+ * nothing outside a `TiltCard`.
  */
 export function GlassHighlight() {
   const ctx = useTiltPointer();
   if (!ctx) return null;
-  return <GlassHighlightInner pointerX={ctx.pointerX} pointerY={ctx.pointerY} isHovering={ctx.isHovering} />;
+  return <GlassHighlightInner {...ctx} />;
 }
 
-function GlassHighlightInner({
-  pointerX,
-  pointerY,
-  isHovering,
-}: {
-  pointerX: MotionValue<number>;
-  pointerY: MotionValue<number>;
-  isHovering: boolean;
-}) {
+function GlassHighlightInner({ pointerX, pointerY, hover }: TiltPointerContextValue) {
   const left = useTransform(pointerX, [-0.5, 0.5], ["0%", "100%"]);
   const top = useTransform(pointerY, [-0.5, 0.5], ["0%", "100%"]);
+  // Driving opacity from the hover motion value keeps the whole interaction
+  // off the React render path.
+  const opacity = useTransform(hover, [0, 1], [0, 1]);
 
   return (
     <motion.div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0"
-      animate={{ opacity: isHovering ? 1 : 0 }}
-      transition={{ duration: 0.3 }}
+      transition={HOVER}
       style={
         {
+          opacity,
           background:
             "radial-gradient(circle at var(--hl-x) var(--hl-y), rgba(255,255,255,0.16), transparent 45%)",
           "--hl-x": left,
           "--hl-y": top,
-        } as React.CSSProperties
+        } as unknown as React.CSSProperties
       }
     />
   );

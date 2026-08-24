@@ -1,10 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { ParallaxLayer } from "@/components/animations/Parallax";
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
+import { PARALLAX, STAGGER } from "@/lib/animations/constants";
+import { VT } from "@/lib/view-transition";
+import { useParallaxTier, useSectionScroll } from "@/hooks/use-scroll-tier";
 import Image from "next/image";
 import { BackToPortfolioLink } from "@/components/case-study/back-to-portfolio-link";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import {
   HERO_METADATA,
   HERO_QUOTE,
@@ -17,16 +20,12 @@ import {
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -25]);
-  const statsY = useTransform(scrollYProgress, [0, 1], [0, -45]);
+  const { progress, enabled } = useSectionScroll(sectionRef);
+  const imageY = useParallaxTier(progress, PARALLAX.subtle + 10, enabled);
+  const statsY = useParallaxTier(progress, PARALLAX.base, enabled);
 
   return (
-    <section ref={sectionRef} className="relative flex min-h-[70vh] items-end overflow-hidden pt-20">
+    <section ref={sectionRef} className="relative flex min-h-[70svh] items-end overflow-hidden pt-20">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -44,7 +43,7 @@ export function HeroSection() {
                 {HERO_TAG}
               </span>
             </div>
-            <h1 className="t-display mb-1 text-[color:var(--accent)]">
+            <h1 style={{ viewTransitionName: VT.title }} className="t-display mb-1 text-[color:var(--accent)]">
               {HERO_TITLE}
             </h1>
             <p className="t-body mb-4 max-w-lg text-ink/72">{HERO_SUBTITLE}</p>
@@ -66,7 +65,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          <motion.div className="hidden lg:block" style={reducedMotion ? undefined : { y: imageY }}>
+          <ParallaxLayer viewTransitionName={VT.image} className="hidden lg:block" y={imageY}>
             <div className="relative overflow-hidden rounded-sm border border-ink/12 shadow-sm">
               <Image
                 src="/figmaAssets/image-16.png"
@@ -78,23 +77,25 @@ export function HeroSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
-          </motion.div>
+          </ParallaxLayer>
         </div>
 
-        <motion.div
+        <ParallaxLayer
           className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4"
-          style={reducedMotion ? undefined : { y: statsY }}
+          y={statsY}
         >
-          {HERO_STATS.map((s) => (
+          {HERO_STATS.map((s, i) => (
             <div
               key={s.label}
               className="rounded-sm border border-[color:var(--panel-1-border)] bg-[var(--panel-1-bg)] px-5 py-4 text-center"
             >
-              <div className="t-metric mb-1 text-[color:var(--accent)]">{s.value}</div>
+              <div className="t-metric mb-1 text-[color:var(--accent)]">
+                <AnimatedCounter value={s.value} delay={i * STAGGER.tight} />
+              </div>
               <div className="text-[11px] text-ink/60">{s.label}</div>
             </div>
           ))}
-        </motion.div>
+        </ParallaxLayer>
       </div>
     </section>
   );

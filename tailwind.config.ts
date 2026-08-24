@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import { DURATION } from "./lib/animations/constants";
 
 const config: Config = {
   darkMode: ["class"],
@@ -72,6 +74,15 @@ const config: Config = {
         // marker on the site is set in this, never in the body face.
         mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
+      // CSS transitions read from the same scale as the Motion tokens, so
+      // hover states written in Tailwind and entrances written in Motion
+      // cannot drift onto two different rhythms.
+      transitionDuration: {
+        instant: `${DURATION.instant * 1000}ms`,
+        fast: `${DURATION.fast * 1000}ms`,
+        base: `${DURATION.base * 1000}ms`,
+        slow: `${DURATION.slow * 1000}ms`,
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -108,7 +119,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 };
 
 export default config;

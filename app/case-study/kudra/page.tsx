@@ -5,12 +5,15 @@ import { HeroSection } from "@/features/case-study-kudra/components/hero-section
 import { OverviewSection } from "@/features/case-study-kudra/components/overview-section";
 import { ProblemStatementSection } from "@/features/case-study-kudra/components/problem-statement-section";
 import { VisionSection } from "@/features/case-study-kudra/components/vision-section";
+import { TransformationSection } from "@/features/case-study-kudra/components/transformation-section";
 import { TargetAudienceSection } from "@/features/case-study-kudra/components/target-audience-section";
 import { ResearchSection } from "@/features/case-study-kudra/components/research-section";
 import { KeyInsightsSection } from "@/features/case-study-kudra/components/key-insights-section";
 import { UxGoalsSection } from "@/features/case-study-kudra/components/ux-goals-section";
 import { InformationArchitectureSection } from "@/features/case-study-kudra/components/information-architecture-section";
 import { CoreWorkflowSection } from "@/features/case-study-kudra/components/core-workflow-section";
+import { ProcessArtifactsSection } from "@/features/case-study-kudra/components/process-artifacts-section";
+import { CourseCorrection } from "@/components/case-study/course-correction";
 import { UserFlowSection } from "@/features/case-study-kudra/components/user-flow-section";
 import { WireframingSection } from "@/features/case-study-kudra/components/wireframing-section";
 import { DesignSystemSection } from "@/features/case-study-kudra/components/design-system-section";
@@ -54,11 +57,14 @@ export default function KudraCaseStudyPage() {
         <OverviewSection />
         <ProblemStatementSection />
         <VisionSection />
+        {/* The whole arc in one scroll, before the detail that evidences it. */}
+        <TransformationSection />
         <TargetAudienceSection />
         <ResearchSection />
         <KeyInsightsSection />
         <UxGoalsSection />
         <InformationArchitectureSection />
+        <ProcessArtifactsSection />
         <CoreWorkflowSection />
         <UserFlowSection />
         <WireframingSection />
@@ -67,6 +73,12 @@ export default function KudraCaseStudyPage() {
         <KeyFeaturesSection />
         <ChallengesSection />
         <OutcomesSection />
+        <CourseCorrection
+          firstTake="I modelled the product around vehicles, because that is how the fleet data was structured — one record per truck, with trips hanging off it."
+          whatChangedIt="Every field session contradicted it. Managers never said a registration number; they said “the Chennai trip”. The data model matched the database, not the way anyone actually worked."
+          whatIDid="Rebuilt the information architecture around the trip as the core operational unit, with vehicles as an attribute of it. Exception handling — reroutes, driver swaps — moved into the trip states rather than being bolted on afterwards."
+          cost="Roughly two weeks of IA and early screens thrown away, before any UI was built."
+        />
         <LearningsSection />
         <FutureScopeSection />
         <DeliverablesSection />

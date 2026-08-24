@@ -62,9 +62,6 @@
   html.lenis-active body {
     height: auto;
   }
-  .lenis-active .lenis-content {
-    will-change: transform;
-  }
 
   body {
     @apply bg-paper text-ink font-body antialiased;
@@ -94,7 +91,19 @@
     border-radius: 1px;
   }
 
-  /* Respect users who've asked the OS for reduced motion */
+  /* Respect users who've asked the OS for reduced motion.
+
+     Scoped to *movement*, not to state changes. WCAG 2.3.3 targets motion
+     that can trigger vestibular symptoms — it does not ask for hover, focus
+     and colour feedback to be removed, and stripping those makes controls
+     feel dead. So keyframe animations and transitions on transform-adjacent
+     properties are collapsed, while `color`, `background-color`,
+     `border-color` and `opacity` transitions are deliberately left running.
+
+     Motion (the library) handles its own components via
+     `MotionConfig reducedMotion="user"` in `MotionProvider`; this block
+     covers plain CSS — Tailwind's `animate-*` utilities and the hand-written
+     transitions across the case-study components. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -104,10 +113,58 @@
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+      transition-property: color, background-color, border-color, fill, stroke,
+        opacity, box-shadow, outline-color !important;
     }
+  }
+}
+
+/* ------------------------------------------------------------------
+   Cross-route shared-element transitions.
+
+   The card image and title on the home page carry the same
+   `view-transition-name` as the case study's hero image and title, so the
+   browser morphs one into the other and the card appears to expand into
+   the page rather than being replaced by it. Names are assigned to the
+   clicked card only — see `lib/view-transition.ts` for why.
+
+   The root pair is a plain crossfade at the site's standard duration; the
+   named pairs are left on the browser's default morph, which already
+   interpolates position, size and aspect ratio correctly. Deliberately no
+   loading state: the transition *is* the navigation.
+   ------------------------------------------------------------------ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-group(project-image),
+::view-transition-group(project-title) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The morphing pair should not cross-fade against itself mid-flight — it
+   reads as a double image on anything with detail in it. */
+::view-transition-old(project-image),
+::view-transition-new(project-image) {
+  mix-blend-mode: normal;
+  height: 100%;
+  overflow: clip;
+}
+
+/* Reduced motion: `SharedProjectLink` already declines to start a
+   transition, but a browser-initiated one (back/forward) can still fire. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }
 

@@ -76,7 +76,7 @@ export function ContactForm() {
         </div>
         <button
           type="submit"
-          className="w-full rounded-sm bg-brand py-2.5 text-xs font-semibold text-ink transition-colors duration-200 hover:bg-brand-dark"
+          className="w-full rounded-sm bg-brand py-2.5 text-xs font-semibold text-ink transition-colors duration-instant hover:bg-brand-dark"
         >
           Send message
         </button>

@@ -1,9 +1,15 @@
-import Link from "next/link";
+"use client";
+
+import { motion } from "motion/react";
 import { ArrowRightIcon } from "@/components/icons";
 import { Panel } from "@/components/ui/panel";
 import { TiltCard, GlassHighlight } from "@/components/ui/tilt-card";
 import { ParallaxImage } from "@/components/ui/parallax-image";
+import { SharedProjectLink } from "@/components/animations/SharedProjectLink";
 import { MetricRow } from "@/features/home/components/metric-row";
+import { CARD, CARD_STAGE } from "@/lib/animations/constants";
+import { ENTER, ENTER_SLOW, delayed } from "@/lib/animations/transitions";
+import { fadeMove, imageUnveil } from "@/lib/animations/variants";
 import { cssVars } from "@/lib/css-vars";
 import type { CaseStudyProject } from "@/features/home/types";
 
@@ -12,64 +18,118 @@ interface CaseStudyCardProps {
 }
 
 /**
- * Compact secondary/tertiary card — used for every case study other than
- * the featured one, so "Selected Work" reads at a mix of visual scales
- * instead of a repeated grid of identical cards. The outcome figures sit
- * on the card itself; the description is one line.
+ * Compact secondary/tertiary card — used for every case study other than the
+ * featured one, so "Selected Work" reads at a mix of visual scales instead of
+ * a repeated grid of identical cards. The outcome figures sit on the card
+ * itself; the description is one line.
+ *
+ * ── Entrance ────────────────────────────────────────────────────────────
+ * The card arrives first, then assembles its own contents in reading order:
+ * image, title, metadata, supporting detail. Offsets come from `CARD_STAGE`.
+ * The card inherits `hidden`/`visible` from the grid's `Stagger`, so cards
+ * cascade between themselves *and* internally — the whole grid never flashes
+ * in at once.
+ *
+ * The image is unveiled from its bottom edge with `clip-path` while settling
+ * back from a slight overscale, rather than fading. A fade says "this loaded";
+ * an unveil says "this is being shown to you", which is the right register for
+ * a case study.
+ *
+ * ── Hover ───────────────────────────────────────────────────────────────
+ * Staged, not simultaneous: image scale and drift immediately, metadata warms
+ * at 90ms, title and arrow travel at 160ms. All CSS `group-hover`, so a hover
+ * costs no React render, and all transform/colour, so none of it touches
+ * layout.
+ *
+ * ── Opening ─────────────────────────────────────────────────────────────
+ * `SharedProjectLink` names the image and title (`data-shared`) so the
+ * browser can morph them into the case study's hero. The card expands into
+ * the page instead of being replaced by it.
  */
 export function CaseStudyCard({ project }: CaseStudyCardProps) {
   return (
-    <Link
+    <SharedProjectLink
       href={project.slug}
       style={cssVars({ "--accent": project.accentColor })}
       className="group block h-full"
       data-cursor="view"
     >
-      <TiltCard maxDeg={5} className="h-full">
+      <TiltCard maxDeg={CARD.tilt} className="h-full">
         <Panel
           level={2}
-          className="relative flex h-full flex-col overflow-hidden transition-colors duration-300 hover:[border-color:var(--accent)]"
+          className="relative flex h-full flex-col overflow-hidden transition-colors duration-fast hover:[border-color:var(--accent)]"
         >
-          <div className="relative h-40 shrink-0 overflow-hidden">
+          <motion.div
+            data-shared="image"
+            variants={imageUnveil}
+            transition={delayed(ENTER_SLOW, CARD_STAGE.image)}
+            className="relative h-40 shrink-0 overflow-hidden"
+          >
             <ParallaxImage
               src={project.image}
               alt={`${project.title} — interface preview`}
               fill
               sizes="(min-width: 1024px) 33vw, 100vw"
-              className="transition-transform duration-500 group-hover:scale-105"
+              className="transition-transform duration-base ease-out group-hover:-translate-y-[3px] group-hover:scale-[1.04]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" aria-hidden="true" />
-          </div>
+          </motion.div>
 
           <div className="flex flex-1 flex-col gap-3 p-5">
-            <div className="flex items-center gap-2">
+            {/* Metadata warms on hover — second beat, 90ms behind the image. */}
+            <motion.div
+              variants={fadeMove("up")}
+              transition={delayed(ENTER, CARD_STAGE.meta)}
+              className="flex items-center gap-2 transition-colors delay-[90ms] duration-fast [&>span:not(:first-child)]:text-ink/60 group-hover:[&>span:not(:first-child)]:text-ink/80"
+            >
               <span className="t-eyebrow [color:var(--accent)]">Case Study</span>
               <span className="h-1 w-1 rounded-full bg-ink/[0.10]" aria-hidden="true" />
-              <span className="t-eyebrow text-ink/60">{project.year}</span>
-              <span className="ml-auto t-meta text-ink/60">{project.readMins} min</span>
-            </div>
+              <span className="t-eyebrow">{project.year}</span>
+              <span className="ml-auto t-meta">{project.readMins} min</span>
+            </motion.div>
 
-            <h3 className="t-h3 text-ink">{project.title}</h3>
-            <p className="t-meta flex-1 text-ink/60">{project.description}</p>
+            {/* Title travels on hover — third beat, with the arrow. The
+                travel lives on an inner span, not the heading: Motion writes
+                the entrance to the heading's inline `transform`, which wins
+                over a Tailwind `translate-x` class, so the two must own
+                different elements. */}
+            <motion.h3
+              data-shared="title"
+              variants={fadeMove("up")}
+              transition={delayed(ENTER, CARD_STAGE.title)}
+              className="t-h3 text-ink"
+            >
+              <span className="inline-block transition-transform delay-[160ms] duration-fast ease-out group-hover:translate-x-[5px]">
+                {project.title}
+              </span>
+            </motion.h3>
 
-            <MetricRow metrics={project.metrics} className="border-t border-ink/12 pt-3.5" />
+            <motion.div
+              variants={fadeMove("up")}
+              transition={delayed(ENTER, CARD_STAGE.support)}
+              className="flex flex-1 flex-col gap-3"
+            >
+              <p className="t-meta flex-1 text-ink/60">{project.description}</p>
 
-            <ul className="flex flex-wrap gap-1.5">
-              {project.tags.slice(0, 2).map((tag) => (
-                <li key={tag} className="t-chip">
-                  {tag}
-                </li>
-              ))}
-            </ul>
+              <MetricRow metrics={project.metrics} className="border-t border-ink/12 pt-3.5" />
 
-            <div className="t-action flex items-center gap-1.5 pt-0.5 transition-all duration-200 [color:var(--accent)] group-hover:gap-2.5">
-              Read case study
-              <ArrowRightIcon className="h-3 w-3" />
-            </div>
+              <ul className="flex flex-wrap gap-1.5">
+                {project.tags.slice(0, 2).map((tag) => (
+                  <li key={tag} className="t-chip">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="t-action flex items-center gap-1.5 pt-0.5 [color:var(--accent)]">
+                Read case study
+                <ArrowRightIcon className="h-3 w-3 transition-transform delay-[160ms] duration-fast ease-out group-hover:translate-x-1" />
+              </div>
+            </motion.div>
           </div>
           <GlassHighlight />
         </Panel>
       </TiltCard>
-    </Link>
+    </SharedProjectLink>
   );
 }

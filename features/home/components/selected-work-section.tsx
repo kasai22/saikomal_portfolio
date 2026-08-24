@@ -1,8 +1,10 @@
-import { RevealItem } from "@/components/ui/reveal-item";
+import { ScaleReveal } from "@/components/animations/ScaleReveal";
+import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { HomeSection } from "@/features/home/components/home-section";
 import { SectionHeading } from "@/features/home/components/section-heading";
 import { FeaturedProjectPanel } from "@/features/home/components/featured-project-panel";
 import { CaseStudyCard } from "@/features/home/components/case-study-card";
+import { STAGGER } from "@/lib/animations/constants";
 import { CASE_STUDIES, DECK, SLIDE_INTRO } from "@/features/home/constants/data";
 
 /**
@@ -28,17 +30,17 @@ export function SelectedWorkSection() {
 
       <div className="flex flex-col gap-5">
         {featured && (
-          <RevealItem layered>
+          <ScaleReveal>
             <FeaturedProjectPanel project={featured} />
-          </RevealItem>
+          </ScaleReveal>
         )}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {others.map((project, i) => (
-            <RevealItem key={project.title} layered delayMs={i * 100}>
+        <Stagger step={STAGGER.loose} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {others.map((project) => (
+            <StaggerItem key={project.title} variant="scale">
               <CaseStudyCard project={project} />
-            </RevealItem>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </HomeSection>
   );

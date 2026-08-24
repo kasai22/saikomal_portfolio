@@ -1,4 +1,4 @@
-import { RevealItem } from "@/components/ui/reveal-item";
+import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { HomeSection } from "@/features/home/components/home-section";
 import { SectionHeading } from "@/features/home/components/section-heading";
 import { SocialLinks } from "@/features/home/components/social-links";
@@ -23,15 +23,15 @@ export function ContactSection() {
         intro={SLIDE_INTRO.ask}
       />
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <RevealItem delayMs={100}>
+      <Stagger className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <StaggerItem>
           <SocialLinks socials={CONTACT_SOCIALS} variant="row" />
-        </RevealItem>
+        </StaggerItem>
 
-        <RevealItem delayMs={200}>
+        <StaggerItem>
           <ContactForm />
-        </RevealItem>
-      </div>
+        </StaggerItem>
+      </Stagger>
     </HomeSection>
   );
 }

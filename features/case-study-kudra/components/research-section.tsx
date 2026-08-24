@@ -1,3 +1,5 @@
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
+import { STAGGER } from "@/lib/animations/constants";
 import { SectionHeading } from "@/components/case-study/section-heading";
 import { AccentCard } from "@/components/case-study/accent-card";
 import { RESEARCH_AREAS, RESEARCH_STATS } from "@/features/case-study-kudra/constants/data";
@@ -33,9 +35,11 @@ export function ResearchSection() {
             just asking about them.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            {RESEARCH_STATS.map((s) => (
+            {RESEARCH_STATS.map((s, i) => (
               <div key={s.l} className="rounded-sm border border-ink/12 bg-ink/[0.035] p-4 text-center">
-                <div className="t-metric text-[color:var(--accent)]">{s.v}</div>
+                <div className="t-metric text-[color:var(--accent)]">
+                  <AnimatedCounter value={s.v} delay={i * STAGGER.tight} />
+                </div>
                 <div className="mt-1 text-[11px] text-ink/60">{s.l}</div>
               </div>
             ))}

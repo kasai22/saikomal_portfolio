@@ -79,27 +79,25 @@ export const MODULE_SCOPE: ModuleScope[] = [
 
 export const INTRO_PARAGRAPHS: TextSegment[][] = [
   [
-    { text: "Hindustan Shipyard Limited builds and repairs ships for the Indian Navy and commercial fleets. Its digital presence, though, was ", highlight: false },
+    { text: "Hindustan Shipyard Limited builds and repairs ships for the Indian Navy and commercial fleets. Its digital presence was ", highlight: false },
     { text: "five disconnected systems wearing one logo", highlight: true },
-    { text: " — recruitment, tenders, vendor management, vigilance, and the public company portfolio. Whichever one you landed in, the experience ended the same way: ", highlight: false },
+    { text: " — recruitment, tenders, vendor management, vigilance and the public portfolio. Whichever one you landed in, it ended the same way: ", highlight: false },
     { text: "send an email, then wait", highlight: true },
     { text: ".", highlight: false },
   ],
   [
-    { text: "I worked on this at Sweya Infotech as the ", highlight: false },
-    { text: "UX researcher and designer", highlight: true },
-    { text: ", and as the point of contact for stakeholder management — the person who sat with each module's owners at HSL, worked out what their branch actually needed, and carried it back into design. I ran sessions with ", highlight: false },
-    { text: "roughly five stakeholders per module", highlight: true },
-    { text: " and turned what they told me into one connected ecosystem, built to a single design language. ", highlight: false },
+    { text: "I worked on this at Sweya Infotech as ", highlight: false },
+    { text: "UX researcher, designer and stakeholder point of contact", highlight: true },
+    { text: " — the person who sat with each module's owners, worked out what their branch needed, and carried it back into design. ", highlight: false },
     { text: "It went live.", highlight: true },
   ],
 ];
 
 export const POSSIBLE_SOLUTION_DESCRIPTION =
-  "The brief arrived as a website redesign. The stakeholder sessions turned it into something else: an ecosystem problem where five modules each expected the user to ask a human for information the system already had. So the redesign was organised around one rule — wherever someone was currently sending an email to find out where they stood, give them a screen that just tells them. That meant a candidate login for recruitment, where an applicant can see their submitted resume and whether they are selected, rejected, or still in process. It meant a tenders dashboard that puts live tenders, requirements, and updates on the site instead of in a mailbox. And it meant carrying the same navigation model, component set, and accessibility standard across HRMS, vendor management, vigilance, and the public portfolio, so that HSL read as one organisation rather than five.";
+  "The brief arrived as a website redesign. The stakeholder sessions turned it into an ecosystem problem, and the redesign was organised around one rule — wherever someone was emailing to find out where they stood, give them a screen that tells them. That meant a candidate login showing the submitted resume and whether the application is selected, rejected or in process; a tenders dashboard putting live tenders, requirements and updates on the site instead of in a mailbox; and one navigation model, component set and accessibility standard across all five modules, so HSL reads as one organisation.";
 
 export const MY_ROLE_SUMMARY =
-  "I was the UX researcher and designer on the engagement and the point of contact between our team and HSL. That meant running the discovery sessions with each module's stakeholders, reconciling requirements that often contradicted each other across branches, and owning the work from research through information architecture, flows, and high-fidelity design into engineering handoff.";
+  "Sole UX researcher and designer, and the stakeholder point of contact across all five modules — research, information architecture, wireframes, high-fidelity screens and the shared component set.";
 
 export const ROLE_ITEMS: RoleItem[] = [
   "Stakeholder Research",
@@ -111,17 +109,17 @@ export const ROLE_ITEMS: RoleItem[] = [
 ].map((label) => ({ label }));
 
 export const PROBLEM_STATEMENT =
-  "HSL's platform was outdated and non-responsive, but that was the symptom rather than the problem. The real cost was that none of the five modules could answer a question on its own. A candidate who applied for a job had no way to know whether anyone had opened their application — they applied, and then waited for an email that might never come. A vendor tracking a tender waited on email confirmations and updates rather than checking a status themselves. Internally, that turned HSL's HR and tender teams into a human status API: a meaningful share of their day went to answering phone calls and emails asking some version of 'where does my application/tender stand?' — questions a well-designed screen could have answered instantly. The objective was to redesign the ecosystem so that each audience could self-serve the answer they were currently chasing, on any device, to a standard accessible enough for a public-sector organisation serving the general public.";
+  "The platform was outdated and non-responsive, but that was the symptom. The problem was that none of the five modules could answer a question on its own. A candidate had no way to know whether anyone had opened their application. A vendor waited on email rather than checking a status. Internally that turned HR and the tender cell into a human status API, answering by phone what a screen could have answered instantly. The objective: let each audience self-serve the answer they were chasing, on any device, to a standard accessible enough for a public-sector organisation serving the general public.";
 
 export const AUDIENCE_APPROACH_ENTRIES: AudienceApproachEntry[] = [
   {
     id: "audience",
     kind: "list",
     listItems: [
-      "Job applicants — applying to HSL and waiting on an outcome (Recruitment)",
-      "Vendors and bidders — tracking live tenders and submission requirements (Tenders)",
-      "HSL employees — payroll, attendance, internal communication (HRMS)",
-      "Vigilance staff and complainants — raising and following up on cases (Vigilance)",
+      "Job applicants — applying and waiting on an outcome (Recruitment)",
+      "Vendors and bidders — tracking live tenders and requirements (Tenders)",
+      "HSL employees — payroll, attendance, internal comms (HRMS)",
+      "Vigilance staff and complainants — raising and following up cases (Vigilance)",
       "Clients, partners and the public — capability, projects, contact (Portfolio)",
     ],
   },
@@ -129,7 +127,7 @@ export const AUDIENCE_APPROACH_ENTRIES: AudienceApproachEntry[] = [
     id: "approach",
     kind: "paragraph",
     paragraph:
-      "I worked module by module rather than page by page. For each of the five modules I ran sessions with about five HSL stakeholders — the people who actually operated that branch day to day — and walked their current process step by step: what comes in, who touches it, where it stalls, and what they get asked on the phone. That framing is what surfaced the pattern across every module: the bottleneck was never the page layout, it was that status lived in someone's inbox instead of in the product. From there I mapped a shared information architecture, wireframed the flows that removed the email round-trip, and built out high-fidelity screens on a common component set so five modules could ship as one system. Requirements frequently conflicted between branches, so a large part of the role was reconciling them into one model before anything reached engineering.",
+      "I worked module by module rather than page by page, walking each branch through its current process step by step. From there I mapped a shared information architecture, wireframed the flows that removed the email round-trip, and built high-fidelity screens on a common component set so five modules could ship as one system. Requirements frequently conflicted between branches, so much of the role was reconciling them into one model before anything reached engineering.",
   },
 ];
 
@@ -158,44 +156,43 @@ export const TIMELINE_PHASES: TimelinePhase[] = [
 ];
 
 export const QUALITATIVE_RESEARCH_SUMMARY =
-  "Research here was stakeholder-led rather than survey-led. HSL is a public-sector shipyard, and the people who understood each workflow were the branch teams operating it — so instead of a broad user survey, I ran working sessions with roughly five stakeholders per module across recruitment, tenders, vendor management, vigilance, and the public portfolio. Each session was a walkthrough of the current process in their own words: what arrives, who handles it, where it waits, and which questions they end up answering by phone or email. Reconstructing those workflows out loud is what exposed the shared failure across modules — the system held the status, but only a person could release it.";
+  "Research here was stakeholder-led rather than survey-led: the people who understood each workflow were the branch teams operating it. Each session was a walkthrough of the current process in their own words — what arrives, who handles it, where it waits, and which questions they end up answering by phone. Reconstructing those workflows out loud is what exposed the failure shared across every module: the system held the status, but only a person could release it.";
 
 export const INTERVIEW_GROUPS: InterviewGroup[] = [
   {
     title: "Recruitment & HRMS teams",
     questions: [
-      "Walk me through what happens from the moment a candidate submits an application to the moment they hear back.",
-      "What do candidates call or email you to ask, and how often?",
-      "At which point in the process does an application sit the longest, and who is waiting on whom?",
-      "What would a candidate need to see on screen for that call not to happen?",
+      "Walk me through what happens from application submitted to candidate informed.",
+      "What do candidates call to ask, and how often?",
+      "Where does an application sit longest, and who is waiting on whom?",
+      "What would a candidate need on screen for that call not to happen?",
     ],
   },
   {
     title: "Tenders & vendor teams",
     questions: [
-      "How does a vendor currently find out that a tender is live, and how do they learn when something about it changes?",
-      "What information do you end up re-sending by email that already exists somewhere?",
-      "Which parts of the tender process do vendors most often get wrong or misunderstand?",
-      "If a vendor could check one screen instead of contacting you, what would need to be on it?",
+      "How does a vendor find out a tender is live, and that something changed?",
+      "What do you re-send by email that already exists somewhere?",
+      "How does a vendor confirm you received their submission?",
+      "Which questions could a page answer instead of you?",
     ],
   },
   {
-    title: "Vigilance & public portfolio owners",
+    title: "Vigilance & portfolio owners",
     questions: [
-      "Who visits this section, and what are they trying to accomplish before they leave?",
-      "What information are you obliged to publish, and what currently makes that hard to keep current?",
-      "Where do people get stuck or contact the wrong department entirely?",
-      "What has to stay exactly as it is for compliance reasons, and what is genuinely open to redesign?",
+      "What has to stay exactly as it is for compliance?",
+      "Who reads this module, and what are they trying to find?",
+      "Where does your terminology differ from the other branches?",
     ],
   },
 ];
 
 export const KEY_INSIGHTS_FROM_RESEARCH: string[] = [
-  "Applying to HSL was a black box. A candidate submitted an application and then had no signal of any kind — no acknowledgement, no stage, no outcome — until an email arrived, if one arrived. The anxiety wasn't caused by a slow process; it was caused by an invisible one. This became the single clearest design mandate in the project.",
-  "Tender information lived in inboxes rather than on the platform. Vendors depended on email confirmations and updates to know where a tender stood, which meant the authoritative source of truth was a message thread — impossible to search, easy to miss, and inconsistent between recipients.",
-  "HSL staff were being used as a status lookup. Across both recruitment and tenders, teams described spending a significant part of the day answering 'where does mine stand?' calls. That is a design problem showing up as a staffing cost — every one of those calls represented information the system had but never surfaced.",
-  "Five modules meant five mental models. Recruitment, tenders, vendor management, vigilance, and the portfolio had each grown separately, with different navigation logic and terminology. Users crossing between them effectively had to relearn the site, and internal teams had no shared vocabulary to hand over between branches.",
-  "Accessibility could not be a finishing pass. As a public-sector organisation serving applicants, vendors, and the general public across a wide range of devices and connection quality, HSL needed accessibility and mobile responsiveness treated as a baseline requirement across every module rather than as a polish item at the end of UI.",
+  "Applying was a black box. A candidate submitted, then got no signal of any kind — no acknowledgement, no stage, no outcome — until an email arrived, if one arrived. The anxiety came from an invisible process, not a slow one. This became the clearest design mandate in the project.",
+  "Tender information lived in inboxes rather than on the platform, which made the authoritative record a message thread: impossible to search, easy to miss, inconsistent between recipients.",
+  "Staff were being used as a status lookup. Teams described spending a significant part of the day on \"where does mine stand?\" calls — a design problem showing up as a staffing cost.",
+  "Five modules meant five mental models. Each had grown separately, with its own navigation logic and terminology, so users crossing between them had to relearn the site.",
+  "Accessibility could not be a finishing pass. A public-sector body serving applicants, vendors and the general public across a wide range of devices and connections has to start there.",
 ];
 
 export const EMPATHY_MAP: EmpathyQuadrant[] = [
@@ -267,30 +264,30 @@ export const USER_GROUPS: UserGroup[] = [
     name: "Job Applicants",
     module: "Recruitment / HRMS",
     summary:
-      "Engineers and staff applying to HSL. They submit an application into a process with no visible stages, and then have no way to distinguish 'still under review' from 'never opened' from 'rejected'. Every follow-up requires contacting HSL directly.",
+      "Engineers and staff applying to HSL. They submit into a process with no visible stages, and cannot tell \"still under review\" from \"never opened\" from \"rejected\". Every follow-up means contacting HSL directly.",
     sections: [
       {
         title: "Frustrations",
         items: [
-          "No acknowledgement or reference after submitting an application.",
-          "No visibility into whether the application has been reviewed.",
-          "Outcomes communicated only by email, with no fallback if it is missed.",
+          "No acknowledgement or reference after submitting.",
+          "No visibility into whether the application was reviewed.",
+          "Outcomes by email only, with no fallback if it is missed.",
         ],
       },
       {
         title: "Goals",
         items: [
-          "Find and apply for relevant openings without ambiguity about what was submitted.",
-          "Know the current stage of the application at any time.",
-          "Understand the recruitment process and what happens next.",
+          "Apply without ambiguity about what was submitted.",
+          "Know the current stage at any time.",
+          "Understand what happens next.",
         ],
       },
       {
         title: "What I designed",
         items: [
-          "A candidate login where the submitted resume is visible on record.",
-          "An explicit application status — selected, rejected, or in process — surfaced on the candidate's own dashboard.",
-          "Status shown in the product rather than delivered only as an email, so a missed message is no longer a dead end.",
+          "A candidate login with the submitted resume on record.",
+          "Explicit status — selected, rejected or in process — on the candidate's own dashboard.",
+          "Status in the product, not only in an email, so a missed message is not a dead end.",
         ],
       },
     ],
@@ -300,30 +297,30 @@ export const USER_GROUPS: UserGroup[] = [
     name: "Vendors & Bidders",
     module: "Tenders / Vendor Management",
     summary:
-      "Suppliers and contractors bidding for HSL work. Their view of a live tender depended on email — confirmations, documents, and updates all arrived in a thread, which made the mailbox the de facto system of record and put the burden of chasing changes on the vendor.",
+      "Suppliers and contractors bidding for HSL work. Confirmations, documents and updates all arrived in an email thread, which made the mailbox the system of record and put the burden of chasing changes on the vendor.",
     sections: [
       {
         title: "Frustrations",
         items: [
-          "Tender details and updates arriving only by email, with no authoritative page to check.",
-          "No way to confirm a submission was received without contacting the tender cell.",
-          "Repeatedly re-checking the site for changes that were never announced there.",
+          "Tender updates by email, with no authoritative page to check.",
+          "No way to confirm a submission without calling the tender cell.",
+          "Re-checking the site for changes never announced there.",
         ],
       },
       {
         title: "Goals",
         items: [
-          "See all live tenders and their requirements in one place.",
-          "Confirm submission and current standing without making a phone call.",
-          "Be confident the information on screen is the current version.",
+          "See all live tenders and requirements in one place.",
+          "Confirm submission and standing without a phone call.",
+          "Trust that what is on screen is current.",
         ],
       },
       {
         title: "What I designed",
         items: [
-          "A tenders dashboard holding live tenders, requirements, and updates on the platform itself.",
-          "Details surfaced on screen rather than distributed by email, so the site becomes the source of truth.",
-          "A consistent structure across tenders so vendors stop relearning each listing.",
+          "A tenders dashboard holding live tenders, requirements and updates on the platform.",
+          "Details on screen rather than distributed by email, making the site the source of truth.",
+          "One consistent structure, so vendors stop relearning each listing.",
         ],
       },
     ],
@@ -333,30 +330,30 @@ export const USER_GROUPS: UserGroup[] = [
     name: "HSL Internal Teams",
     module: "HR, Tender Cell, Vigilance",
     summary:
-      "The branch teams operating each module. Because status was invisible to everyone outside the building, these teams absorbed the gap personally — fielding the calls and emails asking where an application or tender stood, and re-sending information that already existed.",
+      "The branch teams operating each module. Because status was invisible outside the building, they absorbed the gap personally — fielding the calls and re-sending information the system already held.",
     sections: [
       {
         title: "Frustrations",
         items: [
-          "A recurring share of the working day spent answering status questions by phone and email.",
+          "A recurring share of the day spent answering status questions.",
           "Manually re-sending information the system already held.",
-          "Each branch running its own terminology and process, with nothing shared between modules.",
+          "Each branch running its own terminology and process.",
         ],
       },
       {
         title: "Goals",
         items: [
-          "Stop being the lookup mechanism for information the platform already has.",
+          "Stop being the lookup mechanism for what the platform already has.",
           "Publish once and have it stay current for every audience.",
-          "Keep compliance-mandated content intact while modernising everything around it.",
+          "Keep compliance-mandated content intact while modernising around it.",
         ],
       },
       {
         title: "What I designed",
         items: [
-          "Self-service status for applicants and vendors, removing the most common inbound question at its source.",
-          "A shared navigation model and component set so five modules behave as one system.",
-          "Accessibility and mobile responsiveness applied as a baseline across modules, not retrofitted per branch.",
+          "Shared navigation and components, so five branches ship as one system.",
+          "Status surfaced to the audience that needs it, removing the round-trip.",
+          "One vocabulary across modules, agreed with the branches first.",
         ],
       },
     ],

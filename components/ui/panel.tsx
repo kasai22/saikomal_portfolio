@@ -40,7 +40,7 @@ export function Panel<T extends ElementType = "div">({
   const Component = (as ?? "div") as ElementType;
 
   return (
-    <Component className={cn("rounded-sm transition-colors duration-300", LEVEL_CLASSES[level], className)} {...rest}>
+    <Component className={cn("rounded-sm transition-colors duration-fast", LEVEL_CLASSES[level], className)} {...rest}>
       {children}
     </Component>
   );

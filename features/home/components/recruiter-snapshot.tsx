@@ -1,6 +1,6 @@
 import { DownloadIcon } from "@/components/icons";
 import { ActionButton } from "@/components/ui/action-button";
-import { DrawBox } from "@/components/ui/wipe";
+import { DrawBox } from "@/components/animations/Reveal";
 import { RECRUITER_SNAPSHOT } from "@/features/home/constants/data";
 
 const ROWS: { label: string; value: string }[] = [

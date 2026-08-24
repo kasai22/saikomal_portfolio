@@ -1,32 +1,34 @@
 "use client";
 
 import { useEffect, type RefObject } from "react";
-import { useMotionValue, useSpring, type MotionValue } from "framer-motion";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useMotionValue, useSpring, type MotionValue } from "motion/react";
+import { SPRING_POINTER } from "@/lib/animations/springs";
+import { useMotionTier } from "@/hooks/use-motion-tier";
 
 interface MouseParallax {
-  /** Normalized pointer position within `ref`'s bounds, -0.5…0.5, spring-smoothed. */
+  /** Normalised pointer position within `ref`'s bounds, -0.5…0.5, spring-smoothed. */
   x: MotionValue<number>;
   y: MotionValue<number>;
 }
 
 /**
- * Tracks pointer position within a container, normalized to -0.5…0.5 and
- * spring-smoothed. Consumers multiply by their own depth factor (via
- * `useTransform`) to get independent parallax speeds per layer. No-ops
- * (stays at 0) on touch devices or under `prefers-reduced-motion`.
+ * Tracks pointer position within a container, normalised and spring-smoothed.
+ *
+ * Consumers multiply by their own depth factor via `usePointerTier` to get
+ * independent parallax speeds per layer off a single listener. Stays at 0 on
+ * anything below the `rich` tier and under reduced motion — the listener is
+ * never attached, so there is no cost at all on touch.
  */
 export function useMouseParallax(ref: RefObject<HTMLElement | null>): MouseParallax {
+  const { rich } = useMotionTier();
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
-  const x = useSpring(rawX, { stiffness: 150, damping: 20, mass: 0.5 });
-  const y = useSpring(rawY, { stiffness: 150, damping: 20, mass: 0.5 });
-  const reducedMotion = useReducedMotion();
+  const x = useSpring(rawX, SPRING_POINTER);
+  const y = useSpring(rawY, SPRING_POINTER);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || reducedMotion) return;
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (!el || !rich) return;
 
     const handleMove = (event: PointerEvent) => {
       const rect = el.getBoundingClientRect();
@@ -44,7 +46,7 @@ export function useMouseParallax(ref: RefObject<HTMLElement | null>): MouseParal
       el.removeEventListener("pointermove", handleMove);
       el.removeEventListener("pointerleave", handleLeave);
     };
-  }, [ref, rawX, rawY, reducedMotion]);
+  }, [ref, rawX, rawY, rich]);
 
   return { x, y };
 }

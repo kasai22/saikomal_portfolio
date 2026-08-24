@@ -9,7 +9,7 @@ export function CapabilityGroupCard({ group }: CapabilityGroupCardProps) {
   return (
     <Panel level={2} className="group relative h-full overflow-hidden p-6 hover:border-brand/40">
       <div
-        className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-0 transition-opacity duration-base group-hover:opacity-100"
         style={{ background: "radial-gradient(circle, rgba(232,163,61,0.22) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
@@ -32,7 +32,7 @@ export function CapabilityGroupCard({ group }: CapabilityGroupCardProps) {
 
       <ul className="flex flex-wrap gap-1.5">
         {group.items.map((skill) => (
-          <li key={skill} className="t-chip transition-colors duration-200 group-hover:border-brand/20">
+          <li key={skill} className="t-chip transition-colors duration-instant group-hover:border-brand/20">
             {skill}
           </li>
         ))}
