@@ -5,11 +5,14 @@ import type {
   CaseStudyProject,
   CodingProject,
   ExperienceEntry,
+  IntelligenceCapability,
+  IntelligenceStage,
   Metric,
   ProcessStep,
   Service,
   Social,
   Strength,
+  SystemDiscipline,
   TriadConcept,
 } from "@/features/home/types";
 
@@ -38,7 +41,8 @@ export const HERO_EYEBROW = "Sai Komal";
 export const HERO_ROLE = "Product Designer & UX Engineer";
 export const HERO_HEADLINE_LINE_1 = "Complex workflows,";
 export const HERO_HEADLINE_LINE_2 = "made obvious.";
-export const HERO_SUBCOPY = "I design enterprise products — then write the front-end that ships them.";
+export const HERO_SUBCOPY =
+  "I design enterprise products — then write the front-end that ships them.";
 
 /** Proof chips under the hero headline. */
 export const HERO_PROOF: Metric[] = [
@@ -63,6 +67,17 @@ export const DECK = {
   background: { chapter: "05", eyebrow: "About" },
   track: { chapter: "06", eyebrow: "Track record" },
   ask: { chapter: "07", eyebrow: "Contact" },
+  /**
+   * Not a numbered slide. The deck runs 01-07 and this sits between 02 and
+   * 03 as a figure — the site already sets every index and marker in the
+   * mono annotation face, so a `FIG.` mark reads as a diagram inserted into
+   * the running order rather than as a competing sequence.
+   */
+  system: { chapter: "FIG. 01", eyebrow: "Product thinking" },
+  /** The second figure — how an interface actually gets put together. */
+  build: { chapter: "FIG. 02", eyebrow: "Construction" },
+  /** The third — what the product does once intelligence is inside it. */
+  intelligence: { chapter: "FIG. 03", eyebrow: "AI product" },
 } as const;
 
 /** Slide-level supporting lines — one sentence each, no more. */
@@ -71,9 +86,15 @@ export const SLIDE_INTRO = {
   development: "Sites I designed and shipped the front-end for, live in production.",
   help: "What I actually take off a team's plate, and what gets handed back.",
   process: "Five stages, each ending in something concrete enough to hand over.",
-  background: "Engineering, then data, then UX. Which is why my work is dashboards and admin consoles.",
+  background:
+    "Engineering, then data, then UX. Which is why my work is dashboards and admin consoles.",
   track: "Four roles, one direction of travel — data, to design, to owning the product.",
   ask: "Looking for a full-time Product Designer or UX Engineer role. The form is the fastest reply.",
+  system:
+    "Not three handoffs on the way to a product. One loop, and the experience is what comes out of it.",
+  build: "An interface is not drawn, it is assembled. This is the order the pieces go in.",
+  intelligence:
+    "Intent, context, a decision, an action, an outcome — and the feedback that changes what happens the next time.",
 };
 
 /** Counts of what is actually on this site, not rounded-up claims. */
@@ -120,7 +141,12 @@ export const PRODUCT_THINKING: TriadConcept[] = [
   {
     label: "Engineering",
     detail: "B.Tech Mechanical — VIT Vellore",
-    points: ["Systems thinking", "Technical constraints", "Structured problem solving", "Feasibility"],
+    points: [
+      "Systems thinking",
+      "Technical constraints",
+      "Structured problem solving",
+      "Feasibility",
+    ],
   },
   {
     label: "UX",
@@ -134,6 +160,124 @@ export const PRODUCT_THINKING: TriadConcept[] = [
   },
 ];
 
+/* ------------------------------------------------------------------ *
+ * The product system — the circulating diagram in `FIG. 01`.
+ *
+ * Every word here is already somewhere else on this site: the disciplines
+ * and their framing come from `PRODUCT_THINKING`, the front-end line from
+ * `RECRUITER_SNAPSHOT`, and the AI vocabulary from the REX case study and
+ * the Onliest role — agentic architecture, scoring, and the low-confidence
+ * and cold-start states its edge cases are written around. Nothing here
+ * claims an outcome. It is a picture of how the work circulates, not of
+ * what it achieved.
+ * ------------------------------------------------------------------ */
+
+export const PRODUCT_SYSTEM: SystemDiscipline[] = [
+  {
+    id: "ux",
+    label: "UX",
+    detail: "Logistics, DevOps, fashion-tech",
+    artifacts: ["Research", "User needs", "Flows", "Interaction"],
+  },
+  {
+    id: "engineering",
+    label: "Engineering",
+    detail: "B.Tech Mechanical, then the front end",
+    artifacts: ["Systems", "Constraints", "Code", "Feasibility"],
+  },
+  {
+    id: "ai",
+    label: "AI",
+    detail: "Claude & AI-assisted workflows",
+    artifacts: ["Context", "Intelligence", "Decision", "Confidence"],
+  },
+];
+
+/** What the three of them produce by running as one loop. */
+export const SYSTEM_CORE = {
+  label: "Product experience",
+  detail: "One system, not three handoffs",
+};
+
+/* ------------------------------------------------------------------ *
+ * The intelligent product loop — the diagram in `FIG. 03`.
+ *
+ * These are conceptual stages, not a model architecture and not a claim
+ * about a shipped system. The vocabulary is the vocabulary of the REX
+ * work in `features/case-study-rex`: a preference-discovery step that
+ * asks rather than guesses when confidence is low, a scoring step whose
+ * confidence is shown to the user rather than hidden, and a guardrail
+ * that validates every claim against real catalogue, inventory, pricing
+ * and delivery data before any of it reaches a screen. Those three are
+ * the reason the diagram has two branches instead of one straight line.
+ *
+ * Nothing here is a number, an outcome or a result.
+ * ------------------------------------------------------------------ */
+
+export const AI_LOOP: IntelligenceStage[] = [
+  {
+    id: "intent",
+    side: "human",
+    label: "User intent",
+    note: "What someone is actually trying to get done",
+    detail: ["Stated request", "Implied goal", "Constraints"],
+  },
+  {
+    id: "context",
+    side: "system",
+    label: "Context",
+    note: "What the product already knows before it thinks",
+    detail: ["User data", "Task context", "System state"],
+  },
+  {
+    id: "reason",
+    side: "system",
+    label: "AI system",
+    note: "Interprets, weighs the options, commits to one",
+    detail: ["Reasoning", "Decision", "Generation"],
+  },
+  {
+    id: "action",
+    side: "system",
+    label: "Action",
+    note: "What the product does with the decision",
+    detail: ["Interface", "Workflow", "Recommendation"],
+  },
+  {
+    id: "outcome",
+    side: "system",
+    label: "Outcome",
+    note: "A result the user can interrogate, not just accept",
+    detail: ["Result", "Confidence", "Undo"],
+  },
+  {
+    id: "feedback",
+    side: "human",
+    label: "Feedback",
+    note: "Accepted, corrected or abandoned — and the system keeps it",
+    detail: ["Accepted", "Corrected", "Refined"],
+  },
+];
+
+/** What the system reaches for on the way to a decision, and gets back. */
+export const AI_CAPABILITIES: IntelligenceCapability[] = [
+  { id: "data", label: "Data", note: "Records, history, state" },
+  { id: "tools", label: "Tools", note: "Retrieval, scoring" },
+  { id: "surface", label: "Interface", note: "Where it can act" },
+];
+
+/**
+ * The two branches off the straight line. Both are UX decisions before they
+ * are engineering ones, which is the point of drawing them at all.
+ */
+export const AI_BRANCH = {
+  clarify: { label: "Low confidence", note: "Ask, don't guess" },
+  guard: { label: "Guardrail", note: "Validated before it is shown" },
+} as const;
+
+export const AI_LOOP_CAPTION =
+  "Conceptual stages — a product architecture, not a model one. The two branches are where the design work actually is: ask when confidence is low, and validate before anything reaches a screen.";
+
 export const DESIGN_PHILOSOPHY_QUOTE =
   "Most of the real design work happens after the mockup is done — when it meets a real API, a loading state, or an edge case nobody drew.";
 
@@ -142,7 +286,13 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     icon: "◈",
     category: "Product Strategy",
     description: "Ambiguous problem to scoped, buildable decision",
-    items: ["Product Discovery", "Problem Framing", "User Research", "Feature Validation", "Product Workflows"],
+    items: [
+      "Product Discovery",
+      "Problem Framing",
+      "User Research",
+      "Feature Validation",
+      "Product Workflows",
+    ],
   },
   {
     icon: "◎",
@@ -309,7 +459,12 @@ export const SERVICES: Service[] = [
     number: "04",
     title: "Design AI-facing interfaces",
     description: "Making a model's output legible — and safe when it is uncertain.",
-    deliverables: ["Conversational UX", "Explainable ranking", "Confidence signals", "Fallback states"],
+    deliverables: [
+      "Conversational UX",
+      "Explainable ranking",
+      "Confidence signals",
+      "Fallback states",
+    ],
   },
 ];
 

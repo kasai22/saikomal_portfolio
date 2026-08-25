@@ -96,11 +96,54 @@ export interface CodingProject {
   year: string;
 }
 
-
 /** One offer in "Ways I can help" — a service, not a skill. */
 export interface Service {
   number: string;
   title: string;
   description: string;
   deliverables: string[];
+}
+
+/**
+ * One discipline in the product system — a practice, and the four things it
+ * puts into circulation.
+ *
+ * Deliberately separate from `TriadConcept`, which the smaller About-section
+ * triad still uses: that component's layout is written around exactly three
+ * entries with prose detail, and this one is four-by-three single words that
+ * have to survive being animated around a ring.
+ */
+export interface SystemDiscipline {
+  id: "ux" | "engineering" | "ai";
+  label: string;
+  /** Where this comes from, in one line. Shown under the label. */
+  detail: string;
+  /** Exactly four. The ring geometry allots each discipline a fixed sector. */
+  artifacts: string[];
+}
+
+/**
+ * One stage of the intelligent product loop in `FIG. 03`.
+ *
+ * `side` is the distinction the diagram is drawn around: two of these six
+ * belong to the person using the product and four belong to the system, and
+ * they are drawn differently for that reason rather than for variety.
+ */
+export interface IntelligenceStage {
+  id: "intent" | "context" | "reason" | "action" | "outcome" | "feedback";
+  label: string;
+  /** What this stage is, in product terms. Surfaced on emphasis. */
+  note: string;
+  /** Exactly three. The emphasis panel is laid out around three. */
+  detail: [string, string, string];
+  /** Whose side of the loop this is. Drives how the node is drawn. */
+  side: "human" | "system";
+}
+
+/** One thing the system can reach for on its way to a decision. */
+export interface IntelligenceCapability {
+  id: "data" | "tools" | "surface";
+  label: string;
+  /** Two or three words. It sits inside a 146px box. */
+  note: string;
 }
