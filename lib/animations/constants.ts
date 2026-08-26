@@ -329,9 +329,16 @@ export const HERO_STAGE = {
  */
 export const HERO_SYSTEM = {
   /** Extra scroll distance below the pinned hero, in `svh`. */
-  runway: { desktop: 170, tablet: 140 },
-  /** Where the system finishes resolving, in section-progress. */
-  end: 0.5,
+  runway: { desktop: 215, tablet: 175 },
+  /**
+   * Where the system finishes resolving, in section-progress.
+   *
+   * Earlier than it used to be. The sequence no longer ends when the tiers
+   * resolve — resolving is now the *first* of three acts, and the two after it
+   * (the viewport assembling, then the hero handing over to the work) need the
+   * back half of the runway.
+   */
+  end: 0.4,
   /**
    * The same thing below `md`, where the section has no runway and the whole
    * timeline rides the hero's own exit. Later than `end` because there is no
@@ -339,9 +346,27 @@ export const HERO_SYSTEM = {
    * — the product tier and the assembled interface — is still on screen as
    * the hero leaves, which is the only moment mobile gets to see it.
    */
-  compactEnd: 0.75,
-  /** Where the hero itself starts leaving. Deliberately equal to `end`. */
-  exitStart: 0.5,
+  compactEnd: 0.62,
+  /**
+   * Where the assembled interface stops being a panel and becomes a screen.
+   *
+   * The tiles finish their tiling at `end`; across this window the composition
+   * they made turns into a large product viewport — the frame draws itself
+   * around them, they travel out into its chrome, and the mask that has been
+   * protecting the headline lifts, because by then the headline is going.
+   *
+   * This is the hinge of the whole sequence. Before it the reader is looking
+   * *at* a system; after it they are looking *through* a screen the system
+   * built, and the next section is what is on the other side of it.
+   */
+  viewport: [0.38, 0.7] as const,
+
+  /**
+   * Where the hero itself starts leaving. Deliberately equal to the end of
+   * `viewport`: the copy holds still until the screen it is standing in front
+   * of has finished assembling, and only then gets out of its way.
+   */
+  exitStart: 0.7,
   /**
    * Per-tier windows in *system* progress (0-1 after remapping through
    * `end`). Overlapping by design: the tiers resolve as a wave down the

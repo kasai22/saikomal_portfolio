@@ -106,6 +106,27 @@ export function ComplexityToClarity({ progress }: ComplexityToClarityProps) {
   const smoothed = useSpring(scrubbed, SPRING_SCROLL);
   const system = reduced ? resolved : smoothed;
 
+  // The viewport phase runs on raw section progress rather than the remapped
+  // system value — it begins where the system's own timeline has already
+  // ended, so it cannot be expressed in that timeline's coordinates.
+  const camera = reduced ? resolved : progress;
+
+  // What is left of the network once the screen has taken over. Not zero: the
+  // structure is what built the thing and should still be behind it, but it
+  // has to stand down or the screen never becomes the subject.
+  const [viewStart, viewEnd] = HERO_SYSTEM.viewport;
+  const systemFade = useTransform(camera, [viewStart, viewEnd], [1, 0.26]);
+
+  // The tiles have somewhere to go. They finish their tiling just below where
+  // the screen's bottom edge lands, so as the frame opens they travel up into
+  // it and settle as the thing on it — rather than being cut in half by an
+  // edge that arrived around them, which is what happened when they stayed
+  // put. Then they stand down, because the frame's own chrome takes over the
+  // job of looking like an interface.
+  const tilesY = useTransform(camera, [viewStart, viewEnd], [0, -0.09]);
+  const tilesLift = useTransform(tilesY, (value) => `${(value * 100).toFixed(2)}%`);
+  const tilesFade = useTransform(camera, [viewStart, viewEnd], [1, 0.4]);
+
   const geometry: SystemGeometry = roomy ? DESKTOP_SYSTEM : MOBILE_SYSTEM;
   const scatter = reduced
     ? 0
@@ -136,31 +157,43 @@ export function ComplexityToClarity({ progress }: ComplexityToClarityProps) {
           animate={{ opacity: 1 }}
           transition={delayed(ENTER_SLOW, HERO_STAGE.visual)}
         >
-          <ComplexityConnections
-            progress={system}
-            geometry={geometry}
-            scatter={scatter}
-            width={size.width}
-            height={size.height}
-            showPruned={large}
-          />
-          <ComplexityNodes
-            progress={system}
-            geometry={geometry}
-            scatter={scatter}
-            width={size.width}
-            height={size.height}
-          />
-          <ComplexityUIFragments
-            progress={system}
-            geometry={geometry}
-            scatter={scatter}
-            width={size.width}
-            height={size.height}
-            limit={large ? undefined : 3}
-          />
+          <motion.div style={{ opacity: systemFade }} className="absolute inset-0">
+            <ComplexityConnections
+              progress={system}
+              geometry={geometry}
+              scatter={scatter}
+              width={size.width}
+              height={size.height}
+              showPruned={large}
+            />
+            <ComplexityNodes
+              progress={system}
+              geometry={geometry}
+              scatter={scatter}
+              width={size.width}
+              height={size.height}
+            />
+            <motion.div style={{ y: tilesLift, opacity: tilesFade }} className="absolute inset-0">
+              <ComplexityUIFragments
+                progress={system}
+                geometry={geometry}
+                scatter={scatter}
+                width={size.width}
+                height={size.height}
+                limit={large ? undefined : 3}
+              />
+            </motion.div>
+          </motion.div>
         </motion.div>
       )}
+
+      {/* The screen used to be built here, as a box inside this stage. It is
+          built by `HeroToWorkScene` now — as a hole in a fixed cover rather
+          than a box on the page, because a box anchored in the hero leaves
+          with the hero and can never be the thing the next section arrives
+          inside. What remains here is the network standing down (`systemFade`)
+          and the tiles travelling up (`tilesLift`) to where that opening
+          forms, which is the hand-off into it. */}
 
       {/* The reading. Four words that name what the structure resolves into,
           set in the site's technical annotation face and parked in the

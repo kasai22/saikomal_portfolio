@@ -1,6 +1,7 @@
 import { HeroSection } from "@/features/home/components/hero-section";
 import { RecruiterSnapshot } from "@/features/home/components/recruiter-snapshot";
 import { SelectedWorkSection } from "@/features/home/components/selected-work-section";
+import { HeroToWorkScene } from "@/components/transitions/hero-to-work-scene";
 import { DevelopmentSection } from "@/features/home/components/development-section";
 import { ProductSystemSection } from "@/features/home/components/product-system-section";
 import { ProductBuildSection } from "@/features/home/components/product-build-section";
@@ -39,7 +40,14 @@ export default function HomePage() {
     <>
       <HeroSection />
       <RecruiterSnapshot />
-      <SelectedWorkSection />
+      {/* One continuous move. The scene puts a fixed cover over the viewport
+          with a hole in it, and the real section below scrolls up through that
+          hole — so the screen the hero built stays on the display while the
+          work travels into it. The section itself is untouched; see the
+          component for why it has to be a cover rather than a box. */}
+      <HeroToWorkScene>
+        <SelectedWorkSection />
+      </HeroToWorkScene>
       <DevelopmentSection />
       <ProductSystemSection />
       <ProductBuildSection />
