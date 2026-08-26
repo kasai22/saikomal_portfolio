@@ -147,3 +147,60 @@ export interface IntelligenceCapability {
   /** Two or three words. It sits inside a 146px box. */
   note: string;
 }
+
+/**
+ * One of the nine raw inputs a product problem arrives as, in `FIG. 04`, and
+ * the group it belongs in once it has been sorted.
+ */
+export interface MindInput {
+  id:
+    | "user"
+    | "problem"
+    | "research"
+    | "business"
+    | "tech"
+    | "constraints"
+    | "data"
+    | "ai"
+    | "workflow";
+  label: string;
+  cluster: "evidence" | "boundary" | "material";
+}
+
+/** One of the three groups the nine inputs sort into. */
+export interface MindCluster {
+  id: "evidence" | "boundary" | "material";
+  label: string;
+  /** What the group is, in four or five words. It sits under a bracket. */
+  note: string;
+}
+
+/**
+ * One stage of the structure the sorted inputs turn into.
+ *
+ * `output` is not a claim and not new copy — every one is the documented
+ * output of the corresponding step in `PROCESS_STEPS`. See `MIND_STAGES`.
+ */
+export interface MindStage {
+  id: "insight" | "model" | "flow" | "design" | "product";
+  label: string;
+  output: string;
+}
+
+/**
+ * One station of the design machine in `FIG. 05` — a part of the apparatus,
+ * and the step of the documented method it corresponds to.
+ *
+ * `title`, `description` and `output` are not new copy. Five of the six are
+ * lifted from the matching entry in `PROCESS_STEPS`; see `DESIGN_MACHINE`.
+ */
+export interface MachineStation {
+  id: "input" | "filter" | "form" | "construct" | "test" | "output";
+  /** What this piece of apparatus does. The machine word. */
+  part: string;
+  /** Its number in the method, or empty for the delivery end. */
+  step: string;
+  title: string;
+  description: string;
+  output: string;
+}

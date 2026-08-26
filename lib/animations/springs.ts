@@ -69,6 +69,39 @@ export const SPRING_SCROLL: Transition = {
 };
 
 /**
+ * The two long scrubbed figures — FIG. 02's assembly and FIG. 03's loop.
+ *
+ * Those figures now run over three to four screens of scroll each, which
+ * changes what the spring is for. The value they chase moves very little per
+ * pixel, so during deliberate scrolling this is effectively locked to the
+ * hand; what it buys is the tail — a flicked scroll arrives as a glide rather
+ * than a jump.
+ *
+ * ── Why these numbers ───────────────────────────────────────────────────
+ * Tuned against a measurement rather than by feel: after an instant scroll
+ * jump, how long does the figure keep animating? That tail is the thing that
+ * reads as "detached" when it runs long. Measured in a real browser to the
+ * point where every one of FIG. 03's properties stops moving at all, which is
+ * a stricter bar than the eye — the visible settle is roughly half of it:
+ *
+ *   100 / 28 / 0.55  →  1.4-1.7s. Properly cinematic and much too far behind
+ *                       the hand; a flick was still resolving a second and a
+ *                       half later, which reads as the page lagging.
+ *   190 / 27 / 0.45  →  0.66-0.92s. Enough weight that a flick arrives as a
+ *                       glide, short enough that the drawing has caught up by
+ *                       the time the reader has finished the gesture.
+ *
+ * Still over-damped (ζ ≈ 1.46): it settles, it never overshoots.
+ */
+export const SPRING_FIGURE: Transition = {
+  type: "spring",
+  stiffness: 190,
+  damping: 27,
+  mass: 0.45,
+  restDelta: 0.0005,
+};
+
+/**
  * The top-of-page progress bar. `restDelta` matters here — without it the
  * spring keeps ticking imperceptibly and never parks.
  */

@@ -8,6 +8,10 @@ import type {
   IntelligenceCapability,
   IntelligenceStage,
   Metric,
+  MachineStation,
+  MindCluster,
+  MindInput,
+  MindStage,
   ProcessStep,
   Service,
   Social,
@@ -78,6 +82,10 @@ export const DECK = {
   build: { chapter: "FIG. 02", eyebrow: "Construction" },
   /** The third — what the product does once intelligence is inside it. */
   intelligence: { chapter: "FIG. 03", eyebrow: "AI product" },
+  /** The fourth — what happens between a brief landing and a product existing. */
+  mind: { chapter: "FIG. 04", eyebrow: "Problem solving" },
+  /** The last, and the one the other four are parts of. */
+  machine: { chapter: "FIG. 05", eyebrow: "The design machine" },
 } as const;
 
 /** Slide-level supporting lines — one sentence each, no more. */
@@ -95,6 +103,9 @@ export const SLIDE_INTRO = {
   build: "An interface is not drawn, it is assembled. This is the order the pieces go in.",
   intelligence:
     "Intent, context, a decision, an action, an outcome — and the feedback that changes what happens the next time.",
+  mind: "Nine inputs, none of them sequenced. Getting them into something buildable is most of the job.",
+  machine:
+    "The same five steps, drawn as the apparatus they actually make up — a problem in one end, a shipped product out of the other.",
 };
 
 /** Counts of what is actually on this site, not rounded-up claims. */
@@ -277,6 +288,131 @@ export const AI_BRANCH = {
 
 export const AI_LOOP_CAPTION =
   "Conceptual stages — a product architecture, not a model one. The two branches are where the design work actually is: ask when confidence is low, and validate before anything reaches a screen.";
+
+/* ------------------------------------------------------------------ *
+ * How a problem gets ordered — the diagram in `FIG. 04`.
+ *
+ * The nine inputs are conceptual: they are the kinds of thing a brief
+ * arrives as, not findings from any project. Nothing here is a result.
+ *
+ * The five stages are not new either. They are the five steps already
+ * documented in `PROCESS_STEPS` — Discover, Define, Design, Build,
+ * Validate — named for what comes *out* of each rather than for what you
+ * do in it, and every `output` string below is that step's own recorded
+ * output. Discover's "Interviews · Empathy map" and Define's "Problem
+ * statement · IA" are verbatim; step 03's "Flows · Design system" is split
+ * across Flow and Design, which is how it is actually worked; and Product
+ * carries steps 04 and 05 together. The edge states under Flow come from
+ * `STRENGTHS` ("Edge-state literate"), and Design's components from
+ * "Systems, not screens — tokens, components, states".
+ * ------------------------------------------------------------------ */
+
+export const PROBLEM_INPUTS: MindInput[] = [
+  { id: "user", label: "User", cluster: "evidence" },
+  { id: "problem", label: "Problem", cluster: "evidence" },
+  { id: "research", label: "Research", cluster: "evidence" },
+  { id: "business", label: "Business", cluster: "boundary" },
+  { id: "tech", label: "Tech", cluster: "boundary" },
+  { id: "constraints", label: "Constraints", cluster: "boundary" },
+  { id: "data", label: "Data", cluster: "material" },
+  { id: "ai", label: "AI", cluster: "material" },
+  { id: "workflow", label: "Workflow", cluster: "material" },
+];
+
+/** What the nine sort into. Three groups, three each — and the sorting is
+ *  the first real decision anybody makes on a project. */
+export const PROBLEM_CLUSTERS: MindCluster[] = [
+  { id: "evidence", label: "Evidence", note: "What is actually true" },
+  { id: "boundary", label: "Boundary", note: "What is not negotiable" },
+  { id: "material", label: "Material", note: "What there is to build with" },
+];
+
+export const MIND_STAGES: MindStage[] = [
+  { id: "insight", label: "Insight", output: "Interviews · Empathy map" },
+  { id: "model", label: "Model", output: "Problem statement · IA" },
+  { id: "flow", label: "Flow", output: "Flows · Edge states" },
+  { id: "design", label: "Design", output: "Design system · Components" },
+  { id: "product", label: "Product", output: "Working prototype · Usability findings" },
+];
+
+export const MIND_CAPTION =
+  "The nine inputs are conceptual. The five stages are not — they are the five steps in How I work (04), named for what comes out of each, and the artefact under every one is that step's own recorded output.";
+
+/* ------------------------------------------------------------------ *
+ * The design machine — `FIG. 05`.
+ *
+ * This is not a sixth process. It is `PROCESS_STEPS` — the five steps
+ * already documented in "How I work" — drawn as the machine they add up
+ * to, one station per step. Every `title`, `description` and `output`
+ * below is that step's own, verbatim; only the `part` names are new, and
+ * they name apparatus rather than making any claim.
+ *
+ * The sixth station is the delivery end. It has no step number because it
+ * is not a step: it is what the other five produce. The screen shown there
+ * is Kudra's live fleet view, the same asset the Kudra case study uses.
+ *
+ * Nothing here is an outcome or a metric.
+ * ------------------------------------------------------------------ */
+
+export const DESIGN_MACHINE: MachineStation[] = [
+  {
+    id: "input",
+    part: "Input",
+    step: "01",
+    title: "Discover",
+    description: "Talk to the people who will actually use it.",
+    output: "Interviews · Empathy map",
+  },
+  {
+    id: "filter",
+    part: "Filter",
+    step: "02",
+    title: "Define",
+    description: "Scope it — what is in, what is out, what success means.",
+    output: "Problem statement · IA",
+  },
+  {
+    id: "form",
+    part: "Form",
+    step: "03",
+    title: "Design",
+    description: "Wireframes to hi-fi, on a system rather than one-off screens.",
+    output: "Flows · Design system",
+  },
+  {
+    id: "construct",
+    part: "Construct",
+    step: "04",
+    title: "Build",
+    description: "Wire the real thing up in React, not a static file.",
+    output: "Working prototype",
+  },
+  {
+    id: "test",
+    part: "Test",
+    step: "05",
+    title: "Validate",
+    description: "Real usage decides what gets fixed next.",
+    output: "Usability findings",
+  },
+  {
+    id: "output",
+    part: "Output",
+    step: "",
+    title: "Product",
+    description: "In front of the people it was built for, doing the job.",
+    output: "Kudra · fleet operations",
+  },
+];
+
+/** The real screen that resolves in the output frame. */
+export const MACHINE_PRODUCT = {
+  src: "/kudra/fleet-management.png",
+  alt: "Kudra fleet management screen — the live vehicle view from the case study",
+};
+
+export const MACHINE_CAPTION =
+  "The machine is the five steps in How I work (04) — Discover, Define, Design, Build, Validate — drawn as apparatus. Every description and artefact is that step's own; the screen at the delivery end is Kudra's fleet view from the case study.";
 
 export const DESIGN_PHILOSOPHY_QUOTE =
   "Most of the real design work happens after the mockup is done — when it meets a real API, a loading state, or an edge case nobody drew.";

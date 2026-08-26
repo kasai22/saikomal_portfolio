@@ -9,7 +9,7 @@ import { ProductIntelligenceMobile } from "@/components/product-intelligence/pro
 import { clamp01 } from "@/components/product-intelligence/product-intelligence-timeline";
 import { AI_LOOP_CAPTION, DECK, SLIDE_INTRO } from "@/features/home/constants/data";
 import { QUERY } from "@/lib/animations/constants";
-import { SPRING_SCROLL } from "@/lib/animations/springs";
+import { SPRING_FIGURE } from "@/lib/animations/springs";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useMotionTier } from "@/hooks/use-motion-tier";
 import { useSectionScroll } from "@/hooks/use-scroll-tier";
@@ -51,19 +51,26 @@ import { useSectionScroll } from "@/hooks/use-scroll-tier";
  * emphasis still available on hover, focus and click.
  */
 
-/** Extra scroll distance below the pinned stage, in `svh`. */
-const RUNWAY = { desktop: 135, tablet: 110 };
+/**
+ * Extra scroll distance below the pinned stage, in `svh`.
+ *
+ * Three screens of it. The sequence has nine phases and runs the loop twice,
+ * and at the previous distance each phase got barely a hundred pixels — which
+ * is a slideshow, not something a reader can follow. Here each phase of the
+ * first pass gets a little over two hundred, and the second pass gets four
+ * hundred to itself. The reader is meant to be able to stop halfway through
+ * the system reaching for its tools and simply look at it.
+ */
+const RUNWAY = { desktop: 300, tablet: 240 };
 
 /**
- * Where the sequence finishes, in section progress.
- *
- * Deliberately lower than the 0.5 the other two figures use. This one ends on
- * a loop closing, and a loop that closes on the last frame before the stage
- * unpins is a loop nobody gets to look at. Finishing at 0.42 leaves roughly
- * 350px of scroll where the whole system is drawn, pinned and circulating
- * before the section starts moving again.
+ * Where the sequence finishes, in section progress. Below the release point,
+ * which lands around 0.77 on desktop — so the closed, circulating loop holds
+ * still for the last four hundred-odd pixels of the pin. This figure ends on
+ * an argument about feedback, and an argument that resolves on the last frame
+ * before the stage unpins is one nobody reads.
  */
-const END = 0.42;
+const END = 0.66;
 
 export function ProductIntelligenceSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -80,8 +87,11 @@ export function ProductIntelligenceSection() {
   const resolved = useMotionValue(1);
   const scrubbed = useTransform(progress, (value) => clamp01(value / END));
   // Spring-smoothed, so the wires lag the wheel slightly and read as being
-  // laid rather than as a value being dragged.
-  const smoothed = useSpring(scrubbed, SPRING_SCROLL);
+  // laid rather than as a value being dragged. `SPRING_FIGURE` is softer than
+  // the site's general scroll spring precisely because this runs over three
+  // screens: at that rate the value moves very little per pixel, and a stiffer
+  // spring would weld the whole thing to the wheel.
+  const smoothed = useSpring(scrubbed, SPRING_FIGURE);
   const timeline = reduced ? resolved : smoothed;
 
   return (

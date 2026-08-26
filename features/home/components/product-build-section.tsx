@@ -22,7 +22,7 @@ import {
 } from "@/components/product-build/product-build-timeline";
 import { DECK, SLIDE_INTRO } from "@/features/home/constants/data";
 import { QUERY } from "@/lib/animations/constants";
-import { SPRING_SCROLL } from "@/lib/animations/springs";
+import { SPRING_FIGURE } from "@/lib/animations/springs";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useMotionTier } from "@/hooks/use-motion-tier";
 import { useSectionScroll } from "@/hooks/use-scroll-tier";
@@ -61,11 +61,26 @@ import { useSectionScroll } from "@/hooks/use-scroll-tier";
  * it is correct before a single value is written.
  */
 
-/** Extra scroll distance below the pinned stage, in `svh`. */
-const RUNWAY = { desktop: 140, tablet: 110 };
+/**
+ * Extra scroll distance below the pinned stage, in `svh`.
+ *
+ * Roughly double what it was. The problem this fixes was never the easing —
+ * it was that twenty layers were being drawn inside about a thousand pixels of
+ * scroll, which is fifty pixels per layer and far too little for anyone to
+ * watch a thing being built. At this distance each layer gets a little over a
+ * hundred pixels of its own, and the pauses between the five stages get sixty
+ * to eighty pixels where nothing new starts at all.
+ */
+const RUNWAY = { desktop: 280, tablet: 220 };
 
-/** Where the build finishes, in section progress. Below the release point. */
-const END = 0.5;
+/**
+ * Where the build finishes, in section progress. Comfortably below the release
+ * point, which lands around 0.76 on desktop — so the completed console holds,
+ * pinned and still, for the last four hundred-odd pixels before the section
+ * starts to move again. The product is the thing this figure is arguing for;
+ * it should not arrive on the last frame.
+ */
+const END = 0.62;
 
 export function ProductBuildSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -80,7 +95,7 @@ export function ProductBuildSection() {
   const scrubbed = useTransform(progress, (value) => clamp01(value / END));
   // Spring-smoothed, so the assembly lags the wheel slightly and reads as
   // something being put together rather than a value being dragged.
-  const smoothed = useSpring(scrubbed, SPRING_SCROLL);
+  const smoothed = useSpring(scrubbed, SPRING_FIGURE);
   const timeline = reduced ? resolved : smoothed;
 
   return (

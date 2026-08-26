@@ -63,41 +63,61 @@ export interface Layer {
 }
 
 /**
- * Windows overlap across every stage boundary by three to four points, which
- * is what stops the five stages reading as five screens. Nothing waits for the
- * previous thing to finish.
+ * When each layer is drawn, in build progress 0-1.
+ *
+ * ── Read the gaps, not the windows ──────────────────────────────────────
+ * Nothing here runs into the next thing. Every layer finishes, and then there
+ * is a stretch of progress where *nothing new starts* before the following one
+ * begins. Those gaps are the point of this table: a layer that arrives while
+ * the previous one is still arriving reads as a page loading, and five stages
+ * that run straight into each other read as one long slide rather than as five
+ * decisions. The rhythm is meant to be draw, hold, draw, hold.
+ *
+ * Two sizes of gap:
+ *
+ *   · ~0.010 *within* a stage — the sidebar lands, holds, then the header
+ *     starts. Long enough to register as a separate act.
+ *   · ~0.030 *between* stages — roughly three times as long, so the five
+ *     stages are legible as five, and the reader gets a beat to take in what
+ *     the last one produced before the next begins.
+ *
+ * The stage bands themselves are 0-18, 18-38, 38-60, 60-82 and 82-100. The
+ * `STAGES` windows below overlap those boundaries by a point or two, because
+ * the tracker above the frame should cross-fade between two stage names rather
+ * than switch on a single frame — the *layers* pause at the boundary, the
+ * label does not.
  */
 export const LAYERS: Layer[] = [
-  { id: "idea", label: "Brief", window: [0.0, 0.04] },
-  { id: "canvas", label: "Canvas", window: [0.02, 0.09] },
-  { id: "grid", label: "Grid", window: [0.05, 0.15] },
+  { id: "idea", label: "Brief", window: [0.0, 0.028] },
+  { id: "canvas", label: "Canvas", window: [0.04, 0.086] },
+  { id: "grid", label: "Grid", window: [0.098, 0.148] },
 
-  { id: "railFrame", label: "Sidebar boundary", window: [0.13, 0.23] },
-  { id: "headFrame", label: "Header boundary", window: [0.17, 0.27] },
-  { id: "workFrame", label: "Workspace", window: [0.21, 0.31] },
-  { id: "nav", label: "Navigation", window: [0.26, 0.36] },
+  { id: "railFrame", label: "Sidebar boundary", window: [0.185, 0.223] },
+  { id: "headFrame", label: "Header boundary", window: [0.235, 0.273] },
+  { id: "workFrame", label: "Workspace", window: [0.285, 0.323] },
+  { id: "nav", label: "Navigation", window: [0.335, 0.375] },
 
-  { id: "controls", label: "Header controls", window: [0.34, 0.42] },
-  { id: "kpi", label: "Summary cards", window: [0.37, 0.45] },
-  { id: "data", label: "Figures", window: [0.42, 0.49] },
-  { id: "filters", label: "Filters", window: [0.46, 0.53] },
-  { id: "table", label: "Table", window: [0.5, 0.59] },
+  { id: "controls", label: "Header controls", window: [0.4, 0.43] },
+  { id: "kpi", label: "Summary cards", window: [0.44, 0.472] },
+  { id: "data", label: "Figures", window: [0.482, 0.508] },
+  { id: "filters", label: "Filters", window: [0.518, 0.546] },
+  { id: "table", label: "Table", window: [0.556, 0.6] },
 
-  { id: "status", label: "Status", window: [0.57, 0.65] },
+  { id: "status", label: "Status", window: [0.632, 0.664] },
   // The panel assembles top to bottom. The brief names the derivation order
   // as distribution, then utilisation, then activity — but a viewer scrubbing
   // slowly reads a middle block landing before the one above it as a glitch,
   // and the derivation is already carried by the sequence (table statuses
   // light up first) and by the direction (every block enters from the table
   // side). Physical order wins over semantic order here.
-  { id: "chart", label: "Utilisation", window: [0.62, 0.7] },
-  { id: "split", label: "Distribution", window: [0.66, 0.74] },
-  { id: "feed", label: "Activity", window: [0.71, 0.8] },
+  { id: "chart", label: "Utilisation", window: [0.674, 0.708] },
+  { id: "split", label: "Distribution", window: [0.718, 0.75] },
+  { id: "feed", label: "Activity", window: [0.76, 0.798] },
 
-  { id: "select", label: "Selection", window: [0.79, 0.86] },
-  { id: "detail", label: "Detail panel", window: [0.83, 0.91] },
-  { id: "states", label: "Interaction", window: [0.87, 0.95] },
-  { id: "settle", label: "Product", window: [0.92, 1.0] },
+  { id: "select", label: "Selection", window: [0.828, 0.86] },
+  { id: "detail", label: "Detail panel", window: [0.87, 0.904] },
+  { id: "states", label: "Interaction", window: [0.914, 0.944] },
+  { id: "settle", label: "Product", window: [0.956, 1.0] },
 ];
 
 export interface Stage {
@@ -106,21 +126,25 @@ export interface Stage {
   window: Window;
 }
 
-/** The tracker above the frame. Matches the layer windows exactly. */
+/**
+ * The tracker above the frame. Each window spans its stage's layers and
+ * overlaps the next by a point or two, so the emphasis crosses over rather
+ * than switching — the pause belongs to the drawing, not to the label.
+ */
 export const STAGES: Stage[] = [
-  { label: "Idea", layers: ["idea", "canvas", "grid"], window: [0.0, 0.15] },
+  { label: "Idea", layers: ["idea", "canvas", "grid"], window: [0.0, 0.175] },
   {
     label: "Structure",
     layers: ["railFrame", "headFrame", "workFrame", "nav"],
-    window: [0.14, 0.35],
+    window: [0.165, 0.388],
   },
   {
     label: "Design",
     layers: ["controls", "kpi", "data", "filters", "table"],
-    window: [0.34, 0.58],
+    window: [0.378, 0.615],
   },
-  { label: "System", layers: ["status", "chart", "split", "feed"], window: [0.57, 0.8] },
-  { label: "Product", layers: ["select", "detail", "states", "settle"], window: [0.79, 1.0] },
+  { label: "System", layers: ["status", "chart", "split", "feed"], window: [0.605, 0.812] },
+  { label: "Product", layers: ["select", "detail", "states", "settle"], window: [0.802, 1.0] },
 ];
 
 /* ------------------------------------------------------------------ *

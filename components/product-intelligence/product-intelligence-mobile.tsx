@@ -111,16 +111,26 @@ function StageRow({ stage, index }: { stage: IntelligenceStage; index: number })
   );
 }
 
-/** What the system reaches for. Indented, because it sits inside a stage. */
+/**
+ * What the system reaches for. Indented, because it sits inside a stage, and
+ * stacked rather than laid out in three columns: the desktop diagram fans
+ * these out across the stage because it has the width to, and a 360px viewport
+ * does not. Three columns there put two words on three lines each. The
+ * sequence — data, then tools, then the surface it can act on — is the part
+ * that has to survive, and a stack carries it better than a squeezed row.
+ */
 function Capabilities() {
   return (
-    <ul className="ml-4 mt-2 grid grid-cols-3 gap-1.5 border-l border-dashed border-ink/20 pl-3">
+    <ul className="ml-4 mt-2 flex flex-col gap-1.5 border-l border-dashed border-ink/20 pl-3">
       {AI_CAPABILITIES.map((capability) => (
-        <li key={capability.id} className="border border-dashed border-ink/20 px-2 py-1.5">
-          <p className="font-mono text-[9px] font-medium uppercase leading-none tracking-[0.1em] text-ink/80">
+        <li
+          key={capability.id}
+          className="flex items-baseline gap-2 border border-dashed border-ink/20 px-2.5 py-1.5"
+        >
+          <span className="font-mono text-[10px] font-medium uppercase leading-none tracking-[0.1em] text-ink/80">
             {capability.label}
-          </p>
-          <p className="mt-1 text-[9px] leading-tight text-ink/45">{capability.note}</p>
+          </span>
+          <span className="text-[10px] leading-none text-ink/45">{capability.note}</span>
         </li>
       ))}
     </ul>
