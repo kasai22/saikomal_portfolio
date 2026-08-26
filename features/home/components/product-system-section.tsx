@@ -17,12 +17,12 @@ import { useSectionScroll } from "@/hooks/use-scroll-tier";
  * FIG. 01 — the one diagram on the home page, and the only section on it that
  * takes more than a screen.
  *
- * Placed between slide 02 (Development) and slide 03 (Ways I can help), where
+ * Placed straight after slide 02 (Development), where
  * the reader has just seen design case studies *and* shipped front-ends and
  * has the obvious question: how do those two go together? Not a numbered
- * slide — the deck runs 01-07 and inserting an eighth would renumber five
- * existing sections, so it carries a `FIG.` mark in the same annotation face
- * the case studies use for their figures.
+ * slide — the numbered deck is the running order of the pitch and a figure
+ * is not a stop on it, so this carries a `FIG.` mark in the same annotation
+ * face the case studies use for their own figures.
  *
  * ── The runway ──────────────────────────────────────────────────────────
  * The stage needs scroll distance to be driven through, so the section is a

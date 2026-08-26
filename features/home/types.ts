@@ -96,7 +96,7 @@ export interface CodingProject {
   year: string;
 }
 
-/** One offer in "Ways I can help" — a service, not a skill. */
+/** One offer — a service, not a skill. Its slide was cut; see `SERVICES`. */
 export interface Service {
   number: string;
   title: string;

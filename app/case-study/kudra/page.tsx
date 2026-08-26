@@ -25,9 +25,10 @@ import { LearningsSection } from "@/features/case-study-kudra/components/learnin
 import { FutureScopeSection } from "@/features/case-study-kudra/components/future-scope-section";
 import { DeliverablesSection } from "@/features/case-study-kudra/components/deliverables-section";
 import { cssVars } from "@/lib/css-vars";
+import { SectionRail } from "@/components/case-study/section-rail";
 
 export const metadata: Metadata = {
-  title: "Kudra — Fleet & Trip Management Platform",
+  title: "Kudra: Streamlining Fleet Coordination",
   description:
     "A case study on designing Kudra, an enterprise logistics SaaS that transformed fragmented fleet operations into a structured, trip-centric management system.",
 };
@@ -41,10 +42,11 @@ const ACCENT_VARS = cssVars({
 export default function KudraCaseStudyPage() {
   return (
     <div style={ACCENT_VARS} className="min-h-screen bg-paper text-ink">
+      <SectionRail />
       <HeroSection />
 
       <div className="mx-auto max-w-7xl space-y-6 px-6 pb-16">
-        <div className="overflow-hidden rounded-sm border border-ink/12 lg:hidden">
+        <div className="border-ink/12 overflow-hidden rounded-sm border lg:hidden">
           <Image
             src="/figmaAssets/kudra-dashboard.png"
             alt="Kudra fleet operations dashboard"

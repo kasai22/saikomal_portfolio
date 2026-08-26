@@ -68,8 +68,19 @@ import {
  * demonstration values, and the caption under the frame says so.
  */
 export function BuildCanvas() {
+  /* Hidden from assistive technology, and that is the honest call rather than
+     a convenience. Everything inside is demonstration content — the trip IDs,
+     vehicle numbers, driver initials and routes are sample values, as
+     `product-build-data.ts` says at length, and none of them may be read as
+     portfolio evidence. Exposed, a screen reader announces several dozen
+     invented records as though they were facts. It is a picture of an
+     interface; the `figcaption` outside this subtree says so, stays in the
+     accessible tree, and carries the whole meaning. */
   return (
-    <div className="relative h-[clamp(430px,54svh,520px)] w-full overflow-hidden">
+    <div
+      aria-hidden="true"
+      className="relative h-[clamp(430px,54svh,520px)] w-full overflow-hidden"
+    >
       {/* The canvas. An empty frame drawn from its own left edge. */}
       <div
         className="absolute inset-0 border border-ink/20 bg-paper"

@@ -17,7 +17,7 @@ import type {
 
 export const HERO_TAG = "Public Sector · Enterprise Ecosystem";
 export const HERO_TITLE = "Hindustan Shipyard";
-export const HERO_SUBTITLE = "Enterprise Digital Experience";
+export const HERO_SUBTITLE = "Unified Public Sector Portal";
 
 export const HERO_QUOTE =
   "The system already knew every status — but only a person could release it.";

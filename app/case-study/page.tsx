@@ -20,9 +20,10 @@ import { VisualDesignSection } from "@/features/case-study-hsl/components/visual
 import { TypographyAndColorsSection } from "@/features/case-study-hsl/components/typography-and-colors-section";
 import { HighFidelityDesignsSection } from "@/features/case-study-hsl/components/high-fidelity-designs-section";
 import { OutcomesSection } from "@/features/case-study-hsl/components/outcomes-section";
+import { SectionRail } from "@/components/case-study/section-rail";
 
 export const metadata: Metadata = {
-  title: "Hindustan Shipyard Enterprise Digital Experience — Case Study",
+  title: "Hindustan Shipyard: Unified Public Sector Portal",
   description:
     "How five disconnected modules at Hindustan Shipyard Limited became one ecosystem — replacing status-chasing phone calls with a candidate portal and a live tenders dashboard. Shipped.",
 };
@@ -36,10 +37,11 @@ const ACCENT_VARS = cssVars({
 export default function HslCaseStudyPage() {
   return (
     <div style={ACCENT_VARS} className="min-h-screen bg-paper text-ink">
+      <SectionRail />
       <HeroSection />
 
       <div className="mx-auto max-w-7xl space-y-16 px-6 pb-16">
-        <div className="overflow-hidden rounded-sm border border-ink/12 lg:hidden">
+        <div className="border-ink/12 overflow-hidden rounded-sm border lg:hidden">
           <Image
             src="/figmaAssets/image-16.png"
             alt="Redesigned Hindustan Shipyard Limited homepage"

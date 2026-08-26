@@ -31,10 +31,10 @@ import { useSectionScroll } from "@/hooks/use-scroll-tier";
  * FIG. 02 — an enterprise operations console assembling itself, layer by
  * layer, under the reader's scroll.
  *
- * Placed after slide 04 (How I work). The method has just been described in
- * five stages; this is the same argument made visually, on a real product's
- * information architecture. `FIG. 03` follows it — the interface having been
- * assembled, what it then has to do once there is intelligence behind it.
+ * The first of the three figures that run together. It makes the method
+ * argument visually, on a real product's information architecture, and
+ * `FIG. 03` follows it — the interface having been assembled, what it then
+ * has to do once there is intelligence behind it.
  *
  * ── The runway ──────────────────────────────────────────────────────────
  * The stage pins while twenty layers are drawn onto it. The runway is an

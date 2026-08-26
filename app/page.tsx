@@ -7,18 +7,19 @@ import { ProductBuildSection } from "@/features/home/components/product-build-se
 import { ProductIntelligenceSection } from "@/features/home/components/product-intelligence-section";
 import { ProductMindSection } from "@/features/home/components/product-mind-section";
 import { DesignMachineSection } from "@/features/home/components/design-machine-section";
-import { ServicesSection } from "@/features/home/components/services-section";
-import { HowIWorkSection } from "@/features/home/components/how-i-work-section";
-import { AboutSection } from "@/features/home/components/about-section";
 import { ExperienceSection } from "@/features/home/components/experience-section";
 import { ContactSection } from "@/features/home/components/contact-section";
 import { Footer } from "@/components/layout/footer";
 
 /**
  * Work-first information architecture. Hero, then the facts at a glance,
- * then seven numbered slides — selected work, development, the offer, the
- * method, the background, the track record, the ask. Running order lives
- * in `DECK`.
+ * then four numbered slides — selected work, development, the track record,
+ * the ask. Running order lives in `DECK`.
+ *
+ * The offer, the method and the background used to sit at 03, 04 and 05 and
+ * were cut. What they argued in prose, the figures below now argue in
+ * drawings — which is why `DECK` renumbers rather than leaving gaps where
+ * they were.
  *
  * Four unnumbered figures punctuate the deck, and they run as one argument.
  * `FIG. 01` sits between 02 and 03: having just shown design case studies and
@@ -30,8 +31,8 @@ import { Footer } from "@/components/layout/footer";
  * it. `FIG. 04` turns from the product to the person: a brief arriving as nine
  * unsorted things and being put in order. `FIG. 05` closes the run with the
  * object the other four are parts of — the whole method as one machine, seen
- * from the side, with a camera travelling its length — and hands over to About
- * on the next screen.
+ * from the side, with a camera travelling its length — and hands over to the
+ * track record on the next screen.
  */
 export default function HomePage() {
   return (
@@ -41,13 +42,10 @@ export default function HomePage() {
       <SelectedWorkSection />
       <DevelopmentSection />
       <ProductSystemSection />
-      <ServicesSection />
-      <HowIWorkSection />
       <ProductBuildSection />
       <ProductIntelligenceSection />
       <ProductMindSection />
       <DesignMachineSection />
-      <AboutSection />
       <ExperienceSection />
       <ContactSection />
       <Footer />

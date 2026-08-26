@@ -86,7 +86,7 @@ export function HowIThinkStep({ step, isActive }: HowIThinkStepProps) {
           <p
             className={cn(
               "mt-3 border-t pt-2.5 text-[10px] uppercase tracking-[0.1em] transition-colors duration-fast",
-              isActive ? "border-brand/25 text-brand/85" : "border-ink/12 text-ink/45",
+              isActive ? "border-brand/25 text-brand-ink" : "border-ink/12 text-ink/45",
             )}
           >
             {step.output}

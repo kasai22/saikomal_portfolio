@@ -2,8 +2,8 @@ import type { NavLink } from "@/types/navigation";
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Work", href: "/#projects", sectionId: "projects" },
-  { label: "Services", href: "/#services", sectionId: "services" },
-  { label: "About", href: "/#about", sectionId: "about" },
+  { label: "Development", href: "/#development", sectionId: "development" },
+  { label: "Experience", href: "/#experience", sectionId: "experience" },
   { label: "Contact", href: "/#contact", sectionId: "contact" },
 ];
 

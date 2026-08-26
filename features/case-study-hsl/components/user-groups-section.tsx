@@ -17,8 +17,8 @@ const NEUTRAL_TONE: SectionTone = {
 const SECTION_TONE: Record<string, SectionTone> = {
   Frustrations: {
     border: "border-red-500/20 bg-red-500/5",
-    label: "text-red-400/70",
-    marker: "text-red-400/60",
+    label: "text-red-700",
+    marker: "text-red-700/80",
   },
   Goals: NEUTRAL_TONE,
   "What I designed": {

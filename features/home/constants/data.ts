@@ -26,7 +26,11 @@ export const SOCIALS: Social[] = [
 ];
 
 export const CONTACT_SOCIALS: Social[] = [
-  ...SOCIALS,
+  // Ordered for the reader this section is written for. `SOCIALS` above keeps
+  // its own order for the hero, where GitHub leading is the right call.
+  ...[...SOCIALS].sort(
+    (a, b) => Number(b.platform === "linkedin") - Number(a.platform === "linkedin"),
+  ),
   { label: "X", href: "https://x.com/SaiKomal4", platform: "x" },
   { label: "Discord", href: "https://discord.com/users/695223950757593098", platform: "discord" },
   {
@@ -43,8 +47,8 @@ export const CONTACT_SOCIALS: Social[] = [
 
 export const HERO_EYEBROW = "Sai Komal";
 export const HERO_ROLE = "Product Designer & UX Engineer";
-export const HERO_HEADLINE_LINE_1 = "Complex workflows,";
-export const HERO_HEADLINE_LINE_2 = "made obvious.";
+export const HERO_HEADLINE_LINE_1 = "Turning complexity";
+export const HERO_HEADLINE_LINE_2 = "into clarity.";
 export const HERO_SUBCOPY =
   "I design enterprise products — then write the front-end that ships them.";
 
@@ -66,16 +70,13 @@ export const HERO_LOOP = ["Research", "Design", "Prototype", "Ship"];
 export const DECK = {
   work: { chapter: "01", eyebrow: "Selected work" },
   development: { chapter: "02", eyebrow: "Development" },
-  help: { chapter: "03", eyebrow: "Ways I can help" },
-  process: { chapter: "04", eyebrow: "How I work" },
-  background: { chapter: "05", eyebrow: "About" },
-  track: { chapter: "06", eyebrow: "Track record" },
-  ask: { chapter: "07", eyebrow: "Contact" },
+  track: { chapter: "03", eyebrow: "Track record" },
+  ask: { chapter: "04", eyebrow: "Contact" },
   /**
-   * Not a numbered slide. The deck runs 01-07 and this sits between 02 and
-   * 03 as a figure — the site already sets every index and marker in the
-   * mono annotation face, so a `FIG.` mark reads as a diagram inserted into
-   * the running order rather than as a competing sequence.
+   * Not a numbered slide. The five figures sit inside the running order as
+   * diagrams rather than as stops on it — the site already sets every index
+   * and marker in the mono annotation face, so a `FIG.` mark reads as an
+   * insertion rather than as a competing sequence.
    */
   system: { chapter: "FIG. 01", eyebrow: "Product thinking" },
   /** The second figure — how an interface actually gets put together. */
@@ -92,10 +93,6 @@ export const DECK = {
 export const SLIDE_INTRO = {
   work: "Long-form case studies. Every one replaced a manual process people were running by phone and spreadsheet.",
   development: "Sites I designed and shipped the front-end for, live in production.",
-  help: "What I actually take off a team's plate, and what gets handed back.",
-  process: "Five stages, each ending in something concrete enough to hand over.",
-  background:
-    "Engineering, then data, then UX. Which is why my work is dashboards and admin consoles.",
   track: "Four roles, one direction of travel — data, to design, to owning the product.",
   ask: "Looking for a full-time Product Designer or UX Engineer role. The form is the fastest reply.",
   system:
@@ -336,13 +333,13 @@ export const MIND_STAGES: MindStage[] = [
 ];
 
 export const MIND_CAPTION =
-  "The nine inputs are conceptual. The five stages are not — they are the five steps in How I work (04), named for what comes out of each, and the artefact under every one is that step's own recorded output.";
+  "The nine inputs are conceptual. The five stages are not — they are the five steps of the method this practice actually runs on, named for what comes out of each, and the artefact under every one is that step's own recorded output.";
 
 /* ------------------------------------------------------------------ *
  * The design machine — `FIG. 05`.
  *
  * This is not a sixth process. It is `PROCESS_STEPS` — the five steps
- * already documented in "How I work" — drawn as the machine they add up
+ * already documented in `PROCESS_STEPS` — drawn as the machine they add up
  * to, one station per step. Every `title`, `description` and `output`
  * below is that step's own, verbatim; only the `part` names are new, and
  * they name apparatus rather than making any claim.
@@ -412,7 +409,7 @@ export const MACHINE_PRODUCT = {
 };
 
 export const MACHINE_CAPTION =
-  "The machine is the five steps in How I work (04) — Discover, Define, Design, Build, Validate — drawn as apparatus. Every description and artefact is that step's own; the screen at the delivery end is Kudra's fleet view from the case study.";
+  "The machine is the five steps of the method — Discover, Define, Design, Build, Validate — drawn as apparatus. Every description and artefact is that step's own; the screen at the delivery end is Kudra's fleet view from the case study.";
 
 export const DESIGN_PHILOSOPHY_QUOTE =
   "Most of the real design work happens after the mockup is done — when it meets a real API, a loading state, or an edge case nobody drew.";
@@ -480,6 +477,18 @@ export const TOOL_GROUPS: { label: string; items: string[] }[] = [
   { label: "Code", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind"] },
 ];
 
+/**
+ * The five steps, kept as the canonical record even though nothing renders
+ * them any more.
+ *
+ * "How I work" was the slide that displayed this list, and it has been cut —
+ * the figures make the same argument in drawings. But `MIND_STAGES` and
+ * `DESIGN_MACHINE` are both *derived* from these entries and their comments
+ * cite this constant by name as the reason their content counts as real
+ * rather than invented. Delete it and that provenance has nowhere to point.
+ *
+ * Unused by the renderer, load-bearing for the claim. Leave it.
+ */
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     number: "01",
@@ -571,7 +580,8 @@ export const RECRUITER_SNAPSHOT = {
   availability: "Open to new roles",
 };
 
-/** Ways I can help — offers, each naming what gets handed back. */
+/** Offers, each naming what gets handed back. Unrendered since the "Ways I
+ *  can help" slide was cut — kept as copy, not referenced by any component. */
 export const SERVICES: Service[] = [
   {
     number: "01",
@@ -606,7 +616,7 @@ export const SERVICES: Service[] = [
 
 export const CASE_STUDIES: CaseStudyProject[] = [
   {
-    title: "Kudra — Fleet & Trip Management",
+    title: "Kudra: Streamlining Fleet Coordination",
     description: "Call-and-spreadsheet fleet coordination, rebuilt as one trip-centric system.",
     tags: ["Product Strategy", "Enterprise UX", "SaaS Design", "Fleet Management"],
     accentColor: "#956807",
@@ -624,7 +634,7 @@ export const CASE_STUDIES: CaseStudyProject[] = [
     ],
   },
   {
-    title: "Onliest REX — AI Fashion Stylist",
+    title: "Onliest REX: Conversational AI Fashion Designer",
     description: "An agentic stylist that scores and explains every recommendation it makes.",
     tags: ["Conversational AI", "Agentic Architecture", "Fashion Tech", "BRD → Product"],
     accentColor: "#8B6C32",
@@ -642,7 +652,7 @@ export const CASE_STUDIES: CaseStudyProject[] = [
     ],
   },
   {
-    title: "Hindustan Shipyard Digital Experience",
+    title: "Hindustan Shipyard: Unified Public Sector Portal",
     description: "Five siloed public-sector modules, unified so status-chasing calls stopped.",
     tags: ["Stakeholder Research", "Enterprise Ecosystem", "Public Sector", "Accessibility"],
     accentColor: "#0C7E7E",

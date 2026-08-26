@@ -13,9 +13,10 @@ import { CourseCorrection } from "@/components/case-study/course-correction";
 import { HighFidelityScreensSection } from "@/features/case-study-rex/components/high-fidelity-screens-section";
 import { OutcomesSection } from "@/features/case-study-rex/components/outcomes-section";
 import { ReflectionSection } from "@/features/case-study-rex/components/reflection-section";
+import { SectionRail } from "@/components/case-study/section-rail";
 
 export const metadata: Metadata = {
-  title: "Onliest REX — AI Fashion Stylist Case Study",
+  title: "Onliest REX: Conversational AI Fashion Designer",
   description:
     "A case study on designing Onliest REX, a luxury AI recommendation and product-design engine that turns vague fashion instincts into personalized, purchase-ready saree and blouse designs.",
 };
@@ -29,10 +30,11 @@ const ACCENT_VARS = cssVars({
 export default function RexCaseStudyPage() {
   return (
     <div style={ACCENT_VARS} className="min-h-screen bg-paper text-ink">
+      <SectionRail />
       <HeroSection />
 
       <div className="mx-auto max-w-7xl space-y-6 px-6 pb-16">
-        <div className="overflow-hidden rounded-sm border border-ink/12 lg:hidden">
+        <div className="border-ink/12 overflow-hidden rounded-sm border lg:hidden">
           <Image
             src="/rex/rex-hero.svg"
             alt="Onliest REX interface"

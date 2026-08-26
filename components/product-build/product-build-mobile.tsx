@@ -25,8 +25,16 @@ import {
  * the stage list above it; this is what gets built.
  */
 export function ProductBuildMobile() {
+  /* Hidden from assistive technology, and that is the honest call rather than
+     a convenience. Everything inside is demonstration content — the trip IDs,
+     vehicle numbers, driver initials and routes are sample values, as
+     `product-build-data.ts` says at length, and none of them may be read as
+     portfolio evidence. Exposed, a screen reader announces several dozen
+     invented records as though they were facts. It is a picture of an
+     interface; the `figcaption` outside this subtree says so, stays in the
+     accessible tree, and carries the whole meaning. */
   return (
-    <div className="border-ink/14 overflow-hidden border bg-paper-panel">
+    <div aria-hidden="true" className="border-ink/14 overflow-hidden border bg-paper-panel">
       {/* App bar */}
       <div className="flex items-center gap-2 border-b border-ink/10 px-3 py-2.5">
         <span className="h-4 w-4 shrink-0 bg-brand" aria-hidden="true" />
