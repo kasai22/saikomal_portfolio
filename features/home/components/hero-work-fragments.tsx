@@ -18,6 +18,13 @@ interface FragmentConfig {
   size: number;
   depth: number;
   positionClassName: string;
+  /**
+   * This tile's index in the hero → work assembly. The tile is the *source*
+   * of the flight that ends inside the matching case-study card, and is found
+   * by `[data-hero-piece]` rather than by a ref, because the layer that flies
+   * it is a sibling of the hero rather than a child of it.
+   */
+  index: number;
 }
 
 // Same projects, same order as the featured panel in "Selected Work" below —
@@ -25,6 +32,7 @@ interface FragmentConfig {
 // so the hero and the work section read as the same object at two scales.
 const FRAGMENTS: FragmentConfig[] = CASE_STUDIES.map((project, i) => ({
   project,
+  index: i,
   size: [216, 168, 132][i] ?? 132,
   depth: [1, 0.72, 0.5][i] ?? 0.5,
   positionClassName:
@@ -51,6 +59,13 @@ interface HeroWorkFragmentsDesktopProps {
  * subscription and single pointer listener — three tiles, three depths, one
  * of each listener. Each also carries the shared tactile hover (tilt, glass
  * highlight) and links straight to its case study.
+ *
+ * These three tiles are also the pieces the hand-off is made of. Each carries
+ * `data-hero-piece`, and as the reader scrolls it travels out of here and into
+ * the matching card in Selected Work — the same image file, arriving at the
+ * slot it was always going to fill. While a tile is in flight this one is held
+ * at `opacity: 0` and made unclickable by the assembly layer, so there is
+ * never a second copy of it on screen.
  */
 export function HeroWorkFragmentsDesktop({
   progress,
@@ -78,12 +93,24 @@ export function HeroWorkFragmentsDesktop({
  * Compact static row for small/touch screens — the same real fragments, no
  * absolute scatter and no pointer parallax, sitting between the copy and the
  * CTA row.
+ *
+ * These carry `data-hero-piece` as well, and that is not redundant. Between
+ * `md` and `lg` the assembly runs but the scattered column above is
+ * `display: none`, so this row is the only source that has a box on screen —
+ * the tablet hand-off flies from here instead, three small tiles in a line
+ * rather than a scattered stack. The assembly picks whichever pair actually
+ * has a rect; see `ends()` in `hero-work-assembly.tsx`.
  */
 export function HeroWorkFragmentsMobile() {
   return (
     <div className="flex w-full gap-3 lg:hidden">
-      {CASE_STUDIES.map((project) => (
-        <FragmentCard key={project.slug + project.title} project={project} className="h-24 flex-1" />
+      {CASE_STUDIES.map((project, i) => (
+        <FragmentCard
+          key={project.slug + project.title}
+          project={project}
+          slot={i}
+          className="h-24 flex-1"
+        />
       ))}
     </div>
   );
@@ -94,6 +121,7 @@ function FragmentTile({
   size,
   depth,
   positionClassName,
+  index,
   progress,
   mouseX,
   mouseY,
@@ -108,7 +136,7 @@ function FragmentTile({
   return (
     <ParallaxLayer y={y} className={`absolute ${positionClassName}`}>
       <ParallaxLayer x={mx} y={my}>
-        <FragmentCard project={project} style={{ width: size, height: size }} />
+        <FragmentCard project={project} slot={index} style={{ width: size, height: size }} />
       </ParallaxLayer>
     </ParallaxLayer>
   );
@@ -118,15 +146,18 @@ function FragmentCard({
   project,
   className,
   style,
+  slot,
 }: {
   project: CaseStudyProject;
   className?: string;
   style?: CSSProperties;
+  slot?: number;
 }) {
   return (
     <Link
       href={project.slug}
       data-cursor="view"
+      data-hero-piece={slot}
       style={{ ...cssVars({ "--accent": project.accentColor }), ...style }}
       className={`group block ${className ?? ""}`}
     >

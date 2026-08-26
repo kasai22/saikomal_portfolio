@@ -348,25 +348,26 @@ export const HERO_SYSTEM = {
    */
   compactEnd: 0.62,
   /**
-   * Where the assembled interface stops being a panel and becomes a screen.
+   * Where the network stands down, in section progress.
    *
-   * The tiles finish their tiling at `end`; across this window the composition
-   * they made turns into a large product viewport — the frame draws itself
-   * around them, they travel out into its chrome, and the mask that has been
-   * protecting the headline lifts, because by then the headline is going.
-   *
-   * This is the hinge of the whole sequence. Before it the reader is looking
-   * *at* a system; after it they are looking *through* a screen the system
-   * built, and the next section is what is on the other side of it.
+   * The tiers finish resolving at `end`. Across this window the diagram that
+   * explained the hero stops being the subject: it dims back to a ground the
+   * three project pieces are leaving *from*, and the interface tiles collapse
+   * into it. Nothing is hidden — the structure is what built the work and
+   * should still be legible behind it — but it has to yield, or the pieces
+   * travelling out of it have nowhere to be seen against.
    */
-  viewport: [0.38, 0.7] as const,
+  standDown: [0.4, 0.72] as const,
 
   /**
-   * Where the hero itself starts leaving. Deliberately equal to the end of
-   * `viewport`: the copy holds still until the screen it is standing in front
-   * of has finished assembling, and only then gets out of its way.
+   * Where the hero itself starts leaving.
+   *
+   * Earlier than the end of `standDown`, and that overlap is the point: the
+   * copy begins to yield while the first piece is already committing to its
+   * destination, so the two read as one move — the hero handing over — rather
+   * than the hero finishing and the next thing starting.
    */
-  exitStart: 0.7,
+  exitStart: 0.58,
   /**
    * Per-tier windows in *system* progress (0-1 after remapping through
    * `end`). Overlapping by design: the tiers resolve as a wave down the
@@ -387,6 +388,114 @@ export const HERO_SYSTEM = {
   scatter: { desktop: 1, tablet: 0.78, mobile: 0.5 },
   /** Scroll depth at which the "Scroll" affordance has done its job. */
   cueFade: 0.06,
+} as const;
+
+/* ------------------------------------------------------------------ *
+ * Hero → Selected Work assembly
+ * ------------------------------------------------------------------ */
+
+/**
+ * The hand-off, as an assembly rather than a transition.
+ *
+ * The three project tiles in the hero are not decoration standing in for the
+ * work — they are the same three images the case-study cards below are built
+ * from. So the hero does not finish and give way to Selected Work; its pieces
+ * travel down the document and become it.
+ *
+ * ── Why every number here is a multiple of the viewport ─────────────────
+ * The destinations are real DOM: the image slot inside the featured Kudra
+ * panel and the two card slots under it. Their document positions depend on
+ * the copy, the breakpoint and the font metrics, so nothing about the
+ * choreography can be a fixed scroll depth. Instead each piece's landing is
+ * derived from where its own destination actually is — it lands at the scroll
+ * position that puts that destination `landAt` down the screen — and its
+ * departure is `travel` viewports before that. The master range is then simply
+ * the first departure to the last landing.
+ *
+ * That is what makes the pieces land *on* something the reader can see. A
+ * hand-tuned scroll depth would drift the moment a line of copy rewrapped.
+ */
+export const ASSEMBLY = {
+  /**
+   * Where a destination sits on screen at the moment its piece lands, as a
+   * fraction of the viewport height. Just above centre: high enough that the
+   * "Three systems, in production." heading is still in frame when the
+   * featured panel is filled, low enough that nothing lands under the nav.
+   */
+  landAt: 0.55,
+  /**
+   * Extra delay per piece, in viewport heights. Kudra's destination is far
+   * enough up the section to stagger itself; the two cards below share a row,
+   * so the second of them is held back to stop the pair snapping home in
+   * lockstep — left card first, then right, in reading order.
+   *
+   * It is subtracted from `landAt`: a piece that lands with its destination
+   * *higher* on screen is a piece that lands *later*.
+   */
+  landNudge: [0, 0, 0.08],
+  /**
+   * How far ahead of its landing each piece commits, in viewport heights.
+   * Long: this is the whole back half of the hero's runway, and a piece that
+   * crosses two and a half screens has to leave early enough that the reader
+   * sees it decide to go.
+   */
+  travel: [1.45, 1.4, 1.32],
+  /**
+   * Quiet beat before the first piece commits, in viewport heights — the
+   * tiles square up and take their labels while the network stands down.
+   */
+  lead: 0.34,
+  /**
+   * How far the vertical leads the horizontal, as a fraction of a piece's own
+   * flight.
+   *
+   * A straight interpolation between the two rects sends every piece diagonally
+   * across the frame, and the diagonal from the hero's Kudra tile passes
+   * directly over "Three systems, in production." at the moment those words are
+   * being uncovered. Dropping first and sliding second avoids that, and it is
+   * the better gesture anyway: the piece descends into the row it belongs to,
+   * then travels along that row into its slot. Assembly, rather than a card
+   * flying across a page.
+   */
+  drop: 0.15,
+  /**
+   * The heading's window, in master progress. It opens while the first piece
+   * is still travelling and closes as that piece lands, so the words arrive
+   * as the label of something being built rather than as the next section
+   * announcing itself.
+   */
+  heading: [0.4, 0.76] as const,
+  /**
+   * The same hand-off where nothing flies — below `md`, and anywhere the
+   * pieces cannot travel.
+   *
+   * With no flight to pace against, the only thing the master range has to get
+   * right is the heading, so it is measured off the heading itself: these are
+   * where the heading sits on screen, as fractions of the viewport height,
+   * when its own slice of the master range opens and closes. `enter` is the
+   * moment it clears the bottom edge; `settle` is just above centre, where it
+   * should already be finished and readable.
+   *
+   * Anchoring to a card instead — which is what the desktop flight does — is
+   * wrong here and not merely different. Stacked into one column, the featured
+   * card's image sits some seven hundred pixels below the heading on a phone;
+   * pace the words against that and they are still masked long after the
+   * reader has scrolled past them.
+   */
+  compact: { enter: 0.92, settle: 0.42 },
+  /**
+   * Where the guide line from the hero's SYSTEM tier to a piece draws in and
+   * retires, in that piece's own progress.
+   */
+  guide: [0.04, 0.34, 0.7, 0.94] as const,
+  /**
+   * Which SYSTEM-tier node each piece is drawn from, as a fraction of the
+   * hero stage's width. These are three of the four x positions in
+   * `DESKTOP_TIER_X[2]`, chosen right of centre so the guides never cross the
+   * headline. The y is that tier's own row.
+   */
+  guideFrom: [0.415, 0.585, 0.755],
+  guideRow: 0.58,
 } as const;
 
 /* ------------------------------------------------------------------ *

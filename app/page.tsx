@@ -1,7 +1,7 @@
 import { HeroSection } from "@/features/home/components/hero-section";
 import { RecruiterSnapshot } from "@/features/home/components/recruiter-snapshot";
 import { SelectedWorkSection } from "@/features/home/components/selected-work-section";
-import { HeroToWorkScene } from "@/components/transitions/hero-to-work-scene";
+import { HeroWorkAssembly } from "@/components/transitions/hero-work-assembly";
 import { DevelopmentSection } from "@/features/home/components/development-section";
 import { ProductSystemSection } from "@/features/home/components/product-system-section";
 import { ProductBuildSection } from "@/features/home/components/product-build-section";
@@ -13,14 +13,29 @@ import { ContactSection } from "@/features/home/components/contact-section";
 import { Footer } from "@/components/layout/footer";
 
 /**
- * Work-first information architecture. Hero, then the facts at a glance,
- * then four numbered slides — selected work, development, the track record,
- * the ask. Running order lives in `DECK`.
+ * Work-first information architecture. Hero, then four numbered slides —
+ * selected work, development, the track record, the ask. Running order lives
+ * in `DECK`.
  *
  * The offer, the method and the background used to sit at 03, 04 and 05 and
  * were cut. What they argued in prose, the figures below now argue in
  * drawings — which is why `DECK` renumbers rather than leaving gaps where
  * they were.
+ *
+ * ── Why the hero and the work are one element ───────────────────────────
+ * `HeroWorkAssembly` wraps both because the hand-off between them is a single
+ * move: the three project tiles in the hero travel down the document and land
+ * in the three real case-study cards. The pieces have to be visible across the
+ * boundary, so the layer that carries them belongs to neither section and
+ * spans both. Nothing inside is copied or transformed — see the component.
+ *
+ * ── Why the recruiter snapshot moved ────────────────────────────────────
+ * It used to sit between the two, and it was a wall across the middle of that
+ * move: eight rows of facts and a Resume button, arriving exactly where the
+ * pieces needed open page to travel through. The facts are worth having and
+ * they are unchanged — they now follow the work instead of interrupting the
+ * approach to it, which also puts them after the evidence they summarise
+ * rather than before it.
  *
  * Four unnumbered figures punctuate the deck, and they run as one argument.
  * `FIG. 01` sits between 02 and 03: having just shown design case studies and
@@ -38,16 +53,11 @@ import { Footer } from "@/components/layout/footer";
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <RecruiterSnapshot />
-      {/* One continuous move. The scene puts a fixed cover over the viewport
-          with a hole in it, and the real section below scrolls up through that
-          hole — so the screen the hero built stays on the display while the
-          work travels into it. The section itself is untouched; see the
-          component for why it has to be a cover rather than a box. */}
-      <HeroToWorkScene>
+      <HeroWorkAssembly>
+        <HeroSection />
         <SelectedWorkSection />
-      </HeroToWorkScene>
+      </HeroWorkAssembly>
+      <RecruiterSnapshot />
       <DevelopmentSection />
       <ProductSystemSection />
       <ProductBuildSection />

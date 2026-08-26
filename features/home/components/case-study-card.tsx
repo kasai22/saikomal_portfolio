@@ -15,6 +15,14 @@ import type { CaseStudyProject } from "@/features/home/types";
 
 interface CaseStudyCardProps {
   project: CaseStudyProject;
+  /**
+   * Index of this card's image in the hero → work assembly. The hero's tile
+   * for the same project flies into `[data-work-slot]` and hands over there,
+   * so the slot must be a plain box with no transform of its own — the
+   * unveil moved inside it for exactly that reason. See
+   * `components/transitions/hero-work-assembly.tsx`.
+   */
+  slot?: number;
 }
 
 /**
@@ -46,7 +54,7 @@ interface CaseStudyCardProps {
  * browser can morph them into the case study's hero. The card expands into
  * the page instead of being replaced by it.
  */
-export function CaseStudyCard({ project }: CaseStudyCardProps) {
+export function CaseStudyCard({ project, slot }: CaseStudyCardProps) {
   return (
     <SharedProjectLink
       href={project.slug}
@@ -59,33 +67,38 @@ export function CaseStudyCard({ project }: CaseStudyCardProps) {
           level={2}
           className="relative flex h-full flex-col overflow-hidden transition-colors duration-fast hover:[border-color:var(--accent)]"
         >
-          <motion.div
-            data-shared="image"
-            variants={imageUnveil}
-            transition={delayed(ENTER_SLOW, CARD_STAGE.image)}
-            className="relative h-40 shrink-0 overflow-hidden"
-          >
-            <ParallaxImage
-              src={project.image}
-              alt={`${project.title} — interface preview`}
-              fill
-              sizes="(min-width: 1024px) 33vw, 100vw"
-              className="transition-transform duration-base ease-out group-hover:-translate-y-[3px] group-hover:scale-[1.04]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" aria-hidden="true" />
-          </motion.div>
+          <div data-work-slot={slot} className="relative h-40 shrink-0 overflow-hidden">
+            <motion.div
+              data-shared="image"
+              variants={imageUnveil}
+              transition={delayed(ENTER_SLOW, CARD_STAGE.image)}
+              className="absolute inset-0 overflow-hidden"
+            >
+              <ParallaxImage
+                src={project.image}
+                alt={`${project.title} — interface preview`}
+                fill
+                sizes="(min-width: 1024px) 33vw, 100vw"
+                className="transition-transform duration-base ease-out group-hover:-translate-y-[3px] group-hover:scale-[1.04]"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
+                aria-hidden="true"
+              />
+            </motion.div>
+          </div>
 
           <div className="flex flex-1 flex-col gap-3 p-5">
             {/* Metadata warms on hover — second beat, 90ms behind the image. */}
             <motion.div
               variants={fadeMove("up")}
               transition={delayed(ENTER, CARD_STAGE.meta)}
-              className="flex items-center gap-2 transition-colors delay-[90ms] duration-fast [&>span:not(:first-child)]:text-ink/60 group-hover:[&>span:not(:first-child)]:text-ink/80"
+              className="delay-[90ms] flex items-center gap-2 transition-colors duration-fast [&>span:not(:first-child)]:text-ink/60 group-hover:[&>span:not(:first-child)]:text-ink/80"
             >
               <span className="t-eyebrow [color:var(--accent)]">Case Study</span>
               <span className="h-1 w-1 rounded-full bg-ink/[0.10]" aria-hidden="true" />
               <span className="t-eyebrow">{project.year}</span>
-              <span className="ml-auto t-meta">{project.readMins} min</span>
+              <span className="t-meta ml-auto">{project.readMins} min</span>
             </motion.div>
 
             {/* Title travels on hover — third beat, with the arrow. The
@@ -99,7 +112,7 @@ export function CaseStudyCard({ project }: CaseStudyCardProps) {
               transition={delayed(ENTER, CARD_STAGE.title)}
               className="t-h3 text-ink"
             >
-              <span className="inline-block transition-transform delay-[160ms] duration-fast ease-out group-hover:translate-x-[5px]">
+              <span className="delay-[160ms] inline-block transition-transform duration-fast ease-out group-hover:translate-x-[5px]">
                 {project.title}
               </span>
             </motion.h3>
@@ -111,7 +124,7 @@ export function CaseStudyCard({ project }: CaseStudyCardProps) {
             >
               <p className="t-meta flex-1 text-ink/60">{project.description}</p>
 
-              <MetricRow metrics={project.metrics} className="border-t border-ink/12 pt-3.5" />
+              <MetricRow metrics={project.metrics} className="border-ink/12 border-t pt-3.5" />
 
               <ul className="flex flex-wrap gap-1.5">
                 {project.tags.slice(0, 2).map((tag) => (
@@ -123,7 +136,7 @@ export function CaseStudyCard({ project }: CaseStudyCardProps) {
 
               <div className="t-action flex items-center gap-1.5 pt-0.5 [color:var(--accent)]">
                 Read case study
-                <ArrowRightIcon className="h-3 w-3 transition-transform delay-[160ms] duration-fast ease-out group-hover:translate-x-1" />
+                <ArrowRightIcon className="delay-[160ms] h-3 w-3 transition-transform duration-fast ease-out group-hover:translate-x-1" />
               </div>
             </motion.div>
           </div>

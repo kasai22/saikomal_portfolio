@@ -27,6 +27,11 @@ import {
  * product. It is a metaphor for the headline above it and nothing more: no
  * figures, no labels that could be read as a claim, no product that exists.
  *
+ * The sequence resolves and then yields: the three project tiles in the
+ * hero's visual column depart from here into the real case-study cards below,
+ * and this structure dims back to the ground they leave from rather than
+ * competing with them.
+ *
  * ── Where the scroll comes from ─────────────────────────────────────────
  * Nothing here subscribes to scroll. The hero owns the single `useScroll` for
  * the section and hands its progress down, which is the site's standing rule
@@ -106,26 +111,25 @@ export function ComplexityToClarity({ progress }: ComplexityToClarityProps) {
   const smoothed = useSpring(scrubbed, SPRING_SCROLL);
   const system = reduced ? resolved : smoothed;
 
-  // The viewport phase runs on raw section progress rather than the remapped
+  // The stand-down runs on raw section progress rather than the remapped
   // system value — it begins where the system's own timeline has already
   // ended, so it cannot be expressed in that timeline's coordinates.
   const camera = reduced ? resolved : progress;
 
-  // What is left of the network once the screen has taken over. Not zero: the
-  // structure is what built the thing and should still be behind it, but it
-  // has to stand down or the screen never becomes the subject.
-  const [viewStart, viewEnd] = HERO_SYSTEM.viewport;
-  const systemFade = useTransform(camera, [viewStart, viewEnd], [1, 0.26]);
+  // What is left of the network once the three project pieces start leaving
+  // it. Not zero: the structure is what built them and should still be
+  // legible behind them, but it has to stand down, or the pieces travelling
+  // out of it have nothing to be seen against.
+  const [standStart, standEnd] = HERO_SYSTEM.standDown;
+  const systemFade = useTransform(camera, [standStart, standEnd], [1, 0.24]);
 
-  // The tiles have somewhere to go. They finish their tiling just below where
-  // the screen's bottom edge lands, so as the frame opens they travel up into
-  // it and settle as the thing on it — rather than being cut in half by an
-  // edge that arrived around them, which is what happened when they stayed
-  // put. Then they stand down, because the frame's own chrome takes over the
-  // job of looking like an interface.
-  const tilesY = useTransform(camera, [viewStart, viewEnd], [0, -0.09]);
+  // The interface tiles collapse back into the structure that made them,
+  // rather than leaving separately. They are the small pieces the assembly
+  // absorbs: they settle a little toward the product tier and dim, and what
+  // continues down the page is the three real project surfaces.
+  const tilesY = useTransform(camera, [standStart, standEnd], [0, -0.05]);
   const tilesLift = useTransform(tilesY, (value) => `${(value * 100).toFixed(2)}%`);
-  const tilesFade = useTransform(camera, [viewStart, viewEnd], [1, 0.4]);
+  const tilesFade = useTransform(camera, [standStart, standEnd], [1, 0.3]);
 
   const geometry: SystemGeometry = roomy ? DESKTOP_SYSTEM : MOBILE_SYSTEM;
   const scatter = reduced
@@ -187,13 +191,18 @@ export function ComplexityToClarity({ progress }: ComplexityToClarityProps) {
         </motion.div>
       )}
 
-      {/* The screen used to be built here, as a box inside this stage. It is
-          built by `HeroToWorkScene` now — as a hole in a fixed cover rather
-          than a box on the page, because a box anchored in the hero leaves
-          with the hero and can never be the thing the next section arrives
-          inside. What remains here is the network standing down (`systemFade`)
-          and the tiles travelling up (`tilesLift`) to where that opening
-          forms, which is the hand-off into it. */}
+      {/* Nothing is built on top of this stage any more. Two earlier attempts
+          put a product screen here — first as a box inside this sticky stage,
+          then as a hole in a fixed cover over the page — and both were the
+          same mistake in two forms: a *new* object interposed between the hero
+          and the work, so that nothing in the hero ever became anything.
+
+          The hand-off is now made of the hero's own pieces. The three project
+          tiles in the visual column travel out of this composition and into
+          the three real case-study cards (`hero-work-assembly.tsx`). What is
+          left here is this sequence getting out of their way: the network
+          standing down (`systemFade`) and the interface tiles collapsing back
+          into it (`tilesFade`) as the pieces leave. */}
 
       {/* The reading. Four words that name what the structure resolves into,
           set in the site's technical annotation face and parked in the

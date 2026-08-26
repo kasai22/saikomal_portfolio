@@ -89,6 +89,12 @@ import {
  * and under reduced motion the runway is zero and `exit` is the identity, so
  * the section behaves precisely as it did before any of this existed.
  *
+ * `exitStart` sits deliberately inside the window where the first project
+ * piece is already leaving for Selected Work: the copy begins to yield while
+ * the assembly is under way, so the two read as one move rather than as the
+ * hero finishing and something else starting. The three tiles in the visual
+ * column are that assembly's sources — see `hero-work-fragments.tsx`.
+ *
  * Four translation tiers plus a scale and two fades, all derived from one
  * `useScroll` subscription — the sequence included, which takes the same
  * progress value as a prop rather than opening a second subscription.
@@ -181,6 +187,10 @@ export function HeroSection() {
           the stage. */}
       <div
         ref={stageRef}
+        // The frame the assembly's guide lines are drawn from. Each guide
+        // starts at this stage's SYSTEM row — the tier the three project
+        // pieces are being sent down from — and ends on the piece itself.
+        data-assembly-origin=""
         className={cn(
           "relative flex min-h-[92svh] items-center overflow-hidden",
           runway > 0 && "sticky top-0",
