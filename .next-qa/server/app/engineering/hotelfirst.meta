@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/engineering/layout,_N_T_/engineering/[slug]/layout,_N_T_/engineering/[slug]/page,_N_T_/engineering/hotelfirst"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/engineering/$d$slug/__PAGE__",
+    "/engineering/$d$slug",
+    "/engineering",
+    "/_index",
+    "/_head"
+  ]
+}

@@ -88,8 +88,9 @@ export interface TextRevealProps {
  * **`lift` is the default.** The text ships opaque and in flow; only the
  * transform animates. Choose `fade` or `mask` only for text below the fold.
  *
- * Accessibility is unchanged from the original: the full string is exposed
- * once as an `aria-label`, the split units are `aria-hidden`, and real spaces
+ * Accessibility: the full string is exposed once as visually hidden text
+ * (not an `aria-label`, which a plain span does not reliably carry), the
+ * split units are `aria-hidden`, and real spaces
  * are preserved so the line is selectable and scrapeable as normal text.
  */
 export function TextReveal({
@@ -113,8 +114,11 @@ export function TextReveal({
     return (
       <span
         className={cn("inline-block max-w-full", mode === "mask" && "overflow-hidden pb-[0.08em]")}
-        aria-label={text}
       >
+        {/* The accessible copy. `aria-label` on a plain span is ignored by
+            several screen readers, which left headings built from this
+            component with no readable name at all. */}
+        <span className="sr-only">{text}</span>
         <motion.span
           aria-hidden="true"
           className={cn("inline-block", className, unitClassName)}
@@ -137,7 +141,8 @@ export function TextReveal({
   let index = -1;
 
   return (
-    <span className={className} aria-label={text}>
+    <span className={className}>
+      <span className="sr-only">{text}</span>
       {words.map((word, wordIndex) => {
         const units = by === "word" ? [word] : [...word];
 

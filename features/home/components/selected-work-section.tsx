@@ -5,20 +5,22 @@ import { WorkHeading } from "@/features/home/components/work-heading";
 import { FeaturedProjectPanel } from "@/features/home/components/featured-project-panel";
 import { CaseStudyCard } from "@/features/home/components/case-study-card";
 import { STAGGER } from "@/lib/animations/constants";
-import { CASE_STUDIES, DECK, SLIDE_INTRO } from "@/features/home/constants/data";
+import { CASE_STUDIES, DECK, SLIDE_INTRO, heroSlotFor } from "@/features/home/constants/data";
 
 /**
- * Slide 01 — the work leads, as it does on the reference site. Editorial
- * hierarchy rather than a uniform grid: one dominant featured panel, then
- * compact cards, each leading with its outcome figures.
+ * Slide 01 — Selected UX & product experience. All five projects, in résumé
+ * order: REX leads as the featured panel, then four compact cards. Editorial
+ * hierarchy rather than a uniform grid, and every value on every card comes
+ * from `constants/projects.ts` — only Kudra shows figures, because only
+ * Kudra has measured outcomes.
  *
- * This is also where the hero lands. Each card's image slot is numbered
- * (`slot`), and the matching tile in the hero's visual column travels into it
- * as the reader scrolls — same project, same image file, one instance of each.
- * Nothing here is duplicated, wrapped or transformed to make that work: the
- * assembly layer is a sibling that measures these elements and hands over to
- * them. The heading is scrubbed by the same progress for the same reason —
- * see `work-heading.tsx`.
+ * This is also where the hero lands. Three of these cards — the three with a
+ * real product screen, REX, Kudra and ClappIt — carry a numbered image slot
+ * (`heroSlotFor`), and the matching tile in the hero's visual column travels
+ * into it as the reader scrolls. Same project, same image file, one instance
+ * of each. The others simply have no slot, and nothing flies into them. The
+ * heading is scrubbed by the same progress for the same reason — see
+ * `work-heading.tsx`.
  */
 export function SelectedWorkSection() {
   const [featured, ...others] = CASE_STUDIES;
@@ -30,7 +32,8 @@ export function SelectedWorkSection() {
         eyebrow={DECK.work.eyebrow}
         title={
           <>
-            Three systems, <span className="text-brand-ink">in production</span>.
+            Five products, from AI recommendations to{" "}
+            <span className="text-brand-ink">fleet operations</span>.
           </>
         }
         intro={SLIDE_INTRO.work}
@@ -39,13 +42,13 @@ export function SelectedWorkSection() {
       <div className="flex flex-col gap-5">
         {featured && (
           <ScaleReveal>
-            <FeaturedProjectPanel project={featured} slot={0} />
+            <FeaturedProjectPanel project={featured} slot={heroSlotFor(featured)} />
           </ScaleReveal>
         )}
         <Stagger step={STAGGER.loose} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {others.map((project, i) => (
-            <StaggerItem key={project.title} variant="scale">
-              <CaseStudyCard project={project} slot={i + 1} />
+          {others.map((project) => (
+            <StaggerItem key={project.id} variant="scale">
+              <CaseStudyCard project={project} slot={heroSlotFor(project)} />
             </StaggerItem>
           ))}
         </Stagger>

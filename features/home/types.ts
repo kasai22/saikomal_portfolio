@@ -1,22 +1,13 @@
-export type SocialPlatform = "github" | "linkedin" | "x" | "discord" | "slack";
+import type { SocialLink, SocialPlatform } from "@/constants/profile";
+import type { UxProject } from "@/constants/projects";
 
-export interface Social {
-  label: string;
-  href: string;
-  platform: SocialPlatform;
-}
+export type { SocialPlatform };
+export type Social = SocialLink;
 
 /** A single numeric outcome — rendered as a metric chip, never a sentence. */
 export interface Metric {
   value: string;
   label: string;
-}
-
-export interface CapabilityGroup {
-  icon: string;
-  category: string;
-  description: string;
-  items: string[];
 }
 
 export interface ProcessStep {
@@ -28,80 +19,32 @@ export interface ProcessStep {
   output: string;
 }
 
-export interface ExperienceEntry {
-  company: string;
-  role: string;
-  location: string;
-  duration: string;
-  current?: boolean;
-  summary: string[];
-}
-
-export interface AboutStat {
-  label: string;
-  value: string;
-}
-
-/** One stop on the "how I got here" track in the About section. */
-export interface CareerStep {
-  period: string;
-  label: string;
-  detail: string;
-}
-
-/** A short, scannable strength — replaces long "what I bring" prose. */
-export interface Strength {
-  icon: string;
-  title: string;
-  detail: string;
-}
-
 /**
- * One of the three disciplines that combine into product thinking. Content
- * restored verbatim from the `EngineeringUxTriad` component that previously
- * carried it inline.
+ * A UX project as the home page's cards need it. Built from `UX_PROJECTS`
+ * in `features/home/constants/data.ts`; never written by hand.
  */
-export interface TriadConcept {
-  label: string;
-  /** Where this came from, in one line. */
-  detail: string;
-  /** What it contributes. Surfaced on hover. */
-  points: string[];
-}
-
 export interface CaseStudyProject {
+  id: UxProject["id"];
+  /** "REX — AI Recommendation & Product Intelligence" */
   title: string;
+  name: string;
+  subtitle: string;
   description: string;
   tags: string[];
   accentColor: string;
   slug: string;
-  year: string;
-  image: string;
-  role: string;
+  /** The résumé timeline, e.g. "2025–2026". */
   timeline: string;
-  businessGoal: string;
-  readMins: number;
-  /** Headline outcomes, shown as chips on the card. */
-  metrics: Metric[];
-}
-
-export interface CodingProject {
-  title: string;
-  tagline: string;
-  description: string;
-  url: string;
-  tech: string[];
+  /** `null` where no product screen is published yet. */
   image: string | null;
-  accent: string;
-  year: string;
-}
-
-/** One offer — a service, not a skill. Its slide was cut; see `SERVICES`. */
-export interface Service {
-  number: string;
-  title: string;
-  description: string;
-  deliverables: string[];
+  imageAlt: string;
+  role: string;
+  context?: string;
+  readMins: number;
+  /** "full" — a long-form case study. "summary" — a shorter project brief. */
+  format: UxProject["depth"];
+  /** Verified outcomes only — empty for every project but Kudra. */
+  metrics: Metric[];
 }
 
 /**

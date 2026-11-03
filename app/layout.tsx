@@ -7,7 +7,9 @@ import { ScrollProgress } from "@/components/animations/ScrollProgress";
 import { Cursor } from "@/components/animations/Cursor";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { PersonJsonLd } from "@/components/seo/person-json-ld";
+import { Footer } from "@/components/layout/footer";
 import { SITE_URL } from "@/constants/site";
+import { PROFILE } from "@/constants/profile";
 import "./globals.css";
 
 // Geometric grotesque for everything readable; a mono for the technical
@@ -26,13 +28,17 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+const SITE_TITLE = `${PROFILE.name} — ${PROFILE.title}`;
+
+// One sentence for search results and link previews. The keywords a hiring
+// search uses are in it because they are true, not as a list.
 const SITE_DESCRIPTION =
-  "Product Designer and UX Engineer. I design enterprise dashboards and operational workflows — and ship the React/Next.js front end that makes them real.";
+  "Product Designer and hands-on UX Engineer: enterprise UX, AI product design and data-heavy interfaces — and the React, Next.js and TypeScript front ends that ship them. 5 years across software, data and product design, 4+ in UX.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sai Komal — Product Designer & UX Engineer",
+    default: SITE_TITLE,
     template: "%s — Sai Komal",
   },
   description: SITE_DESCRIPTION,
@@ -40,13 +46,15 @@ export const metadata: Metadata = {
     "Sai Komal",
     "Product Designer",
     "UX Engineer",
-    "Design Engineer",
-    "Enterprise SaaS design",
-    "Design systems",
+    "Senior UI/UX Engineer",
+    "Front-end development",
+    "React developer",
     "Next.js",
-    "React",
-    "Figma",
-    "UX portfolio",
+    "TypeScript",
+    "Enterprise UX",
+    "AI product design",
+    "Design systems",
+    "Data-heavy interfaces",
   ],
   authors: [{ name: "Sai Komal", url: SITE_URL }],
   creator: "Sai Komal",
@@ -58,7 +66,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   openGraph: {
-    title: "Sai Komal — Product Designer & UX Engineer",
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: "Sai Komal Portfolio",
@@ -69,7 +77,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@SaiKomal4",
     creator: "@SaiKomal4",
-    title: "Sai Komal — Product Designer & UX Engineer",
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
 };
@@ -89,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Cursor />
           <Navbar />
           <main id="main-content">{children}</main>
+          <Footer />
         </MotionProvider>
       </body>
     </html>

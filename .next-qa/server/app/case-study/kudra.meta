@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/case-study/layout,_N_T_/case-study/kudra/layout,_N_T_/case-study/kudra/page,_N_T_/case-study/kudra"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/case-study/kudra/__PAGE__",
+    "/case-study/kudra",
+    "/case-study",
+    "/_index",
+    "/_head"
+  ]
+}

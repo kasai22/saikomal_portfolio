@@ -9,6 +9,7 @@ import { useParallaxTier, useSectionScroll } from "@/hooks/use-scroll-tier";
 import Image from "next/image";
 import { BackToPortfolioLink } from "@/components/case-study/back-to-portfolio-link";
 import { HERO_METADATA, HERO_STATS } from "@/features/case-study-kudra/constants/data";
+import { KUDRA_OUTCOMES } from "@/constants/profile";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -43,10 +44,11 @@ export function HeroSection() {
               required someone to pick up the phone.&quot;
             </p>
             <p className="mb-8 max-w-lg text-[13px] leading-relaxed text-ink/70">
-              Trip creation alone took ~15 minutes per trip, coordination happened over calls,
-              WhatsApp, and paper, and destination branches routinely had zero warning before a
-              vehicle arrived. Kudra replaced that with a single, structured trip management
-              system.
+              Creating a trip meant re-entering the same details by hand, coordination happened
+              over calls, WhatsApp and paper, and destination branches routinely had no warning
+              before a vehicle arrived. Kudra replaced that with a single, structured trip
+              management system — cutting trip-creation effort by {KUDRA_OUTCOMES[0].value} and
+              manual operational effort by {KUDRA_OUTCOMES[1].value}.
             </p>
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -90,7 +92,7 @@ export function HeroSection() {
               <div className="t-metric mb-1 text-[color:var(--accent)]">
                 <AnimatedCounter value={s.value} delay={i * STAGGER.tight} />
               </div>
-              <div className="text-[11px] text-ink/60">{s.label}</div>
+              <div className="text-[11px] text-ink/62">{s.label}</div>
             </div>
           ))}
         </ParallaxLayer>

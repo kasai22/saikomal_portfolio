@@ -13,7 +13,7 @@ export const HERO_TAGLINE =
   "Designing REX — a luxury AI stylist and product-design engine for Onliest that turns vague fashion instincts into personalized, purchase-ready saree & blouse recommendations.";
 
 export const HERO_META: MetaItem[] = [
-  { label: "Role", value: "Product Designer" },
+  { label: "Role", value: "UX Designer" },
   { label: "Platform", value: "Web App" },
   { label: "Focus", value: "Saree & Blouse" },
   { label: "Year", value: "2026" },
@@ -34,7 +34,7 @@ export const TEAM_TOOLS: TeamToolItem[] = [
   { label: "Tools", value: "Figma · Notion · Claude AI · Jira" },
   {
     label: "Collaborators",
-    value: "Product Owner (me) · CTO · AI/ML Lead · GenAI/RAG Lead · Fashion Curator · Security Lead",
+    value: "UX Designer (me) · CTO · AI/ML Lead · GenAI/RAG Lead · Fashion Curator · Security Lead",
   },
   {
     label: "Deliverables",
@@ -222,4 +222,51 @@ export const REFLECTION_POINTS = [
   "Giving every recommendation a visible, broken-down Match Score turned an opaque AI decision into something a customer (and the business) could actually reason about.",
   "Two entry points — free conversation and a structured Wizard — served very different customer mindsets without forking the underlying recommendation logic.",
   "Writing the BRD alongside the UX meant every screen was traceable back to a business rule, which made trade-offs (like tiered LLM routing) a design decision, not just an engineering one.",
+];
+
+/**
+ * The AI response and error states — the résumé's "low-confidence,
+ * no-result, cold-start, loading, empty and recovery scenarios". Each is
+ * described through a part of the system already documented above (the
+ * Preference Discovery Agent, the Match Score panel, the hallucination
+ * guardrail, the four entry paths, the undo-able wizard), not through
+ * behaviour invented for this page.
+ */
+export const AI_STATES: { state: string; rule: string; detail: string }[] = [
+  {
+    state: "Loading",
+    rule: "Show the work, not a spinner",
+    detail:
+      "Every response is assembled by the Orchestrator and validated before display, so the wait is shown in the conversation as REX working on the request — never as a blank panel.",
+  },
+  {
+    state: "Empty",
+    rule: "Explain how to start",
+    detail:
+      "Before a first message, the surface says what REX can do and offers the ways in — chat, voice, an inspiration image or the guided wizard — instead of a single empty prompt.",
+  },
+  {
+    state: "Cold start",
+    rule: "Ask for the minimum",
+    detail:
+      "With no history to draw on, REX starts from the four explicit entry paths and asks only for the preferences it is missing, rather than guessing from nothing.",
+  },
+  {
+    state: "Low confidence",
+    rule: "Ask, don't guess",
+    detail:
+      "The Preference Discovery Agent asks a short, adaptive clarifying question, and the Match Score panel shows confidence openly — a weak match is never presented as a strong one.",
+  },
+  {
+    state: "No result",
+    rule: "Say so, and offer a way forward",
+    detail:
+      "If nothing clears the guardrail's catalogue, inventory, pricing and delivery checks, REX says so and offers the nearest paths — refine the brief, switch to the wizard, or browse ranked collections.",
+  },
+  {
+    state: "Error & recovery",
+    rule: "Never back to the start",
+    detail:
+      "Recovery returns the customer to the last good step — the wizard's step tracker is undo-able — so a failure costs one step, not the whole conversation.",
+  },
 ];

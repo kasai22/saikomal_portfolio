@@ -20,21 +20,25 @@ import type {
   UxGoal,
   WorkflowStep,
 } from "@/features/case-study-kudra/types";
+import { KUDRA_OUTCOMES } from "@/constants/profile";
+import { getUxProject } from "@/constants/projects";
+
+const PROJECT = getUxProject("kudra");
 
 export const HERO_METADATA: MetadataItem[] = [
-  { label: "Role", value: "Product Designer" },
-  { label: "Team", value: "Product Designer (me) · Fleet Operations SMEs · Engineering Team" },
-  { label: "Timeline", value: "2025 – 2026" },
+  { label: "Role", value: PROJECT.role },
+  { label: "Team", value: "Product Owner & UX Designer (me) · Fleet Operations SMEs · Engineering Team" },
+  { label: "Timeline", value: PROJECT.timeline },
   { label: "Platform", value: "Web Application" },
   { label: "Domain", value: "Fleet Management" },
   { label: "Tools", value: "Figma · Miro · FigJam · Notion" },
 ];
 
+/** The two measured outcomes (from the résumé), then two facts about the work. */
 export const HERO_STATS: StatItem[] = [
-  { value: "84", label: "Vehicles Tracked" },
-  { value: "40%", label: "Less Manual Coordination" },
-  { value: "7", label: "Core Workflow Steps" },
-  { value: "2025–26", label: "Design Timeline" },
+  ...KUDRA_OUTCOMES,
+  { value: "7", label: "Core workflow steps" },
+  { value: PROJECT.timeline, label: "Design timeline" },
 ];
 
 export const OVERVIEW_PARAGRAPHS = [
@@ -267,22 +271,32 @@ export const CHALLENGES: Challenge[] = [
   },
 ];
 
+/**
+ * The measured outcomes. These two figures are the only performance numbers
+ * on the site, and they are read from `KUDRA_OUTCOMES` so the case study,
+ * the home card and the experience list cannot disagree.
+ */
 export const OUTCOME_METRICS: OutcomeMetric[] = [
-  { metric: "40%", label: "Reduced manual operational coordination", desc: "Fleet managers reported a significant drop in daily coordination call volume." },
-  { metric: "78%", label: "Faster trip creation", desc: "Average trip creation time dropped from ~15 minutes to under 3 minutes using frequent route suggestions." },
-  { metric: "100%", label: "Trip cost visibility", desc: "All trips now have a complete cost record — fuel, driver allowances, tolls — without manual data consolidation." },
-  { metric: "60%", label: "Reduction in reporting effort", desc: "Monthly fleet reports now generate automatically. What took 2–3 days of manual work now takes minutes." },
-  { metric: "3×", label: "Increase in fleet accountability", desc: "Driver halt tracking and fuel analytics created a measurable accountability framework." },
-  { metric: "84", label: "Vehicles actively tracked", desc: "Full fleet across multiple branches now tracked under a single operational system." },
+  {
+    metric: KUDRA_OUTCOMES[0].value,
+    label: "Less trip-creation effort",
+    desc: "Consolidating trip creation, driver assignment and vehicle allocation into one structured workflow — with frequent-route suggestions — cut the effort of creating a trip.",
+  },
+  {
+    metric: KUDRA_OUTCOMES[1].value,
+    label: "Less manual operational effort",
+    desc: "Moving coordination out of calls, WhatsApp and spreadsheets and into trip states that everyone can see reduced the manual work of running the fleet day to day.",
+  },
 ];
 
+/** What the workflow was designed to change — stated as design outcomes, not numbers. */
 export const IMPACT_SUMMARY = [
-  "Reduced manual operational coordination by 40%",
-  "Improved active trip visibility across branches",
-  "Faster trip creation workflows",
-  "Better fleet accountability",
-  "Improved operational reporting accuracy",
-  "Reduced dependency on calls and spreadsheets",
+  "Every vehicle movement tied to a structured trip",
+  "Active trip visibility across branches",
+  "Trip cost records — fuel, driver allowances, tolls — captured inside the workflow",
+  "Fleet reports generated from trip data instead of compiled by hand",
+  "Driver halt tracking and fuel analytics for accountability",
+  "Less dependency on calls and spreadsheets",
 ];
 
 export const LEARNINGS: Learning[] = [

@@ -1,179 +1,172 @@
 import type {
-  AboutStat,
-  CapabilityGroup,
-  CareerStep,
   CaseStudyProject,
-  CodingProject,
-  ExperienceEntry,
   IntelligenceCapability,
   IntelligenceStage,
-  Metric,
   MachineStation,
   MindCluster,
   MindInput,
   MindStage,
   ProcessStep,
-  Service,
-  Social,
-  Strength,
   SystemDiscipline,
-  TriadConcept,
 } from "@/features/home/types";
+import { CAREER_YEARS, CONTACT, HOME_METRICS, PROFILE, SOCIAL_LINKS } from "@/constants/profile";
+import { PROJECT_COUNTS, UX_PROJECTS, uxProjectTitle } from "@/constants/projects";
 
-export const SOCIALS: Social[] = [
-  { label: "GitHub", href: "https://github.com/kasai22", platform: "github" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/chsk1999", platform: "linkedin" },
-];
+/*
+ * Copy and running order for the home page only. Every *fact* — dates,
+ * metrics, contact details, project metadata — is read from
+ * `constants/profile.ts` and `constants/projects.ts` rather than retyped here,
+ * so the home page cannot disagree with the case studies, the metadata or
+ * the résumé.
+ */
 
-export const CONTACT_SOCIALS: Social[] = [
-  // Ordered for the reader this section is written for. `SOCIALS` above keeps
-  // its own order for the hero, where GitHub leading is the right call.
-  ...[...SOCIALS].sort(
-    (a, b) => Number(b.platform === "linkedin") - Number(a.platform === "linkedin"),
-  ),
-  { label: "X", href: "https://x.com/SaiKomal4", platform: "x" },
-  { label: "Discord", href: "https://discord.com/users/695223950757593098", platform: "discord" },
+/** Hero icon row: code first, career second. */
+export const SOCIALS = SOCIAL_LINKS.filter((s) => s.platform !== "x").sort(
+  (a, b) => Number(b.platform === "github") - Number(a.platform === "github"),
+);
+
+/** Contact slide: every profile, LinkedIn first. */
+export const CONTACT_SOCIALS = SOCIAL_LINKS;
+
+export const CONTACT_EMAIL = CONTACT.email;
+
+/* ------------------------------------------------------------------ *
+ * Hero
+ * ------------------------------------------------------------------ */
+
+export const HERO_EYEBROW = PROFILE.name;
+export const HERO_ROLE = PROFILE.title;
+export const HERO_HEADLINE_LINE_1 = "Designing intelligent products.";
+export const HERO_HEADLINE_LINE_2 = "Engineering experiences that work.";
+export const HERO_SUBCOPY = PROFILE.intro;
+export const HERO_STACK = PROFILE.stackLine;
+
+/** Proof chips under the hero headline — résumé facts, nothing rounded up. */
+export const HERO_PROOF = [
+  { value: HOME_METRICS.overall.value, label: "Years · software, data & design" },
+  { value: HOME_METRICS.ux.value, label: "Years in UX" },
   {
-    label: "Slack",
-    href: "https://mywork-tok1009.slack.com/team/U0BRJ480NLX",
-    platform: "slack",
+    value: String(PROJECT_COUNTS.ux + PROJECT_COUNTS.engineering),
+    label: "Products designed or built",
   },
 ];
 
-/* ------------------------------------------------------------------ *
- * Hero — the whole section is under 25 words. What used to be argued
- * in prose is now shown: proof numbers instead of adjectives.
- * ------------------------------------------------------------------ */
+/** The design-to-ship loop, drawn as a track in the hero. */
+export const HERO_LOOP = ["Research", "Design", "Build", "Ship"];
 
-export const HERO_EYEBROW = "Sai Komal";
-export const HERO_ROLE = "Product Designer & UX Engineer";
-export const HERO_HEADLINE_LINE_1 = "Turning complexity";
-export const HERO_HEADLINE_LINE_2 = "into clarity.";
-export const HERO_SUBCOPY =
-  "I design enterprise products — then write the front-end that ships them.";
-
-/** Proof chips under the hero headline. */
-export const HERO_PROOF: Metric[] = [
-  { value: "3+", label: "Years" },
-  { value: "40%", label: "Manual coordination cut" },
-  { value: "3", label: "Case studies" },
+/**
+ * The full set of headline numbers, shown once in the snapshot strip after
+ * the work: four résumé figures and two counts of what is on this site.
+ */
+export const SNAPSHOT_METRICS = [
+  HOME_METRICS.overall,
+  HOME_METRICS.ux,
+  HOME_METRICS.trip,
+  HOME_METRICS.ops,
+  { value: String(PROJECT_COUNTS.ux), label: "UX & product projects" },
+  { value: String(PROJECT_COUNTS.engineering), label: "Independent engineering projects" },
 ];
 
-/** The design-to-ship loop, drawn as a track in the hero. */
-export const HERO_LOOP = ["Research", "Design", "Prototype", "Ship"];
-
 /* ------------------------------------------------------------------ *
- * The deck, sequenced work-first: the catalogue of what exists comes
- * before the argument about how it was made. Chapter numbers live here
- * so resequencing is a change in one place rather than eight.
+ * The deck. Hero, then six numbered slides — the work, the engineering,
+ * the method, the capabilities, the record, the ask. Chapter numbers live
+ * here so resequencing is a change in one place.
  * ------------------------------------------------------------------ */
 export const DECK = {
-  work: { chapter: "01", eyebrow: "Selected work" },
-  development: { chapter: "02", eyebrow: "Development" },
-  track: { chapter: "03", eyebrow: "Track record" },
-  ask: { chapter: "04", eyebrow: "Contact" },
+  work: { chapter: "01", eyebrow: "Selected UX & product experience" },
+  engineering: { chapter: "02", eyebrow: "Independent engineering projects" },
   /**
-   * Not a numbered slide. The five figures sit inside the running order as
-   * diagrams rather than as stops on it — the site already sets every index
-   * and marker in the mono annotation face, so a `FIG.` mark reads as an
+   * The method. Rendered by the design machine — the five steps drawn as one
+   * apparatus — so the method is stated once on the page, not twice.
+   */
+  approach: { chapter: "03", eyebrow: "My approach" },
+  capabilities: { chapter: "04", eyebrow: "Technical capabilities" },
+  track: { chapter: "05", eyebrow: "Professional experience" },
+  ask: { chapter: "06", eyebrow: "Contact" },
+  /**
+   * Not numbered slides. The four figures sit inside the running order as
+   * diagrams rather than as stops on it — the site sets every index and
+   * marker in the mono annotation face, so a `FIG.` mark reads as an
    * insertion rather than as a competing sequence.
    */
   system: { chapter: "FIG. 01", eyebrow: "Product thinking" },
-  /** The second figure — how an interface actually gets put together. */
+  /** How an interface actually gets put together. */
   build: { chapter: "FIG. 02", eyebrow: "Construction" },
-  /** The third — what the product does once intelligence is inside it. */
+  /** What the product does once intelligence is inside it. */
   intelligence: { chapter: "FIG. 03", eyebrow: "AI product" },
-  /** The fourth — what happens between a brief landing and a product existing. */
+  /** What happens between a brief landing and a product existing. */
   mind: { chapter: "FIG. 04", eyebrow: "Problem solving" },
-  /** The last, and the one the other four are parts of. */
-  machine: { chapter: "FIG. 05", eyebrow: "The design machine" },
 } as const;
 
 /** Slide-level supporting lines — one sentence each, no more. */
 export const SLIDE_INTRO = {
-  work: "Long-form case studies. Every one replaced a manual process people were running by phone and spreadsheet.",
-  development: "Sites I designed and shipped the front-end for, live in production.",
+  work: "AI recommendations, enterprise HR, fleet operations, cloud infrastructure and a public-sector website — from research to high-fidelity interfaces.",
+  engineering:
+    "Products I design, build, and ship — taken from product requirements to a deployed web application.",
+  approach:
+    "Discover, Define, Design, Build, Validate — the five steps drawn as the apparatus they make up: a problem in one end, a working product out of the other.",
+  capabilities: `${CAREER_YEARS.overall} years across software, data and product design, including ${CAREER_YEARS.ux} in UX — and the front-end, data and AI-assisted engineering that turn a design into a working product.`,
   track: "Four roles, one direction of travel — data, to design, to owning the product.",
-  ask: "Looking for a full-time Product Designer or UX Engineer role. The form is the fastest reply.",
+  ask: "Open to Senior UI/UX Engineer, UX Engineer and Product Designer roles. The form opens your email client with the message ready to send.",
   system:
     "Not three handoffs on the way to a product. One loop, and the experience is what comes out of it.",
   build: "An interface is not drawn, it is assembled. This is the order the pieces go in.",
   intelligence:
     "Intent, context, a decision, an action, an outcome — and the feedback that changes what happens the next time.",
   mind: "Nine inputs, none of them sequenced. Getting them into something buildable is most of the job.",
-  machine:
-    "The same five steps, drawn as the apparatus they actually make up — a problem in one end, a shipped product out of the other.",
 };
 
-/** Counts of what is actually on this site, not rounded-up claims. */
-export const ABOUT_STATS: AboutStat[] = [
-  { label: "Projects", value: "6" },
-  { label: "Case studies", value: "3" },
-  { label: "Capabilities", value: "26" },
-  { label: "Years in UX", value: "3+" },
-];
-
-/** About, told as a track rather than three paragraphs. */
-export const CAREER_PATH: CareerStep[] = [
-  { period: "2017–21", label: "Mechanical Engineering", detail: "B.Tech, VIT Vellore" },
-  { period: "2021–23", label: "SQL Developer", detail: "Oracle — data at scale" },
-  { period: "2023–24", label: "UX Designer", detail: "Sweya — enterprise UI" },
-  { period: "2024–26", label: "Product Owner & UX Designer", detail: "ONDL — logistics platforms" },
-  { period: "2026–", label: "UX Designer", detail: "Onliest — AI products" },
-];
-
-export const ABOUT_LEAD =
-  "I design the screens and build a working version of them — so engineering gets something that survives its first edge case, not a static mockup.";
-
-export const ABOUT_FOCUS =
-  "Engineering, then data, then UX. Which is why my work is dashboards and admin consoles: the hard part is never one screen.";
-
-export const STRENGTHS: Strength[] = [
-  { icon: "◆", title: "Design to code", detail: "Figma through to a working React build" },
-  { icon: "◇", title: "Research-led", detail: "Interviews and usability tests, not assumptions" },
-  { icon: "◈", title: "Systems, not screens", detail: "Tokens, components, states" },
-  { icon: "◉", title: "Edge-state literate", detail: "Loading, empty, error, partial data" },
-  { icon: "✦", title: "Owns the ambiguity", detail: "Frames the problem before scoping it" },
-];
+/** Quick-scan facts, also read by the JSON-LD graph and FIG. 01. */
+export const RECRUITER_SNAPSHOT = {
+  frontEnd: "React, Next.js, TypeScript, Tailwind",
+  availability: "Open to new roles",
+};
 
 /* ------------------------------------------------------------------ *
- * Engineering + UX + Product.
- *
- * Restored verbatim from the triad component that used to hold this
- * content inline before it was deleted from the working tree. Nothing here
- * is new copy — the three concepts, their one-line provenance and their
- * contributions are exactly as they were written. `ABOUT_FOCUS` above is
- * the synthesis line, and was orphaned by the same deletion.
+ * Selected work — derived from `UX_PROJECTS`, in résumé order.
  * ------------------------------------------------------------------ */
-export const PRODUCT_THINKING: TriadConcept[] = [
-  {
-    label: "Engineering",
-    detail: "B.Tech Mechanical — VIT Vellore",
-    points: [
-      "Systems thinking",
-      "Technical constraints",
-      "Structured problem solving",
-      "Feasibility",
-    ],
-  },
-  {
-    label: "UX",
-    detail: "3+ years — logistics, DevOps, fashion-tech",
-    points: ["Research", "Information architecture", "Interaction design", "Usability testing"],
-  },
-  {
-    label: "Product",
-    detail: "What actually ships",
-    points: ["Business goals", "User needs", "Technical feasibility", "Usability"],
-  },
-];
+
+export const CASE_STUDIES: CaseStudyProject[] = UX_PROJECTS.map((project) => ({
+  id: project.id,
+  title: uxProjectTitle(project),
+  name: project.name,
+  subtitle: project.subtitle,
+  description: project.summary,
+  tags: project.focus,
+  accentColor: project.accent,
+  slug: project.href,
+  timeline: project.timeline,
+  image: project.image?.src ?? null,
+  imageAlt: project.image?.alt ?? "",
+  role: project.role,
+  context: project.context,
+  readMins: project.readMins,
+  format: project.depth,
+  metrics: project.metrics ? [...project.metrics] : [],
+}));
+
+/**
+ * The three projects the hero shows as tiles — and the three pieces that fly
+ * from the hero into their cards. Only projects with a real screen qualify,
+ * so a tile is never a placeholder. A project's position in this list is its
+ * slot number at both ends of the flight (`data-hero-piece` / `data-work-slot`).
+ */
+export const HERO_PIECES = CASE_STUDIES.filter(
+  (project): project is CaseStudyProject & { image: string } => project.image !== null,
+).slice(0, 3);
+
+/** The assembly slot for a card, or `undefined` if no hero tile flies into it. */
+export function heroSlotFor(project: CaseStudyProject): number | undefined {
+  const index = HERO_PIECES.findIndex((piece) => piece.id === project.id);
+  return index === -1 ? undefined : index;
+}
 
 /* ------------------------------------------------------------------ *
  * The product system — the circulating diagram in `FIG. 01`.
  *
  * Every word here is already somewhere else on this site: the disciplines
- * and their framing come from `PRODUCT_THINKING`, the front-end line from
- * `RECRUITER_SNAPSHOT`, and the AI vocabulary from the REX case study and
+ * are the three the profile names (UX, engineering, AI-assisted development),
+ * the front-end line comes from `RECRUITER_SNAPSHOT`, and the AI vocabulary from the REX case study and
  * the Onliest role — agentic architecture, scoring, and the low-confidence
  * and cold-start states its edge cases are written around. Nothing here
  * claims an outcome. It is a picture of how the work circulates, not of
@@ -299,9 +292,9 @@ export const AI_LOOP_CAPTION =
  * output. Discover's "Interviews · Empathy map" and Define's "Problem
  * statement · IA" are verbatim; step 03's "Flows · Design system" is split
  * across Flow and Design, which is how it is actually worked; and Product
- * carries steps 04 and 05 together. The edge states under Flow come from
- * `STRENGTHS` ("Edge-state literate"), and Design's components from
- * "Systems, not screens — tokens, components, states".
+ * carries steps 04 and 05 together. The edge states under Flow are the
+ * loading, empty and error states the REX and Onliest work is written
+ * around, and Design's components are the design-system work on the résumé.
  * ------------------------------------------------------------------ */
 
 export const PROBLEM_INPUTS: MindInput[] = [
@@ -336,7 +329,7 @@ export const MIND_CAPTION =
   "The nine inputs are conceptual. The five stages are not — they are the five steps of the method this practice actually runs on, named for what comes out of each, and the artefact under every one is that step's own recorded output.";
 
 /* ------------------------------------------------------------------ *
- * The design machine — `FIG. 05`.
+ * The design machine — slide 03, "My approach".
  *
  * This is not a sixth process. It is `PROCESS_STEPS` — the five steps
  * already documented in `PROCESS_STEPS` — drawn as the machine they add up
@@ -411,83 +404,10 @@ export const MACHINE_PRODUCT = {
 export const MACHINE_CAPTION =
   "The machine is the five steps of the method — Discover, Define, Design, Build, Validate — drawn as apparatus. Every description and artefact is that step's own; the screen at the delivery end is Kudra's fleet view from the case study.";
 
-export const DESIGN_PHILOSOPHY_QUOTE =
-  "Most of the real design work happens after the mockup is done — when it meets a real API, a loading state, or an edge case nobody drew.";
-
-export const CAPABILITY_GROUPS: CapabilityGroup[] = [
-  {
-    icon: "◈",
-    category: "Product Strategy",
-    description: "Ambiguous problem to scoped, buildable decision",
-    items: [
-      "Product Discovery",
-      "Problem Framing",
-      "User Research",
-      "Feature Validation",
-      "Product Workflows",
-    ],
-  },
-  {
-    icon: "◎",
-    category: "UX Design",
-    description: "The structure and interaction work that precedes UI",
-    items: [
-      "User-Centered Design",
-      "Usability Testing",
-      "Information Architecture",
-      "User Flows",
-      "Wireframing",
-      "Interaction Design",
-      "Accessibility",
-    ],
-  },
-  {
-    icon: "⬡",
-    category: "UI Design",
-    description: "Validated flows to production-ready interface systems",
-    items: [
-      "High-Fidelity UI Design",
-      "Design Systems",
-      "Atomic Design",
-      "Design Tokens",
-      "Component Libraries",
-      "Scalable UI Systems",
-      "Rapid Prototyping",
-    ],
-  },
-  {
-    icon: "✦",
-    category: "Product Collaboration",
-    description: "Making design intent survive the handoff",
-    items: [
-      "Cross-functional Collaboration",
-      "Design–Dev Alignment",
-      "Developer Handoff",
-      "Stakeholder Communication",
-      "Agile / Jira",
-      "SDLC Awareness",
-      "AI-Assisted Design",
-    ],
-  },
-];
-
-export const TOOL_GROUPS: { label: string; items: string[] }[] = [
-  { label: "Design", items: ["Figma", "Sketch", "Adobe XD"] },
-  { label: "Product", items: ["Jira", "Notion", "Miro", "Claude"] },
-  { label: "Code", items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind"] },
-];
-
 /**
- * The five steps, kept as the canonical record even though nothing renders
- * them any more.
- *
- * "How I work" was the slide that displayed this list, and it has been cut —
- * the figures make the same argument in drawings. But `MIND_STAGES` and
- * `DESIGN_MACHINE` are both *derived* from these entries and their comments
- * cite this constant by name as the reason their content counts as real
- * rather than invented. Delete it and that provenance has nowhere to point.
- *
- * Unused by the renderer, load-bearing for the claim. Leave it.
+ * The five steps of the method — the canonical record. `MIND_STAGES` and
+ * `DESIGN_MACHINE` are both derived from these entries, and FIG. 04's nodes
+ * read them directly.
  */
 export const PROCESS_STEPS: ProcessStep[] = [
   {
@@ -521,187 +441,3 @@ export const PROCESS_STEPS: ProcessStep[] = [
     output: "Usability findings",
   },
 ];
-
-export const EXPERIENCE: ExperienceEntry[] = [
-  {
-    company: "Onliest",
-    role: "UX Designer",
-    location: "Visakhapatnam, India",
-    duration: "May 2026 — Present",
-    current: true,
-    summary: [
-      "Designed REX, an AI recommendation product — requirements through flows, interaction models and prototypes.",
-      "Designed the AI edge states: low-confidence, no-result, cold-start, loading, empty and error.",
-      "Built reusable Figma patterns across Marketplace, HR Admin and Revenue using Variables and Variants.",
-    ],
-  },
-  {
-    company: "ONDL",
-    role: "Product Owner & UX Designer",
-    location: "Visakhapatnam, India",
-    duration: "Oct 2024 — May 2026",
-    summary: [
-      "Cut trip-creation effort 20% and manual operational effort 30% by consolidating the workflow.",
-      "Designed Kudra end to end — trip creation, driver assignment, vehicle allocation, fuel tracking.",
-      "Ran field research with drivers, dispatchers and fleet supervisors.",
-    ],
-  },
-  {
-    company: "Sweya Infotech",
-    role: "UX Designer",
-    location: "Visakhapatnam, India",
-    duration: "May 2023 — Oct 2024",
-    summary: [
-      "Designed enterprise products from research and IA through to high-fidelity UI.",
-      "Ran interviews, usability testing and stakeholder workshops to find workflow breakage.",
-      "Created reusable components and design-system patterns for scalable interfaces.",
-    ],
-  },
-  {
-    company: "Oracle",
-    role: "SQL Developer",
-    location: "Hyderabad, India",
-    duration: "Nov 2021 — Apr 2023",
-    summary: [
-      "Built enterprise data-integration and reporting solutions across APIs and business workflows.",
-      "Shipped internal reporting tools that widened access to business data.",
-    ],
-  },
-];
-
-export const RECRUITER_SNAPSHOT = {
-  experience: "3+ years",
-  focus: "Enterprise SaaS & AI products",
-  industries: ["Fashion tech", "Logistics", "DevOps", "Government"],
-  frontEnd: "React, Next.js, Tailwind",
-  design: "Figma, design systems",
-  ai: "Claude & AI-assisted workflows",
-  location: "India · open to remote",
-  availability: "Open to new roles",
-};
-
-/** Offers, each naming what gets handed back. Unrendered since the "Ways I
- *  can help" slide was cut — kept as copy, not referenced by any component. */
-export const SERVICES: Service[] = [
-  {
-    number: "01",
-    title: "Design the product end to end",
-    description: "Framing an ambiguous problem through to production-ready UI.",
-    deliverables: ["Research", "IA & flows", "Wireframes", "High-fidelity UI"],
-  },
-  {
-    number: "02",
-    title: "Build the front-end",
-    description: "The design shipped in React — not a static file thrown over the wall.",
-    deliverables: ["React / Next.js", "Tailwind", "Working prototype", "Dev handoff"],
-  },
-  {
-    number: "03",
-    title: "Set up the design system",
-    description: "Tokens, components and states, so the product holds together as it grows.",
-    deliverables: ["Design tokens", "Component library", "Edge states", "Documentation"],
-  },
-  {
-    number: "04",
-    title: "Design AI-facing interfaces",
-    description: "Making a model's output legible — and safe when it is uncertain.",
-    deliverables: [
-      "Conversational UX",
-      "Explainable ranking",
-      "Confidence signals",
-      "Fallback states",
-    ],
-  },
-];
-
-export const CASE_STUDIES: CaseStudyProject[] = [
-  {
-    title: "Kudra: Streamlining Fleet Coordination",
-    description: "Call-and-spreadsheet fleet coordination, rebuilt as one trip-centric system.",
-    tags: ["Product Strategy", "Enterprise UX", "SaaS Design", "Fleet Management"],
-    accentColor: "#956807",
-    slug: "/case-study/kudra",
-    year: "2025",
-    image: "/figmaAssets/kudra-dashboard.png",
-    role: "Product Designer",
-    timeline: "2025 – 2026",
-    businessGoal: "Replace call-and-spreadsheet coordination with one system",
-    readMins: 9,
-    metrics: [
-      { value: "84", label: "Vehicles tracked" },
-      { value: "40%", label: "Less manual coordination" },
-      { value: "78%", label: "Faster trip creation" },
-    ],
-  },
-  {
-    title: "Onliest REX: Conversational AI Fashion Designer",
-    description: "An agentic stylist that scores and explains every recommendation it makes.",
-    tags: ["Conversational AI", "Agentic Architecture", "Fashion Tech", "BRD → Product"],
-    accentColor: "#8B6C32",
-    slug: "/case-study/rex",
-    year: "2026",
-    image: "/rex/rex-hero.svg",
-    role: "Product Owner / Designer",
-    timeline: "~6 weeks",
-    businessGoal: "Replace generic search with a scored AI stylist",
-    readMins: 8,
-    metrics: [
-      { value: "6", label: "Agents orchestrated" },
-      { value: "6 wks", label: "BRD to prototype" },
-      { value: "4", label: "Entry paths" },
-    ],
-  },
-  {
-    title: "Hindustan Shipyard: Unified Public Sector Portal",
-    description: "Five siloed public-sector modules, unified so status-chasing calls stopped.",
-    tags: ["Stakeholder Research", "Enterprise Ecosystem", "Public Sector", "Accessibility"],
-    accentColor: "#0C7E7E",
-    slug: "/case-study",
-    year: "2024",
-    image: "/figmaAssets/image-16.png",
-    role: "UX Researcher & Designer",
-    timeline: "12 weeks",
-    businessGoal: "Replace status-chasing calls with self-serve visibility",
-    readMins: 6,
-    metrics: [
-      { value: "5", label: "Modules unified" },
-      { value: "12 wks", label: "Research to ship" },
-      { value: "Live", label: "In production" },
-    ],
-  },
-];
-
-export const CODING_PROJECTS: CodingProject[] = [
-  {
-    title: "ONDL Jolt",
-    tagline: "Next-day delivery to remote India",
-    description: "Delivery-availability checker for Tier 2, Tier 3 and rural markets.",
-    url: "https://www.joltdelivery.in/",
-    tech: ["Next.js", "TypeScript", "Tailwind"],
-    image: "/figmaAssets/jolt-screenshot.png",
-    accent: "#7C3AED",
-    year: "2024",
-  },
-  {
-    title: "ONDL",
-    tagline: "Enterprise logistics platform",
-    description: "The primary B2B web platform, built performance-first.",
-    url: "https://www.ondl.in/",
-    tech: ["Next.js", "TypeScript", "Tailwind"],
-    image: null,
-    accent: "#008080",
-    year: "2024",
-  },
-  {
-    title: "HotelFirst Advisory",
-    tagline: "Strategic hotel advisory",
-    description: "Conversion-focused marketing site for a hotel consulting firm.",
-    url: "https://www.hotelfirst.one/",
-    tech: ["Next.js", "TypeScript", "Tailwind"],
-    image: "/figmaAssets/hotelfirst-screenshot.png",
-    accent: "#C3490A",
-    year: "2024",
-  },
-];
-
-export const CONTACT_EMAIL = "chsaikomal@gmail.com";

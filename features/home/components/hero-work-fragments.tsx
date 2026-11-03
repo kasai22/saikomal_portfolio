@@ -10,11 +10,12 @@ import { ParallaxLayer } from "@/components/animations/Parallax";
 import { CARD, PARALLAX, POINTER } from "@/lib/animations/constants";
 import { useParallaxTier, usePointerTier } from "@/hooks/use-scroll-tier";
 import { cssVars } from "@/lib/css-vars";
-import { CASE_STUDIES } from "@/features/home/constants/data";
-import type { CaseStudyProject } from "@/features/home/types";
+import { HERO_PIECES } from "@/features/home/constants/data";
+
+type HeroPiece = (typeof HERO_PIECES)[number];
 
 interface FragmentConfig {
-  project: CaseStudyProject;
+  project: HeroPiece;
   size: number;
   depth: number;
   positionClassName: string;
@@ -27,10 +28,11 @@ interface FragmentConfig {
   index: number;
 }
 
-// Same projects, same order as the featured panel in "Selected Work" below —
-// Kudra (the featured case study) stays the largest, nearest tile here too,
-// so the hero and the work section read as the same object at two scales.
-const FRAGMENTS: FragmentConfig[] = CASE_STUDIES.map((project, i) => ({
+// Same projects, same order as the cards they fly into in "Selected Work"
+// below — REX (the featured case study) is the largest, nearest tile here
+// too, so the hero and the work section read as the same object at two
+// scales. Only projects with a real product screen are pieces.
+const FRAGMENTS: FragmentConfig[] = HERO_PIECES.map((project, i) => ({
   project,
   index: i,
   size: [216, 168, 132][i] ?? 132,
@@ -52,7 +54,7 @@ interface HeroWorkFragmentsDesktopProps {
 }
 
 /**
- * Real fragments of shipped work (Kudra / REX / HSL), scattered across the
+ * Real fragments of the work (REX / Kudra / ClappIt), scattered across the
  * hero's visual column instead of one abstract dashboard mockup.
  *
  * Each tile gets its own depth tier derived from the hero's single scroll
@@ -104,7 +106,7 @@ export function HeroWorkFragmentsDesktop({
 export function HeroWorkFragmentsMobile() {
   return (
     <div className="flex w-full gap-3 lg:hidden">
-      {CASE_STUDIES.map((project, i) => (
+      {HERO_PIECES.map((project, i) => (
         <FragmentCard
           key={project.slug + project.title}
           project={project}
@@ -148,7 +150,7 @@ function FragmentCard({
   style,
   slot,
 }: {
-  project: CaseStudyProject;
+  project: HeroPiece;
   className?: string;
   style?: CSSProperties;
   slot?: number;
@@ -168,7 +170,7 @@ function FragmentCard({
         >
           <ParallaxImage
             src={project.image}
-            alt={project.title}
+            alt={project.imageAlt}
             fill
             range={8}
             sizes="(min-width: 1024px) 260px, 33vw"
@@ -179,7 +181,7 @@ function FragmentCard({
             aria-hidden="true"
           />
           <div className="absolute inset-x-0 bottom-0 translate-y-1.5 p-3 opacity-0 transition-all duration-fast group-hover:translate-y-0 group-hover:opacity-100">
-            <p className="line-clamp-1 text-xs font-semibold text-paper">{project.title}</p>
+            <p className="line-clamp-1 text-xs font-semibold text-paper">{project.name}</p>
             <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider [color:var(--accent)]">
               {project.tags[0]}
             </p>

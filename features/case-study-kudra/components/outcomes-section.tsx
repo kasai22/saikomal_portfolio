@@ -8,7 +8,7 @@ export function OutcomesSection() {
   return (
     <section>
       <SectionHeading label="Outcomes & Impact" title="Measurable" accent="Results" />
-      <div className="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
         {OUTCOME_METRICS.map((m, i) => (
           <div key={m.metric + m.label} className="rounded-sm border border-ink/12 bg-ink/[0.035] p-6">
             <div className="t-metric mb-2 text-[color:var(--accent)]">

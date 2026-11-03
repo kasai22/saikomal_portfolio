@@ -18,6 +18,7 @@ import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { HoverLink } from "@/components/animations/HoverLink";
 import { ActionButton } from "@/components/ui/action-button";
 import { DownloadIcon } from "@/components/icons";
+import { CONTACT } from "@/constants/profile";
 
 const SECTION_IDS = NAV_LINKS.map((link) => link.sectionId).filter(
   (id): id is string => Boolean(id),
@@ -114,7 +115,7 @@ export function Navbar() {
         </StaggerItem>
 
         <StaggerItem as="nav" distance="nudge" aria-label="Sections" className="hidden md:block">
-          <ul className="flex items-center gap-7">
+          <ul className="flex items-center gap-5 lg:gap-7">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <NavLink link={link} isActive={isLinkActive(link)} onNavigate={handleNavigate} showActiveIndicator />
@@ -123,20 +124,18 @@ export function Navbar() {
           </ul>
         </StaggerItem>
 
-        <StaggerItem distance="nudge" className="hidden items-center gap-6 md:flex">
+        <StaggerItem distance="nudge" className="hidden items-center gap-4 md:flex lg:gap-6">
           <HoverLink
-            href="/SaiKomal_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            download="SaiKomal_Resume.pdf"
+            href={CONTACT.resume.href}
+            download={CONTACT.resume.fileName}
             data-cursor="open"
             className="text-xs font-medium text-ink/72 transition-colors duration-instant hover:text-brand-ink"
           >
-            Resume
+            Résumé
             <DownloadIcon className="h-3.5 w-3.5" />
           </HoverLink>
           <ActionButton as="a" href="/#contact" variant="solid" className="px-4 py-2">
-            Let&apos;s talk
+            Let&apos;s connect
           </ActionButton>
         </StaggerItem>
 
@@ -171,19 +170,17 @@ export function Navbar() {
               ))}
               <StaggerItem as="li" direction="left" distance="nudge">
                 <a
-                  href="/SaiKomal_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download="SaiKomal_Resume.pdf"
+                  href={CONTACT.resume.href}
+                  download={CONTACT.resume.fileName}
                   className="flex items-center gap-1.5 text-sm font-medium text-ink/72"
                 >
-                  Resume
+                  Résumé
                   <DownloadIcon className="h-4 w-4" />
                 </a>
               </StaggerItem>
               <StaggerItem as="li" direction="left" distance="nudge">
                 <ActionButton as="a" href="/#contact" variant="solid" className="w-full justify-center">
-                  Let&apos;s talk
+                  Let&apos;s connect
                 </ActionButton>
               </StaggerItem>
               </Stagger>

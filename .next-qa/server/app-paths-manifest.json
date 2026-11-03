@@ -1,0 +1,12 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/case-study/clappit/page": "app/case-study/clappit/page.js",
+  "/case-study/kudra/page": "app/case-study/kudra/page.js",
+  "/case-study/onliest-hr-admin/page": "app/case-study/onliest-hr-admin/page.js",
+  "/case-study/page": "app/case-study/page.js",
+  "/case-study/rex/page": "app/case-study/rex/page.js",
+  "/engineering/[slug]/page": "app/engineering/[slug]/page.js",
+  "/page": "app/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js"
+}

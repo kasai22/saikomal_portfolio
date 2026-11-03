@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CaseStudyCta } from "@/components/case-study/case-study-cta";
+import { getUxProject, uxProjectTitle } from "@/constants/projects";
 import { cssVars } from "@/lib/css-vars";
 import { HeroSection } from "@/features/case-study-hsl/components/hero-section";
 import { OverviewSection } from "@/features/case-study-hsl/components/overview-section";
@@ -22,10 +23,12 @@ import { HighFidelityDesignsSection } from "@/features/case-study-hsl/components
 import { OutcomesSection } from "@/features/case-study-hsl/components/outcomes-section";
 import { SectionRail } from "@/components/case-study/section-rail";
 
+const PROJECT = getUxProject("hsl");
+
 export const metadata: Metadata = {
-  title: "Hindustan Shipyard: Unified Public Sector Portal",
-  description:
-    "How five disconnected modules at Hindustan Shipyard Limited became one ecosystem — replacing status-chasing phone calls with a candidate portal and a live tenders dashboard. Shipped.",
+  title: `${uxProjectTitle(PROJECT)} — Case Study`,
+  description: PROJECT.seoDescription,
+  alternates: { canonical: PROJECT.href },
 };
 
 const ACCENT_VARS = cssVars({

@@ -7,6 +7,7 @@ import { TiltCard, GlassHighlight } from "@/components/ui/tilt-card";
 import { ParallaxImage } from "@/components/ui/parallax-image";
 import { SharedProjectLink } from "@/components/animations/SharedProjectLink";
 import { MetricRow } from "@/features/home/components/metric-row";
+import { RoleWorkflowFigure } from "@/components/case-study/role-workflow-figure";
 import { CARD, CARD_STAGE } from "@/lib/animations/constants";
 import { ENTER, ENTER_SLOW, delayed } from "@/lib/animations/transitions";
 import { fadeMove, imageUnveil } from "@/lib/animations/variants";
@@ -74,17 +75,26 @@ export function CaseStudyCard({ project, slot }: CaseStudyCardProps) {
               transition={delayed(ENTER_SLOW, CARD_STAGE.image)}
               className="absolute inset-0 overflow-hidden"
             >
-              <ParallaxImage
-                src={project.image}
-                alt={`${project.title} — interface preview`}
-                fill
-                sizes="(min-width: 1024px) 33vw, 100vw"
-                className="transition-transform duration-base ease-out group-hover:-translate-y-[3px] group-hover:scale-[1.04]"
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-                aria-hidden="true"
-              />
+              {project.image ? (
+                <>
+                  <ParallaxImage
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw"
+                    className="object-left-top transition-transform duration-base ease-out group-hover:-translate-y-[3px] group-hover:scale-[1.04]"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
+                    aria-hidden="true"
+                  />
+                </>
+              ) : (
+                // No product screens are published for this project yet, so
+                // the slot carries a drawing of its documented scope instead
+                // of an empty frame or a stand-in picture.
+                <RoleWorkflowFigure compact className="absolute inset-0" />
+              )}
             </motion.div>
           </div>
 
@@ -95,9 +105,11 @@ export function CaseStudyCard({ project, slot }: CaseStudyCardProps) {
               transition={delayed(ENTER, CARD_STAGE.meta)}
               className="delay-[90ms] flex items-center gap-2 transition-colors duration-fast [&>span:not(:first-child)]:text-ink/60 group-hover:[&>span:not(:first-child)]:text-ink/80"
             >
-              <span className="t-eyebrow [color:var(--accent)]">Case Study</span>
+              <span className="t-eyebrow [color:var(--accent)]">
+                {project.format === "full" ? "Case study" : "Project summary"}
+              </span>
               <span className="h-1 w-1 rounded-full bg-ink/[0.10]" aria-hidden="true" />
-              <span className="t-eyebrow">{project.year}</span>
+              <span className="t-eyebrow">{project.timeline}</span>
               <span className="t-meta ml-auto">{project.readMins} min</span>
             </motion.div>
 
@@ -122,12 +134,18 @@ export function CaseStudyCard({ project, slot }: CaseStudyCardProps) {
               transition={delayed(ENTER, CARD_STAGE.support)}
               className="flex flex-1 flex-col gap-3"
             >
+              <p className="t-meta text-ink/62">
+                {project.role}
+                {project.context && <> · {project.context}</>}
+              </p>
               <p className="t-meta flex-1 text-ink/60">{project.description}</p>
 
-              <MetricRow metrics={project.metrics} className="border-ink/12 border-t pt-3.5" />
+              {project.metrics.length > 0 && (
+                <MetricRow metrics={project.metrics} className="border-ink/12 border-t pt-3.5" />
+              )}
 
               <ul className="flex flex-wrap gap-1.5">
-                {project.tags.slice(0, 2).map((tag) => (
+                {project.tags.slice(0, project.metrics.length > 0 ? 2 : 3).map((tag) => (
                   <li key={tag} className="t-chip">
                     {tag}
                   </li>
@@ -135,7 +153,7 @@ export function CaseStudyCard({ project, slot }: CaseStudyCardProps) {
               </ul>
 
               <div className="t-action flex items-center gap-1.5 pt-0.5 [color:var(--accent)]">
-                Read case study
+                {project.format === "full" ? "Read case study" : "Read project summary"}
                 <ArrowRightIcon className="delay-[160ms] h-3 w-3 transition-transform duration-fast ease-out group-hover:translate-x-1" />
               </div>
             </motion.div>

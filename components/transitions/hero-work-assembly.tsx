@@ -15,7 +15,7 @@ import { ASSEMBLY, QUERY } from "@/lib/animations/constants";
 import { clamp01, lerp, smoothstep } from "@/components/hero/complexity-geometry";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useMotionTier } from "@/hooks/use-motion-tier";
-import { CASE_STUDIES } from "@/features/home/constants/data";
+import { HERO_PIECES } from "@/features/home/constants/data";
 
 /**
  * The hero's three project tiles, travelling into the three real case-study
@@ -29,10 +29,10 @@ import { CASE_STUDIES } from "@/features/home/constants/data";
  * arrived.
  *
  * This does the opposite and keeps nothing of that architecture. There is no
- * cover, no aperture, no mask and no fixed layer of any kind. The hero's Kudra
- * tile is the Kudra card's image; the REX tile is the REX card's image; the
- * Shipyard tile is the Shipyard card's image. They are the same three files
- * (`CASE_STUDIES[i].image`) in both places, and across the hand-off each one
+ * cover, no aperture, no mask and no fixed layer of any kind. The hero's REX
+ * tile is the REX card's image; the Kudra tile is the Kudra card's image; the
+ * ClappIt tile is the ClappIt card's image. They are the same three files
+ * (`HERO_PIECES[i].image`) in both places, and across the hand-off each one
  * physically travels from where it sits in the hero to where its card's image
  * slot actually is.
  *
@@ -148,7 +148,7 @@ export function HeroWorkAssembly({ children }: { children: ReactNode }) {
  * Measurement
  * ------------------------------------------------------------------ */
 
-const PIECES = CASE_STUDIES.slice(0, 3);
+const PIECES = HERO_PIECES;
 
 /**
  * The pair of elements at each end of a flight.

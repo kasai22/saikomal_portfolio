@@ -43,16 +43,17 @@ import {
   HERO_EYEBROW,
   HERO_HEADLINE_LINE_1,
   HERO_HEADLINE_LINE_2,
-  HERO_LOOP,
   HERO_PROOF,
   HERO_ROLE,
+  HERO_STACK,
   HERO_SUBCOPY,
   SOCIALS,
 } from "@/features/home/constants/data";
+import { CONTACT } from "@/constants/profile";
 
 /**
- * Identity-first hero: a status pill, a name and role line, a two-line
- * headline, one sentence of positioning, the design-to-ship track, and three
+ * Identity-first hero: a status pill, the name and role (the page's `<h1>`),
+ * a two-line headline, the positioning paragraph, the core stack, and three
  * proof numbers. Real fragments of shipped work stand in for a generic hero
  * illustration.
  *
@@ -229,7 +230,7 @@ export function HeroSection() {
 
         <motion.div
           style={{ opacity: handoffOpacity }}
-          className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 px-6 py-16 sm:py-20 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16 lg:py-20"
+          className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 px-6 pb-16 pt-24 sm:py-20 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16 lg:py-20"
         >
           {/* ── TEXT COLUMN ─────────────────────────────────────────────── */}
           <ParallaxLayer y={headlineScrollY} className="lg:col-start-1 lg:row-start-1">
@@ -240,20 +241,34 @@ export function HeroSection() {
                   with explicit per-element delays rather than a `Stagger`,
                   which would have to follow DOM order: the existing layout
                   stays exactly as it was and only the timing is authored. */}
+                {/* The page's `<h1>` is who this is and what they do — the
+                  line a search result and a screen reader should lead with.
+                  The display headline below is the claim, not the title. */}
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                  <FadeIn direction="up" distance="nudge" immediate delay={HERO_STAGE.identity}>
-                    <p className="t-h4 text-ink">{HERO_EYEBROW}</p>
-                  </FadeIn>
-                  <FadeIn
-                    direction="up"
-                    distance="nudge"
-                    immediate
-                    delay={HERO_STAGE.identity + 0.06}
-                    className="flex items-center gap-3"
-                  >
-                    <span className="h-3 w-px bg-ink/[0.10]" aria-hidden="true" />
-                    <p className="t-meta text-ink/60">{HERO_ROLE}</p>
-                  </FadeIn>
+                  <h1 className="contents">
+                    <FadeIn
+                      as="span"
+                      direction="up"
+                      distance="nudge"
+                      immediate
+                      delay={HERO_STAGE.identity}
+                      className="block"
+                    >
+                      <span className="t-h4 block text-ink">{HERO_EYEBROW}</span>
+                    </FadeIn>
+                    <span className="sr-only">, </span>
+                    <FadeIn
+                      as="span"
+                      direction="up"
+                      distance="nudge"
+                      immediate
+                      delay={HERO_STAGE.identity + 0.06}
+                      className="flex items-center gap-3"
+                    >
+                      <span className="h-3 w-px bg-ink/[0.10]" aria-hidden="true" />
+                      <span className="t-meta block font-medium text-ink/72">{HERO_ROLE}</span>
+                    </FadeIn>
+                  </h1>
                   <FadeIn immediate delay={HERO_STAGE.status}>
                     <span className="flex items-center gap-1.5 rounded-full border border-brand/25 bg-brand/10 px-2 py-0.5 text-[10px] font-medium text-brand-ink">
                       <span
@@ -268,8 +283,8 @@ export function HeroSection() {
                 {/* STAGES 3–4 — the headline, one masked line at a time. Each
                   line rises from behind its own clip box; `scale` settles it
                   back as the section scrolls away. */}
-                <motion.h1
-                  className="t-display origin-left text-ink"
+                <motion.p
+                  className="t-display origin-left text-ink lg:text-[52px]"
                   style={{ scale: headlineScale }}
                 >
                   <TextReveal
@@ -290,7 +305,7 @@ export function HeroSection() {
                     transition={HEADLINE}
                     className="text-ink/40"
                   />
-                </motion.h1>
+                </motion.p>
 
                 {/* STAGES 5–7 — positioning, the design-to-ship track, proof.
                   All three soften together as the hero scrolls out. */}
@@ -300,7 +315,7 @@ export function HeroSection() {
                     would make it the LCP element and push LCP out by the
                     length of its own entrance — measured at +1.1s here. An
                     opaque lift is visually the same gesture at no cost. */}
-                  <p className="t-body text-ink/62 max-w-xs">
+                  <p className="t-body max-w-md text-ink/62">
                     <TextReveal
                       text={HERO_SUBCOPY}
                       by="line"
@@ -315,10 +330,10 @@ export function HeroSection() {
                     immediate
                     step={STAGGER.tight}
                     delay={HERO_STAGE.labels}
-                    aria-label="How I work"
+                    aria-label="Core stack"
                     className="flex flex-wrap items-center gap-x-2 gap-y-1.5"
                   >
-                    {HERO_LOOP.map((stage, i) => (
+                    {HERO_STACK.map((stage, i) => (
                       <StaggerItem
                         as="li"
                         key={stage}
@@ -393,26 +408,29 @@ export function HeroSection() {
             >
               <StaggerItem distance="nudge">
                 <ActionButton as="a" href="#projects" variant="solid">
-                  See the work
+                  Explore my work
                   <ArrowRightIcon className="h-3.5 w-3.5" />
                 </ActionButton>
               </StaggerItem>
               <StaggerItem distance="nudge">
-                <ActionButton as="a" href="#contact" variant="outline">
-                  Let&apos;s talk
+                <ActionButton
+                  as="a"
+                  href={CONTACT.resume.href}
+                  download={CONTACT.resume.fileName}
+                  data-cursor="open"
+                  variant="outline"
+                >
+                  Download résumé
+                  <DownloadIcon className="h-3.5 w-3.5" />
                 </ActionButton>
               </StaggerItem>
               <StaggerItem distance="nudge">
                 <HoverLink
-                  href="/SaiKomal_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download="SaiKomal_Resume.pdf"
-                  data-cursor="open"
+                  href="#contact"
                   className="t-meta font-semibold text-ink/65 transition-colors duration-instant hover:text-brand-ink"
                 >
-                  Resume
-                  <DownloadIcon className="h-3.5 w-3.5" />
+                  Let&apos;s connect
+                  <ArrowRightIcon className="h-3.5 w-3.5" />
                 </HoverLink>
               </StaggerItem>
               <StaggerItem distance="nudge">

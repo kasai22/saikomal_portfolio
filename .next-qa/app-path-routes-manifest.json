@@ -1,0 +1,12 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/case-study/clappit/page": "/case-study/clappit",
+  "/case-study/kudra/page": "/case-study/kudra",
+  "/case-study/onliest-hr-admin/page": "/case-study/onliest-hr-admin",
+  "/case-study/page": "/case-study",
+  "/case-study/rex/page": "/case-study/rex",
+  "/engineering/[slug]/page": "/engineering/[slug]",
+  "/page": "/",
+  "/sitemap.xml/route": "/sitemap.xml"
+}

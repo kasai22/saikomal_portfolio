@@ -26,7 +26,8 @@ interface FeaturedProjectPanelProps {
 }
 
 /**
- * The large, dominant panel for the top case study — visually distinct from
+ * The large, dominant panel for the top case study (it must have a product
+ * screen — `SelectedWorkSection` only features one that does) — visually distinct from
  * the compact cards below it, so "Selected Work" reads as an editorial
  * composition rather than a repeated grid. The real product screenshot stays
  * the focal point, and the outcome figures carry the weight the description
@@ -62,8 +63,8 @@ export function FeaturedProjectPanel({ project, slot }: FeaturedProjectPanelProp
                 className="absolute inset-0 overflow-hidden"
               >
                 <ParallaxImage
-                  src={project.image}
-                  alt={`${project.title} — dashboard interface`}
+                  src={project.image ?? ""}
+                  alt={project.imageAlt}
                   fill
                   priority
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -86,7 +87,7 @@ export function FeaturedProjectPanel({ project, slot }: FeaturedProjectPanelProp
                 <span className="t-eyebrow rounded-full border border-[color:var(--accent)] px-2.5 py-1 [color:var(--accent)]">
                   Featured
                 </span>
-                <span className="t-eyebrow">{project.year}</span>
+                <span className="t-eyebrow">{project.timeline}</span>
                 <span className="t-meta ml-auto">{project.readMins} min read</span>
               </motion.div>
 
@@ -111,9 +112,11 @@ export function FeaturedProjectPanel({ project, slot }: FeaturedProjectPanelProp
               >
                 <p className="t-body text-ink/62">{project.description}</p>
 
-                <MetricRow metrics={project.metrics} className="border-ink/12 border-y py-4" />
+                {project.metrics.length > 0 && (
+                  <MetricRow metrics={project.metrics} className="border-ink/12 border-y py-4" />
+                )}
 
-                <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+                <dl className="border-ink/12 grid grid-cols-2 gap-x-4 gap-y-2.5 border-t pt-4 sm:grid-cols-3">
                   <div>
                     <dt className="t-eyebrow text-ink/60">Role</dt>
                     <dd className="t-meta mt-1 text-ink/75">{project.role}</dd>
@@ -122,6 +125,12 @@ export function FeaturedProjectPanel({ project, slot }: FeaturedProjectPanelProp
                     <dt className="t-eyebrow text-ink/60">Timeline</dt>
                     <dd className="t-meta mt-1 text-ink/75">{project.timeline}</dd>
                   </div>
+                  {project.context && (
+                    <div>
+                      <dt className="t-eyebrow text-ink/60">At</dt>
+                      <dd className="t-meta mt-1 text-ink/75">{project.context}</dd>
+                    </div>
+                  )}
                 </dl>
 
                 <ul className="flex flex-wrap gap-1.5">

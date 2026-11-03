@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CaseStudyCta } from "@/components/case-study/case-study-cta";
+import { getUxProject, uxProjectTitle } from "@/constants/projects";
 import { HeroSection } from "@/features/case-study-kudra/components/hero-section";
 import { OverviewSection } from "@/features/case-study-kudra/components/overview-section";
 import { ProblemStatementSection } from "@/features/case-study-kudra/components/problem-statement-section";
@@ -27,10 +28,12 @@ import { DeliverablesSection } from "@/features/case-study-kudra/components/deli
 import { cssVars } from "@/lib/css-vars";
 import { SectionRail } from "@/components/case-study/section-rail";
 
+const PROJECT = getUxProject("kudra");
+
 export const metadata: Metadata = {
-  title: "Kudra: Streamlining Fleet Coordination",
-  description:
-    "A case study on designing Kudra, an enterprise logistics SaaS that transformed fragmented fleet operations into a structured, trip-centric management system.",
+  title: `${uxProjectTitle(PROJECT)} — Case Study`,
+  description: PROJECT.seoDescription,
+  alternates: { canonical: PROJECT.href },
 };
 
 const ACCENT_VARS = cssVars({

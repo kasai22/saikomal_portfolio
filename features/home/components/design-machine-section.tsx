@@ -11,10 +11,17 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { useMotionTier } from "@/hooks/use-motion-tier";
 
 /**
- * FIG. 05 — the whole method as one machine, seen from the side, with a camera
- * that travels its length.
+ * Slide 03, "My approach" — the whole method as one machine, seen from the
+ * side, with a camera that travels its length. Discover → Define → Design →
+ * Build → Validate, one station per step.
  *
- * Placed last of the five figures and immediately before About. The other four
+ * This *is* the approach slide, not a figure next to one: stating the five
+ * steps as a list and then drawing them again would say the same thing twice.
+ * Every station's step, description and artefact is written out in the
+ * server HTML (and in full below `md` and under reduced motion), so the
+ * method is readable as text as well as watchable as a drawing.
+ *
+ * Placed after the four figures. The other four
  * are each about one part of the work — how the disciplines combine, how an
  * interface is assembled, what it does once intelligence is behind it, how a
  * problem gets ordered. This one is the object all four are parts of, which is
@@ -74,18 +81,19 @@ export function DesignMachineSection() {
   const svh = reduced || !roomy ? 0 : large ? RUNWAY.desktop : RUNWAY.tablet;
 
   return (
-    <HomeSection id="machine" tone="raised">
+    <HomeSection id="approach" tone="raised">
       <div ref={runway} className="relative">
         <div className={svh > 0 ? "sticky top-16" : undefined}>
           <SectionHeading
-            chapter={DECK.machine.chapter}
-            eyebrow={DECK.machine.eyebrow}
+            chapter={DECK.approach.chapter}
+            eyebrow={DECK.approach.eyebrow}
             title={
               <>
-                A problem goes in. A <span className="text-brand-ink">product</span> comes out.
+                A problem goes in. A <span className="text-brand-ink">working product</span>{" "}
+                comes out.
               </>
             }
-            intro={SLIDE_INTRO.machine}
+            intro={SLIDE_INTRO.approach}
           />
 
           {/* Chosen in JS rather than by CSS. Rendering both and hiding one

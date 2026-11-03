@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CaseStudyCta } from "@/components/case-study/case-study-cta";
+import { getUxProject, uxProjectTitle } from "@/constants/projects";
 import { cssVars } from "@/lib/css-vars";
 import { HeroSection } from "@/features/case-study-rex/components/hero-section";
 import { OverviewSection } from "@/features/case-study-rex/components/overview-section";
@@ -8,6 +9,7 @@ import { ProblemStatementSection } from "@/features/case-study-rex/components/pr
 import { SolutionSection } from "@/features/case-study-rex/components/solution-section";
 import { KeyFeaturesSection } from "@/features/case-study-rex/components/key-features-section";
 import { AgentArchitectureSection } from "@/features/case-study-rex/components/agent-architecture-section";
+import { AiStatesSection } from "@/features/case-study-rex/components/ai-states-section";
 import { ProcessArtifactsSection } from "@/features/case-study-rex/components/process-artifacts-section";
 import { CourseCorrection } from "@/components/case-study/course-correction";
 import { HighFidelityScreensSection } from "@/features/case-study-rex/components/high-fidelity-screens-section";
@@ -15,10 +17,12 @@ import { OutcomesSection } from "@/features/case-study-rex/components/outcomes-s
 import { ReflectionSection } from "@/features/case-study-rex/components/reflection-section";
 import { SectionRail } from "@/components/case-study/section-rail";
 
+const PROJECT = getUxProject("rex");
+
 export const metadata: Metadata = {
-  title: "Onliest REX: Conversational AI Fashion Designer",
-  description:
-    "A case study on designing Onliest REX, a luxury AI recommendation and product-design engine that turns vague fashion instincts into personalized, purchase-ready saree and blouse designs.",
+  title: `${uxProjectTitle(PROJECT)} — Case Study`,
+  description: PROJECT.seoDescription,
+  alternates: { canonical: PROJECT.href },
 };
 
 const ACCENT_VARS = cssVars({
@@ -50,6 +54,7 @@ export default function RexCaseStudyPage() {
         <KeyFeaturesSection />
         <ProcessArtifactsSection />
         <AgentArchitectureSection />
+        <AiStatesSection />
         <HighFidelityScreensSection />
         <OutcomesSection />
         <CourseCorrection
